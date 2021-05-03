@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 18:23:49 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 18:26:40 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/03 19:53:55 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,5 @@ int	ft_isalnum(int c)
 		return (1);
 	else if (c <= '9' && c >= '0')
 		return (1);
-	else
-		return (0);
+	return (0);
 }

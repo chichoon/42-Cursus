@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 18:26:58 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 18:29:53 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/03 20:06:30 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,5 @@ int	ft_isascii(int c)
 {
 	if (c <= 127 && c >= 0)
 		return (1);
-	else
-		return (0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 11:14:56 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 14:47:31 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/03 19:46:58 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_bzero(void *ptr, size_t n)
 {
 	unsigned char	*ptr_backup;
 
-	ptr_backup = ptr;
+	ptr_backup = (unsigned char *)ptr;
 	if (!ptr)
 		return ;
 	while (n > 0)

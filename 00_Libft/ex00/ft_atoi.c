@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 18:16:48 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 18:23:16 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/03 20:02:12 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_space(char str)
 		return (0);
 }
 
-int	atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	unsigned int	absol;
 	int				minus;
@@ -29,8 +29,12 @@ int	atoi(const char *str)
 	while (is_space(*str))
 		str++;
 	if (*str == '-')
+	{
 		minus = -1;
-	str++;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
 	while (*str <= '9' && *str >= '0')
 		absol = absol * 10 + (*str++ - '0');
 	return (minus * absol);

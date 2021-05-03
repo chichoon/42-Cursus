@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 12:01:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 18:42:04 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/03 20:11:12 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 			return (++dst_backup);
 		dst_backup++;
 		src_backup++;
+		n--;
 	}
 	return (0);
 }

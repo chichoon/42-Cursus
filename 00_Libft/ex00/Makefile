@@ -6,20 +6,20 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/03 15:47:50 by jiychoi           #+#    #+#              #
-#    Updated: 2021/05/03 16:40:16 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/05/03 19:42:21 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= gcc
 PARAM		= -Wall -Wextra -Werror
-SRCS		= $(wildcard *.c)
+SRCS		= ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_memccpy.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_strchr.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_tolower.c ft_toupper.c
 OBJS		= $(SRCS:.c=.o)
-TARGET		= libft.a
+NAME		= libft.a
 
-all : $(TARGET)
+all : $(NAME)
 
-$(TARGET) : $(OBJS)
-	ar -rc $(TARGET) $(OBJS)
+$(NAME) : $(OBJS)
+	ar -rc $(NAME) $(OBJS)
 
 %.o : %.c
 	$(CC) $(PARAM) -c -o $@ $< -I libft.h
@@ -28,7 +28,7 @@ clean :
 	rm -f $(OBJS)
 
 fclean : clean
-	rm -f $(TARGET)
+	rm -f $(NAME)
 
 re : fclean all
 

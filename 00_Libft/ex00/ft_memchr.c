@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:17:15 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 15:38:19 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/03 20:13:07 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	*ft_memchr(const void *src, int c, size_t n)
 	{
 		if (*src_backup == (unsigned char)c)
 			return (src_backup);
+		src_backup++;
 		n--;
 	}
 	return (0);
