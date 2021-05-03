@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 12:05:30 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 14:50:45 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 15:17:15 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 15:19:46 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memmove(void *dst, const void *src, size_t n)
+void	*ft_memchr(const void *src, int c, size_t n)
 {
-	void				*dst_backup;
-	void				*src_backup;
-	void				buf[count];
-	unsigned long long	i;
-
-	src_backup = src;
-	i = 0;
-	if (!dst || !src)
-		return (0);
-	while (i < n)
-		buf[i++] = *src_backup++;
-	i = 0;
-	while (i < n)
-		*dst++ = buf[i++];
-	return (dst_backup);
+	
 }
