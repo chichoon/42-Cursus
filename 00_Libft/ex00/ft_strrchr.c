@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 12:01:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 16:03:11 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 17:40:59 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 17:46:36 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *restrict d, const void *restrict s, int c, size_t n)
+char	*ft_strrchr(const char *src, int c)
 {
-	unsigned char *restrict	d_backup;
-	unsigned char *restrict s_backup;
-	unsigned char			uc;
+	size_t	length;
 
-	d_backup = (unsigned char *restrict)d;
-	s_backup = (unsigned char *restrict)s;
-	uc = (unsigned char)c;
-	while (n)
+	length = ft_strlen(src);
+	src += length;
+	while (length)
 	{
-		*d_backup = *s_backup;
-		if (*s_backup == c)
-			return (++d_backup);
-		d_backup++;
-		s_backup++;
+		if (*src == c)
+			return ((char *)src);
+		src--;
+		length--;
 	}
 	return (0);
 }
