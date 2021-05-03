@@ -6,26 +6,23 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/03 15:47:50 by jiychoi           #+#    #+#              #
-#    Updated: 2021/05/03 16:31:48 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/05/03 16:40:16 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= gcc
 PARAM		= -Wall -Wextra -Werror
-DIR			= src
-SRCS		= $($(DIR)/%.c)
-OBJS		= $($(DIR)SRCS:.c=.o)
+SRCS		= $(wildcard *.c)
+OBJS		= $(SRCS:.c=.o)
 TARGET		= libft.a
-INC			= -I ./
 
 all : $(TARGET)
 
 $(TARGET) : $(OBJS)
-	$(OBJS)
-	ar -rc $(TARGET) $<
+	ar -rc $(TARGET) $(OBJS)
 
-$($(DIR)/%.o) : $($(DIR)/%.c)
-	$(CC) $(PARAM) -c -o $@ $< $(INC)
+%.o : %.c
+	$(CC) $(PARAM) -c -o $@ $< -I libft.h
 
 clean :
 	rm -f $(OBJS)

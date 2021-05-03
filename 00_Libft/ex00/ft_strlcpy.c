@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:54:08 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 16:05:26 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/03 17:13:04 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t n)
 	size_t i;
 
 	i = 0;
-	while (i + 1 < size)
+	while (i + 1 < n)
 	{
 		if (!*src)
 			break ;
 		else
 		{
-			*dest++ = *src++;
+			*dst++ = *src++;
 			i++;
 		}
 	}
@@ -32,6 +32,6 @@ size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t n)
 		i++;
 		src++;
 	}
-	*dest = '\0';
+	*dst = '\0';
 	return (i);
 }
