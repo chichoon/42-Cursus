@@ -6,24 +6,25 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/03 15:47:50 by jiychoi           #+#    #+#              #
-#    Updated: 2021/05/03 15:51:28 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/05/03 16:31:48 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= gcc
 PARAM		= -Wall -Wextra -Werror
 DIR			= src
-SRCS		= $(DIR)/*.c
-OBJS		= $(SRCS:.c=.o)
+SRCS		= $($(DIR)/%.c)
+OBJS		= $($(DIR)SRCS:.c=.o)
 TARGET		= libft.a
-INC			= -I includes
+INC			= -I ./
 
 all : $(TARGET)
 
 $(TARGET) : $(OBJS)
-	ar -rc $(TARGET) $^
+	$(OBJS)
+	ar -rc $(TARGET) $<
 
-%.o : %.c
+$($(DIR)/%.o) : $($(DIR)/%.c)
 	$(CC) $(PARAM) -c -o $@ $< $(INC)
 
 clean :
