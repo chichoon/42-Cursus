@@ -6,11 +6,11 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 12:01:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 12:05:15 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/03 12:19:14 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memccpy(void *dst, const void *src, int c, unsigned int n)
+void	*ft_memccpy(void *dst, void *src, int c, unsigned int n)
 {
 	void *dst_backup;
 
