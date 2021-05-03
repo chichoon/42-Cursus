@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 12:01:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 18:42:04 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 18:14:12 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 18:16:12 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned char			*dst_backup;
-	unsigned char			*src_backup;
-	unsigned char			uc;
-
-	dst_backup = (unsigned char *)dst;
-	src_backup = (unsigned char *)src;
-	uc = (unsigned char)c;
 	while (n)
 	{
-		*dst_backup = *src_backup;
-		if (*src_backup == c)
-			return (++dst_backup);
-		dst_backup++;
-		src_backup++;
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		else if (!*s1)
+			break ;
+		s1++;
+		s2++;
+		n--;
 	}
 	return (0);
 }

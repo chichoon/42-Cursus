@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 12:01:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 18:42:04 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 18:05:28 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 18:13:17 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+char	*ft_strnstr(const char *src, const char *to_find, size_t n)
 {
-	unsigned char			*dst_backup;
-	unsigned char			*src_backup;
-	unsigned char			uc;
+	char *tmp;
+	char *tmp_find;
 
-	dst_backup = (unsigned char *)dst;
-	src_backup = (unsigned char *)src;
-	uc = (unsigned char)c;
-	while (n)
+	if (!*to_find)
+		return ((char *)src);
+	while (1)
 	{
-		*dst_backup = *src_backup;
-		if (*src_backup == c)
-			return (++dst_backup);
-		dst_backup++;
-		src_backup++;
+		tmp_find = (char *)to_find;
+		while (*src != *to_find)
+			if (!*src++ || !n--)
+				return (0);
+		tmp = (char *)src;
+		while (*tmp_find)
+		{
+			if (*src != *tmp_find)
+				break ;
+			if (!n--)
+				return (0);
+			src++;
+			tmp_find++;
+		}
+		if (!*tmp_find)
+			break ;
 	}
-	return (0);
+	return (tmp);
 }

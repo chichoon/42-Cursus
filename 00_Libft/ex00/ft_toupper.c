@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 12:01:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 18:42:04 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 18:32:24 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 18:33:25 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+int	ft_toupper(int c)
 {
-	unsigned char			*dst_backup;
-	unsigned char			*src_backup;
-	unsigned char			uc;
-
-	dst_backup = (unsigned char *)dst;
-	src_backup = (unsigned char *)src;
-	uc = (unsigned char)c;
-	while (n)
-	{
-		*dst_backup = *src_backup;
-		if (*src_backup == c)
-			return (++dst_backup);
-		dst_backup++;
-		src_backup++;
-	}
-	return (0);
+	if (c <= 'z' && c >= 'a')
+		return (c - 'a' + 'A');
+	else
+		return (c);
 }
