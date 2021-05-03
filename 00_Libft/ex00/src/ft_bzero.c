@@ -6,21 +6,22 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 11:14:56 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 11:55:41 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/03 14:47:31 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_bzero(void *ptr, unsigned int size)
+#include "libft.h"
+
+void	ft_bzero(void *ptr, size_t n)
 {
-	void	*ptr_backup;
+	unsigned char	*ptr_backup;
 
 	ptr_backup = ptr;
-	if (!ptr_backup)
-		return (0);
-	while (size > 0)
+	if (!ptr)
+		return ;
+	while (n > 0)
 	{
-		*ptr++ = 0;
-		size--;
+		*ptr_backup++ = 0;
+		n--;
 	}
-	return (ptr_backup);
 }

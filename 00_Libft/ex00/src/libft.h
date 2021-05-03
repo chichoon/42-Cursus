@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 11:53:40 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 15:15:18 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 13:59:11 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 15:15:54 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIBFT_H
+# define LIBFT_H
 
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t num)
-{
-	unsigned char *restrict dst_backup;
-	unsigned char *restrict src_backup;
+# include <string.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-	dst_backup = (unsigned char *restrict)dst;
-	src_backup = (unsigned char *restrict)src;
-	while (num)
-	{
-		*dst_backup++ = *src_backup++;
-		num--;
-	}
-	return (dst_backup);
-}
+void	ft_bzero(void *ptr, size_t n);
+void	ft_memmove(void *dst, const void *src, size_t count);
+
+#endif
