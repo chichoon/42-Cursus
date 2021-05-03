@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/02 21:21:07 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 11:34:00 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 11:14:56 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 11:55:41 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+void	ft_bzero(void *ptr, unsigned int size)
 {
-	if (c <= '9' && c >= '0')
-		return (1);
-	return (0);
+	void	*ptr_backup;
+
+	ptr_backup = ptr;
+	if (!ptr_backup)
+		return (0);
+	while (size > 0)
+	{
+		*ptr++ = 0;
+		size--;
+	}
+	return (ptr_backup);
 }

@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/02 21:21:07 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 11:34:00 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 11:53:40 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 12:01:55 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+void	*ft_memcpy(void *dst, const void *src, unsigned int num)
 {
-	if (c <= '9' && c >= '0')
-		return (1);
-	return (0);
+	void *dst_backup;
+
+	dst_backup = dst;
+	if (!dst || !src)
+		return (0);
+	else
+	{
+		while (num)
+		{
+			*dst++ = *src++;
+			num--;
+		}
+	}
+	return (dst_backup);
 }

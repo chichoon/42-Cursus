@@ -6,15 +6,15 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 21:20:59 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/02 21:21:02 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/03 11:34:19 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
-    if (c <= 'Z' && c >= 'A')
-        return (1);
-    else if (c <= 'z' && c >= 'a')
-        return (2);
-    return (0);
+	if (c <= 'Z' && c >= 'A')
+		return (1);
+	else if (c <= 'z' && c >= 'a')
+		return (2);
+	return (0);
 }
