@@ -37,7 +37,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (ft_is_in_set(*(end - 1), set) && start < end)
 		end--;
 	range = end - start;
-	ptr = (char *)malloc(sizeof(char) * range + 1);
+	ptr = (char *)malloc(sizeof(char) * (range + 1));
 	if (!ptr)
 		return (0);
 	ft_memcpy(ptr, start, range);

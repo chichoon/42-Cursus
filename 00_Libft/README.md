@@ -18,3 +18,7 @@ Libft 함수 리스트 및 설명
 ### Libftest
 ![libftest_0](imgs/libftest_0.png)
 ![libftest_1](imgs/libftest_1.png)
+
+### War Machine (Bonus not working!)
+![warmachine_0](imgs/warmachine_0.png)
+![warmachine_1](imgs/warmachine_1.png)

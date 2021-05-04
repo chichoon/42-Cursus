@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 11:07:49 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/04 11:57:28 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/04 19:51:47 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_strndup(char *str, int length)
 	char	*ptr;
 	char	*ptr_backup;
 
-	ptr = (char *)malloc(sizeof(char) * length + 1);
+	ptr = (char *)malloc(sizeof(char) * (length + 1));
 	if (!ptr)
 		return (0);
 	ptr_backup = ptr;
@@ -53,6 +53,17 @@ char	*ft_strndup(char *str, int length)
 		*ptr++ = *str++;
 	*ptr = 0;
 	return (ptr_backup);
+}
+
+char	**ft_free_char2d(char **arr)
+{
+	int index;
+
+	index = 0;
+	while (arr[index])
+		free(arr[index++]);
+	free(arr);
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
@@ -65,16 +76,18 @@ char	**ft_split(char const *s, char c)
 
 	str = (char *)s;
 	wordcount = ft_get_wc(str, c);
-	array = (char **)malloc(sizeof(char *) * wordcount + 1);
+	array = (char **)malloc(sizeof(char *) * (wordcount + 1));
 	if (!array)
 		return (0);
-	index = 0;
-	while (index < wordcount)
+	index = -1;
+	while (++index < wordcount)
 	{
 		while (*str == c)
 			str++;
 		wordlength = ft_get_wl(str, c);
-		array[index++] = ft_strndup(str, wordlength);
+		array[index] = ft_strndup(str, wordlength);
+		if (!array[index])
+			return (ft_free_char2d(array));
 		str += wordlength;
 	}
 	array[index] = 0;
