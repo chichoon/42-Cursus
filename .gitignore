@@ -1,5 +1,6 @@
 .DS_Store
 *.swp
+*.o
 00_libft/libft/libftest
 00_libft/libft/warmachine
 00_libft/unittest
