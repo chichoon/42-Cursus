@@ -1,5 +1,6 @@
 # Libft 함수 리스트
-Libft 함수 리스트 및 설명
+Libft 함수 리스트 및 설명  
+[ ] unittest, tester 테스트케이스 돌려본 후 맞춰주기
 
 ## Part 1 - Libc functions
 [Part 1-0 : Memory Functions](mds/part1-0.md)  
