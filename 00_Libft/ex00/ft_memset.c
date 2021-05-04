@@ -17,8 +17,6 @@ void	*ft_memset(void *ptr, int value, size_t n)
 	unsigned char		*ptr_backup;
 
 	ptr_backup = ptr;
-	if (!ptr_backup)
-		return (0);
 	while (n > 0)
 	{
 		*ptr_backup++ = (unsigned char)value;

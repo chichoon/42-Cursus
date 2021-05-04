@@ -46,6 +46,8 @@ char	*ft_strndup(char *str, int length)
 	char	*ptr_backup;
 
 	ptr = (char *)malloc(sizeof(char) * length + 1);
+	if (!ptr)
+		return (0);
 	ptr_backup = ptr;
 	while (length--)
 		*ptr++ = *str++;

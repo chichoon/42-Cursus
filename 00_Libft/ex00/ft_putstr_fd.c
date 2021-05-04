@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 11:14:56 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 19:46:58 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/04 13:13:18 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/04 13:14:52 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *ptr, size_t n)
+void	ft_putstr_fd(char *s, int fd)
 {
-	unsigned char	*ptr_backup;
-
-	ptr_backup = (unsigned char *)ptr;
-	while (n > 0)
-	{
-		*ptr_backup++ = 0;
-		n--;
-	}
+	while (*s)
+		write(fd, s++, 1);
 }
