@@ -1,43 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 13:15:23 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/04 13:26:51 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/04 16:02:57 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/04 16:05:38 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_recur(unsigned int n, int fd)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	char	c;
+	t_list	*curr_lst;
 
-	if (n == 0)
-		return ;
-	ft_putnbr_recur(n / 10, fd);
-	c = n % 10 + '0';
-	write(fd, &c, 1);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	unsigned int	absol;
-
-	if (n == 0)
+	curr_lst = lst;
+	while (curr_lst)
 	{
-		write(fd, "0", 1);
-		return ;
+		f(curr_lst->content);
+		curr_lst = curr_lst->next;
 	}
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		absol = n * (-1);
-	}
-	else
-		absol = n;
-	ft_putnbr_recur(absol, fd);
 }
