@@ -17,7 +17,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*ptr;
 	char	*ptr_backup;
 
-	ptr = malloc(sizeof(char) * len + 1);
+	ptr = (char *)malloc(sizeof(char) * len + 1);
 	if (!ptr)
 		return (0);
 	ptr_backup = ptr;

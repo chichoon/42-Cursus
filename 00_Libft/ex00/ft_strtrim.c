@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 22:15:34 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 22:46:05 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/04 11:06:18 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	start = (char *)s1;
 	end = (char *)s1 + ft_strlen(s1);
-	if (ft_is_in_set(*(end - 1), set))
-		end--;
 	while (ft_is_in_set(*start, set))
 		start++;
-	while (ft_is_in_set(*end, set) && start < end)
+	while (ft_is_in_set(*(end - 1), set) && start < end)
 		end--;
 	range = end - start;
-	ptr = malloc(sizeof(char) * range + 1);
+	ptr = (char *)malloc(sizeof(char) * range + 1);
+	if (!ptr)
+		return (0);
 	ft_memcpy(ptr, start, range);
 	ptr += range;
 	*ptr = 0;
