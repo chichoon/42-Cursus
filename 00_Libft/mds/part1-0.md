@@ -19,13 +19,13 @@ memset, bzero를 제외하고 모두 void *인 인자값을 unsigned char *로 �
 - deprecated.. 하지만 42는 좋아하는 것 같다
 
 ## ft_memcpy.c
-- **void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);**
+- **void	*ft_memcpy(void *dst, const void *src, size_t n);**
 - dst 포인터를 시작점으로 하여, num 바이트만큼 src 포인터의 값을 복사
 - 초기에 인자로 받은 dst, src 중 하나라도 널일 경우, 복사 없이 널포인터 반환
 - 그 외의 경우, 초기 포인터값을 반환
 
 ## ft_memccpy.c
-- **void	*ft_memccpy(void *restrict d, const void *restrict s, int c, size_t n);**
+- **void	*ft_memccpy(void *d, const void *s, int c, size_t n);**
 - dst 포인터를 시작점으로 하여, c 문자를 만날 때까지 src 포인터의 값을 복사 (c 문자 포함)
 - 초기에 인자로 받은 dst, src 중 하나라도 널일 경우, 복사 없이 널포인터 반환
 - n 바이트만큼 복사를 하였음에도 불구, c 문자를 만나지 못했다면 0 반환

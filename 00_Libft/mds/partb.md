@@ -47,7 +47,7 @@ content는 리스트의 실질적인 내용물 주소, next는 연결된 다음 
 - 해제된 메모리에 값이 남아있지 않도록 널 포인터로 초기화
 
 ## ft_lstclear.c
-- **void	ft_lstclear(t_list **lst, void (*del)(void *));**
+- **void	ft_lstclear(t_list **lst, void (\*del)(void *));**
 - lst에 존재하는 모든 리스트 삭제
 - 삭제 방법은 ft_lstdelone와 동일
 - 마지막에 lst를 널 포인터로 초기화
