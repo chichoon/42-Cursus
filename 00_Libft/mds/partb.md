@@ -40,11 +40,24 @@ content는 리스트의 실질적인 내용물 주소, next는 연결된 다음 
 - 그 외의 경우, 맨 끝에 있는 리스트를 찾아서 next에 new를 연결
 
 ## ft_lstdelone.c
-- **void	ft_lstdelone(t_list *lst, void (*del)(void *));**
-- 
+- **void	ft_lstdelone(t_list \*lst, void (*del)(void *));**
+- 리스트 lst를 삭제
+- content를 삭제하는 함수 del은 인자로 제공
+- 제공받은 del을 이용하여 lst->content를 삭제 후, lst 메모리 해제
+- 해제된 메모리에 값이 남아있지 않도록 널 포인터로 초기화
+
 ## ft_lstclear.c
 - **void	ft_lstclear(t_list **lst, void (*del)(void *));**
+- lst에 존재하는 모든 리스트 삭제
+- 삭제 방법은 ft_lstdelone와 동일
+- 마지막에 lst를 널 포인터로 초기화
 ## ft_lstiter.c
-- **void	ft_lstiter(t_list *lst, void (*f)(void *));**
+- **void	ft_lstiter(t_list \*lst, void (*f)(void *));**
+- 맨 앞 리스트인 lst를 시작으로, 리스트를 끝까지 탐색하면서 content에 함수 f 적용
+
 ## ft_lstmap.c
-- **t_list	\*ft_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *));**
+- **t_list	\*ft_lstmap(t_list \*lst, void *(*f)(void *), void (*d)(void *));**
+- 맨 앞 리스트인 lst를 시작으로, 리스트를 끝까지 탐색하면서 content에 함수 f 적용 후, 결과값을 content로 하는 새로운 리스트 생성
+- 각 리스트는 새로이 메모리 할당되어야 하며, 할당 실패 시에는 이전까지 할당했던 모든 리스트를 해제해 주어야 한다
+- 중간에 할당을 실패했거나, 맨 앞 리스트가 널 포인터일 경우 널 포인터 반환
+- 그 외의 경우, 새로 만든 리스트의 첫 번째 주소값을 반환
