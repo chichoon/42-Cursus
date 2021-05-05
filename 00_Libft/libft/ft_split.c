@@ -68,27 +68,27 @@ char	**ft_free_char2d(char **arr)
 
 char	**ft_split(char const *s, char c)
 {
-	char	*str;
 	int		wordlength;
 	int		wordcount;
 	char	**array;
 	int		index;
 
-	str = (char *)s;
-	wordcount = ft_get_wc(str, c);
+	if (!s)
+		return (0);
+	wordcount = ft_get_wc((char *)s, c);
 	array = (char **)malloc(sizeof(char *) * (wordcount + 1));
 	if (!array)
 		return (0);
 	index = -1;
 	while (++index < wordcount)
 	{
-		while (*str == c)
-			str++;
-		wordlength = ft_get_wl(str, c);
-		array[index] = ft_strndup(str, wordlength);
+		while (*s == c)
+			s++;
+		wordlength = ft_get_wl((char *)s, c);
+		array[index] = ft_strndup((char *)s, wordlength);
 		if (!array[index])
 			return (ft_free_char2d(array));
-		str += wordlength;
+		s += wordlength;
 	}
 	array[index] = 0;
 	return (array);

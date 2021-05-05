@@ -24,7 +24,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	while (n)
 	{
 		*dst_backup = *src_backup;
-		if (*src_backup == c)
+		if (*src_backup == uc)
 			return (++dst_backup);
 		dst_backup++;
 		src_backup++;

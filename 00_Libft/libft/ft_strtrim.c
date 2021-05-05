@@ -30,6 +30,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	unsigned int	range;
 	char			*ptr;
 
+	if (!s1)
+		return (0);
 	start = (char *)s1;
 	end = (char *)s1 + ft_strlen(s1);
 	while (ft_is_in_set(*start, set))

@@ -43,6 +43,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *))
 {
 	t_list	*new_lst;
 
+	if (!lst)
+		return (0);
 	new_lst = ft_recur_lstmap(lst, f, d);
 	return (new_lst);
 }

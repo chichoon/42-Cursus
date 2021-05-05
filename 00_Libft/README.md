@@ -23,3 +23,7 @@ Libft 함수 리스트 및 설명
 ### War Machine (Bonus not working!)
 ![warmachine_0](imgs/warmachine_0.png)
 ![warmachine_1](imgs/warmachine_1.png)
+
+### Unit-Test
+![unit_0](imgs/unit_0.png)
+![unit_1](imgs/unit_1.png)
