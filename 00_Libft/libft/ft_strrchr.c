@@ -15,17 +15,19 @@
 char	*ft_strrchr(const char *src, int c)
 {
 	size_t	length;
+	char	ch;
 
+	ch = (char)c;
 	length = ft_strlen(src);
 	src += length;
 	while (length)
 	{
-		if (*src == c)
+		if (*src == ch)
 			break ;
 		src--;
 		length--;
 	}
-	if (c == 0 || *src == c)
+	if (ch == 0 || *src == ch)
 		return ((char *)src);
 	else
 		return (0);

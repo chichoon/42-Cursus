@@ -52,7 +52,7 @@ char	*ft_itoa_pos(int n)
 	char	*ptr;
 
 	intlen = ft_intlen(n);
-	ptr = (char *)malloc(sizeof(char) * intlen + 1);
+	ptr = (char *)malloc(sizeof(char) * (intlen + 1));
 	if (!ptr)
 		return (0);
 	ptr[intlen] = 0;

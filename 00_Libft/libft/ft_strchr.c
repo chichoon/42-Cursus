@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 17:38:58 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 20:31:43 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/05 14:58:46 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 char	*ft_strchr(const char *src, int c)
 {
+	char ch;
+
+	ch = (char)c;
 	while (*src)
 	{
-		if (*src == c)
+		if (*src == ch)
 			break ;
 		src++;
 	}
-	if (c == 0 || *src == c)
+	if (ch == 0 || *src == ch)
 		return ((char *)src);
 	else
 		return (0);

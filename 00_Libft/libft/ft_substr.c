@@ -21,7 +21,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (0);
 	length = ft_strlen(s);
-	ptr = (char *)malloc(sizeof(char) * (len + 1));
+	if (length < len)
+		ptr = (char *)malloc(sizeof(char) * (length + 1));
+	else
+		ptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!ptr)
 		return (0);
 	ptr_backup = ptr;
