@@ -21,6 +21,8 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	dst_backup = (unsigned char *)dst;
 	src_backup = (unsigned char *)src;
 	uc = (unsigned char)c;
+	if (!dst && !src && n)
+		return (dst);
 	while (n)
 	{
 		*dst_backup = *src_backup;

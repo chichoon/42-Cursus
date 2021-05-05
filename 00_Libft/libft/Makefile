@@ -42,3 +42,4 @@ bonus : $(OBJS) $(OBJS_BNS)
 
 re : fclean all
 
+.PHONY : all clean fclean re
