@@ -1,6 +1,9 @@
 # Libft 함수 리스트
 Libft 함수 리스트 및 설명  
-- [ ] unittest, tester 테스트케이스 돌려본 후 맞춰주기
+- [x] libftest 100점
+- [x] Warmachine 100점 (Bonus 제외)
+- [x] Unit-test 100점
+- [x] Libft Tester 100점
 
 ## Part 1 - Libc functions
 [Part 1-0 : Memory Functions](mds/part1-0.md)  
