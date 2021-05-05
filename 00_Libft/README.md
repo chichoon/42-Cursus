@@ -27,3 +27,6 @@ Libft 함수 리스트 및 설명
 ### Unit-Test
 ![unit_0](imgs/unit_0.png)
 ![unit_1](imgs/unit_1.png)
+
+### Libft Tester
+![libftester](imgs/libftester.png)
