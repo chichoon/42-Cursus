@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:43:09 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/06 10:45:42 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/06 10:50:50 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include <stdlib.h>
+# include "libft.h"
 
 /*
 	** the most important main function : ft_printf
