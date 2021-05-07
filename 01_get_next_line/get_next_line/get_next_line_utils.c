@@ -12,10 +12,47 @@
 
 #include "get_next_line.h"
 
-size_t	ft_open_file(int fd, char *buf)
+size_t	ft_strlen(const char *s)
 {
-	int length;
+	size_t length;
 
-	length = read(fd, buf, BUFFER_SIZE);
+	length = 0;
+	while (*s)
+	{
+		s++;
+		length++;
+	}
 	return (length);
+}
+
+char	*ft_strdup(const char *src)
+{
+	char	*ptr;
+	int		length;
+
+	length = ft_strlen(src);
+	ptr = (char *)malloc(sizeof(char) * (length + 1));
+	if (!ptr)
+		return (0);
+	while (*src)
+		*ptr++ = *src++;
+	*ptr = 0;
+	return (ptr - length);
+}
+
+char	*ft_strchr(const char *src, int c)
+{
+	char ch;
+
+	ch = (char)c;
+	while (*src)
+	{
+		if (*src == ch)
+			break ;
+		src++;
+	}
+	if (ch == 0 || *src == ch)
+		return ((char *)src);
+	else
+		return (0);
 }
