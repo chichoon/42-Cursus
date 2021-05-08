@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 12:26:06 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/08 18:21:33 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/08 21:07:00 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ char	*ft_strdup(const char *src)
 		*ptr++ = *src++;
 	*ptr = 0;
 	return (ptr - length);
+}
+
+char	*ft_strcpy(char *dest, char *src)
+{
+	char *tmp;
+
+	tmp = dest;
+	while (*src)
+	{
+		*dest++ = *src++;
+	}
+	*dest = '\0';
+	return (tmp);
 }
 
 char	*ft_strndup(char *str, int length)

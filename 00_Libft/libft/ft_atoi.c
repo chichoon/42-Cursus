@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 18:16:48 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/05 13:54:51 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/08 20:47:26 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_space(char str)
+static int	is_space(char str)
 {
 	if (str == ' ' || (str >= 9 && str <= 13))
 		return (1);

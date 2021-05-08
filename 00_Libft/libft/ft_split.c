@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 11:07:49 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/04 19:51:47 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/08 20:51:43 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_get_wc(char *str, char c)
+static int	ft_get_wc(char *str, char c)
 {
 	int index;
 
@@ -27,7 +27,7 @@ int		ft_get_wc(char *str, char c)
 	return (index);
 }
 
-int		ft_get_wl(char *str, char c)
+static int	ft_get_wl(char *str, char c)
 {
 	int length;
 
@@ -40,7 +40,7 @@ int		ft_get_wl(char *str, char c)
 	return (length);
 }
 
-char	*ft_strndup(char *str, int length)
+char		*ft_strndup(char *str, int length)
 {
 	char	*ptr;
 	char	*ptr_backup;
@@ -55,7 +55,7 @@ char	*ft_strndup(char *str, int length)
 	return (ptr_backup);
 }
 
-char	**ft_free_char2d(char **arr)
+static char	**ft_free_char2d(char **arr)
 {
 	int index;
 

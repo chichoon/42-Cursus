@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 11:59:08 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/04 12:48:18 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/08 20:48:07 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_intlen(unsigned int n)
+static int		ft_intlen(unsigned int n)
 {
 	int len;
 
@@ -25,7 +25,7 @@ int		ft_intlen(unsigned int n)
 	return (len);
 }
 
-char	*ft_itoa_neg(int n)
+static char		*ft_itoa_neg(int n)
 {
 	unsigned int	absol;
 	int				intlen;
@@ -46,7 +46,7 @@ char	*ft_itoa_neg(int n)
 	return (ptr);
 }
 
-char	*ft_itoa_pos(int n)
+static char		*ft_itoa_pos(int n)
 {
 	int		intlen;
 	char	*ptr;

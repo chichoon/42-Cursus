@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 13:15:23 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/04 13:26:51 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/08 20:49:08 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_recur(unsigned int n, int fd)
+static void	ft_putnbr_recur(unsigned int n, int fd)
 {
 	char	c;
 
@@ -23,7 +23,7 @@ void	ft_putnbr_recur(unsigned int n, int fd)
 	write(fd, &c, 1);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void		ft_putnbr_fd(int n, int fd)
 {
 	unsigned int	absol;
 
