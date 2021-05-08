@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 11:29:44 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/08 23:03:12 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/09 04:07:25 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,48 @@ static int	ft_read_line(char *buf, int *check_eof)
 	}
 }
 
+static int	read_until_eof(int fd, char *temp_read)
+{
+	char	temp_buf[BUFFER_SIZE + 1];
+	int		len_read;
+	int		len_file;
+
+	len_file = 0;
+	len_read = read(fd, temp_buf, BUFFER_SIZE);
+	temp_buf[BUFFER_SIZE] = 0;
+	while (len_read > 0)
+	{
+		ft_strcpy(&temp_read[len_file], temp_buf);
+		len_file += len_read;
+		len_read = read(fd, temp_buf, BUFFER_SIZE);
+	}
+	if (len_read < 0)
+		return (-1);
+	temp_read[len_file] = 0;
+	return (0);
+}
+
 static int	gnl_initial(int fd, char **line, char **line_rest)
 {
-	char	temp_buf[BUFFER_SIZE];
+	char	temp_read[8000000];
 	int		len_file;
 	int		len_line;
 	int		check_eof;
 
 	check_eof = 1;
-	len_file = read(fd, temp_buf, BUFFER_SIZE);
-	if (len_file < 0)
+	len_file = 0;
+	if (read_until_eof(fd, temp_read) < 0)
 		return (-1);
-	temp_buf[len_file] = 0;
-	*line_rest = ft_strdup(temp_buf);
-	len_line = ft_read_line(temp_buf, &check_eof);
-	*line = ft_strndup(temp_buf, len_line);
+	*line_rest = ft_strdup(temp_read);
+	len_line = ft_read_line(temp_read, &check_eof);
+	*line = ft_strndup(temp_read, len_line);
 	if (!check_eof)
 	{
 		free(line_rest[fd]);
+		line_rest[fd] = 0;
 		return (0);
 	}
-	line_rest[fd] = ft_strdup(&temp_buf[len_line + 1]);
+	line_rest[fd] = ft_strdup(&temp_read[len_line + 1]);
 	return (1);
 }
 
@@ -76,6 +97,7 @@ static int	gnl(int fd, char **line, char **line_rest)
 	if (!check_eof)
 	{
 		free(line_rest[fd]);
+		line_rest[fd] = 0;
 		return (0);
 	}
 	str_backup = ft_strdup(&line_rest[fd][len_line + 1]);
