@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 12:26:06 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/07 13:56:29 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/08 18:21:33 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,21 @@ char	*ft_strdup(const char *src)
 		*ptr++ = *src++;
 	*ptr = 0;
 	return (ptr - length);
+}
+
+char	*ft_strndup(char *str, int length)
+{
+	char	*ptr;
+	char	*ptr_backup;
+
+	ptr = (char *)malloc(sizeof(char) * (length + 1));
+	if (!ptr)
+		return (0);
+	ptr_backup = ptr;
+	while (length--)
+		*ptr++ = *str++;
+	*ptr = 0;
+	return (ptr_backup);
 }
 
 char	*ft_strchr(const char *src, int c)
