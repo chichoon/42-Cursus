@@ -6,13 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 11:29:44 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/08 21:08:10 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/08 21:09:41 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_read_line(char *buf, int *check_eof)
+static int	ft_read_line(char *buf, int *check_eof)
 {
 	char	*newline_ptr;
 	int		len_line;
@@ -29,7 +29,7 @@ int	ft_read_line(char *buf, int *check_eof)
 	return (len_line);
 } //return length of the line
 
-int	ft_read_file(int fd, char *buf, char *line_rest)
+static int	ft_read_file(int fd, char *buf, char *line_rest)
 {
 	int	len_file;
 
@@ -41,7 +41,7 @@ int	ft_read_file(int fd, char *buf, char *line_rest)
 	return (0);
 }
 
-int	get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	static char	*line_rest[256];
 	char		temp_buf[BUFFER_SIZE];
