@@ -6,31 +6,60 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 05:27:42 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/09 05:28:10 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/09 08:55:20 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+static void		*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t length;
+	unsigned char *dst_backup;
+	unsigned char *src_backup;
 
-	length = 0;
-	while (*s)
+	dst_backup = (unsigned char *)dst;
+	src_backup = (unsigned char *)src;
+	if (!dst && !src && n)
+		return (dst);
+	while (n)
 	{
-		s++;
-		length++;
+		*dst_backup++ = *src_backup++;
+		n--;
 	}
-	return (length);
+	return (dst);
 }
 
-char	*ft_strdup(const char *src)
+char			*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*ptr;
+	char	*ptr_backup;
+	int		len_s1;
+	int		len_s2;
+
+	if (!s1 || !s2)
+		return (0);
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	ptr = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	if (!ptr)
+		return (0);
+	ptr_backup = ptr;
+	ft_memcpy(ptr, s1, len_s1);
+	ptr += len_s1;
+	ft_memcpy(ptr, s2, len_s2);
+	ptr += len_s2;
+	*ptr = 0;
+	return (ptr_backup);
+}
+
+char			*ft_strdup(const char *src)
 {
 	char	*ptr;
 	int		length;
 
-	length = ft_strlen(src);
+	length = 0;
+	while (src[length])
+		length++;
 	ptr = (char *)malloc(sizeof(char) * (length + 1));
 	if (!ptr)
 		return (0);
@@ -40,20 +69,7 @@ char	*ft_strdup(const char *src)
 	return (ptr - length);
 }
 
-char	*ft_strcpy(char *dest, char *src)
-{
-	char *tmp;
-
-	tmp = dest;
-	while (*src)
-	{
-		*dest++ = *src++;
-	}
-	*dest = '\0';
-	return (tmp);
-}
-
-char	*ft_strndup(char *str, int length)
+char			*ft_strndup(char *str, int length)
 {
 	char	*ptr;
 	char	*ptr_backup;

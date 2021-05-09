@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kyuhkim <kyuhkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/09 05:27:31 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/09 06:56:07 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/02/24 07:40:31 by kyuhkim           #+#    #+#             */
+/*   Updated: 2021/02/24 15:57:26 by kyuhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+#include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <stdio.h>
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h> //erase!!!!!this!!!!!!!!!!!!!
-
-int		get_next_line(int fd, char **line);
-
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strdup(const char *src);
-char	*ft_strndup(char *str, int length);
+int				get_next_line(int fd, char **line);
+//char			*gnl_set_data(char **out, char *src);
+int				dispose_string(int fd, char **data, char **line, int offset);
+//void			ft_memncpy(char *dest, char *src, int n);
+//char			*ft_strncat(char *s1, char *s2, int n);
 
 #endif
