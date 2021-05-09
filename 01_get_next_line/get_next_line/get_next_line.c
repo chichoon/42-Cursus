@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 05:27:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/09 14:35:56 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/09 14:54:54 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ int			get_next_line(int fd, char **line)
 		return (-1);
 	if (!str_buf[fd])
 		str_buf[fd] = ft_strdup("");
-	return(read_bufsize(fd, line, str_buf));
+	return (read_bufsize(fd, line, str_buf));
 }
