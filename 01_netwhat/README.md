@@ -31,3 +31,4 @@ Mandatory part에서 요구하는 지식을 전부 익히려면 굉장히 많은
 - [DHCP, DNS에 대하여](4_DHCP_DNS.md)
 
 ## 문제풀 때 팁
+- [netwhat 모의테스터](netwhat42.md)
