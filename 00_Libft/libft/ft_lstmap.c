@@ -39,7 +39,7 @@ static t_list	*ft_recur_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *
 	return (new_lst);
 }
 
-t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *))
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *))
 {
 	t_list	*new_lst;
 
