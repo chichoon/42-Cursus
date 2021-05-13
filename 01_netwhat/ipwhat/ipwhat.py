@@ -68,6 +68,7 @@ class App(QMainWindow):
 
 		self.setWindowTitle('IPWhat')
 		self.setGeometry(0, 0, 200, 600)
+		self.setWindowIcon(QIcon('icon.png'))
 		self.show()
 
 	def initActions(self):
