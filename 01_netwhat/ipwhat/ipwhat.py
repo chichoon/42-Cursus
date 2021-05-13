@@ -3,7 +3,9 @@ from PyQt5.QtCore import pyqtSignal, QObject, QThread, Qt
 from PyQt5.QtWidgets import *
 import sys
 import os
-from ipwhat_func import check_ip, get_ip, get_subnet, calc_network_addr, calc_broadcast_addr, calc_host_addr, calc_host_num
+from ipwhat_func import check_ip, get_ip, get_subnet, calc_network_addr
+from ipwhat_func import calc_broadcast_addr, calc_host_addr, calc_host_num
+from ipwhat_func import calc_host_subnet, calc_cidr
 
 ip_addr = '0.0.0.0'
 subnet_mask = '0.0.0.0'
@@ -38,8 +40,8 @@ class App(QMainWindow):
 		self.layout4 = QHBoxLayout()
 		self.main_layout = QVBoxLayout()
 
-		self.subnet_check = QCheckBox('Subnet mask?')
 		self.ip_edit = QLineEdit(self)
+		self.myname = QLabel('made by jiychoi\n(jiychoi@student.42seoul.kr)')
 		self.ip_show = QLabel(''.join([
 			'\n',
 			'IP Address : ', ip_addr, '\n',
@@ -53,9 +55,8 @@ class App(QMainWindow):
 		)
 		self.calcbtn = QPushButton('Calculate!')
 		self.quitbtn = QPushButton('Quit')
-
 		self.layout1.addWidget(self.ip_edit)
-		self.layout2.addWidget(self.subnet_check)
+		self.layout2.addWidget(self.myname)
 		self.layout3.addWidget(self.ip_show)
 		self.layout4.addWidget(self.calcbtn)
 		self.layout4.addWidget(self.quitbtn)
@@ -74,23 +75,19 @@ class App(QMainWindow):
 	def initActions(self):
 		self.calcbtn.clicked.connect(self.toggleCalc)
 		self.quitbtn.clicked.connect(self.toggleQuit)
-		self.subnet_check.toggle()
-		self.subnet_check.stateChanged.connect(self.toggleCheck)
 		self.ip_edit.returnPressed.connect(self.toggleCalc)
-
-	def toggleCheck(self, state):
-		if_subnet = Qt.Checked
 
 	def toggleCalc(self):
 		input_str = self.ip_edit.text()
-		if (check_ip(input_str)):
+		if (check_ip(input_str) == 1):
 			ip_cidr = get_ip(input_str)
 			subnet_mask = get_subnet(ip_cidr[1])
 			network_addr = calc_network_addr(ip_cidr[0], subnet_mask)
-			broadcast_addr = '0.0.0.0'
-			host_addr_front = '0.0.0.0'
-			host_addr_back = '0.0.0.0'
-			num_of_host = '0'
+			broadcast_addr = calc_broadcast_addr(network_addr, subnet_mask)
+			host_addr = calc_host_addr(network_addr, broadcast_addr)
+			host_addr_front = host_addr[0]
+			host_addr_back = host_addr[1]
+			num_of_host = calc_host_num(network_addr, broadcast_addr)
 			self.ip_show.setText(''.join([
 				'\n',
 				'IP Address : ', ip_cidr[0], '\n',
@@ -99,11 +96,39 @@ class App(QMainWindow):
 				'Broadcast Address : ', broadcast_addr, '\n',
 				'Host address range : ', host_addr_front, '\n',
 				'                           ~', host_addr_back, '\n',
+				'Number of hosts : ', num_of_host, '\n'])
+			)
+		elif (check_ip(input_str) == 2):
+			ip_cidr = get_ip(input_str)
+			num_of_host = calc_host_subnet(ip_cidr[0])
+			cidr = calc_cidr(ip_cidr[0])
+			self.ip_show.setText(''.join([
 				'Number of hosts : ', num_of_host, '\n',
-				'\n*** ', if_private_str, ' ***\n'])
+				'CIDR : ', cidr, '\n'
+			]))
+		elif (check_ip(input_str) == 3):
+			ip_cidr = get_ip(input_str)
+			self.ip_show.setText(''.join([
+				'\n',
+				'IP Address : ', ip_cidr[0], '\n',
+				'Private IP in Class A\n',])
+			)
+		elif (check_ip(input_str) == 4):
+			ip_cidr = get_ip(input_str)
+			self.ip_show.setText(''.join([
+				'\n',
+				'IP Address : ', ip_cidr[0], '\n',
+				'Private IP in Class B\n',])
+			)
+		elif (check_ip(input_str) == 5):
+			ip_cidr = get_ip(input_str)
+			self.ip_show.setText(''.join([
+				'\n',
+				'IP Address : ', ip_cidr[0], '\n',
+				'Private IP in Class C\n',])
 			)
 		else :
-			self.ip_show.setText('\n\nNot a valid IP!\n\n')
+			self.ip_show.setText('\nNot a valid IP!\n\n')
 
 	def toggleQuit(self):
 		sys.exit()
