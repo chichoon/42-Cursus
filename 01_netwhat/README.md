@@ -28,5 +28,6 @@ Mandatory part에서 요구하는 지식을 전부 익히려면 굉장히 많은
 - [IP에 대하여](1_IP.md)
 - [OS 7계층에 대하여](2_OSI7.md)
 - [TCP, UDP에 대하여](3_TCPUDP.md)
+- [DHCP, DNS에 대하여](4_DHCP_DNS.md)
 
 ## 문제풀 때 팁
