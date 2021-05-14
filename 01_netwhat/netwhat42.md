@@ -85,7 +85,7 @@
 
 ## Which of the following proposals is the valid host range for the subnet on which the IP address 158.167.18.156/15 resides?
 - 158.167.18.156/15 => subnet mask : 11111111.11111110.00000000.00000000
-- => **158.166.0.1 ~ 158.166.255.254**까지의 호스트 주소를 가질 수 있음 (0.0과 255.255는 이미 지정된 주소이므로 사용 불가)
+- => **158.166.0.1 ~ 158.167.255.254**까지의 호스트 주소를 가질 수 있음 (0.0과 255.255는 이미 지정된 주소이므로 사용 불가)
 
 ## Which of the following propositions is not true?
 1. **TCP is a datagram oriented protocol**
