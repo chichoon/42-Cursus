@@ -6,16 +6,16 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/14 20:19:25 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/14 20:27:13 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printft.h"
 
 
-int		ctrltwr(char *param_start, char *param_end)
+int		ctrltwr(char *param_start, char *param_end, int arg)
 {
-
+	if (*param_end = )
 }
 
 int		ft_printf(const char *fmt, ...)
@@ -41,6 +41,6 @@ int		ft_printf(const char *fmt, ...)
 			ptr_param++;
 		if (!*ptr_param)
 			return (output);
-		output += ctrltwr(fmt, ptr_param);
+		output += ctrltwr(fmt, ptr_param, va_arg(param, int));
 	}
 }
