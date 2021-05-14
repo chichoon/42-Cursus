@@ -6,13 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 16:05:44 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/08 20:48:45 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/14 13:33:16 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static t_list	*ft_recur_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *))
+t_list	*ft_recur_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *))
 {
 	t_list *curr_lst;
 	t_list *new_lst;
@@ -39,7 +39,7 @@ static t_list	*ft_recur_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *
 	return (new_lst);
 }
 
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *))
 {
 	t_list	*new_lst;
 

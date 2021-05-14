@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 11:07:49 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/08 20:51:43 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/14 13:33:30 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static char	**ft_free_char2d(char **arr)
 	return (0);
 }
 
-char	**ft_split(char const *s, char c)
+char		**ft_split(char const *s, char c)
 {
 	int		wordlength;
 	int		wordcount;

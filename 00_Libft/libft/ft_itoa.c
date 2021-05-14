@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 11:59:08 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/08 20:48:07 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/14 13:29:58 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char		*ft_itoa_pos(int n)
 	return (ptr);
 }
 
-char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	if (n < 0)
 		return (ft_itoa_neg(n));
