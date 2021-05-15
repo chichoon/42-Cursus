@@ -32,3 +32,7 @@ Mandatory part에서 요구하는 지식을 전부 익히려면 굉장히 많은
 
 ## 문제풀 때 팁
 - [netwhat 모의테스터](netwhat42.md)
+- [IPwhat (IP계산기)](https://github.com/chichoon/ipwhat)
+- IP계산기만 있으면 상당히 빨리 풀 수 있음
+- 총 15분 주는데, 나는 1차때 5분 2차때 2분 30초정도 걸림 (영상녹화하고 알았음)
+- 대신 TCP, UDP, DNS, DHCP에 대해선 확실히 아는 것이 좋겠다
