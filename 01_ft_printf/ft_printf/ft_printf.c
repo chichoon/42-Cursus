@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/14 20:27:13 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/17 16:47:00 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@ int		ctrltwr(char *param_start, char *param_end, int arg)
 	if (*param_end = )
 }
 
+int		*get_varlist(const char *fmt)
+{
+
+}
+
 int		ft_printf(const char *fmt, ...)
 {
 	va_list	param;
-	char	*convs;
-	//char	*flags;
 	char	*ptr_param;
 	int		output;
 
-	convs = "cspdiuxX%";
-	//flags = "-0.";
 	output = 0;
 	if (!fmt)
 		return (0);
@@ -37,7 +38,7 @@ int		ft_printf(const char *fmt, ...)
 		ptr_param = ft_strchr(fmt, '%');
 		output += ft_write_until(fmt, ptr_param);
 		fmt = ptr_param++;
-		while (!if_available(*ptr_param, convs) && *ptr_param)
+		while (!if_available(*ptr_param, "cspdiuxX%") && *ptr_param)
 			ptr_param++;
 		if (!*ptr_param)
 			return (output);
