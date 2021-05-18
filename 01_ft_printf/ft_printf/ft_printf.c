@@ -6,49 +6,30 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/17 20:56:05 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/18 23:14:13 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printft.h"
 
-int			ft_print_d(char *param_start, char *param_end, va_list param)
+static int	ctrltwr(t_format *fmt_conv, va_list param)
 {
-	int		asterisk;
-	int		number;
-	char	*number_to_print;
-
-	if (ft_strnchr(param_start, param_end, '*'))
-	{
-		asterisk = va_arg(param, int);
-		number = va_arg(param, int);
-		number_to_print = ft_itoa(number);
-	}
-	else
-	{
-		number = va_arg(param, int);
-		number_to_print = ft_itoa(number);
-	}
-}
-
-static int	ctrltwr(char *param_start, char *param_end, va_list param)
-{
-	if (*param_end = 'c')
-		return (ft_print_c(param_start, param_end, param));
-	if (*param_end = 's')
-		return (ft_print_s(param_start, param_end, param));
-	if (*param_end = 'p')
-		return (ft_print_p(param_start, param_end, param));
-	if (*param_end = 'd')
-		return (ft_print_d(param_start, param_end, param));
-	if (*param_end = 'i')
-		return (ft_print_i(param_start, param_end, param));
-	if (*param_end = 'u')
-		return (ft_print_u(param_start, param_end, param));
-	if (*param_end = 'x')
-		return (ft_print_lowx(param_start, param_end, param));
-	if (*param_end = 'X')
-		return (ft_print_lowx(param_start, param_end, param));
+	if (fmt_conv->type = 'c')
+		return (ft_print_c(fmt_conv, param));
+	if (fmt_conv->type = 's')
+		return (ft_print_s(fmt_conv, param));
+	if (fmt_conv->type = 'p')
+		return (ft_print_p(fmt_conv, param));
+	if (fmt_conv->type = 'd')
+		return (ft_print_d(fmt_conv, param));
+	if (fmt_conv->type = 'i')
+		return (ft_print_i(fmt_conv, param));
+	if (fmt_conv->type = 'u')
+		return (ft_print_u(fmt_conv, param));
+	if (fmt_conv->type = 'x')
+		return (ft_print_lowx(fmt_conv, param));
+	if (fmt_conv->type = 'X')
+		return (ft_print_uppx(fmt_conv, param));
 }
 
 static char	*get_convs_ptr(char *ptr_param)
@@ -61,33 +42,42 @@ static char	*get_convs_ptr(char *ptr_param)
 	return (ptr_param);
 }
 
-int			ft_printf(const char *fmt, ...)
+int			ft_printf_main(const char *fmt, va_list param)
 {
-	va_list	param;
-	char	*ptr_param;
-	int		output;
+	t_format	*fmt_conv;
+	char		*fmt_until;
+	int			output;
 
 	output = 0;
-	if (!fmt)
-		return (0);
-	va_start(param, fmt);
 	while (*fmt)
 	{
-		ptr_param = ft_strchr(fmt, '%');
-		output += ft_write_until(fmt, ptr_param);
-		fmt = ptr_param++;
-		if (*ptr_param == '%')
+		fmt_until = ft_strchr(fmt, '%');
+		output += ft_write_until(fmt, fmt_until);
+		fmt = fmt_until++;
+		if (*fmt_until == '%')
 		{
 			write(1, "%", 1);
 			output++;
 		}
-		else if (get_convs_ptr(ptr_param))
+		else if (get_convs_ptr(fmt_until))
 		{
-			ptr_param = get_convs_ptr(ptr_param);
-			output += ctrltwr(fmt, ptr_param, param);
+			fmt_until = get_convs_ptr(fmt_until);
+			fmt_conv = def_format(fmt, fmt_until, param);
+			output += ctrltwr(fmt_conv, param);
 		}
-		fmt = ptr_param + 1;
+		fmt = fmt_until + 1;
 	}
+	return (output);
+}
+
+int			ft_printf(const char *fmt, ...)
+{
+	va_list	param;
+
+	if (!fmt)
+		return (0);
+	va_start(param, fmt);
+	return (ft_printf_main(fmt, param));
 }
 
 int		main(void)
