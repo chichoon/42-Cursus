@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 22:34:31 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 16:18:29 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 20:22:38 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static void		init_format(t_format *fmt)
 	fmt->width = 0;
 	fmt->precision = 0;
 	fmt->if_zero = 0;
+	fmt->if_dot = 0;
 	fmt->if_minus = 0;
+	fmt->if_asterisk_precision = 0;
+	fmt->if_asterisk_width = 0;
 }
 
 static void		put_length(char *str, t_format *fmt_new)
@@ -29,18 +32,23 @@ static void		put_length(char *str, t_format *fmt_new)
 		fmt_new->precision = ft_atoi(str);
 }
 
-static void		put_flags(char str, t_format *fmt_new)
+static int		put_flags(char str, t_format *fmt_new)
 {
-	if (str == '0' && !fmt_new->if_dot && !fmt_new->if_zero)
-		fmt_new->if_zero = 1;
-	if (str == '-' && !fmt_new->if_dot)
-		fmt_new->if_minus = 1;
-	if (str == '*' && !fmt_new->if_dot)
-		fmt_new->if_asterisk_width = 1;
-	if (str == '*' && fmt_new->if_dot)
-		fmt_new->if_asterisk_precision = 1;
-	if (str == '.')
-		fmt_new->if_dot = 1;
+	if (if_available(str, "0-*."))
+	{
+		if (str == '0' && !fmt_new->if_dot && !fmt_new->if_zero)
+			fmt_new->if_zero = 1;
+		if (str == '-' && !fmt_new->if_dot)
+			fmt_new->if_minus = 1;
+		if (str == '*' && !fmt_new->if_dot)
+			fmt_new->if_asterisk_width = 1;
+		if (str == '*' && fmt_new->if_dot)
+			fmt_new->if_asterisk_precision = 1;
+		if (str == '.')
+			fmt_new->if_dot = 1;
+		return (1);
+	}
+	return (0);
 }
 
 static int		if_exceptions(char str, t_format *fmt_new)
@@ -59,10 +67,10 @@ static int		if_exceptions(char str, t_format *fmt_new)
 		return (1);
 	if (fmt_new->if_asterisk_precision && fmt_new->if_asterisk_width)
 		return (1);
-	return (1);
+	return (0);
 }
 
-t_format		*def_format(char *param_start, char *param_end, va_list param)
+t_format		*def_format(char *param_start, char *param_end)
 {
 	t_format	*fmt_new;
 
@@ -72,16 +80,18 @@ t_format		*def_format(char *param_start, char *param_end, va_list param)
 	init_format(fmt_new);
 	while (param_start < param_end)
 	{
-		put_flags(*param_start, fmt_new);
-		if (*param_start < '9' && *param_start > '0')
+		if (*param_start == '%')
+			param_start++;
+		else if (put_flags(*param_start, fmt_new))
+			param_start++;
+		else if (*param_start <= '9' && *param_start >= '0')
 		{
 			put_length(param_start, fmt_new);
-			while (*param_start < '9' && *param_start > '0')
+			while (*param_start <= '9' && *param_start >= '0')
 				param_start++;
 		}
-		if (if_exceptions(param_start, fmt_new))
+		else if (if_exceptions(*param_start, fmt_new))
 			return (free_and_return(fmt_new));
-		param_start++;
 	}
 	fmt_new->type = *param_end;
 	return (fmt_new);

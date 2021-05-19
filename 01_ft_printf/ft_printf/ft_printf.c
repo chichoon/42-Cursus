@@ -6,33 +6,35 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 16:26:01 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 20:35:05 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printft.h"
 
-static int	ctrltwr(t_format *fmt_conv, va_list param)
+static int	ctrl_twr(t_format *fmt_conv, va_list param)
 {
 	int output;
 
 	output = 0;
-	if (fmt_conv->type = 'c')
+	/*
+	if (fmt_conv->type == 'c')
 		output = ft_print_c(fmt_conv, param);
-	if (fmt_conv->type = 's')
+	if (fmt_conv->type == 's')
 		output = ft_print_s(fmt_conv, param);
-	if (fmt_conv->type = 'p')
+	if (fmt_conv->type == 'p')
 		output = ft_print_p(fmt_conv, param);
-	if (fmt_conv->type = 'd')
+		*/
+	if (fmt_conv->type == 'd' || fmt_conv->type == 'i')
 		output = ft_print_d(fmt_conv, param);
-	if (fmt_conv->type = 'i')
-		output = ft_print_i(fmt_conv, param);
-	if (fmt_conv->type = 'u')
+	if (fmt_conv->type == 'u')
 		output = ft_print_u(fmt_conv, param);
-	if (fmt_conv->type = 'x')
+		/*
+	if (fmt_conv->type == 'x')
 		output = ft_print_lowx(fmt_conv, param);
-	if (fmt_conv->type = 'X')
+	if (fmt_conv->type == 'X')
 		output = ft_print_uppx(fmt_conv, param);
+		*/
 	free(fmt_conv);
 	return (output);
 }
@@ -47,7 +49,13 @@ static char	*get_convs_ptr(char *ptr_param)
 	return (ptr_param);
 }
 
-int			ft_printf_main(const char *fmt, va_list param)
+int			print_percent(int output)
+{
+	write(1, "%", 1);
+	return (output + 1);
+}
+
+int			ft_printf_main(char *fmt, va_list param)
 {
 	t_format	*fmt_conv;
 	char		*fmt_until;
@@ -57,19 +65,18 @@ int			ft_printf_main(const char *fmt, va_list param)
 	while (*fmt)
 	{
 		fmt_until = ft_strchr(fmt, '%');
+		if (!fmt_until)
+			return (output + ft_putstr(fmt));
 		output += ft_putstr_until(fmt, fmt_until);
 		fmt = fmt_until++;
 		if (*fmt_until == '%')
-		{
-			write(1, "%", 1);
-			output++;
-		}
+			output = print_percent(output);
 		else if (get_convs_ptr(fmt_until))
 		{
 			fmt_until = get_convs_ptr(fmt_until);
-			fmt_conv = def_format(fmt, fmt_until, param);
+			fmt_conv = def_format(fmt, fmt_until);
 			if (fmt_conv)
-				output += ctrltwr(fmt_conv, param);
+				output += ctrl_twr(fmt_conv, param);
 		}
 		fmt = fmt_until + 1;
 	}
@@ -79,15 +86,17 @@ int			ft_printf_main(const char *fmt, va_list param)
 int			ft_printf(const char *fmt, ...)
 {
 	va_list	param;
+	char	*fmt_start;
 
 	if (!fmt)
 		return (0);
+	fmt_start = (char *)fmt;
 	va_start(param, fmt);
-	return (ft_printf_main(fmt, param));
+	return (ft_printf_main(fmt_start, param));
 }
 
 int		main(void)
 {
-	printf("hello %d %d\n", 123, 123);
-	ft_printf("hello %d %d\n", 123, 123);
+	printf("hello [%18.9u] [%19.8u]\n", -300, -300);
+	ft_printf("hello [%18.9u] [%19.8u]\n", -300, -300);
 }

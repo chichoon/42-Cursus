@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:37:36 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 17:01:47 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 20:37:26 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,27 @@ static int	calc_precis(t_format *fmt_conv, char *nb)
 	return (precis_to_print);
 }
 
-int			print_ctrltwr(t_format *fmt_conv, char *nb)
+int			print_ctrltwr(t_format *fmt_conv, char *nb, int if_positive)
 {
-	int wtp;
-	int ptp;
+	int		wtp;
+	int		ptp;
 
 	wtp = calc_width(fmt_conv, nb);
 	ptp = calc_precis(fmt_conv, nb);
-	if (fmt_conv->if_minus)
-		return (print_if_minus(nb, wtp, ptp));
-	else if (fmt_conv->if_zero && !fmt_conv->if_dot)
-		return (print_if_zero(nb, wtp, ptp));
-	return (print_no_flags(nb, wtp, ptp));
+	if (if_positive)
+	{
+		if (fmt_conv->if_minus)
+			return (print_if_minus(nb, wtp, ptp));
+		else if (fmt_conv->if_zero && !fmt_conv->if_dot)
+			return (print_if_zero(nb, wtp));
+		return (print_no_flags(nb, wtp, ptp));
+	}
+	else
+	{
+		if (fmt_conv->if_minus)
+			return (print_neg_if_minus(nb, wtp, ptp));
+		else if (fmt_conv->if_zero && !fmt_conv->if_dot)
+			return (print_neg_if_zero(nb, wtp));
+		return (print_neg_no_flags(nb, wtp, ptp));
+	}
 }

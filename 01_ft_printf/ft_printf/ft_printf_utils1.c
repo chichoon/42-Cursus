@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:29:23 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 16:19:19 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 17:31:02 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,30 @@ size_t	ft_strlen(const char *s)
 		length++;
 	}
 	return (length);
+}
+
+int		ft_putstr_until(const char *src, const char *dst)
+{
+	int index;
+
+	index = 0;
+	while (src < dst && *src)
+	{
+		write(1, src++, 1);
+		index++;
+	}
+	return (index);
+}
+
+int		ft_putstr(const char *src)
+{
+	int index;
+
+	index = 0;
+	while (*src)
+	{
+		write(1, src++, 1);
+		index++;
+	}
+	return (index);
 }
