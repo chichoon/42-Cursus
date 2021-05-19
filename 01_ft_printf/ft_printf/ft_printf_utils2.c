@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 20:57:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 19:12:50 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 22:16:08 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int					ft_atoi(const char *str)
 	return (minus * absol);
 }
 
-static int		ft_intlen(unsigned int n, unsigned int base_num)
+static int		ft_intlen(unsigned long n, unsigned int base_num)
 {
 	int len;
 
@@ -41,7 +41,7 @@ static int		ft_intlen(unsigned int n, unsigned int base_num)
 	return (len);
 }
 
-char				*ft_itoa_base(unsigned int absol, char *base)
+char				*ft_itoa_base(unsigned long absol, char *base)
 {
 	unsigned int	length;
 	unsigned int	base_num;

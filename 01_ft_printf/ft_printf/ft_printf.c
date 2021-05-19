@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 20:35:05 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 22:52:31 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,20 @@ static int	ctrl_twr(t_format *fmt_conv, va_list param)
 	int output;
 
 	output = 0;
-	/*
 	if (fmt_conv->type == 'c')
 		output = ft_print_c(fmt_conv, param);
 	if (fmt_conv->type == 's')
 		output = ft_print_s(fmt_conv, param);
 	if (fmt_conv->type == 'p')
 		output = ft_print_p(fmt_conv, param);
-		*/
 	if (fmt_conv->type == 'd' || fmt_conv->type == 'i')
 		output = ft_print_d(fmt_conv, param);
 	if (fmt_conv->type == 'u')
 		output = ft_print_u(fmt_conv, param);
-		/*
 	if (fmt_conv->type == 'x')
-		output = ft_print_lowx(fmt_conv, param);
+		output = ft_print_x(fmt_conv, param, 1);
 	if (fmt_conv->type == 'X')
-		output = ft_print_uppx(fmt_conv, param);
-		*/
+		output = ft_print_x(fmt_conv, param, 0);
 	free(fmt_conv);
 	return (output);
 }
@@ -97,6 +93,8 @@ int			ft_printf(const char *fmt, ...)
 
 int		main(void)
 {
-	printf("hello [%18.9u] [%19.8u]\n", -300, -300);
-	ft_printf("hello [%18.9u] [%19.8u]\n", -300, -300);
+	char *hello_i_am_memory = "asdasdAS";
+	printf("hello [%18.9c] [%19.8c]\n", *hello_i_am_memory, *hello_i_am_memory);
+	ft_printf("hello [%18.9c] [%19.8c]\n", *hello_i_am_memory, *hello_i_am_memory);
+	system("leaks a.out");
 }

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:43:09 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 17:37:17 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 22:50:01 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ t_format		*def_format(char *param_start, char *param_end);
 int				ft_print_c(t_format *fmt_conv, va_list param);
 int				ft_print_s(t_format *fmt_conv, va_list param);
 int				ft_print_p(t_format *fmt_conv, va_list param);
+
 int				ft_print_d(t_format *fmt_conv, va_list param);
 int				ft_print_i(t_format *fmt_conv, va_list param);
 int				ft_print_u(t_format *fmt_conv, va_list param);
-int				ft_print_lowx(t_format *fmt_conv, va_list param);
-int				ft_print_uppx(t_format *fmt_conv, va_list param);
+int				ft_print_x(t_format *fmt_conv, va_list param, int if_low);
 
 /*
 	** functions for actual printing
@@ -65,20 +65,26 @@ int				print_no_flags(char *nb, int wtp, int ptp);
 int				print_neg_if_minus(char *nb, int wtp, int ptp);
 int				print_neg_if_zero(char *nb, int wtp);
 int				print_neg_no_flags(char *nb, int wtp, int ptp);
+int				print_if_minus_c(char c, int wtp);
+int				print_no_flags_c(char c, int wtp);
 int				print_ctrltwr(t_format *fmt_conv, char *nb, int if_positive);
+int				print_ctrltwr_sp(t_format *fmt_conv, char *str);
+int				print_ctrltwr_c(t_format *fmt_conv, char c);
 /*
 	** utilities : for handling strings, etc
 */
 char			*ft_strchr(const char *src, int c);
 int				if_available(char s, char *arr);
 size_t			ft_strlen(const char *s);
-
 int				ft_putstr_until(const char *src, const char *dst);
 int				ft_putstr(const char *src);
 
-char			*ft_itoa_base(unsigned int absol, char *base);
+char			*ft_itoa_base(unsigned long absol, char *base);
 int				ft_atoi(const char *str);
 void			*ft_memset(void *ptr, int value, size_t n);
 void			*free_and_return(void *ptr);
+char			*ft_strjoin(char const *s1, char const *s2);
+
+char			*ft_strjoin(char const *s1, char const *s2);
 
 #endif
