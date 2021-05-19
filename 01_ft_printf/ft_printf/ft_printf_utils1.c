@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:29:23 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/17 20:49:33 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 14:26:19 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,6 @@ char	*ft_strnchr(const char *src, const char *dst, int c)
 		return ((char *)src);
 	else
 		return (0);
-}
-
-int		ft_write_until(const char *src, const char *dst)
-{
-	int index;
-
-	index = 0;
-	while (src < dst && *src)
-	{
-		write(1, src++, 1);
-		index++;
-	}
-	return (index);
 }
 
 int		if_available(char s, char *arr)

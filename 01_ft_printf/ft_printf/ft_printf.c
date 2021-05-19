@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/18 23:14:13 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 14:27:36 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			ft_printf_main(const char *fmt, va_list param)
 	while (*fmt)
 	{
 		fmt_until = ft_strchr(fmt, '%');
-		output += ft_write_until(fmt, fmt_until);
+		output += ft_putstr_until(fmt, fmt_until);
 		fmt = fmt_until++;
 		if (*fmt_until == '%')
 		{

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:43:09 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/18 23:02:44 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 14:46:44 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct	s_format
 	int		if_plus;
 	int		if_space;
 	int		if_hash;
+	int		if_asterisk_width;
+	int		if_asterisk_precision;
 }				t_format;
 
 /*
@@ -62,12 +64,15 @@ int				ft_print_uppx(t_format *fmt_conv, va_list param);
 */
 char			*ft_strchr(const char *src, int c);
 char			*ft_strnchr(const char *src, const char *dst, int c);
-int				ft_write_until(const char *src, const char *dst);
 int				if_available(char s, char *arr);
 size_t			ft_strlen(const char *s);
 
-char			*ft_itoa(int n);
+int				ft_putstr_until(const char *src, const char *dst);
+int				ft_putstr(const char *src);
+
+char			*ft_itoa_base(unsigned int absol, char *base);
 int				ft_atoi(const char *str);
 void			*ft_memset(void *ptr, int value, size_t n);
+int				free_and_return(void *ptr);
 
 #endif

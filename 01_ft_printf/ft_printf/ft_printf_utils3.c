@@ -6,13 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 20:57:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/18 22:47:21 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 14:03:44 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "printft.h"
 
-int				ft_atoi(const char *str)
+int					ft_atoi(const char *str)
 {
 	unsigned long long	absol;
 	int					minus;
@@ -28,7 +28,7 @@ int				ft_atoi(const char *str)
 	return (minus * absol);
 }
 
-static int		ft_intlen(unsigned int n)
+static int			ft_intlen(unsigned long long n)
 {
 	int len;
 
@@ -41,20 +41,61 @@ static int		ft_intlen(unsigned int n)
 	return (len);
 }
 
-char			*ft_itoa(int n)
+static unsigned int	find_int_divider(unsigned int nbr, unsigned int base_num)
 {
-	int		intlen;
-	char	*ptr;
+	unsigned int len;
 
-	intlen = ft_intlen(n);
-	ptr = (char *)malloc(sizeof(char) * (intlen + 1));
+	len = 1;
+	if (base_num == 2)
+	{
+		while (nbr >= base_num)
+		{
+			len *= base_num;
+			nbr /= base_num;
+		}
+	}
+	else
+	{
+		while (nbr > base_num)
+		{
+			len *= base_num;
+			nbr /= base_num;
+		}
+	}
+	return (len);
+}
+
+char				*ft_itoa_base(unsigned int absol, char *base)
+{
+	unsigned int	int_div;
+	unsigned int	length;
+	unsigned int	base_num;
+	char			*ptr;
+
+	int_div = find_int_divider(absol, base_num);
+	base_num = ft_strlen(base);
+	length = 0;
+	while (int_div > 1)
+	{
+		length++;
+		int_div /= base_num;
+	}
+	ptr = (char *)malloc(sizeof(char) * (length + 1));
 	if (!ptr)
 		return (0);
-	ptr[intlen] = 0;
-	while (intlen)
+	length = 0;
+	while (int_div > 1)
 	{
-		ptr[--intlen] = '0' + (n % 10);
-		n /= 10;
+		ptr[length++] = base[(absol / int_div) % base_num];
+		absol = absol % int_div;
+		int_div /= base_num;
 	}
+	ptr[length] = base[absol % base_num];
 	return (ptr);
+}
+
+int					free_and_return(void *ptr)
+{
+	free(ptr);
+	return (0);
 }
