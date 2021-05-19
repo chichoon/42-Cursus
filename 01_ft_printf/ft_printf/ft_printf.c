@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 14:27:36 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 16:26:01 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,27 @@
 
 static int	ctrltwr(t_format *fmt_conv, va_list param)
 {
+	int output;
+
+	output = 0;
 	if (fmt_conv->type = 'c')
-		return (ft_print_c(fmt_conv, param));
+		output = ft_print_c(fmt_conv, param);
 	if (fmt_conv->type = 's')
-		return (ft_print_s(fmt_conv, param));
+		output = ft_print_s(fmt_conv, param);
 	if (fmt_conv->type = 'p')
-		return (ft_print_p(fmt_conv, param));
+		output = ft_print_p(fmt_conv, param);
 	if (fmt_conv->type = 'd')
-		return (ft_print_d(fmt_conv, param));
+		output = ft_print_d(fmt_conv, param);
 	if (fmt_conv->type = 'i')
-		return (ft_print_i(fmt_conv, param));
+		output = ft_print_i(fmt_conv, param);
 	if (fmt_conv->type = 'u')
-		return (ft_print_u(fmt_conv, param));
+		output = ft_print_u(fmt_conv, param);
 	if (fmt_conv->type = 'x')
-		return (ft_print_lowx(fmt_conv, param));
+		output = ft_print_lowx(fmt_conv, param);
 	if (fmt_conv->type = 'X')
-		return (ft_print_uppx(fmt_conv, param));
+		output = ft_print_uppx(fmt_conv, param);
+	free(fmt_conv);
+	return (output);
 }
 
 static char	*get_convs_ptr(char *ptr_param)
@@ -63,7 +68,8 @@ int			ft_printf_main(const char *fmt, va_list param)
 		{
 			fmt_until = get_convs_ptr(fmt_until);
 			fmt_conv = def_format(fmt, fmt_until, param);
-			output += ctrltwr(fmt_conv, param);
+			if (fmt_conv)
+				output += ctrltwr(fmt_conv, param);
 		}
 		fmt = fmt_until + 1;
 	}

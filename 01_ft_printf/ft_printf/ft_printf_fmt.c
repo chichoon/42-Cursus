@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 22:34:31 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 13:37:27 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 16:18:29 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ static void		init_format(t_format *fmt)
 	fmt->precision = 0;
 	fmt->if_zero = 0;
 	fmt->if_minus = 0;
-	fmt->if_plus = 0;
-	fmt->if_space = 0;
-	fmt->if_hash = 0;
 }
 
 static void		put_length(char *str, t_format *fmt_new)
@@ -38,12 +35,6 @@ static void		put_flags(char str, t_format *fmt_new)
 		fmt_new->if_zero = 1;
 	if (str == '-' && !fmt_new->if_dot)
 		fmt_new->if_minus = 1;
-	if (str == '+' && !fmt_new->if_dot)
-		fmt_new->if_plus = 1;
-	if (str == ' ' && !fmt_new->if_dot)
-		fmt_new->if_space = 1;
-	if (str == '#' && !fmt_new->if_dot)
-		fmt_new->if_hash = 1;
 	if (str == '*' && !fmt_new->if_dot)
 		fmt_new->if_asterisk_width = 1;
 	if (str == '*' && fmt_new->if_dot)
@@ -54,9 +45,9 @@ static void		put_flags(char str, t_format *fmt_new)
 
 static int		if_exceptions(char str, t_format *fmt_new)
 {
-	if (!ft_strchr("%0-+ #.*123456789cspdiuxX", str))
+	if (!if_available(str, "%0-.*123456789cspdiuxX"))
 		return (1);
-	if (fmt_new->if_dot && ft_strchr("0-+ #.", str))
+	if (fmt_new->if_dot && !if_available(str, "0123456789"))
 		return (1);
 	if (fmt_new->if_asterisk_width && !fmt_new->if_dot)
 		if (str < '9' && str > '0')
@@ -64,7 +55,7 @@ static int		if_exceptions(char str, t_format *fmt_new)
 	if (fmt_new->if_asterisk_precision && fmt_new->if_dot)
 		if (str < '9' && str > '0')
 			return (1);
-	if (fmt_new->precision && !ft_strchr("cspdiuxX", str))
+	if (fmt_new->precision && !if_available(str, "cspdiuxX"))
 		return (1);
 	if (fmt_new->if_asterisk_precision && fmt_new->if_asterisk_width)
 		return (1);

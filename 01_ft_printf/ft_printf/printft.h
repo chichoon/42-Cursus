@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:43:09 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 14:46:44 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/19 17:02:40 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ typedef struct	s_format
 	int		if_dot;
 	int		if_zero;
 	int		if_minus;
-	int		if_plus;
-	int		if_space;
-	int		if_hash;
 	int		if_asterisk_width;
 	int		if_asterisk_precision;
 }				t_format;
@@ -60,10 +57,16 @@ int				ft_print_lowx(t_format *fmt_conv, va_list param);
 int				ft_print_uppx(t_format *fmt_conv, va_list param);
 
 /*
+	** functions for actual printing
+*/
+int				print_if_minus(char *nb, int wtp, int ptp);
+int				print_if_zero(char *nb, int wtp, int ptp);
+int				print_no_flags(char *nb, int wtp, int ptp);
+int				print_ctrltwr(t_format *fmt_conv, char *nb);
+/*
 	** utilities : for handling strings, etc
 */
 char			*ft_strchr(const char *src, int c);
-char			*ft_strnchr(const char *src, const char *dst, int c);
 int				if_available(char s, char *arr);
 size_t			ft_strlen(const char *s);
 
