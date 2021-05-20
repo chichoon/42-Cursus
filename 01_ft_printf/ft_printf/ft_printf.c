@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 22:52:31 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 13:15:41 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,4 @@ int			ft_printf(const char *fmt, ...)
 	fmt_start = (char *)fmt;
 	va_start(param, fmt);
 	return (ft_printf_main(fmt_start, param));
-}
-
-int		main(void)
-{
-	char *hello_i_am_memory = "asdasdAS";
-	printf("hello [%18.9c] [%19.8c]\n", *hello_i_am_memory, *hello_i_am_memory);
-	ft_printf("hello [%18.9c] [%19.8c]\n", *hello_i_am_memory, *hello_i_am_memory);
-	system("leaks a.out");
 }

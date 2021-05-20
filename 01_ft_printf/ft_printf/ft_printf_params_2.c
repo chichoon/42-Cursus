@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 22:18:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 22:50:55 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 13:16:15 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int			ft_print_p(t_format *fmt_conv, va_list param)
 
 int			ft_print_s(t_format *fmt_conv, va_list param)
 {
-	unsigned long	absol;
 	char			*number_to_print;
 	int				output;
 
@@ -45,7 +44,6 @@ int			ft_print_s(t_format *fmt_conv, va_list param)
 
 int			ft_print_c(t_format *fmt_conv, va_list param)
 {
-	unsigned long	absol;
 	char			number_to_print;
 	int				output;
 
