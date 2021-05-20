@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 14:28:43 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 21:53:13 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ctrl_twr(t_format *fmt_conv, va_list param)
 	int output;
 
 	output = 0;
-	if (fmt_conv->type == 'c')
+	if (fmt_conv->type == 'c' || fmt_conv->type == '%')
 		output = ft_print_c(fmt_conv, param);
 	if (fmt_conv->type == 's')
 		output = ft_print_s(fmt_conv, param);
@@ -65,11 +65,12 @@ int			ft_printf_main(char *fmt, va_list param)
 			return (output + ft_putstr(fmt));
 		output += ft_putstr_until(fmt, fmt_until);
 		fmt = fmt_until++;
-		if (*fmt_until == '%')
-			output = print_percent(output);
-		else if (get_convs_ptr(fmt_until))
+		if (check_if_percent(fmt_until) || get_convs_ptr(fmt_until))
 		{
-			fmt_until = get_convs_ptr(fmt_until);
+			if (check_if_percent(fmt_until))
+				fmt_until = check_if_percent(fmt_until);
+			else if (get_convs_ptr(fmt_until))
+				fmt_until = get_convs_ptr(fmt_until);
 			fmt_conv = def_format(fmt, fmt_until);
 			if (fmt_conv)
 				output += ctrl_twr(fmt_conv, param);
@@ -89,11 +90,4 @@ int			ft_printf(const char *fmt, ...)
 	fmt_start = (char *)fmt;
 	va_start(param, fmt);
 	return (ft_printf_main(fmt_start, param));
-}
-
-int			main(void)
-{
-	char *hi = "hello";
-	printf("[PRINTF]	text 1 : [%s]\n", hi);
-	ft_printf("[FT_PRINTF]	text 1 : [%s]\n", hi);
 }

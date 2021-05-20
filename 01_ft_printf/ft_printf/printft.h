@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:43:09 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 14:19:08 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 21:56:15 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				ft_print_d(t_format *fmt_conv, va_list param);
 int				ft_print_i(t_format *fmt_conv, va_list param);
 int				ft_print_u(t_format *fmt_conv, va_list param);
 int				ft_print_x(t_format *fmt_conv, va_list param, int if_low);
-
+char			*check_if_percent(char *ptr_param);
 /*
 	** functions for actual printing
 */
@@ -63,6 +63,7 @@ int				print_ctrltwr_c(t_format *fmt_conv, char c);
 int				print_ctrltwr_s(t_format *fmt_conv, char *str);
 int				print_ctrltwr_p(t_format *fmt_conv, char *str);
 int				print_if_minus_c(char c, int wtp);
+int				print_if_zero_c(char c, int wtp);
 int				print_no_flags_c(char c, int wtp);
 int				print_if_minus_s(char *str, int wtp, int length);
 int				print_no_flags_s(char *str, int wtp, int length);

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 22:34:31 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 14:29:37 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 21:50:13 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void		init_format(t_format *fmt)
 {
 	fmt->type = 0;
-	fmt->width = -1;
-	fmt->precision = -1;
+	fmt->width = -2147483648;
+	fmt->precision = -2147483648;
 	fmt->if_zero = 0;
 	fmt->if_dot = 0;
 	fmt->if_minus = 0;
@@ -78,11 +78,10 @@ t_format		*def_format(char *param_start, char *param_end)
 	if (!fmt_new)
 		return (0);
 	init_format(fmt_new);
+	param_start++;
 	while (param_start < param_end)
 	{
-		if (*param_start == '%')
-			param_start++;
-		else if (put_flags(*param_start, fmt_new))
+		if (put_flags(*param_start, fmt_new))
 			param_start++;
 		else if (*param_start <= '9' && *param_start >= '0')
 		{

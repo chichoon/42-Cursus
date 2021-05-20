@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:02:57 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 14:20:12 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 21:55:25 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,21 @@ int			print_if_minus_c(char c, int wtp)
 		output++;
 		write(1, " ", 1);
 	}
+	return (output);
+}
+
+int			print_if_zero_c(char c, int wtp)
+{
+	int output;
+
+	output = 0;
+	while (wtp--)
+	{
+		output++;
+		write(1, "0", 1);
+	}
+	write(1, &c, 1);
+	output++;
 	return (output);
 }
 
