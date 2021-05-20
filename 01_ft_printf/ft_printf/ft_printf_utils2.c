@@ -6,13 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 20:57:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 22:16:08 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 22:00:25 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printft.h"
 
-int					ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
 	unsigned long long	absol;
 	int					minus;
@@ -28,7 +28,7 @@ int					ft_atoi(const char *str)
 	return (minus * absol);
 }
 
-static int		ft_intlen(unsigned long n, unsigned int base_num)
+static int	ft_intlen(unsigned long n, unsigned int base_num)
 {
 	int len;
 
@@ -41,7 +41,7 @@ static int		ft_intlen(unsigned long n, unsigned int base_num)
 	return (len);
 }
 
-char				*ft_itoa_base(unsigned long absol, char *base)
+char		*ft_itoa_base(unsigned long absol, char *base)
 {
 	unsigned int	length;
 	unsigned int	base_num;
@@ -61,7 +61,7 @@ char				*ft_itoa_base(unsigned long absol, char *base)
 	return (ptr);
 }
 
-void					*free_and_return(void *ptr)
+void		*free_and_return(void *ptr)
 {
 	free(ptr);
 	return (0);

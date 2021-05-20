@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 22:18:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 21:52:59 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 22:00:05 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int			ft_print_c(t_format *fmt_conv, va_list param)
 	return (output);
 }
 
-char	*check_if_percent(char *ptr_param)
+char		*check_if_percent(char *ptr_param)
 {
 	char *ptr_until;
 
