@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:43:09 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 13:59:31 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 14:19:08 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int				print_ctrltwr_s(t_format *fmt_conv, char *str);
 int				print_ctrltwr_p(t_format *fmt_conv, char *str);
 int				print_if_minus_c(char c, int wtp);
 int				print_no_flags_c(char c, int wtp);
+int				print_if_minus_s(char *str, int wtp, int length);
+int				print_no_flags_s(char *str, int wtp, int length);
 
 int				print_ctrltwr_diux(t_format *fmt_conv, char *nb, int if_pos);
 int				print_if_minus(char *nb, int wtp, int ptp);
