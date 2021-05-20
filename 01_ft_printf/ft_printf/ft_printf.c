@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 05:54:01 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 06:49:06 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*get_convs_ptr(char *ptr_param)
 	return (ptr_param);
 }
 
-int			ft_printf_main(char *fmt, va_list param)
+static int	ft_printf_main(char *fmt, va_list param)
 {
 	t_format	*fmt_conv;
 	char		*fmt_until;
