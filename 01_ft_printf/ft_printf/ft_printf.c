@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 02:08:09 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 05:54:01 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,6 @@ static char	*get_convs_ptr(char *ptr_param)
 	if (!*ptr_param || *ptr_param == '%')
 		return (0);
 	return (ptr_param);
-}
-
-int			print_percent(int output)
-{
-	write(1, "%", 1);
-	return (output + 1);
 }
 
 int			ft_printf_main(char *fmt, va_list param)

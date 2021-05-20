@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:43:09 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 02:07:04 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 06:01:54 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int				print_neg_no_flags(char *nb, int wtp, int ptp);
 int				print_if_zero_s(char *str, int wtp, int length);
 int				print_no_flags_p(char *nb, int wtp, int ptp);
 int				print_if_minus_p(char *nb, int wtp, int ptp);
+int				print_if_zero_p(char *nb, int wtp, int ptp);
 
 /*
 	** utilities : for handling strings, etc

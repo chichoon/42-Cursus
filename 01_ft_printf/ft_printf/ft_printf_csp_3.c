@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 00:56:42 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 02:06:45 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 05:53:34 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,26 @@ int			print_no_flags_p(char *nb, int wtp, int ptp)
 		write(1, " ", 1);
 	}
 	write(1, "0x", 2);
+	while (ptp-- > 0)
+	{
+		output++;
+		write(1, "0", 1);
+	}
+	output += ft_putstr_pf(nb);
+	return (output);
+}
+
+int			print_if_zero_p(char *nb, int wtp, int ptp)
+{
+	int output;
+
+	output = 2;
+	write(1, "0x", 2);
+	while (wtp-- > 0)
+	{
+		output++;
+		write(1, "0", 1);
+	}
 	while (ptp-- > 0)
 	{
 		output++;

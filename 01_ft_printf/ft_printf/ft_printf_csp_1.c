@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:59:53 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 02:06:43 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 05:54:23 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			print_ctrltwr_c(t_format *fmt_conv, char c)
 	output = 0;
 	if (fmt_conv->if_minus)
 		return (print_if_minus_c(c, wtp));
-	else if (fmt_conv->if_zero && fmt_conv->type == '%')
+	else if (fmt_conv->if_zero)
 		return (print_if_zero_c(c, wtp));
 	else
 		return (print_no_flags_c(c, wtp));
@@ -99,13 +99,12 @@ int			print_ctrltwr_p(t_format *fmt_conv, char *str)
 		if (fmt_conv->width > fmt_conv->precision && ptp < 0)
 			wtp = fmt_conv->width - length - 2;
 	}
-	else
-	{
-		if (fmt_conv->width > length)
-			wtp = fmt_conv->width - length - 2;
-	}
+	else if (fmt_conv->width > length)
+		wtp = fmt_conv->width - length - 2;
 	if (fmt_conv->if_minus)
 		return (print_if_minus_p(str, wtp, ptp));
+	else if (fmt_conv->if_zero && !fmt_conv->if_dot)
+		return (print_if_zero_p(str, wtp, ptp));
 	else
 		return (print_no_flags_p(str, wtp, ptp));
 }
