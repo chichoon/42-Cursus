@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:57:23 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 14:01:38 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 14:31:57 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	calc_width(t_format *fmt_conv, char *nb)
 	int length;
 	int width_to_print;
 
+	if (fmt_conv->width < 0)
+		return (0);
 	length = ft_strlen(nb);
 	if (fmt_conv->width <= fmt_conv->precision)
 		width_to_print = 0;
@@ -34,6 +36,8 @@ static int	calc_precis(t_format *fmt_conv, char *nb)
 	int length;
 	int precis_to_print;
 
+	if (fmt_conv->precision < 0)
+		return (0);
 	length = ft_strlen(nb);
 	precis_to_print = fmt_conv->precision - length;
 	if (fmt_conv->precision < length)

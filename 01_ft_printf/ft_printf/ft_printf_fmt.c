@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 22:34:31 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 20:22:38 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 14:29:37 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void		init_format(t_format *fmt)
 {
 	fmt->type = 0;
-	fmt->width = 0;
-	fmt->precision = 0;
+	fmt->width = -1;
+	fmt->precision = -1;
 	fmt->if_zero = 0;
 	fmt->if_dot = 0;
 	fmt->if_minus = 0;
@@ -63,7 +63,7 @@ static int		if_exceptions(char str, t_format *fmt_new)
 	if (fmt_new->if_asterisk_precision && fmt_new->if_dot)
 		if (str < '9' && str > '0')
 			return (1);
-	if (fmt_new->precision && !if_available(str, "cspdiuxX"))
+	if (fmt_new->precision >= 0 && !if_available(str, "cspdiuxX"))
 		return (1);
 	if (fmt_new->if_asterisk_precision && fmt_new->if_asterisk_width)
 		return (1);
