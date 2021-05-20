@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:43:09 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 22:50:01 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 13:59:31 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,20 @@ int				ft_print_x(t_format *fmt_conv, va_list param, int if_low);
 /*
 	** functions for actual printing
 */
+int				print_ctrltwr_c(t_format *fmt_conv, char c);
+int				print_ctrltwr_s(t_format *fmt_conv, char *str);
+int				print_ctrltwr_p(t_format *fmt_conv, char *str);
+int				print_if_minus_c(char c, int wtp);
+int				print_no_flags_c(char c, int wtp);
+
+int				print_ctrltwr_diux(t_format *fmt_conv, char *nb, int if_pos);
 int				print_if_minus(char *nb, int wtp, int ptp);
 int				print_if_zero(char *nb, int wtp);
 int				print_no_flags(char *nb, int wtp, int ptp);
 int				print_neg_if_minus(char *nb, int wtp, int ptp);
 int				print_neg_if_zero(char *nb, int wtp);
 int				print_neg_no_flags(char *nb, int wtp, int ptp);
-int				print_if_minus_c(char c, int wtp);
-int				print_no_flags_c(char c, int wtp);
-int				print_ctrltwr(t_format *fmt_conv, char *nb, int if_positive);
-int				print_ctrltwr_sp(t_format *fmt_conv, char *str);
-int				print_ctrltwr_c(t_format *fmt_conv, char c);
+
 /*
 	** utilities : for handling strings, etc
 */
