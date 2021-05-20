@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:57:23 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 19:41:30 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 00:16:38 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ int			print_ctrltwr_diux(t_format *fmt_conv, char *nb, int if_pos)
 	{
 		if (fmt_conv->if_minus)
 			return (print_if_minus(nb, wtp, ptp));
-		else if (fmt_conv->if_zero && fmt_conv->precision < 0)
+		else if (fmt_conv->if_zero &&
+		((fmt_conv->if_dot && fmt_conv->precision != -2147483648
+		&& fmt_conv->precision < 0) || !fmt_conv->if_dot))
 			return (print_if_zero(nb, wtp));
 		return (print_no_flags(nb, wtp, ptp));
 	}
@@ -64,7 +66,9 @@ int			print_ctrltwr_diux(t_format *fmt_conv, char *nb, int if_pos)
 	{
 		if (fmt_conv->if_minus)
 			return (print_neg_if_minus(nb, wtp, ptp));
-		else if (fmt_conv->if_zero && fmt_conv->precision < 0)
+		else if (fmt_conv->if_zero &&
+		((fmt_conv->if_dot && fmt_conv->precision != -2147483648
+		&& fmt_conv->precision < 0) || !fmt_conv->if_dot))
 			return (print_neg_if_zero(nb, wtp));
 		return (print_neg_no_flags(nb, wtp, ptp));
 	}
@@ -102,7 +106,7 @@ int			print_neg_no_flags(char *nb, int wtp, int ptp)
 	}
 	write(1, "-", 1);
 	output++;
-	while (ptp--)
+	while (ptp-- > 0)
 	{
 		output++;
 		write(1, "0", 1);

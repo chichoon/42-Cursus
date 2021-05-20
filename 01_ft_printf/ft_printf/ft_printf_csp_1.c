@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:59:53 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 21:55:45 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 01:26:34 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int			print_ctrltwr_s(t_format *fmt_conv, char *str)
 	wtp = calc_width(fmt_conv, length);
 	if (fmt_conv->if_minus)
 		return (print_if_minus_s(str, wtp, length));
+	else if (fmt_conv->if_zero)
+		return (print_if_zero_s(str, wtp, length));
 	else
 		return (print_no_flags_s(str, wtp, length));
 }
@@ -87,13 +89,23 @@ int			print_ctrltwr_p(t_format *fmt_conv, char *str)
 	int		length;
 
 	length = ft_strlen(str);
-	if (fmt_conv->width > length)
-		wtp = fmt_conv->width - length;
-	else
-		wtp = 0;
 	ptp = 0;
-	if (fmt_conv->if_minus)
-		return (print_if_minus(str, wtp, ptp));
+	wtp = 0;
+	if (fmt_conv->precision > 0)
+	{
+		ptp = fmt_conv->precision - length;
+		if (fmt_conv->width > fmt_conv->precision && ptp > 0)
+			wtp = fmt_conv->width - fmt_conv->precision - 2;
+		if (fmt_conv->width > fmt_conv->precision && ptp < 0)
+			wtp = fmt_conv->width - length - 2;
+	}
 	else
-		return (print_no_flags(str, wtp, ptp));
+	{
+		if (fmt_conv->width > length)
+			wtp = fmt_conv->width - length - 2;
+	}
+	if (fmt_conv->if_minus)
+		return (print_if_minus_p(str, wtp, ptp));
+	else
+		return (print_no_flags_p(str, wtp, ptp));
 }

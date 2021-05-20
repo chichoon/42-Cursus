@@ -6,13 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 20:57:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 22:00:25 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 22:29:23 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printft.h"
 
-int			ft_atoi(const char *str)
+int			ft_atoi_pf(const char *str)
 {
 	unsigned long long	absol;
 	int					minus;

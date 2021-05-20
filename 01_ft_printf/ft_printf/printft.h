@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:43:09 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 21:56:15 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 01:19:56 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h> //erase this!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//# include "libft.h"
 
 /*
 	** structure : for maintain flags, conventions
@@ -56,6 +54,7 @@ int				ft_print_i(t_format *fmt_conv, va_list param);
 int				ft_print_u(t_format *fmt_conv, va_list param);
 int				ft_print_x(t_format *fmt_conv, va_list param, int if_low);
 char			*check_if_percent(char *ptr_param);
+
 /*
 	** functions for actual printing
 */
@@ -76,6 +75,10 @@ int				print_neg_if_minus(char *nb, int wtp, int ptp);
 int				print_neg_if_zero(char *nb, int wtp);
 int				print_neg_no_flags(char *nb, int wtp, int ptp);
 
+int				print_if_zero_s(char *str, int wtp, int length);
+int				print_no_flags_p(char *nb, int wtp, int ptp);
+int				print_if_minus_p(char *nb, int wtp, int ptp);
+
 /*
 	** utilities : for handling strings, etc
 */
@@ -86,7 +89,7 @@ int				ft_putstr_until(const char *src, const char *dst);
 int				ft_putstr(const char *src);
 
 char			*ft_itoa_base(unsigned long absol, char *base);
-int				ft_atoi(const char *str);
+int				ft_atoi_pf(const char *str);
 void			*ft_memset(void *ptr, int value, size_t n);
 void			*free_and_return(void *ptr);
 char			*ft_strjoin(char const *s1, char const *s2);

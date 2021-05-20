@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 22:34:31 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 21:50:13 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/20 22:29:55 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void		init_format(t_format *fmt)
 static void		put_length(char *str, t_format *fmt_new)
 {
 	if (!fmt_new->if_dot)
-		fmt_new->width = ft_atoi(str);
+		fmt_new->width = ft_atoi_pf(str);
 	else
-		fmt_new->precision = ft_atoi(str);
+		fmt_new->precision = ft_atoi_pf(str);
 }
 
 static int		put_flags(char str, t_format *fmt_new)

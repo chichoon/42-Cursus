@@ -6,13 +6,13 @@
 #    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/19 17:17:23 by jiychoi           #+#    #+#              #
-#    Updated: 2021/05/20 14:04:47 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/05/21 01:05:23 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	gcc
 PARAM		=	-Wall -Wextra -Werror
-SRCS		=	ft_printf_csp_0.c ft_printf_csp_1.c ft_printf_csp_2.c \
+SRCS		=	ft_printf_csp_0.c ft_printf_csp_1.c ft_printf_csp_2.c ft_printf_csp_3.c \
 				ft_printf_diux_0.c ft_printf_diux_1.c ft_printf_diux_2.c \
 				ft_printf_utils1.c ft_printf_utils2.c ft_printf_utils3.c \
 				ft_printf_fmt.c ft_printf.c
