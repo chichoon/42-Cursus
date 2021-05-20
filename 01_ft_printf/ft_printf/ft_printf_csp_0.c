@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 22:18:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 01:11:15 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 02:06:42 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int			ft_print_p(t_format *fmt_conv, va_list param)
 
 	config_asterisk(fmt_conv, param);
 	absol = (unsigned long)va_arg(param, void *);
-	if (absol == 0 && fmt_conv->if_dot)
-		pointer_to_print = ft_strjoin("", "");
+	if (absol == 0 && fmt_conv->if_dot &&
+		(fmt_conv->precision > 0 || fmt_conv->precision == -2147483648))
+		pointer_to_print = ft_strjoin_pf("", "");
 	else
 		pointer_to_print = ft_itoa_base(absol, "0123456789abcdef");
 	output = print_ctrltwr_p(fmt_conv, pointer_to_print);
@@ -55,11 +56,11 @@ int			ft_print_s(t_format *fmt_conv, va_list param)
 	if_null = 0;
 	if (!str_to_print)
 	{
-		str_to_print = ft_strjoin("(null)", "");
+		str_to_print = ft_strjoin_pf("(null)", "");
 		if_null = 1;
 	}
 	if (fmt_conv->precision < 0 && fmt_conv->precision > -2147483648)
-		fmt_conv->precision = ft_strlen(str_to_print);
+		fmt_conv->precision = ft_strlen_pf(str_to_print);
 	output = print_ctrltwr_s(fmt_conv, str_to_print);
 	if (if_null)
 		free(str_to_print);
@@ -84,7 +85,7 @@ char		*check_if_percent(char *ptr_param)
 {
 	char *ptr_until;
 
-	ptr_until = ft_strchr(ptr_param, '%');
+	ptr_until = ft_strchr_pf(ptr_param, '%');
 	if (!ptr_until)
 		return (0);
 	while (ptr_param < ptr_until)

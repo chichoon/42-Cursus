@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 22:15:05 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/19 22:16:31 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 02:06:49 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-char		*ft_strjoin(char const *s1, char const *s2)
+char		*ft_strjoin_pf(char const *s1, char const *s2)
 {
 	char	*ptr;
 	char	*ptr_backup;
@@ -38,8 +38,8 @@ char		*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (0);
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
+	len_s1 = ft_strlen_pf(s1);
+	len_s2 = ft_strlen_pf(s2);
 	ptr = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
 	if (!ptr)
 		return (0);

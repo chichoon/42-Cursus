@@ -6,13 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 13:29:23 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 22:32:39 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 02:06:49 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printft.h"
 
-char	*ft_strchr(const char *src, int c)
+char	*ft_strchr_pf(const char *src, int c)
 {
 	char ch;
 
@@ -40,7 +40,7 @@ int		if_available(char s, char *arr)
 	return (0);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen_pf(const char *s)
 {
 	size_t length;
 
@@ -66,7 +66,7 @@ int		ft_putstr_until(const char *src, const char *dst)
 	return (index);
 }
 
-int		ft_putstr(const char *src)
+int		ft_putstr_pf(const char *src)
 {
 	int index;
 

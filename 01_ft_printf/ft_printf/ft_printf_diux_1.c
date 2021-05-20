@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:57:23 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 00:16:38 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 02:06:46 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	calc_width(t_format *fmt_conv, char *nb)
 
 	if (fmt_conv->width == -2147483648)
 		return (0);
-	length = ft_strlen(nb);
+	length = ft_strlen_pf(nb);
 	if (fmt_conv->width <= fmt_conv->precision)
 		width_to_print = 0;
 	else if (fmt_conv->precision < length)
@@ -38,7 +38,7 @@ static int	calc_precis(t_format *fmt_conv, char *nb)
 
 	if (fmt_conv->precision == -2147483648)
 		return (0);
-	length = ft_strlen(nb);
+	length = ft_strlen_pf(nb);
 	precis_to_print = fmt_conv->precision - length;
 	if (fmt_conv->precision < length)
 		precis_to_print = 0;
@@ -89,7 +89,7 @@ int			print_no_flags(char *nb, int wtp, int ptp)
 		output++;
 		write(1, "0", 1);
 	}
-	output += ft_putstr(nb);
+	output += ft_putstr_pf(nb);
 	return (output);
 }
 
@@ -111,6 +111,6 @@ int			print_neg_no_flags(char *nb, int wtp, int ptp)
 		output++;
 		write(1, "0", 1);
 	}
-	output += ft_putstr(nb);
+	output += ft_putstr_pf(nb);
 	return (output);
 }

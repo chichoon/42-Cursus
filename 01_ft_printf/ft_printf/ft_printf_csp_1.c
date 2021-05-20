@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:59:53 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 01:26:34 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 02:06:43 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	calc_length(t_format *fmt_conv, char *str)
 {
 	int length;
 
-	length = ft_strlen(str);
+	length = ft_strlen_pf(str);
 	if (fmt_conv->precision == -2147483648 && fmt_conv->if_dot)
 		return (0);
 	if (fmt_conv->precision == -2147483648 && !fmt_conv->if_dot)
@@ -88,7 +88,7 @@ int			print_ctrltwr_p(t_format *fmt_conv, char *str)
 	int		ptp;
 	int		length;
 
-	length = ft_strlen(str);
+	length = ft_strlen_pf(str);
 	ptp = 0;
 	wtp = 0;
 	if (fmt_conv->precision > 0)

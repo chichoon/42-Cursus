@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:43:09 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 01:19:56 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 02:07:04 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct	s_format
 /*
 	** the most important main function : ft_printf
 */
-int				ft_printf(const char *, ...);
+int				ft_printf(const char *fmt, ...);
 
 /*
 	** functions for get format : flag 0-+ #.
@@ -82,18 +82,16 @@ int				print_if_minus_p(char *nb, int wtp, int ptp);
 /*
 	** utilities : for handling strings, etc
 */
-char			*ft_strchr(const char *src, int c);
+char			*ft_strchr_pf(const char *src, int c);
 int				if_available(char s, char *arr);
-size_t			ft_strlen(const char *s);
+size_t			ft_strlen_pf(const char *s);
 int				ft_putstr_until(const char *src, const char *dst);
-int				ft_putstr(const char *src);
+int				ft_putstr_pf(const char *src);
 
 char			*ft_itoa_base(unsigned long absol, char *base);
 int				ft_atoi_pf(const char *str);
 void			*ft_memset(void *ptr, int value, size_t n);
 void			*free_and_return(void *ptr);
-char			*ft_strjoin(char const *s1, char const *s2);
-
-char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strjoin_pf(char const *s1, char const *s2);
 
 #endif

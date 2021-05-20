@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 00:56:42 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 01:22:32 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 02:06:45 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			print_no_flags_p(char *nb, int wtp, int ptp)
 		output++;
 		write(1, "0", 1);
 	}
-	output += ft_putstr(nb);
+	output += ft_putstr_pf(nb);
 	return (output);
 }
 
@@ -57,7 +57,7 @@ int			print_if_minus_p(char *nb, int wtp, int ptp)
 		output++;
 		write(1, "0", 1);
 	}
-	output += ft_putstr(nb);
+	output += ft_putstr_pf(nb);
 	while (wtp-- > 0)
 	{
 		output++;

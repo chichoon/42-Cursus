@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:19:42 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 21:06:26 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 02:06:46 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int			ft_print_d(t_format *fmt_conv, va_list param)
 	}
 	if (absol == 0 && fmt_conv->if_dot
 		&& (fmt_conv->precision >= 0 || fmt_conv->precision == -2147483648))
-		number_to_print = ft_strjoin("", "");
+		number_to_print = ft_strjoin_pf("", "");
 	else
 		number_to_print = ft_itoa_base(absol, "0123456789");
 	output = print_ctrltwr_diux(fmt_conv, number_to_print, num);
@@ -66,7 +66,7 @@ int			ft_print_u(t_format *fmt_conv, va_list param)
 	absol = va_arg(param, unsigned int);
 	if (absol == 0 && fmt_conv->if_dot
 		&& (fmt_conv->precision >= 0 || fmt_conv->precision == -2147483648))
-		number_to_print = ft_strjoin("", "");
+		number_to_print = ft_strjoin_pf("", "");
 	else
 		number_to_print = ft_itoa_base(absol, "0123456789");
 	output = print_ctrltwr_diux(fmt_conv, number_to_print, 1);
@@ -84,7 +84,7 @@ int			ft_print_x(t_format *fmt_conv, va_list param, int if_low)
 	absol = va_arg(param, unsigned int);
 	if (absol == 0 && fmt_conv->if_dot
 		&& (fmt_conv->precision >= 0 || fmt_conv->precision == -2147483648))
-		number_to_print = ft_strjoin("", "");
+		number_to_print = ft_strjoin_pf("", "");
 	else
 	{
 		if (if_low)

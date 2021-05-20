@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 20:57:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 22:29:23 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 02:07:43 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char		*ft_itoa_base(unsigned long absol, char *base)
 	unsigned int	base_num;
 	char			*ptr;
 
-	base_num = ft_strlen(base);
+	base_num = ft_strlen_pf(base);
 	length = ft_intlen(absol, base_num);
 	ptr = (char *)malloc(sizeof(char) * (length + 1));
 	if (!ptr)
