@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/19 17:17:23 by jiychoi           #+#    #+#              #
-#    Updated: 2021/05/21 01:05:23 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/05/22 01:30:02 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ $(NAME) : $(OBJS)
 	ar -rc $(NAME) $(OBJS)
 
 %.o : %.c
-	$(CC) $(PARAM) -c -o $@ $< -I printft.h
+	$(CC) $(PARAM) -c -o $@ $<
 
 clean :
 	rm -f $(OBJS) $(OBJS_BNS)

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 12:31:10 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/22 01:33:00 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,3 +88,4 @@ int			ft_printf(const char *fmt, ...)
 	va_end(param);
 	return (output);
 }
+

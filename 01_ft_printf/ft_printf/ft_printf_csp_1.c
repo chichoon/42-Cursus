@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:59:53 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 05:54:23 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/22 01:31:21 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,11 @@ static int	calc_length(t_format *fmt_conv, char *str)
 int			print_ctrltwr_c(t_format *fmt_conv, char c)
 {
 	int		wtp;
-	int		output;
 
 	if (fmt_conv->width > 1)
 		wtp = fmt_conv->width - 1;
 	else
 		wtp = 0;
-	output = 0;
 	if (fmt_conv->if_minus)
 		return (print_if_minus_c(c, wtp));
 	else if (fmt_conv->if_zero)
