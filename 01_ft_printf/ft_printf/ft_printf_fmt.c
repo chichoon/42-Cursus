@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 22:34:31 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 22:29:55 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 12:31:26 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ static int		if_exceptions(char str, t_format *fmt_new)
 	if (fmt_new->if_dot && !if_available(str, "0123456789"))
 		return (1);
 	if (fmt_new->if_asterisk_width && !fmt_new->if_dot)
-		if (str < '9' && str > '0')
+		if (str <= '9' && str >= '0')
 			return (1);
 	if (fmt_new->if_asterisk_precision && fmt_new->if_dot)
-		if (str < '9' && str > '0')
+		if (str <= '9' && str >= '0')
 			return (1);
 	if (fmt_new->precision >= 0 && !if_available(str, "cspdiuxX"))
 		return (1);

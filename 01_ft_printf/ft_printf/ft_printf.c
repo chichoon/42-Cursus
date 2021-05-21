@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 06:49:06 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/21 12:31:10 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,13 @@ int			ft_printf(const char *fmt, ...)
 {
 	va_list	param;
 	char	*fmt_start;
+	int		output;
 
 	if (!fmt)
 		return (0);
 	fmt_start = (char *)fmt;
 	va_start(param, fmt);
-	return (ft_printf_main(fmt_start, param));
+	output = ft_printf_main(fmt_start, param);
+	va_end(param);
+	return (output);
 }
