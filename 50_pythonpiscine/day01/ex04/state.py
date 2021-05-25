@@ -20,7 +20,7 @@ def state(arg):
 					if key == value2:
 						print(key2)
 						return
-		print("Unknown state")
+		print("Unknown capital city")
 
 if __name__ == '__main__':
 	arg = sys.argv
