@@ -22,8 +22,9 @@ def my_sort():
 	'Burton' : '1939',
 	}
 
-	res = sorted(d.items(), key = lambda item: item[1])
-	print(res)
+	res = sorted(d.items(), key=lambda x: (x[1], x[0]))
+	for r in res:
+		print(r[0])
 
 if __name__ == '__main__':
 	my_sort()
