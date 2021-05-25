@@ -1,4 +1,3 @@
-import sys
 
 def all_in(arg):
 	states = {
@@ -28,5 +27,5 @@ def all_in(arg):
 					print(arg + " is neither a capital city nor a state")
 
 if __name__ == '__main__':
-	arg = sys.argv
-	all_in(arg)
+	import sys
+	all_in(sys.argv)

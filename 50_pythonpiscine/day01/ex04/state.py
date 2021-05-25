@@ -1,4 +1,3 @@
-import sys
 
 def state(arg):
 	states = {
@@ -23,6 +22,6 @@ def state(arg):
 		print("Unknown capital city")
 
 if __name__ == '__main__':
-	arg = sys.argv
-	state(arg)
+	import sys
+	state(sys.argv)
 
