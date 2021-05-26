@@ -55,3 +55,18 @@
 - **lambda x : (x에 관한 수식)** 은 결국 **def foo(x): (x에 관한 수식)** 과 같은 역할을 한다
 - 단 람다식은 일회성이라 특정 데이터만을 처리할 때 주로 사용됨
 - map 함수나 sorted 함수 등과 같이 주로 쓰인다
+
+## Day 02
+
+### ex04
+#### Nonetype과 Null
+- Nonetype의 None은 별개로 존재한다
+	- str = "", list = [] 등은 다 None이 아님
+	- 보통 함수 인자값에 아무것도 안 들어왔을 때 default값으로 사용
+- 조건문에 조건으로 넣어줬을 때
+	- str = "", list = []는 조건문에서 False를 반환한다 (C에서 Null과 같음)
+	- list = [""] 는 인자가 있다고 가정하므로 True를 반환한다
+	- None은 무조건 False를 반환한다
+- 그래서 Elem의 생성자에서 content is not None일 때 content == "" 과 [] 가 걸러진다
+- 이 중에서 Text 타입이 아닐 때 Validation Error 반환
+	- "" 같은 경우는 None도 아니고 False를 반환하므로 타입을 체크
