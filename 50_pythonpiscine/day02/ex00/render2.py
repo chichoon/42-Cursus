@@ -6,16 +6,23 @@ from settings import *
 
 def get_dict():
     dic = {}
-    try:
-        with open("settings.py", "r") as setting:
-            lines = setting.readlines()
-            for line in lines:
-                if len(line.split("=")) == 2:
-                    element = line.split("=")
-                    dic[element[0].strip()] = element[1].strip(' "\n')
-        return dic
-    except (Exception):
-        print("settings.py read error!")
+    for item in globals().items():
+        if (
+            type(item[1])
+            in [
+                str,
+                int,
+                float,
+                bool,
+                list,
+                tuple,
+                set,
+                dict,
+            ]
+            and not item[0].startswith("_")
+        ):
+            dic[item[0]] = item[1]
+    return dic
 
 
 def get_string(filename, dic):

@@ -13,4 +13,20 @@ class Intern:
         raise Exception("I’m just an intern, I can’t do that...")
 
     def make_coffee(self):
-        return
+        return self.Coffee()
+
+
+def test():
+    mark = Intern("Mark")
+    noname = Intern()
+    print(mark)
+    print(noname)
+    print(mark.make_coffee())
+    try:
+        noname.work()
+    except Exception as e:
+        print(e)
+
+
+if __name__ == "__main__":
+    test()
