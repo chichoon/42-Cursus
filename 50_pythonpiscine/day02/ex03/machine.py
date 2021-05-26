@@ -18,17 +18,14 @@ class CoffeeMachine:
 
     class BrokenMachineException(Exception):
         def __init__(self):
-            self.Text = "This coffee machine has to be repaired."
-
-        def __str__(self):
-            return self.Text
+            super(CoffeeMachine.BrokenMachineException, self).__init__("This coffee machine has to be repaired.")
 
     def repair(self):
         self.used = 0
 
     def serve(self, HotBeverage):
         if self.used == 10:
-            return CoffeeMachine.BrokenMachineException()
+            raise CoffeeMachine.BrokenMachineException()
         else:
             if random.randrange(1, 10) < 3:
                 self.used += 1
@@ -39,37 +36,39 @@ class CoffeeMachine:
 
 
 def test():
-    machine = CoffeeMachine()
-    print(machine.serve(Coffee))
-    print(machine.serve(Tea))
-    print(machine.serve(Cappuccino))
-    print(machine.serve(Tea))
-    print(machine.serve(Coffee))
-    print(machine.serve(Cappuccino))
-    print(machine.serve(Coffee))
-    print(machine.serve(Tea))
-    print(machine.serve(Chocolate))
-    print(machine.serve(Tea))
-    print(machine.serve(Coffee))
-    print(machine.serve(Tea))
-    machine.repair()
-    print(machine.serve(Coffee))
-    print(machine.serve(Tea))
-    print(machine.serve(Cappuccino))
-    print(machine.serve(Tea))
-    print(machine.serve(Coffee))
-    print(machine.serve(Cappuccino))
-    print(machine.serve(Coffee))
-    print(machine.serve(Tea))
-    print(machine.serve(Chocolate))
-    print(machine.serve(Tea))
-    print(machine.serve(Coffee))
-    print(machine.serve(Tea))
-    print(machine.serve(Tea))
-    print(machine.serve(Tea))
-    machine.repair()
-    print(machine.serve(Tea))
-    print(machine.serve(Tea))
+    try:
+        machine = CoffeeMachine()
+        print(machine.serve(Coffee))
+        print(machine.serve(Tea))
+        print(machine.serve(Cappuccino))
+        print(machine.serve(Tea))
+        print(machine.serve(Coffee))
+        print(machine.serve(Cappuccino))
+        print(machine.serve(Coffee))
+        print(machine.serve(Tea))
+        print(machine.serve(Chocolate))
+        print(machine.serve(Tea))
+        print(machine.serve(Coffee))
+        print(machine.serve(Tea))
+    except Exception as e:
+        print(e)
+        machine.repair()
+    try:
+        print(machine.serve(Coffee))
+        print(machine.serve(Tea))
+        print(machine.serve(Cappuccino))
+        print(machine.serve(Tea))
+        print(machine.serve(Coffee))
+        print(machine.serve(Cappuccino))
+        print(machine.serve(Coffee))
+        print(machine.serve(Tea))
+        print(machine.serve(Chocolate))
+        print(machine.serve(Tea))
+        print(machine.serve(Coffee))
+        print(machine.serve(Tea))
+    except Exception as e:
+        print(e)
+        machine.repair()
 
 
 if __name__ == "__main__":

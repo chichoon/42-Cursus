@@ -3,7 +3,6 @@
 import sys
 import os
 import re
-from settings import *
 
 
 def get_dict():
