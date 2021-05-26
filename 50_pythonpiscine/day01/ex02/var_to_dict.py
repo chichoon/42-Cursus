@@ -21,7 +21,12 @@ def var_to_dict():
 	('Thompson' , '1949'),
 	('Burton' , '1939')
 	]
-	dic = {elements[1] : elements[0] for elements in d}
+	dic = {}
+	for elements in d:
+		if elements[1] in dic:
+			dic[elements[1]] = dic[elements[1]] + ' ' + elements[0]
+		else:
+			dic[elements[1]] = elements[0]
 	for item in dic.items():
 		print(item[0] + " : " + item[1])
 

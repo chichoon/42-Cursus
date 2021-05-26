@@ -1,3 +1,5 @@
+import sys
+
 def capital_city(arg):
 	states = {
 	"Oregon" : "OR",
@@ -19,6 +21,5 @@ def capital_city(arg):
 			print("Unknown state")
 
 if __name__ == '__main__':
-	import sys
 	capital_city(sys.argv)
 

@@ -1,3 +1,5 @@
+import sys
+
 def all_in(arg):
 	states = {
 	"Oregon" : "OR",
@@ -34,5 +36,4 @@ def all_in(arg):
 					print(arg + " is neither a capital city nor a state")
 
 if __name__ == '__main__':
-	import sys
 	all_in(sys.argv)
