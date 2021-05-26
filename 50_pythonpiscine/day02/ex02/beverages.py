@@ -41,7 +41,7 @@ class Cappuccino(HotBeverage):
     name = "cappuccino"
 
     def description(self):
-        return "Un po’ di Italia nella sua tazza!"
+        return "Un po' di Italia nella sua tazza!"
 
 
 def test():

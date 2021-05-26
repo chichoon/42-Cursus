@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*-coding:utf-8 -*
+
+
 def delete_str(string, characters):
     for i in range(len(characters)):
         string = string.replace(characters[i], "")

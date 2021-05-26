@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*-coding:utf-8 -*
+
+
 def var_to_dict():
     d = [
         ("Hendrix", "1942"),

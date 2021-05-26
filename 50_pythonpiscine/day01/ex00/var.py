@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*-coding:utf-8 -*
+
+
 def my_var():
     var_int = 42
     var_str = "42"

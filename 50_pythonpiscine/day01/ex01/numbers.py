@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*-coding:utf-8 -*
+
+
 def numbers_func():
     with open("numbers.txt", "r") as f:
         line = f.read().strip("\n")
