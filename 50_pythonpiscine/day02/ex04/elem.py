@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# -*-coding:utf-8 -*
 
 
 class Text(str):
@@ -43,7 +44,7 @@ class Elem:
         if content:
             self.add_content(content)
         elif content is not None:
-            if not isinstance(content, Text):
+            if type(content) is not Text:
                 raise self.ValidationError
         self.tag_type = tag_type
 
