@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*-coding:utf-8 -*
+
+
 class Intern:
     def __init__(self, string="My name? I’m nobody, an intern, I have no name."):
         self.Name = string

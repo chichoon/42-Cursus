@@ -12,14 +12,24 @@ class Text(str):
         """
         Do you really need a comment to understand this method?..
         """
-        return super().__str__().replace('\n', '\n<br />\n')
+        return (
+            super()
+            .__str__()
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace('"', "&quot;")
+            .replace("\n", "\n<br />\n")
+        )
 
 
 class Elem:
     """
     Elem will permit us to represent our HTML elements.
     """
-    [...]
+
+    class ValidationError(Exception):
+        def __init__(self):
+            Exception.__init__(self, "Error")
 
     def __init__(self, tag='div', attr={}, content=None, tag_type='double'):
         """
@@ -27,7 +37,15 @@ class Elem:
 
         Obviously.
         """
-        [...]
+        self.tag = tag
+        self.attr = attr
+        self.content = []
+        if content:
+            self.add_content(content)
+        elif content is not None:
+            if not isinstance(content, Text):
+                raise self.ValidationError
+        self.tag_type = tag_type
 
     def __str__(self):
         """
@@ -36,10 +54,10 @@ class Elem:
         Make sure it renders everything (tag, attributes, embedded
         elements...).
         """
-        if self.tag_type == 'double':
-            [...]
-        elif self.tag_type == 'simple':
-            [...]
+        if self.tag_type == "double":
+            result = "<" + self.tag + self.__make_attr() + ">" + self.__make_content() + "</" + self.tag + ">"
+        elif self.tag_type == "simple":
+            result = "<" + self.tag + self.__make_attr() + ">"
         return result
 
     def __make_attr(self):
@@ -60,7 +78,7 @@ class Elem:
             return ''
         result = '\n'
         for elem in self.content:
-            result += [...]
+            result += '  ' + Text(elem).replace('\n', '\n  ') + '\n'
         return result
 
     def add_content(self, content):
