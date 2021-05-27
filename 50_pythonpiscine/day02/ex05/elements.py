@@ -24,13 +24,13 @@ class Title(Elem):
 
 
 class Meta(Elem):
-    def __init__(self, attr={}):
-        super(Meta, self).__init__('meta', attr, None, 'simple')
+    def __init__(self, content={}):
+        super(Meta, self).__init__('meta', content, None, 'simple')
 
 
 class Img(Elem):
-    def __init__(self, attr={}):
-        super(Img, self).__init__('img', attr, None, 'simple')
+    def __init__(self, content={}):
+        super(Img, self).__init__('img', content, None, 'simple')
 
 
 class Table(Elem):
@@ -94,13 +94,13 @@ class Span(Elem):
 
 
 class Hr(Elem):
-    def __init__(self, attr={}):
-        super(Hr, self).__init__('hr', attr, None, 'simple')
+    def __init__(self, content={}):
+        super(Hr, self).__init__('hr', content, None, 'simple')
 
 
 class Br(Elem):
-    def __init__(self, attr={}):
-        super(Br, self).__init__('br', attr, None, 'simple')
+    def __init__(self, content={}):
+        super(Br, self).__init__('br', content, None, 'simple')
 
 
 if __name__ == '__main__':
