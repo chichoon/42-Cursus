@@ -6,7 +6,6 @@
 00_libft/unittest
 00_libft/libft/tester
 99_testers/
-50_pythonpiscine/day03/ex01/newvenv
-50_pythonpiscine/day03/ex01/local_lib
 50_pythonpiscine/day03/ex01/logfile.log
 50_pythonpiscine/day03/ex01/piscinebox
+50_pythonpiscine/day03/*/local_lib

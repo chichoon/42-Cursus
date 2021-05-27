@@ -70,3 +70,21 @@
 - 그래서 Elem의 생성자에서 content is not None일 때 content == "" 과 [] 가 걸러진다
 - 이 중에서 Text 타입이 아닐 때 Validation Error 반환
 	- "" 같은 경우는 None도 아니고 False를 반환하므로 타입을 체크
+
+## Day 03
+
+### ex02
+#### Wikipedia api
+```
+https://en.wikipedia.org/w/api.php?action=query&titles={arg}&prop=revisions&rvprop=content&format=json
+```
+1. **action=query**
+	- mediawiki에서 값을 받아온다
+2. **titles={arg}**
+	- 위키 항목 제목을 지정한다
+3. **prop=revisions**
+	- 검토용 정보를 가져온다
+4. **rvprop=content**
+	- 각 항목 제목마다 컨텐츠를 가져온다
+5. **format=json**
+	- 내용을 가져올 때 json 형식으로 가져온다

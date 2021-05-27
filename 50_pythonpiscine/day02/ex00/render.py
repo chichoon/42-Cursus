@@ -15,7 +15,7 @@ def get_dict():
                     element = line.split("=")
                     dic[element[0].strip()] = element[1].strip(' "\n')
         return dic
-    except (Exception):
+    except Exception:
         print("settings.py read error!")
 
 
