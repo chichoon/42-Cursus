@@ -27,7 +27,7 @@ _요약: 이 문서는 시스템 관리에 대한 과제를 담고 있습니다.
 
 ```
 YOU CAN DO ANYTHING YOU WANT TO DO
-네가 하고 싶어하는 모든 일들을 여기서 해낼 수 있단다
+네가 하고 싶어하는 모든 것을 할 수 있단다
 
 (VIRTUAL MACHINE)
 (가상 머신)
@@ -42,6 +42,8 @@ THIS IS YOUR WORLD
 
 ## Introduction
 
+<br>
+
 이 프로젝트는 여러분을 멋진 가상화 (Virtualization)의 세계로 안내해 드릴 것을 목표로 합니다.
 
 여러분은 특정한 절차를 따라 여러분의 첫 번째 `VirtualBox` (만약 `VirtualBox`를 사용할 수 없다면, `UTM`) 머신을 만들 것입니다. 그리고, 프로젝트의 끝에선 여러분만의 운영 체제를 엄격한 규칙을 따르면서 설정할 수 있게 될 겁니다.
@@ -51,6 +53,8 @@ THIS IS YOUR WORLD
 # **Chapter 3**
 
 ## General guidelines
+
+<br>
 
 - `Virtualbox`의 사용은 필수적입니다.
 
@@ -225,6 +229,8 @@ CentOS 설정은 비교적 까다롭습니다. 그렇기 때문에, 여러분은
 
 ## Bonus part
 
+<br>
+
 보너스 목록:
 
 - 파티션을 제대로 구성하여 아래와 같은 구조와 비슷하게 만들어 보세요 :
@@ -251,6 +257,8 @@ CentOS 설정은 비교적 까다롭습니다. 그렇기 때문에, 여러분은
 
 ## Submission and peer-evaluation
 
+<br>
+
 과제 제출 시에는, git 저장소 (repository) 의 루트에 `signature.txt`만 제출하면 됩니다. 해당 파일에는 반드시 여러분이 만든 머신의 디스크 서명 (Disk Signature) 을 붙여 넣어야 합니다. 디스크 서명을 얻으려면, 우선 기본 설치 폴더를 열어야 합니다. (여러분이 VM들을 저장한 폴더입니다)
 
 - Windows : `%HOMEDRIVE%%HOMEPATH%\VirtualBox VMs\`
@@ -258,6 +266,8 @@ CentOS 설정은 비교적 까다롭습니다. 그렇기 때문에, 여러분은
 - Linux : `~/VirtualBox VMs/`
 
 - MacOS : `~/VirtualBox VMs/`
+
+<br>
 
 그리고, 가상머신 내의 "`.vdi`" 파일로부터 `sha1` 포맷으로 구성된 서명을 가져와야 합니다. 아래는 `centos_serv.vdi` 파일로부터 서명을 가져오는 3가지 명령어 예시입니다 :
 
