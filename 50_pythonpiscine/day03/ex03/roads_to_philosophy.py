@@ -7,6 +7,9 @@ from bs4 import BeautifulSoup
 
 def parse_this_page(link):
     result = requests.get(link)
+    if result.status_code == 404:
+        print('No page found. exit program.')
+        sys.exit(0)
     if result.status_code != 200:
         print('Connection failed. exit program.')
         sys.exit(0)
@@ -18,47 +21,42 @@ def parse_this_page(link):
         title = soup.title.string.split('-')[0].strip()
         soup = soup.find('div', {'id': 'mw-content-text'}).find_all('p', {'class': None})
         for p in soup:
-            if p.find('a') is not None:
-                soup = p.find('a')['href']
-                return [title, 'https://en.wikipedia.org/' + soup]
+            lst_a = p.find_all('a')
+            for a in lst_a:
+                if a is not None:
+                    soup = a['href']
+                    if '/wiki/' in soup and 'Help:' not in soup and 'Wikipedia:' not in soup:
+                        return [title, 'https://en.wikipedia.org/' + soup]
         return [title, 0]
     except Exception:
         print('Error while parsing with Beautifulsoup. exit program.')
         sys.exit(0)
 
 
-def print_road(dic, str_to_print):
-    for road in dic['road_to_philosophy']:
-        print(road)
-    print(str_to_print)
-
-
 def find_road(article):
     link = 'https://en.wikipedia.org/wiki/' + article.replace(' ', '_')
-    dic = {
-        'road_to_philosophy': [],
-        'num_of_article': 0,
-    }
+    list_of_article = []
     str_to_print = ''
     lst = parse_this_page(link)
     page_title = lst[0]
     next_link = lst[1]
     while page_title != 'Philosophy':
-        if page_title in dic['road_to_philosophy']:
-            print('loop in : ' + page_title)
+        if page_title in list_of_article and len(list_of_article) > 1:
             str_to_print = 'It leads to an infinite loop !'
             break
         if next_link == 0:
             str_to_print = 'It leads to a dead end !'
             break
-        dic['road_to_philosophy'].append(page_title)
-        dic['num_of_article'] += 1
+        print(page_title)
+        list_of_article.append(page_title)
         lst = parse_this_page(next_link)
         page_title = lst[0]
         next_link = lst[1]
+    print(page_title)
+    list_of_article.append(page_title)
     if str_to_print == '':
-        str_to_print = str(dic['num_of_article']) + ' roads from ' + article + ' to philosophy !'
-    print_road(dic, str_to_print)
+        str_to_print = str(len(list_of_article)) + ' roads from ' + article + ' to philosophy !'
+    print(str_to_print)
 
 
 def philosophy(lst):

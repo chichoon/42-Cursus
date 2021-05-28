@@ -8,7 +8,12 @@ def geohashing(arg_lst):
     arg_date = arg_lst[3]
     arg_lat = arg_lst[1]
     arg_lon = arg_lst[2]
-    return antigravity.geohash(float(arg_lat), float(arg_lon), arg_date.encode())
+    try:
+        arg_lat = float(arg_lat)
+        arg_lon = float(arg_lon)
+        return antigravity.geohash(arg_lat, arg_lon, arg_date.encode())
+    except Exception:
+        print('Please input a float for longitude and latitude')
 
 
 if __name__ == "__main__":
