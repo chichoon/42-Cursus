@@ -24,11 +24,13 @@ def wiki(arg):
         print('Error while parsing data. exit program.')
         sys.exit(0)
 
+
 def request_wiki(lst):
     if len(lst) == 2:
         filename = lst[1].replace(' ', '_')
+        str = wiki(lst[1]).encode()
         with open(f'{filename}.wiki', 'wb') as file:
-            file.write(wiki(lst[1]).encode())
+            file.write(str)
     else:
         print("Too many / small arguments!")
         sys.exit(0)
