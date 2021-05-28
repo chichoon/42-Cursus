@@ -184,6 +184,35 @@ if __name__ == '__main__':
 
 - 여러분의 레포지토리에 `requirement.txt`를 포함하세요. 이는 여러분의 시스템이나 가상환경에 필요한 라이브러리를 설치하는 데에 사용됩니다.
 
+```
+ℹ️
+dewiki 라이브러리는 완벽하지 않습니다. 저희는 완벽한 결과물을 요구하는 게 아니에요. 그건 과제의 목표가 아니니까요.
+```
+
+```
+💡
+API 문서를 잘 읽어보세요. API를 사용했을 때 여러분이 받는 결과물의 구조를 잘 살펴보세요.
+```
+
+다음은 결과물의 예시입니다 :
+```sh
+$>python3 request_wikipedia.py "chocolatine"
+$>cat chocolatine.wiki
+Une chocolatine designe :
+* une viennoiserie au chocolat, aussi appelee pain au chocolat ou couque au chocolat ;
+* une viennoiserie a la creme patissiere et au chocolat, aussi appelee suisse ;
+* une sorte de bonbon au chocolat ;
+* un ouvrage d'Anna Rozen
+Malgre son usage ancien, le mot n'est entre dans le dictionnaire Petit Robert qu'en 2007 et dans le
+Petit Larousse qu'en 2011.
+L'utilisation du terme "Chocolatine" se retrouve egalement au Quebec, dont la langue a evolue a partir
+du vieux francais differemment du francais employe en Europe, mais cet usage ne prouve ni n'
+infirme aucune anteriorite, dependant du hasard de l'usage du premier commercant l'ayant introduit
+au Quebec.
+References
+Categorie:Patisserie
+Categorie:Chocolat
+```
 
 <br>
 
@@ -194,39 +223,23 @@ if __name__ == '__main__':
 
 | **Piscine**                | Exercise 03            |
 | ---------------------------- | ------------------------------------ |
-| Exercise 03 : 영광의 커피머씬!           |
+| Exercise 03 : HTML 파서           |
 | **제출할 폴더**              | ex03/            |
-| **제출할 파일**                 | `machine.py, beverages.py`         |
-| **허용되는 함수**                   | `import random`      |
+| **제출할 파일**                 | `roads_to_philosophy.py, requirement.txt`         |
+| **허용되는 함수**                   | `sys, requests, BeautifulSoup`      |
 
 <br>
-​
-짜잔! 여러분의 회사가 제대로 굴러가고 있군요! 여러분이 받은 첫 번째 기부금으로 회사 부지를 마련할 수 있었습니다. 여러분은 이제 커피를 내려줄 인턴도 있고 건물 입구에 경관 정돈용 10레벨짜리 식물도 있네요.
 
-그렇지만 아직 모든 것이 완벽하지는 않습니다. 여러분 인턴이 만드는 커피는 맛이 기분나쁘도록 없어요! 이 흙덩어리에는 최저시급의 반도 아깝습니다. 그말인즉 여러분(만)의 성공을 위해 새로운 설비를 들일 때가 왔습니다!
+전설에 따르면, 여러분이 어떤 위키피디아 문서에서 시작하던간에, *기울임*이나 (괄호) 안의 링크를 제외한 문서 첫 번째 링크를 클릭하는 것을 반복하다 보면, 무조건 *Philosophy* 문서에 도착한다고 합니다.
 
-다음 기능을 만족하는 `CoffeeMachine` 클래스를 만드세요:
-- 생성자 (builder).
+사실, 전설은 아닙니다! (놀란 척 좀 해주세요..) [이 문서를](https://en.wikipedia.org/wiki/Philosophy) 검증해 보면 아시겠지만요...
 
-- `HotBeverage` 클래스를 상속하는 `EmptyCup` 클래스, 이름(name)은 _"empty cup"_, 가격(price)은 0.90이고 설명(description)은 _"An empty cup?! Gimme my money back!"_ 이어야 합니다.
-내부의 클래스를 사용하기 위해 지난번 exercise의 `beverages.py` 파일을 복사해오세요.
+만약 여러분이 '나는 직접 눈으로 똑똑히 본 것만 믿겠다!' 하는 성향의 사람이라면, **반드시** 이 현상을 테스트하고, 거쳐간 모든 문서의 이름과 개수를 출력하는 `roads to philosophy` 프로그램을 만들어야 합니다.
 
-- 예외(`Exception`) 클래스를 상속한 `BrokenMachineException` 클래스를 만들고, 텍스트(text)는 _"This coffee machine has to be repaired."_ 여야 합니다. 텍스트는 반드시 예외의 생성자(builder)에서 정의되어야 합니다.
+프로그램의 이름은 `roads_to_philosophy.py`가 되어야 하고, 다음과 같은 동작을 수행해야 합니다:
 
-- 커피머신을 고쳐서 다시 뜨거운 음료를 내릴 수 있게 할 `repair()` 메소드
+//
 
-- 다음 조건을 만족하는 `serve()` 메소드:
-    - **인자**: `HotBeverage` 클래스에서 분기한 클래스를 인자로 받아들일 `self`가 아닌 특별한 인자
-
-    - **반환값**: 메서드는 인자에 기반한 클래스 인스턴스나, _대안_(무작위로) 인스턴스로 `EmptyCup` 인스턴스를 반환합니다.
-
-    - **노후화**: 기계가 싸구려라서 10번 사용하면 고장나 버립니다.
-
-    - **고장났을 떄**: `serve()` 메소드를 호출하면 `repair()`메소드를 호출하기 전까지 `CoffeeMachine.BrokenMachineException`를 반환해야 합니다.
-
-    - **수리하기**: `repair()` 메소드를 호출한 후 `serve()`메서드는 음료 10개를 내리(고 박살나)기 전까지 다시 예외를 일으키지 않고 정상적으로 작동해야 합니다.
-
-테스트에서 `CoffeeMachine` 클래스의 인스턴스를 만드세요. 기계가 박살날 때까지 `beverages.py`파일의 의 다양한 음료들을 주문한 다음 나온 음료들을 출력하세요. (그 다음에는 선언된 예외들을 확인할 겁니다) 기계를 고친 후 기계가 다시 박살날 때까지 처음부터 다시 진행하세요. (예외를 처리해야 합니다... 다시!)
 ​
 <br>
 
