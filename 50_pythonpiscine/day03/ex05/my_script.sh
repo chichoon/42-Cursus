@@ -8,4 +8,3 @@ cd pypiscine
 python3 manage.py migrate
 python3 manage.py runserver
 #python3 manage.py startapp helloworld
-open http://localhost:8000/helloworld/
