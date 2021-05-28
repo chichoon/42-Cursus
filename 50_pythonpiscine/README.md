@@ -88,3 +88,21 @@ https://en.wikipedia.org/w/api.php?action=query&titles={arg}&prop=revisions&rvpr
 	- 각 항목 제목마다 컨텐츠를 가져온다
 5. **format=json**
 	- 내용을 가져올 때 json 형식으로 가져온다
+
+
+### ex05
+#### First Django Application
+[참고한 링크](https://docs.djangoproject.com/ko/3.2/intro/tutorial01/)
+1. 가상환경 실행 (이미 만들어둔 django_venv를 사용)
+2. (django, psycopg2이 없을 경우) 가상환경에 설치
+3. **django-admin startproject (프로젝트명)** 을 통해 프로젝트 추가
+4. **cd (프로젝트명)** 으로 쟝고 프로젝트 폴더로 이동
+5. 프로젝트 세팅 - helloworld 앱 생성 기준
+	0. **python3 manage.py migrate** 이용하여 데이터베이스 생성 (not mandatory now)
+	1. **python3 manage.py startapp helloworld** 이용하여 helloworld 앱 생성
+	2. (프로젝트명)/helloworld 폴더 안에 있는 파일 수정
+		- helloworld/views.py를 수정하여 적절한 Http Response 또는 html을 template에서 불러오도록 설정
+		- (프로젝트명)/(프로젝트명)/urls.py를 수정하여 프로젝트의 경로에서 helloworld 앱의 경로가 연결되도록 설정
+		-
+
+6. **python3 manage.py runserver** 이용하여 서버 시작
