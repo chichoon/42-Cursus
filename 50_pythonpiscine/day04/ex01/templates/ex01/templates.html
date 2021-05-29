@@ -1,0 +1,43 @@
+{% extends "ex01/base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Ex01: Template engine.</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'style2.css' %}">
+{% endblock style %}
+
+{% block content %}
+<h1>Blocks</h1>
+<hr>
+<p>
+	by using template, we can load same html code components between different pages.
+	<br>and different code component will be loaded by block.
+	<br>when loading template html in actual page html, blocks will be automatically replaced when showing by view.
+	<br>it can respect Django's DRY rule.
+</p>
+<h1>for ... in</h1>
+<hr>
+<p>
+	there is a for loop in template language.
+	<br>it helps put repeating elements in short.
+	<br>usage: {\% for post in posts %} #what_to_iterate {\% endfor %}
+</p>
+<h1>if condition</h1>
+<hr>
+<p>
+	there is a if / else in template language.
+	<br>it helps showing element by condition.
+	<br>usage: {\% if (condition) %} #what_to_do {\% else %} {\% endif %}
+</p>
+<h1>showing variables</h1>
+<hr>
+<p>
+	we can put variables in templates.
+	<br>it helps easily reusing template and respect DRY.
+	<br>usage: \{\{variable_name}}
+</p>
+<br>
+{% endblock content %}

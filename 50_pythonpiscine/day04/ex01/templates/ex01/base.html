@@ -10,10 +10,11 @@
 	<title>BASE</title>
 	{% endblock title %}
 	{% block style %}
-	<style></style>
+	<link rel="stylesheet" href="{% static 'style1.css' %}">
 	{% endblock style %}
 </head>
 <body>
+	{% include "nav.html" %}
 	{%block content %}
 
 	{% endblock content %}
