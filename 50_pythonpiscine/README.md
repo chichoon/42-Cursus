@@ -106,3 +106,8 @@ https://en.wikipedia.org/w/api.php?action=query&titles={arg}&prop=revisions&rvpr
 		-
 
 6. **python3 manage.py runserver** 이용하여 서버 시작
+
+
+## Day 04
+
+### 어플리케이션 여러개 생성하기

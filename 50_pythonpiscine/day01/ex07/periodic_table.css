@@ -1,0 +1,70 @@
+body {
+	font-family: sans-serif;
+}
+
+thead th {
+	font-size: 40px;
+}
+
+.title {
+	font-size: 100px;
+}
+
+table {
+	width: 100%;
+	border-color: black;
+	border-collapse: collapse;
+	font-size: 30px;
+}
+
+td {
+	width: 5.55555555556%;
+	height: 200px;
+	border: 4px solid black;
+	text-align: center;
+}
+
+ul {
+	width: 100%;
+	text-align: center;
+	padding: 0;
+	align-items: center;
+}
+
+li {
+	list-style-type: none;
+}
+
+.class_gas {
+	background-color: aquamarine;
+}
+
+.class_alkali {
+	background-color: #ba6868;
+}
+
+.class_alkaline {
+	background-color: #ffd7a7;
+}
+
+.class_inert {
+	background-color: #befeff;
+}
+
+.class_hallogen {
+	background-color: #eedbb0;
+}
+
+.class_metalloid {
+	background-color: #80745b;
+}
+
+.class_post {
+	background-color: #424242;
+	color: white;
+}
+
+.class_metal {
+	background-color: #edabab;
+}
+
