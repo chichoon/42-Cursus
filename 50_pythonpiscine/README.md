@@ -110,4 +110,16 @@ https://en.wikipedia.org/w/api.php?action=query&titles={arg}&prop=revisions&rvpr
 
 ## Day 04
 
-### 어플리케이션 여러개 생성하기
+### ex00
+- html 연결할 때: settings.py의 TEMPLATES 리스트에 템플릿 경로 추가 (BASEDIR / 'templates' 등)
+
+### ex01
+- Template Engine 사용법 :
+```py
+def django(request):
+    loader.get_template('base.html')
+    return render(request, 'django.html')
+```
+- 템플릿을 loader.get_template() 이용하여 불러온다
+	- loader은 `from django.template import loader`
+- 그리고 template를 사용하는 html을 render하면 자동으로 템플릿 적용되어 보여짐

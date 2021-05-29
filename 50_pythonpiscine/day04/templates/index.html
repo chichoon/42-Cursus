@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ex00: Markdown Cheatsheet.</title>
+	<style type="text/css">
+		table {
+			width: 1500px;
+			border: 5px solid black;
+			border-collapse: collapse;
+			font-size:30px;
+		}
+		th {
+			font-size: 100px;
+		}
+		td {
+			border: 2px solid black;
+			font-size: 40px;
+			width: 500px;
+			padding: 1px 2px 1px 10px;
+		}
+		.group {
+			border-right: 5px solid;
+			font-weight: 800;
+			font-size: 50px;
+			text-align: center;
+		}
+		.subclass {
+			border: 5px solid black;
+			font-size: 50px;
+			font-weight: 800;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th colspan="3">
+					Markdown Cheatsheet!
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="subclass">Class</td>
+				<td class="subclass">Syntax</td>
+				<td class="subclass">Description</td>
+			</tr>
+			<tr>
+				<td rowspan="8" class="group">Headers</td>
+				<td>Document Title<br><strong>===========</strong></td>
+				<td>Makes a big title for document.</td>
+			</tr>
+			<tr>
+				<td>Document Subtitle<br><strong>-----------------------</strong></td>
+				<td>Makes a big subtitle for document.</td>
+			</tr>
+			<tr>
+				<td><strong>#</strong> H1</td>
+				<td rowspan="6">Makes string a header.</td>
+			</tr>
+			<tr>
+				<td><strong>##</strong> H2</td>
+			</tr>
+			<tr>
+				<td><strong>###</strong> H3</td>
+			</tr>
+			<tr>
+				<td><strong>####</strong> H4</td>
+			</tr>
+			<tr>
+				<td><strong>#####</strong> H5</td>
+			</tr>
+			<tr>
+				<td><strong>######</strong> H6</td>
+			</tr>
+			<tr>
+				<td rowspan="3" class="group">Quotes</td>
+				<td><strong>></strong> Blockquote</td>
+				<td>First blockquote.<br>Other markdown syntax can be used inside.</td>
+			</tr>
+			<tr>
+				<td><strong>>></strong>	 Blockquote</td>
+				<td>Second blockquote.</td>
+			</tr>
+			<tr>
+				<td><strong>>>></strong>	 Blockquote</td>
+				<td>Third blockquote.</td>
+			</tr>
+			<tr>
+				<td rowspan="4" class="group">Lists</td>
+				<td><strong>1.</strong> list1<br><strong>2.</strong> list2<br><strong>3.</strong> list3<br></td>
+				<td>Ordered list.</td>
+			</tr>
+			<tr>
+				<td><strong>-</strong> list1<br><strong>-</strong> list2<br><strong>-</strong> list3<br></td>
+				<td rowspan="3">Unordered list.<br>*, +, - can be used as mixed, tab makes list inside list</td>
+			</tr>
+			<tr>
+				<td><strong>*</strong> list1<br><strong>*</strong> list2<br><strong>*</strong> list3<br></td>
+			</tr>
+			<tr>
+				<td><strong>+</strong> list1<br><strong>+</strong> list2<br><strong>+</strong> list3<br></td>
+			</tr>
+			<tr>
+				<td class="group">Tabulations</td>
+				<td><pre>    tabulations</pre><br><pre>	tabulations</pre></td>
+				<td>four spaces or one tab makes one tabulation.</td>
+			</tr>
+			<tr>
+				<td class="group">Code Blocks</td>
+				<td><pre>```codetype<br>codes here<br>```</pre></td>
+				<td>Makes a code block which can contain codes.<br>varieties of languages supported.</td>
+			</tr>
+			<tr>
+				<td rowspan="2" class="group">Code Blocks</td>
+				<td><strong>***</strong></td>
+				<td rowspan="2">makes a horizontal line.</td>
+			</tr>
+			<tr>
+				<td><strong>---</strong></td>
+			</tr>
+			<tr>
+				<td class="group">Links</td>
+				<td><strong>[link desciption](link)</strong></td>
+				<td>makes http link or document link.</td>
+			</tr>
+			<tr>
+				<td rowspan="3" class="group">Emphasis</td>
+				<td><strong>*</strong>Italic<strong>*</strong><br><strong>_</strong>Italic<strong>_</strong></td>
+				<td>makes text italic.</td>
+			</tr>
+			<tr>
+				<td><strong>**</strong>Bold<strong>**</strong><br><strong>__</strong>Bold<strong>__</strong></td>
+				<td>makes text bold.</td>
+			</tr>
+			<tr>
+				<td><strong>~~</strong>Bold<strong>~~</strong><br></td>
+				<td>makes text cancel line</td>
+			</tr>
+			<tr>
+				<td class="group">Image</td>
+				<td><strong>![Image name](image link)</strong></td>
+				<td>shows image in document.</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
