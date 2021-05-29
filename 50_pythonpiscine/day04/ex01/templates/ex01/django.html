@@ -1,11 +1,12 @@
-{% extends "base.html" %}
+{% extends "ex01/base.html" %}
+{% load static %}
 
 {% block title %}
 <title>Ex01: Django, framework web.</title>
 {% endblock title %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="style1.css">
+<link rel="stylesheet" href="{% static 'style1.css' %}">
 {% endblock style %}
 
 {% block content %}
