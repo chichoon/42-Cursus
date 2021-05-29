@@ -1,0 +1,20 @@
+{% extends "ex01/base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Ex01: Display process of a static page.</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'style1.css' %}">
+{% endblock style %}
+
+{% block content %}
+<h1>Display Process</h1>
+<hr>
+<ol>
+	<li>We connect urls of application and project.</li>
+	<li>We add views for </li>
+</ol>
+<br>
+{% endblock content %}

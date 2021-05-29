@@ -101,9 +101,10 @@ https://en.wikipedia.org/w/api.php?action=query&titles={arg}&prop=revisions&rvpr
 	0. **python3 manage.py migrate** 이용하여 데이터베이스 생성 (not mandatory now)
 	1. **python3 manage.py startapp helloworld** 이용하여 helloworld 앱 생성
 	2. (프로젝트명)/helloworld 폴더 안에 있는 파일 수정
+		- (프로젝트명)/(프로젝트명)/settings.py에 앱 등록
 		- helloworld/views.py를 수정하여 적절한 Http Response 또는 html을 template에서 불러오도록 설정
 		- (프로젝트명)/(프로젝트명)/urls.py를 수정하여 프로젝트의 경로에서 helloworld 앱의 경로가 연결되도록 설정
-		-
+		- helloworld/urls.py 추가
 
 6. **python3 manage.py runserver** 이용하여 서버 시작
 
@@ -117,9 +118,7 @@ https://en.wikipedia.org/w/api.php?action=query&titles={arg}&prop=revisions&rvpr
 - Template Engine 사용법 :
 ```py
 def django(request):
-    loader.get_template('base.html')
     return render(request, 'django.html')
 ```
-- 템플릿을 loader.get_template() 이용하여 불러온다
-	- loader은 `from django.template import loader`
-- 그리고 template를 사용하는 html을 render하면 자동으로 템플릿 적용되어 보여짐
+- 따로 경로를 잡아줘야 했던 이유는.. 앱등록을 안해서 그런거였다 앱등록 꼭 하기
+- template를 사용하는 html을 render하면 자동으로 템플릿 적용되어 보여짐
