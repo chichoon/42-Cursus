@@ -1,5 +1,7 @@
+from django.shortcuts import render
 from django import forms
 
 
-class Myform(forms.Form):
-    received_txt = forms.CharField(required=True)
+class MyForm(forms.Form):
+    text_input = forms.CharField(required=True)
+

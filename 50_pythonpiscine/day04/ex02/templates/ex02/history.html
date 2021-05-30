@@ -1,0 +1,7 @@
+<ul>
+	{% for log in log_lst %}
+	<li>{{ log }}</li>
+	{% empty %}
+	<li> no submit history yet. </li>
+	{% endfor %}
+</ul>

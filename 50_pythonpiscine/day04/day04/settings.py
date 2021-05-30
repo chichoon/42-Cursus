@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ex00',
     'ex01',
+    'ex02',
 ]
 
 MIDDLEWARE = [
@@ -107,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -126,3 +127,29 @@ STATIC_ROOT = BASE_DIR / 'static'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'format1': {
+            'datefmt': '%d/%b/%Y %H:%M:%S ',
+            'format': '%(asctime)s : [ %(message)s ] ',
+        }
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs/logfile',
+            'delay': True,
+            'formatter': 'format1',
+        },
+    },
+    'loggers': {
+        'ex02': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        }
+    }
+}
