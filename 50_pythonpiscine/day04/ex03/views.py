@@ -5,7 +5,6 @@ from django.shortcuts import render
 def ex03(request):
     lst = []
     for i in range(0, 50):
-        color_code = str(i * 2)
+        color_code = str(i)
         lst.append(color_code)
-    print(len(lst))
     return render(request, 'ex03/ex03.html', {'lst': lst})

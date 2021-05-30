@@ -13,25 +13,26 @@ class FormView(View):
     form_class = MyForms.MyForm
     initial = {'text_input': ''}
     template_name = 'ex02/forms.html'
-    log_path = Path(__file__).resolve().parent.parent / 'logs/logfile'
+    log_path = Path(__file__).resolve().parent.parent / 'logs/logs.log'
 
     def get(self, request):
         form = self.form_class(initial=self.initial)
         log_lst = []
+        context = {'form': form, }
         try:
             with open(self.log_path, 'r') as mylog:
                 lines = mylog.readlines()
                 for line in lines:
                     log_lst.append(line)
+            context['log_lst'] = log_lst
         except Exception:
             self.log_path.parent.mkdir(exist_ok=True)
             self.log_path.touch()
-
-        context = {'form': form, 'log_lst': log_lst}
         return render(request, self.template_name, context)
 
     def post(self, request):
         form = self.form_class(request.POST)
+        context = {'form': form, }
         if form.is_valid():
             new_text = form.cleaned_data['text_input']
             logger.debug(new_text)
@@ -41,8 +42,8 @@ class FormView(View):
                 lines = mylog.readlines()
                 for line in lines:
                     log_lst.append(line)
+            context['log_lst'] = log_lst
         except Exception:
             self.log_path.parent.mkdir(exist_ok=True)
             self.log_path.touch()
-        context = {'form': form, 'log_lst': log_lst}
         return render(request, self.template_name, context)

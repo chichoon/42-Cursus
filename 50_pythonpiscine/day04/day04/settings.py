@@ -142,7 +142,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs/logfile',
+            'filename': BASE_DIR / 'logs/logs.log',
             'delay': True,
             'formatter': 'format1',
         },
