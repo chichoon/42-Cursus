@@ -1,6 +1,11 @@
 {% extends '../base.html' %}
 {% load static %}
 
+{% block style %}
+<link rel="stylesheet" href="{% static 'worldmap.css' %}">
+{% endblock style %}
+
+{% block screen %}
 {% for lst_1d in lst_2d %}
 <tr>
 {% for elem in lst_ld %}
@@ -18,3 +23,4 @@
 {% endfor %}
 </tr>
 {% endfor %}
+{% endblock screen %}
