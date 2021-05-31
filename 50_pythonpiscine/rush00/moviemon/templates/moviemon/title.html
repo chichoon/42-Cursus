@@ -1,0 +1,71 @@
+{% extends 'moviemon/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Moviemon</title>
+{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'title.css' %}">
+{% endblock style %}
+
+{% block screen %}
+<div class="title_screen">
+	<div>
+		<img src="{% static 'dj.png' %}">
+		<div class="title_logo">
+			Moviemon
+		</div>
+	</div>
+	<div>
+		A : NEW GAME<br>B : LOAD GAME
+	</div>
+</div>
+{% endblock screen %}
+
+{% block control %}
+<table>
+	<tbody>
+		<tr>
+			<td></td>
+			<td></td>
+			<td class="ctrl_cross ctrl_up"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><div class="ctrl_AB">B</div></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td class="ctrl_cross ctrl_left"></td>
+			<td style="background-color: rgb(50, 47, 47);"></td>
+			<td class="ctrl_cross ctrl_right"></td>
+			<td></td>
+			<td><div class="ctrl_AB">A</div></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td class="ctrl_cross ctrl_down"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><div class="ctrl_SS">start</div></td>
+			<td><div class="ctrl_SS">select</div></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+{% endblock control %}

@@ -1,0 +1,51 @@
+.back_machine {
+	box-sizing: border-box;
+	width: 1500px;
+	height: 1000px;
+	background-color: rgb(210, 210, 210);
+	padding: 20px;
+	margin: 20px;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.back_screen {
+	box-sizing: border-box;
+	width: 750px;
+	height: 960px;
+	background-color: rgb(79, 74, 74);
+	float: left;
+	margin-left: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 70px;
+}
+
+.back_gameplay {
+	width: 700px;
+	height: 700px;
+	background-image: url('./map.png');
+	background-repeat: no-repeat;
+	background-size:cover;
+	outline: 5px solid black
+}
+
+.back_control {
+	width: 600px;
+	display: inline-block;
+	align-items: center;
+	justify-content: center;
+	margin-left: 50px;
+	padding: 0px;
+}
+
+.back_django > img {
+	width: 600px;
+	height: 600px;
+}

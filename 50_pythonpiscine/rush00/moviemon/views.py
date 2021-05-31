@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 def titlescreen(request):
     # add titlescreen.
-    return render(request, 'title/title.html', {})
+    return render(request, 'moviemon/title.html', {})
 
 
 def worldmap(request):
@@ -17,4 +17,4 @@ def worldmap(request):
             else:
                 lst_1d.append('0')
         lst_2d.append(lst_1d)
-    return render(request, 'world/worldmap.html', {})
+    return render(request, 'moviemon/worldmap.html', {})
