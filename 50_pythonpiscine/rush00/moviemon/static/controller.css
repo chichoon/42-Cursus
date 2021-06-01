@@ -1,10 +1,11 @@
-table {
+#control {
 	width: 600px;
 	border: none;
 	border-collapse: collapse;
+	border-spacing: none;
 }
 
-td {
+#control td {
 	width: 70px;
 	height: 70px;
 	border-spacing: 0px;

@@ -6,32 +6,38 @@
 {% endblock style %}
 
 {% block screen %}
-{% for lst_1d in lst_2d %}
-<tr>
-{% for elem in lst_ld %}
-{% if elem == 'n' %}
-<td><img src='north.png'></td>
-{% elif elem == 's' %}
-<td><img src='south.png'></td>
-{% elif elem == 'w' %}
-<td><img src='west.png'></td>
-{% elif elem == 'e' %}
-<td><img src='east.png'></td>
-{% else %}
-<td></td>
-{% endif %}
+<table id="window">
+{% for i in table_row %}
+	<tr>
+		{% for j in table_col %}
+			{% if i == loc_char.1 and j == loc_char.0 %}
+				{% if loc_char.2 == 'n' %}
+				<td><img src="{% static 'media/north.png' %}"></td>
+				{% elif loc_char.2 == 's' %}
+				<td><img src="{% static 'media/south.png' %}"></td>
+				{% elif loc_char.2 == 'w' %}
+				<td><img src="{% static 'media/west.png' %}"></td>
+				{% elif loc_char.2 == 'e' %}
+				<td><img src="{% static 'media/east.png' %}"></td>
+				{% endif %}
+			{% else %}
+			<td></td>
+			{% endif %}
+		{% endfor %}
+	</tr>
 {% endfor %}
-</tr>
-{% endfor %}
+</table>
 {% endblock screen %}
 
 {% block control %}
-<table>
+<table id="control">
 	<tbody>
 		<tr>
 			<td></td>
 			<td></td>
-			<td class="ctrl_cross ctrl_up"></td>
+			<td class="ctrl_cross ctrl_up">
+				<a href="{% url '' move_dir=north %}"></a>
+			</td>
 			<td></td>
 			<td></td>
 			<td></td>

@@ -30,7 +30,7 @@
 .back_gameplay {
 	width: 700px;
 	height: 700px;
-	background-image: url('./map.png');
+	background-image: url('media/map.png');
 	background-repeat: no-repeat;
 	background-size:cover;
 	outline: 5px solid black

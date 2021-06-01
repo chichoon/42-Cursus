@@ -1,5 +1,23 @@
-td {
-	width: 30px;
-	height: 30px;
+#window {
+	width: 700px;
+	height: 700px;
+	border: none;
+	border-collapse: collapse;
+	border-spacing: none;
+}
 
+#window td {
+	width: 70px;
+	height: 70px;
+	border-spacing: 0px;
+	padding: 0px;
+}
+
+#window td > img {
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
+	display: block;
+	filter: drop-shadow(0 0 5px rgb(240, 233, 226));
 }

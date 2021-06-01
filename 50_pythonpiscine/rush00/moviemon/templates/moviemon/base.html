@@ -8,11 +8,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	{% block title %}
 	{% endblock title %}
-
-	{% block style %}
-	{% endblock style %}
+	<link rel="stylesheet" href="{% static 'reset.css' %}">
 	<link rel="stylesheet" href="{% static 'controller.css' %}">
 	<link rel="stylesheet" href="{% static 'background.css' %}">
+	{% block style %}
+	{% endblock style %}
 </head>
 <body>
 	<div class="back_machine">
@@ -25,7 +25,7 @@
 		</div>
 		<div class="back_control">
 			<div class="back_django">
-				<img src="{% static 'dj.png' %}">
+				<img src="{% static 'media/dj.png' %}">
 			</div>
 			{% block control %}
 

@@ -7,14 +7,17 @@ def titlescreen(request):
     return render(request, 'moviemon/title.html', {})
 
 
+
+
 def worldmap(request):
-    lst_2d = []
-    for i in range(0, 25):
-        lst_1d = []
-        for j in range(0, 25):
-            if i == 12 and j == 12:
-                lst_1d.append('s')
-            else:
-                lst_1d.append('0')
-        lst_2d.append(lst_1d)
-    return render(request, 'moviemon/worldmap.html', {})
+    size = 10
+    table_row = [i for i in range(0, size)]
+    table_col = [i for i in range(0, size)]
+    return render(
+        request,
+        'moviemon/worldmap.html',
+        {
+            'loc_char': loc_char,
+            'table_row': table_row,
+            'table_col': table_col,
+            })
