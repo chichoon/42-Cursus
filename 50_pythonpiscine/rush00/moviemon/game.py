@@ -2,7 +2,8 @@ import pickle
 import requests
 from bs4 import BeautifulSoup
 import random
-
+from pathlib import Path
+import json
 
 class SettingData:
     def __init__(self):
@@ -10,7 +11,27 @@ class SettingData:
         self.coord_x = int(self.size / 2)
         self.coord_y = int(self.size / 2)
         self.move_dir = 's'
-        self.movie_db = self.get_movie_db()
+        self.load_movie_db()
+        if self.movie_db is None:
+            self.movie_db = self.get_movie_db()
+            self.save_movie_db()
+
+    def save_movie_db(self):
+        path = Path.cwd()
+        direction = path / 'moviemon' / 'saves' / ('list_movie.json')
+        direction.touch()
+        with open(direction, 'w') as f:
+            json.dump(self.movie_db, f)
+
+    def load_movie_db(self):
+        path = Path.cwd()
+        direction = path / 'moviemon' / 'saves' / ('list_movie.json')
+        direction.touch()
+        try:
+            with open(direction, 'r') as f:
+                self.movie_db = json.load(f)
+        except Exception:
+            self.movie_db = None
 
     def get_movie_db(self):
         link_lst = [
@@ -18,18 +39,13 @@ class SettingData:
             'tt0803096',
             'tt3065204',
             'tt0072271',
-            'tt0811073',
-            'tt0412467',
             'tt0077533',
             'tt0387564',
             'tt8772262',
             'tt3099498',
             'tt7670212',
             'tt1591095',
-            'tt0903747',
-            'tt0944947',
             'tt0111161',
-            'tt7366338',
             'tt0068646',
             'tt0078935',
             'tt0074486',
@@ -48,16 +64,16 @@ class SettingData:
             'tt10122486',
             'tt12549474',
         ]
-        movie_db = []
+        movie_db = {}
         for link in link_lst:
             link = 'https://www.imdb.com/title/' + link
+            print('downloading ', link, '...')
             result = requests.get(link)
             if result.status_code == 200:
                 soup = BeautifulSoup(result.text, 'html.parser')
                 soup = soup.find('main', {'role': 'main'}).find('section', {'class': 'ipc-page-section'})
                 titleblock = soup.find('div')
                 peopleblock = soup.find('ul', {'class': 'ipc-metadata-list'}).find_all('ul')
-
                 title = titleblock.find('h1').string
                 year = titleblock.find('ul').find('li').find('span').string
                 rate = titleblock.find('div', {'class': 'ipc-button__text'}).find('span').string
@@ -65,8 +81,7 @@ class SettingData:
                 synopsis = soup.find('p', {'data-testid': 'plot'}).find('div').string
                 director = ', '.join([elem.string for elem in peopleblock[0].find_all('a')])
                 actor = ', '.join([elem.string for elem in peopleblock[2].find_all('a')])
-                movie_db.append({
-                    'id': link.strip("'"),
+                movie_db[link.strip("'")] = {
                     'title': title,
                     'year': year,
                     'rate': rate,
@@ -74,7 +89,7 @@ class SettingData:
                     'synopsis': synopsis,
                     'director': director,
                     'actor': actor,
-                })
+                }
         return movie_db
 
 
@@ -87,11 +102,12 @@ class GameData:
         self.ball = 0
         self.strength = 0
         self.catched_movie = []
-        self.movie_db = []
 
     def load(self, filename):
         try:
-            with open(filename, 'wb') as f:
+            path = Path.cwd()
+            direction = path / 'moviemon' / 'saves' / (filename + '.mmg')
+            with open(direction, 'rb') as f:
                 load_data = pickle.load(f)
                 self.size = load_data.size
                 self.coord_x = load_data.coord_x
@@ -100,21 +116,23 @@ class GameData:
                 self.ball = load_data.ball
                 self.strength = load_data.strength
                 self.catched_movie = load_data.catched_movie
-                self.movie_db = load_data.movie_db
                 return self
         except Exception:
             return None
 
     def dump(self, filename):
-        with open(filename, 'rb') as f:
+        path = Path.cwd()
+        direction = path / 'moviemon' / 'saves' / (filename + '.mmg')
+        direction.touch()
+        with open(direction, 'wb') as f:
             pickle.dump(self, f)
         return self
 
-    def get_random_movie(self):
-        shuffled_db = random.shuffle(self.movie_db)
-        for movie in shuffled_db:
-            if movie['id'] not in self.catched_movie:
-                return movie
+    def get_random_movie(self, movie_db):
+        shuffled_db = random.shuffle(movie_db.keys())
+        for movie_id in shuffled_db:
+            if movie_id not in self.catched_movie:
+                return movie_id
         return None
 
     def load_default_settings(self, SettingData):

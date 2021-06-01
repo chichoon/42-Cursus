@@ -10,14 +10,14 @@
 {% for i in table_row %}
 	<tr>
 		{% for j in table_col %}
-			{% if i == loc_char.1 and j == loc_char.0 %}
-				{% if loc_char.2 == 'n' %}
-				<td><img src="{% static 'media/north.png' %}"></td>
-				{% elif loc_char.2 == 's' %}
+			{% if i == coord_y and j == coord_x %}
+				{% if move_dir == 'n' %}
+				<td>{{ movieball }}<img src="{% static 'media/north.png' %}"></td>
+				{% elif move_dir == 's' %}
 				<td><img src="{% static 'media/south.png' %}"></td>
-				{% elif loc_char.2 == 'w' %}
+				{% elif move_dir == 'w' %}
 				<td><img src="{% static 'media/west.png' %}"></td>
-				{% elif loc_char.2 == 'e' %}
+				{% elif move_dir == 'e' %}
 				<td><img src="{% static 'media/east.png' %}"></td>
 				{% endif %}
 			{% else %}
@@ -28,3 +28,51 @@
 {% endfor %}
 </table>
 {% endblock screen %}
+
+
+{% block control %}
+	<table id="control">
+		<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="ctrl_cross ctrl_up" onclick="{{ btn_north }}"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="ctrl_AB" onclick="{{ btn_b }}">B</div></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class="ctrl_cross ctrl_left" onclick="{{ btn_west }}"></td>
+				<td style="background-color: rgb(50, 47, 47);"></td>
+				<td class="ctrl_cross ctrl_right" onclick="{{ btn_east }}"></td>
+				<td></td>
+				<td><div class="ctrl_AB" onclick="{{ btn_a }}">A</div></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="ctrl_cross ctrl_down" onclick="{{ btn_south }}"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div class="ctrl_SS" onclick="{{ btn_start }}">start</div></td>
+				<td><div class="ctrl_SS" onclick="{{ btn_select }}">select</div></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+{% endblock control %}

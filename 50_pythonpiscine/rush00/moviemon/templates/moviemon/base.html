@@ -27,52 +27,8 @@
 			<div class="back_django">
 				<img src="{% static 'media/dj.png' %}">
 			</div>
-			<table id="control">
-				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td class="ctrl_cross ctrl_up">
-							<a href="?dir='w'"></a>
-						</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><div class="ctrl_AB">B</div></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td class="ctrl_cross ctrl_left"></td>
-						<td style="background-color: rgb(50, 47, 47);"></td>
-						<td class="ctrl_cross ctrl_right"></td>
-						<td></td>
-						<td><div class="ctrl_AB" onclick="">A</div></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td class="ctrl_cross ctrl_down"></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><div class="ctrl_SS">start</div></td>
-						<td><div class="ctrl_SS">select</div></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+			{% block control %}
+			{% endblock control %}
 		</div>
 	</div>
 </body>
