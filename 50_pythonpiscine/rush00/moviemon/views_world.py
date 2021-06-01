@@ -1,18 +1,12 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 
 # Create your views here.
-def titlescreen(request):
-    # add titlescreen.
-    return render(request, 'moviemon/title.html', {})
-
-
-
 
 def worldmap(request):
-    size = 10
-    table_row = [i for i in range(0, size)]
-    table_col = [i for i in range(0, size)]
+    ctrl = request.GET.get('ctrl', None)
+
     return render(
         request,
         'moviemon/worldmap.html',
@@ -21,3 +15,4 @@ def worldmap(request):
             'table_row': table_row,
             'table_col': table_col,
             })
+

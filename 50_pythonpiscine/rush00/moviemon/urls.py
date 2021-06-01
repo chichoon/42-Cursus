@@ -1,9 +1,9 @@
 from django.urls import path
-from . import views
+from . import views_world
+from . import views_title
 
 
 urlpatterns = [
-    path('', views.titlescreen, name='titlescreen'),
-    path('worldmap/', views.worldmap, name='worldmap'),
-    url(r'^worldmap/(?P<dir_move>)/$', views.worldmap, name='worldmap'),
+    path('', views_title.titlescreen, name='titlescreen'),
+    path('worldmap/', views_world.worldmap, name='worldmap'),
 ]
