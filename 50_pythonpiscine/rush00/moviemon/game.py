@@ -24,7 +24,6 @@ class SettingData:
                 'slotc': 'Free',
             }
 
-
     def save_movie_db(self):
         path = Path.cwd()
         direction = path / 'moviemon' / 'saves' / ('list_movie.json')
@@ -58,7 +57,6 @@ class SettingData:
                 self.slots = json.load(f)
         except Exception:
             self.slots = None
-
 
     def get_movie_db(self):
         link_lst = [
@@ -131,6 +129,10 @@ class GameData:
         self.index = 0
         self.save_index = 1
         self.catched_movie = []
+        self.status_load = None
+        self.status_save = None
+        self.status_world = None
+        self.status_battle = None
 
     def load(self, filename):
         try:
@@ -147,6 +149,10 @@ class GameData:
                 self.catched_movie = load_data.catched_movie
                 self.index = load_data.index
                 self.save_index = load_data.save_index
+                self.status_load = load_data.status_load
+                self.status_save = load_data.status_save
+                self.status_world = load_data.status_world
+                self.status_battle = load_data.status_battle
                 return self
         except Exception:
             return None
@@ -178,8 +184,6 @@ class GameData:
         self.coord_x = SettingData.coord_x
         self.coord_y = SettingData.coord_y
         self.move_dir = SettingData.move_dir
-        self.movie_db = SettingData.movie_db
-        return self
 
     def get_strength(self):
         return len(self.catched_movie)

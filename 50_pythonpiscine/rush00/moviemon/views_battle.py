@@ -1,4 +1,6 @@
+from django.http.response import Http404
 from django.shortcuts import render
+from django.shortcuts import redirect
 from . import game
 import random
 
@@ -26,7 +28,6 @@ def battle_context(data, setting, movie_id, flag):
     btn_a = "location.href='?ball=true';"
     if flag == 2:
         btn_a = "location.href='?ball=false';"
-    print(flag)
     dic = {
         'btn_a': btn_a,
         'btn_b': "location.href='/worldmap/';",
@@ -42,10 +43,17 @@ def battle_context(data, setting, movie_id, flag):
 
 
 def battle(request, moviemon_id):
-    ball_thrown = request.GET.get('ball', None)
     temp_data = game.GameData()
     temp_data.load('temp')
     temp_setting = game.SettingData()
+    if temp_data.status_battle is not None:
+        context = battle_context(temp_data, temp_setting, temp_data.status_battle[0], temp_data.status_battle[1])
+        temp_data.status_battle = None
+        temp_data.dump('temp')
+        return render(request, 'moviemon/battle.html', context)
+    ball_thrown = request.GET.get('ball', None)
+    if moviemon_id not in list(temp_setting.movie_db.keys()):
+        raise Http404('Moviemon not found')
     if moviemon_id in temp_data.catched_movie:
         flag = 2
     else:
@@ -58,5 +66,9 @@ def battle(request, moviemon_id):
             temp_data.strength += 1
     context = battle_context(temp_data, temp_setting, moviemon_id, flag)
     temp_data.dump('temp')
+    if ball_thrown is not None:
+        temp_data.status_battle = [moviemon_id, flag]
+        temp_data.dump('temp')
+        return redirect(request.path)
     return render(request, 'moviemon/battle.html', context)
 

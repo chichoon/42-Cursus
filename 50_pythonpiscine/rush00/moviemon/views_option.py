@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from . import game
 
 
@@ -49,11 +50,21 @@ def save_file(data, setting):
 
 
 def save_game(request):
-    ctrl = request.GET.get('ctrl', None)
     temp_data = game.GameData()
     temp_setting = game.SettingData()
     temp_data.load('temp')
-
+    print(temp_data.status_save)
+    if temp_data.status_save is not None:
+        ctrl = request.GET.get('ctrl', None)
+        if ctrl is not None:
+            temp_data.status_save = None
+            temp_data.dump('temp')
+            return redirect(request.path)
+        context = save_game_context(temp_data, temp_setting, temp_data.status_save)
+        temp_data.status_save = None
+        temp_setting.save_slots()
+        return render(request, 'moviemon/save_game.html', context)
+    ctrl = request.GET.get('ctrl', None)
     save_flag = None
     if ctrl == 'n':
         if temp_data.save_index > 1:
@@ -63,10 +74,13 @@ def save_game(request):
             temp_data.save_index += 1
     elif ctrl == 'a':
         save_flag = save_file(temp_data, temp_setting)
-
     context = save_game_context(temp_data, temp_setting, save_flag)
     temp_data.dump('temp')
     temp_setting.save_slots()
+    if ctrl is not None or save_flag is not None:
+        temp_data.status_save = save_flag
+        temp_data.dump('temp')
+        return redirect(request.path)
     return render(request, 'moviemon/save_game.html', context)
 
 
@@ -109,11 +123,19 @@ def load_file(data, setting):
 
 
 def load_game(request):
-    ctrl = request.GET.get('ctrl', None)
     temp_data = game.GameData()
     temp_setting = game.SettingData()
     temp_data.load('temp')
-
+    if temp_data.status_load is not None:
+        ctrl = request.GET.get('ctrl', None)
+        if ctrl is not None:
+            temp_data.status_load = None
+            temp_data.dump('temp')
+            return redirect(request.path)
+        context = load_game_context(temp_data, temp_setting, temp_data.status_load)
+        temp_data.status_load = None
+        return render(request, 'moviemon/load_game.html', context)
+    ctrl = request.GET.get('ctrl', None)
     load_flag = None
     if ctrl == 'n':
         if temp_data.save_index > 1:
@@ -125,4 +147,8 @@ def load_game(request):
         load_flag = load_file(temp_data, temp_setting)
     context = load_game_context(temp_data, temp_setting, load_flag)
     temp_data.dump('temp')
+    if load_flag is not None or ctrl is not None:
+        temp_data.status_load = load_flag
+        temp_data.dump('temp')
+        return redirect(request.path)
     return render(request, 'moviemon/load_game.html', context)

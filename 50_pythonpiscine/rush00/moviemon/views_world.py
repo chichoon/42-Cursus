@@ -1,14 +1,17 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from . import game
 import random
 
 
 # Create your views here.
-def world_load(data, state):
+def world_load(setting, state=None):
+    newdata = game.GameData()
     if state == 'new':
-        data.dump('temp')
-
-    data.load('temp')
+        newdata.load_default_settings(setting)
+        newdata.dump('temp')
+    newdata.load('temp')
+    return newdata
 
 
 def world_move(data, ctrl):
@@ -61,7 +64,6 @@ def world_random_event(data, setting):
         return 3
     elif rand_seed < 3:
         data.ball += 1
-        print(data.ball)
         return 1
     elif rand_seed > 8:
         return 2
@@ -71,15 +73,25 @@ def world_random_event(data, setting):
 
 def worldmap(request):
     event_flag = 0
+    temp_data = game.GameData()
+    temp_data.load('temp')
+    temp_setting = game.SettingData()
+    if temp_data.status_world is not None:
+        context = world_context(temp_data, temp_setting, temp_data.status_world)
+        temp_data.status_world = None
+        temp_data.dump('temp')
+        return render(request, 'moviemon/worldmap.html', context)
     state = request.GET.get('from', None)
     ctrl = request.GET.get('ctrl', None)
-    temp_data = game.GameData()
-    temp_setting = game.SettingData()
-    world_load(temp_data, state)
+    temp_data = world_load(temp_setting, state)
     world_move(temp_data, ctrl)
     event_flag = world_random_event(temp_data, temp_setting)
-    context = world_context(temp_data, temp_setting, event_flag)
     temp_data.index = 0
     temp_data.dump('temp')
+    if state is not None or ctrl is not None:
+        temp_data.status_world = event_flag
+        temp_data.dump('temp')
+        return redirect(request.path)
+    context = world_context(temp_data, temp_setting, event_flag)
     return render(request, 'moviemon/worldmap.html', context)
 

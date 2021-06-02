@@ -1,4 +1,6 @@
+from django.http.response import Http404
 from django.shortcuts import render
+from django.shortcuts import redirect
 from . import game
 
 
@@ -83,6 +85,8 @@ def moviedex(request):
     lst = get_three_movielist(temp_data, temp_setting)
     context = moviedex_context(lst)
     temp_data.dump('temp')
+    if ctrl is not None:
+        return redirect(request.path)
     return render(request, 'moviemon/moviedex.html', context)
 
 
@@ -103,6 +107,8 @@ def detail_context(movie_id, setting):
 
 def details(request, movie_id):
     temp_setting = game.SettingData()
+    if movie_id not in list(temp_setting.movie_db.keys()):
+        raise Http404('Moviemon not found')
     print(movie_id)
     context = detail_context(movie_id, temp_setting)
     return render(request, 'moviemon/detail.html', context)
