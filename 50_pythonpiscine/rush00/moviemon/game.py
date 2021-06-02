@@ -81,7 +81,7 @@ class SettingData:
                 synopsis = soup.find('p', {'data-testid': 'plot'}).find('div').string
                 director = ', '.join([elem.string for elem in peopleblock[0].find_all('a')])
                 actor = ', '.join([elem.string for elem in peopleblock[2].find_all('a')])
-                movie_db[link.strip("'")] = {
+                movie_db[link.split('title/')[1].strip("'")] = {
                     'title': title,
                     'year': year,
                     'rate': rate,
@@ -101,6 +101,8 @@ class GameData:
         self.move_dir = 's'
         self.ball = 0
         self.strength = 0
+        self.index = 0
+        self.index_flag = 0
         self.catched_movie = []
 
     def load(self, filename):
@@ -116,6 +118,7 @@ class GameData:
                 self.ball = load_data.ball
                 self.strength = load_data.strength
                 self.catched_movie = load_data.catched_movie
+                self.index = load_data.index
                 return self
         except Exception:
             return None
@@ -129,7 +132,8 @@ class GameData:
         return self
 
     def get_random_movie(self, movie_db):
-        shuffled_db = random.shuffle(movie_db.keys())
+        shuffled_db = list(movie_db.keys())
+        random.shuffle(shuffled_db)
         for movie_id in shuffled_db:
             if movie_id not in self.catched_movie:
                 return movie_id

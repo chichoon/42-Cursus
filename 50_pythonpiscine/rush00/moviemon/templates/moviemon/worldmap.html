@@ -12,13 +12,25 @@
 		{% for j in table_col %}
 			{% if i == coord_y and j == coord_x %}
 				{% if move_dir == 'n' %}
-				<td>{{ movieball }}<img src="{% static 'media/north.png' %}"></td>
+				<td style="width: {{ width }}px; height: {{ width }}px;">
+					<div class="ball_identifier">{{ movieball }}</div>
+					<img src="{% static 'media/north.png' %}">
+				</td>
 				{% elif move_dir == 's' %}
-				<td><img src="{% static 'media/south.png' %}"></td>
+				<td style="width: {{ width }}px; height: {{ width }}px;">
+					<div class="ball_identifier">{{ movieball }}</div>
+					<img src="{% static 'media/south.png' %}">
+				</td>
 				{% elif move_dir == 'w' %}
-				<td><img src="{% static 'media/west.png' %}"></td>
+				<td style="width: {{ width }}px; height: {{ width }}px;">
+					<div class="ball_identifier">{{ movieball }}</div>
+					<img src="{% static 'media/west.png' %}">
+				</td>
 				{% elif move_dir == 'e' %}
-				<td><img src="{% static 'media/east.png' %}"></td>
+				<td style="width: {{ width }}px; height: {{ width }}px;">
+					<div class="ball_identifier">{{ movieball }}</div>
+					<img src="{% static 'media/east.png' %}">
+				</td>
 				{% endif %}
 			{% else %}
 			<td></td>
@@ -26,53 +38,13 @@
 		{% endfor %}
 	</tr>
 {% endfor %}
+{% if flag == 1 %}
+<div id="ball">you got a new ball!</div>
+{% elif flag == 2 %}
+<div id="monster">
+	you encountered a movie!<br><br>
+	A - Battle!
+</div>
+{% endif %}
 </table>
 {% endblock screen %}
-
-
-{% block control %}
-	<table id="control">
-		<tbody>
-			<tr>
-				<td></td>
-				<td></td>
-				<td class="ctrl_cross ctrl_up" onclick="{{ btn_north }}"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><div class="ctrl_AB" onclick="{{ btn_b }}">B</div></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td class="ctrl_cross ctrl_left" onclick="{{ btn_west }}"></td>
-				<td style="background-color: rgb(50, 47, 47);"></td>
-				<td class="ctrl_cross ctrl_right" onclick="{{ btn_east }}"></td>
-				<td></td>
-				<td><div class="ctrl_AB" onclick="{{ btn_a }}">A</div></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td class="ctrl_cross ctrl_down" onclick="{{ btn_south }}"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><div class="ctrl_SS" onclick="{{ btn_start }}">start</div></td>
-				<td><div class="ctrl_SS" onclick="{{ btn_select }}">select</div></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</tbody>
-	</table>
-{% endblock control %}

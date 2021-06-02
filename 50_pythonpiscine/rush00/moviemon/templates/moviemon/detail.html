@@ -1,0 +1,27 @@
+{% extends 'moviemon/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'detail.css' %}">
+{% endblock style %}
+
+{% block screen %}
+<div id="detail_transparent_background">
+	<div id="detail_screen">
+		<div id="upper">
+			<div>
+				<div id="movie_title">{{ movie_title }}</div>
+				<div id="movie_year">{{ movie_year }}</div>
+				<div id="movie_rate">Rate: ☆{{ movie_rate }}</div>
+				<div id="movie_director">Director: {{ movie_director }}</div>
+			</div>
+			<img src="{{movie_poster}}">
+		</div>
+		<div id="slash"></div>
+		<div id="lower">
+			<div id="movie_synopsis">{{ movie_synopsis }}</div>
+			<div id="movie_actor">Actors<br>{{ movie_actor }}</div>
+		</div>
+	</div>
+</div>
+{% endblock screen %}

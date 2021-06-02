@@ -1,0 +1,32 @@
+{% extends 'moviemon/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'moviedex.css' %}">
+<style>
+	.moviedex_poster:nth-child(3) > img{
+		box-sizing: border-box;
+		border: 5px solid rgb(255, 0, 0);
+		height: 150px;
+	}
+</style>
+{% endblock style %}
+
+{% block screen %}
+<div id="moviedex_transparent_background">
+	<div id="moviedex_screen">
+		<div class="pointer">🔼</div>
+		{% for elem in lst_poster %}
+		<div class="moviedex_poster">
+			<img src="{{ elem }}">
+		</div>
+		{% empty %}
+		<div style="font-size: 50px;">Nothing to be shown.</div>
+		{% endfor %}
+		<div class="pointer">🔽</div>
+		<div id="moviedex_instruction">
+			A: View detail<br>Select: Go back to Worldmap
+		</div>
+	</div>
+</div>
+{% endblock screen %}

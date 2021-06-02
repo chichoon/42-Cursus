@@ -1,0 +1,51 @@
+#moviedex_transparent_background {
+	display: flex;
+	width: 700px;
+	height: 700px;
+	justify-content: center;
+	align-items: center;
+}
+
+#moviedex_screen {
+	width: 500px;
+	height: 600px;
+	background-color: rgb(223, 222, 219);
+	border: 3px solid black;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.moviedex_poster {
+	height: 170px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.moviedex_poster > img {
+	box-sizing: border-box;
+	border: 2px solid white;
+	height: 100px;
+}
+
+.pointer {
+	height: 30px;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#moviedex_instruction {
+	box-sizing: border-box;
+	height: 50px;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-family: monospace;
+}
