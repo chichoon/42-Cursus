@@ -40,6 +40,24 @@
 	align-items: center;
 }
 
+#game_end {
+	box-sizing: border-box;
+	position: absolute;
+	z-index: 100;
+	width: 700px;
+	height: 50px;
+	background-color: rgba(63, 58, 160, 0.447);
+	font-size: 20px;
+	color: white;
+	font-weight: 900;
+	border: 2px solid black;
+	border-radius: 10px;
+	display: flex;
+	font-family: monospace;
+	justify-content: center;
+	align-items: center;
+}
+
 #monster {
 	box-sizing: border-box;
 	position: absolute;

@@ -24,8 +24,15 @@
 			SLOT C<br><span>{{ slotc }}</span>
 		</div>
 		{% if load_flag is not None %}
+		<div>
+			Press A to Start game, Press B to cancel
+		</div>
 		<div id="load_alert">
 			Loading {{ load_flag }}.
+		</div>
+		{% else %}
+		<div>
+			Press A to load, Press B to cancel
 		</div>
 		{% endif %}
 	</div>

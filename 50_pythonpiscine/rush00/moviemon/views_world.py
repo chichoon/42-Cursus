@@ -55,9 +55,11 @@ def world_context(data, setting, flag):
     return dic
 
 
-def world_random_event(data):
+def world_random_event(data, setting):
     rand_seed = random.randrange(1, 11)
-    if rand_seed < 3:
+    if len(data.catched_movie) == len(list(setting.movie_db.keys())):
+        return 3
+    elif rand_seed < 3:
         data.ball += 1
         print(data.ball)
         return 1
@@ -75,7 +77,7 @@ def worldmap(request):
     temp_setting = game.SettingData()
     world_load(temp_data, state)
     world_move(temp_data, ctrl)
-    event_flag = world_random_event(temp_data)
+    event_flag = world_random_event(temp_data, temp_setting)
     context = world_context(temp_data, temp_setting, event_flag)
     temp_data.index = 0
     temp_data.dump('temp')
