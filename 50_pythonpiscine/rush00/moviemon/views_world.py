@@ -1,15 +1,16 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from . import game
+import random
 
 
 # Create your views here.
-
 def world_load(data, state):
     if state == 'title':
         data.dump('temp')
 
     data.load('temp')
+
 
 def world_move(data, ctrl):
     if ctrl == 'n' and data.coord_y > 0:
@@ -25,7 +26,8 @@ def world_move(data, ctrl):
         data.coord_x += 1
         data.move_dir = 'e'
 
-def world_context(data):
+
+def world_context(data, flag):
     table_size = [i for i in range(0, data.size)]
     dic = {
         'coord_x': data.coord_x,
@@ -41,17 +43,32 @@ def world_context(data):
         'btn_b': "location.href='';",
         'btn_start': "location.href='';",
         'btn_select': "location.href='';",
+        'flag': flag,
     }
     return dic
 
+
+def world_random_event(data):
+    rand_seed = random.randrange(1, 11)
+    if rand_seed < 4:
+        data.ball += 1
+        return 1
+    elif rand_seed > 9:
+        return 2
+    else:
+        return 0
+
+
 def worldmap(request):
+    event_flag = 0
     state = request.GET.get('from', None)
     ctrl = request.GET.get('ctrl', None)
     temp_data = game.GameData()
     temp_setting = game.SettingData()
     world_load(temp_data, state)
     world_move(temp_data, ctrl)
-    context = world_context(temp_data)
+    event_flag = world_random_event(temp_data)
+    context = world_context(temp_data, event_flag)
     temp_data.dump('temp')
     return render(request, 'moviemon/worldmap.html', context)
 
