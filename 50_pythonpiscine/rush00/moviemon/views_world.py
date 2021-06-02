@@ -46,7 +46,7 @@ def world_context(data, setting, flag):
         'btn_south': "location.href='?ctrl=s';",
         'btn_a': btn_a,
         'btn_b': "location.href='';",
-        'btn_start': "location.href='';",
+        'btn_start': "location.href='/options/';",
         'btn_select': "location.href='/moviedex/';",
         'flag': flag,
         'width': width,

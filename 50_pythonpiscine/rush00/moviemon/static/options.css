@@ -1,0 +1,30 @@
+#options_transparent_background {
+	display: flex;
+	width: 700px;
+	height: 700px;
+	justify-content: center;
+	align-items: center;
+}
+
+#options_screen {
+	width: 500px;
+	height: 600px;
+	background-color: rgb(223, 222, 219);
+	border: 3px solid black;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: monospace;
+}
+
+#options_screen > div {
+	font-size: 30px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+#options_screen > div > span {
+	font-size: 20px;
+}

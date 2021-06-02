@@ -29,7 +29,7 @@ def battle_context(data, setting, movie_id, flag):
     print(flag)
     dic = {
         'btn_a': btn_a,
-        'btn_b': "location.href='../worldmap/';",
+        'btn_b': "location.href='/worldmap/';",
         'movie_name': setting.movie_db[movie_id]['title'],
         'movie_poster': setting.movie_db[movie_id]['poster'],
         'movie_strength': setting.movie_db[movie_id]['rate'],

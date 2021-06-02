@@ -36,7 +36,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><div class="ctrl_AB" onclick="{{ btn_b }}">B</div></td>
+						<td><div class="ctrl_AB ctrl_B" onclick="{{ btn_b }}">B</div></td>
 						<td></td>
 					</tr>
 					<tr>
@@ -45,7 +45,7 @@
 						<td style="background-color: rgb(50, 47, 47);"></td>
 						<td class="ctrl_cross ctrl_right" onclick="{{ btn_east }}"></td>
 						<td></td>
-						<td><div class="ctrl_AB" onclick="{{ btn_a }}">A</div></td>
+						<td><div class="ctrl_AB ctrl_A" onclick="{{ btn_a }}">A</div></td>
 						<td></td>
 						<td></td>
 					</tr>
@@ -63,8 +63,8 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><div class="ctrl_SS" onclick="{{ btn_start }}">start</div></td>
-						<td><div class="ctrl_SS" onclick="{{ btn_select }}">select</div></td>
+						<td><div class="ctrl_SS ctrl_start" onclick="{{ btn_start }}">start</div></td>
+						<td><div class="ctrl_SS ctrl_select" onclick="{{ btn_select }}">select</div></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -73,5 +73,45 @@
 			</table>
 		</div>
 	</div>
+	<script type="text/javascript">
+		document.addEventListener("keydown", (e) => {
+		  switch (e.key) {
+			case "W":
+		    case "w":
+		      document.querySelector(".ctrl_up").onclick();
+		      break;
+		    case "A":
+		    case "a":
+		      document.querySelector(".ctrl_left").onclick();
+		      break;
+		    case "S":
+		    case "s":
+		      document.querySelector(".ctrl_down").onclick();
+		      break;
+		    case "D":
+		    case "d":
+		      document.querySelector(".ctrl_right").onclick();
+		      break;
+			case "V":
+		    case "v":
+		      document.querySelector(".ctrl_start").onclick();
+		      break;
+			case "B":
+		    case "b":
+		      document.querySelector(".ctrl_select").onclick();
+		      break;
+			case "K":
+		    case "k":
+		      document.querySelector(".ctrl_A").onclick();
+		      break;
+			case "L":
+		    case "l":
+		      document.querySelector(".ctrl_B").onclick();
+		      break;
+		    default:
+		      break;
+		  }
+		});
+	</script>
 </body>
 </html>

@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import random
 from pathlib import Path
 import json
+import os
 
 class SettingData:
     def __init__(self):
@@ -15,6 +16,14 @@ class SettingData:
         if self.movie_db is None:
             self.movie_db = self.get_movie_db()
             self.save_movie_db()
+        self.load_slots()
+        if self.slots is None:
+            self.slots = {
+                'slota': 'Free',
+                'slotb': 'Free',
+                'slotc': 'Free',
+            }
+
 
     def save_movie_db(self):
         path = Path.cwd()
@@ -32,6 +41,24 @@ class SettingData:
                 self.movie_db = json.load(f)
         except Exception:
             self.movie_db = None
+
+    def save_slots(self):
+        path = Path.cwd()
+        direction = path / 'moviemon' / 'saves' / ('list_slots.json')
+        direction.touch()
+        with open(direction, 'w') as f:
+            json.dump(self.slots, f)
+
+    def load_slots(self):
+        path = Path.cwd()
+        direction = path / 'moviemon' / 'saves' / ('list_slots.json')
+        direction.touch()
+        try:
+            with open(direction, 'r') as f:
+                self.slots = json.load(f)
+        except Exception:
+            self.slots = None
+
 
     def get_movie_db(self):
         link_lst = [
@@ -102,7 +129,7 @@ class GameData:
         self.ball = 0
         self.strength = 0
         self.index = 0
-        self.index_flag = 0
+        self.save_index = 1
         self.catched_movie = []
 
     def load(self, filename):
@@ -119,6 +146,7 @@ class GameData:
                 self.strength = load_data.strength
                 self.catched_movie = load_data.catched_movie
                 self.index = load_data.index
+                self.save_index = load_data.save_index
                 return self
         except Exception:
             return None
@@ -130,6 +158,12 @@ class GameData:
         with open(direction, 'wb') as f:
             pickle.dump(self, f)
         return self
+
+    def remove(self, filename):
+        path = Path.cwd()
+        direction = path / 'moviemon' / 'saves' / (filename + '.mmg')
+        direction.touch()
+        os.remove(direction)
 
     def get_random_movie(self, movie_db):
         shuffled_db = list(movie_db.keys())

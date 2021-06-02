@@ -7,7 +7,7 @@ def moviedex_context(lst):
     if lst is not None:
         movie_id = lst[0][1]
         movie_poster = lst[1]
-        btn_a = "location.href='" + movie_id + "';"
+        btn_a = "location.href='" + movie_id + "/';"
     else:
         movie_id = None
         movie_poster = []
@@ -15,7 +15,7 @@ def moviedex_context(lst):
         'btn_north': "location.href='?ctrl=n';",
         'btn_south': "location.href='?ctrl=s';",
         'btn_a': btn_a,
-        'btn_select': "location.href='../worldmap';",
+        'btn_select': "location.href='/worldmap';",
         'lst_id': movie_id,
         'lst_poster': movie_poster,
         'selected_index': 3
@@ -84,3 +84,25 @@ def moviedex(request):
     context = moviedex_context(lst)
     temp_data.dump('temp')
     return render(request, 'moviemon/moviedex.html', context)
+
+
+def detail_context(movie_id, setting):
+    movie_data = setting.movie_db[movie_id]
+    dic = {
+        'btn_b': "location.href='/moviedex/';",
+        'movie_title': movie_data['title'],
+        'movie_year': movie_data['year'],
+        'movie_rate': movie_data['rate'],
+        'movie_poster': movie_data['poster'],
+        'movie_synopsis': movie_data['synopsis'],
+        'movie_director': movie_data['director'],
+        'movie_actor': movie_data['actor'],
+    }
+    return dic
+
+
+def details(request, movie_id):
+    temp_setting = game.SettingData()
+    print(movie_id)
+    context = detail_context(movie_id, temp_setting)
+    return render(request, 'moviemon/detail.html', context)

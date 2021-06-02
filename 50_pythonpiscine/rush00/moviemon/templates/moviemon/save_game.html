@@ -1,0 +1,33 @@
+{% extends 'moviemon/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'save_game.css' %}">
+<style>
+	#save_screen > div:nth-child({{ save_index }}) {
+		box-sizing: border-box;
+		border: 10px solid black;
+	}
+</style>
+{% endblock style %}
+
+{% block screen %}
+<div id="save_transparent_background">
+	<div id="save_screen">
+		<div>
+			SLOT A<br><span>{{ slota }}</span>
+		</div>
+		<div>
+			SLOT B<br><span>{{ slotb }}</span>
+		</div>
+		<div>
+			SLOT C<br><span>{{ slotc }}</span>
+		</div>
+		{% if save_flag is not None %}
+		<div id="save_alert">
+			Saved to {{ save_flag }}.
+		</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock screen %}
