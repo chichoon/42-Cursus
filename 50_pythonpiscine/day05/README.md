@@ -155,17 +155,19 @@ SQL 테이블은 다음과 같이 구현되어야 합니다:
 
 - 다음 필드만을 포함하여야 합니다:
 
-  - `title`: 독창적이면서 다양한 문자열, 64바이트 최대, null이 아닌 값
+  - `title`: unique, variable character chain, 64 byte maximum size, non null.
 
-  - `episode_nb`: 꽉 찬, Primary key
+  - `episode_nb`: full, PRIMARY KEY.
 
-  - `opening_crawl`: 텍스트, null 가능, 길이제한 없음
+  - `opening_crawl`: text, can be null, no size limit.
 
-  - `director`: 다양한 문자열, null이 아닌 값, 32바이트 최대
+  - `director`: variable character chain, non null, 32 bytes maximum size.
 
-  - `producer`: 다양한 문자열, null이 아닌 값, 128바이트 최대
+  - `producer`: variable character chain, non null, 128 bytes maximum size.
 
-  - `release_date`: 날짜 (시간 제외), null이 아닌 값
+  - `release_date`: date (without time), non null.
+
+_(역주: 필드는 원문을 첨부하였습니다.)_
 
 <br>
 
@@ -186,19 +188,22 @@ SQL 테이블은 다음과 같이 구현되어야 합니다:
 
 두 번째 어플리케이션 `ex01`에 `Movies`라 이름붙여진 `Django` 모델을 만드세요.
 
-- `title`: 독창적이면서 다양한 문자열, 64바이트 최대, null이 아닌 값
+  - `title`: unique, variable character chain, 64 byte maximum size, non null.
 
-- `episode_nb`: 꽉 찬, Primary key
+  - `episode_nb`: full, PRIMARY KEY.
 
-- `opening_crawl`: 텍스트, null 가능, 길이제한 없음
+  - `opening_crawl`: text, can be null, no size limit.
 
-- `director`: 다양한 문자열, null이 아닌 값, 32바이트 최대
+  - `director`: variable character chain, non null, 32 bytes maximum size.
 
-- `producer`: 다양한 문자열, null이 아닌 값, 128바이트 최대
+  - `producer`: variable character chain, non null, 128 bytes maximum size.
 
-- `release_date`: 날짜 (시간 제외), null이 아닌 값
+  - `release_date`: date (without time), non null.
 
 해당 모델은 `title` 어트리뷰트를 다시 전송할 수 있도록 `__str__` 메소드를 재정의하여야 합니다.
+
+_(역주: 필드는 원문을 첨부하였습니다.)_
+
 
 <br>
 
@@ -284,7 +289,7 @@ SQL 테이블은 다음과 같이 구현되어야 합니다:
 
 생성에 성공했을 때 'OK' 라는 메시지를 담은 페이지를 리턴해야 합니다. 생성에 실패하면, 문제점을 알려주는 에러 메시지를 리턴해야 합니다.
 
-- `127.0.0.1:8000/ex03/display`: `movies` 테이블에 있는 모든 내용을 `HTML` 표 형식으로 표시하세요. 최종적으로 공백인 필드 (void field) 도 포함하여 표시하여야 합니다.
+- `127.0.0.1:8000/ex03/display`: `Movies` 테이블에 있는 모든 내용을 `HTML` 표 형식으로 표시하세요. 최종적으로 공백인 필드 (void field) 도 포함하여 표시하여야 합니다.
 
   존재하는 데이터가 없거나, 에러 발생 시에는 페이지에 `No data available` 이라는 문장만 보여야 합니다.
 
@@ -365,7 +370,7 @@ SQL 테이블은 다음과 같이 구현되어야 합니다:
 
 - `127.0.0.1:8000/ex05/remove`: 영화 제목을 `submit` 버튼, `remove` 버튼과 함께 드랍다운 리스트로 출력하는 `HTML` 페이지를 표시하세요.
 
-  영화 제목들은 `movies` 모델에 있는 제목을 가져오시면 됩니다.
+  영화 제목들은 `Movies` 모델에 있는 제목을 가져오시면 됩니다.
 
   폼의 유효성이 검사된 후, 선택한 영화는 데이터베이스에서 지워지고, 폼은 남은 영화 제목으로 업데이트된 리스트를 다시 표시하여야 합니다.
 
@@ -384,7 +389,7 @@ SQL 테이블은 다음과 같이 구현되어야 합니다:
 ​
 <br>
 
-| **Piscine**                       | Exercise 04                                                                      |
+| **Piscine**                       | Exercise 06                                                                      |
 | --------------------------------- | -------------------------------------------------------------------------------- |
 | Exercise 06 : SQL-데이터 업데이트 |
 | **제출할 폴더**                   | ex06/                                                                            |
@@ -428,3 +433,271 @@ SQL 테이블은 다음과 같이 구현되어야 합니다:
   존재하는 데이터가 없거나, 에러 발생 시에는 페이지에 `No data available` 이라는 문장만 보여야 합니다.
 
 <br>
+
+# Chapter 10
+
+## Exercise 07
+​
+<br>
+
+| **Piscine**                       | Exercise 07                                                                      |
+| --------------------------------- | -------------------------------------------------------------------------------- |
+| Exercise 07 : ORM-데이터 업데이트 |
+| **제출할 폴더**                   | ex07/                                                                            |
+| **제출할 파일**                   |       |
+| **허용되는 함수**                 |                         |
+
+<br>
+
+`Django` 어플리케이션 `ex07`를 만드세요. `ex01`에서 요구한 것과 똑같은 모델을 만들되, 다음 필드를 추가하세요:
+
+- `created` 시간 & 날짜 타입 (datetime type). 생성되었을 때, 자동으로 현재 시간과 날짜로 세팅되어야 합니다.
+
+- `updated` 시간 & 날짜 타입 (datetime type). 생성되었을 때, 자동으로 현재 시간과 날짜로 세팅되고, 매번 자동으로 현재 시간과 날짜로 업데이트되어야 합니다.
+
+해당 어플리케이션에선, 다음과 같은 url을 통해 접근 가능한 뷰가 있어야 합니다:
+
+- `127.0.0.1:8000/ex07/populate`: `ex02`에서 명시된 데이터를 직전 뷰에서 만든 모델에 채워넣으세요.
+
+  존재하는 데이터가 없거나, 에러 발생 시에는 페이지에 `No data available` 이라는 문장만 보여야 합니다.
+
+- `127.0.0.1:8000/ex05/display`: `Movies` 모델에 있는 모든 내용을 `HTML` 표 형식으로 표시하세요.
+
+  존재하는 데이터가 없거나, 에러 발생 시에는 페이지에 `No data available` 이라는 문장만 보여야 합니다.
+
+- `127.0.0.1:8000/ex05/update`: 폼의 송신과 수신을 관리해야 합니다. 후자는 `Movies` 테이블의 영화들을 드랍다운 메뉴로 구성하여 선택하고, 두 번째 필드에 텍스트를 적을 수 있어야 합니다. 폼의 유효성이 검사될 때, 뷰는 선택한 영화의 `opening_crawl` 필드를 `Movies` 모델의 폼에 작성한 텍스트로 대체하여야 합니다.
+
+  존재하는 데이터가 없거나, 에러 발생 시에는 페이지에 `No data available` 이라는 문장만 보여야 합니다.
+
+```
+ℹ️
+평가 시에는, migration이 테스트 전에 이루어질 것입니다.
+```
+
+<br>
+
+# Chapter 11
+
+## Exercise 08
+​
+<br>
+
+| **Piscine**                       | Exercise 08                                                                      |
+| --------------------------------- | -------------------------------------------------------------------------------- |
+| Exercise 08 : SQL-외부 키 |
+| **제출할 폴더**                   | ex08/                                                                            |
+| **제출할 파일**                   |       |
+| **허용되는 함수**                 |                         |
+
+<br>
+
+`Django` 어플리케이션 `ex08`을 만드세요. 해당 어플리케이션에선, 다음과 같은 url을 통해 접근 가능한 뷰가 있어야 합니다:
+
+- `127.0.0.1:8000/ex08/init`: 두 개의 테이블을 포함하여야 합니다.
+
+첫 번째 테이블은 `ex08_planets`로 이름붙여져야 하고, 다음과 같은 필드를 포함해야 합니다:
+
+  - `id`: serial, primary key
+
+  - `name`: unique, variable character chain, 64 byte maximum size, non null.
+
+  - `climate`: variable character chain.
+
+  - `diameter`: whole.
+
+  - `orbital_period`: whole.
+
+  - `population`: large whole.
+
+  - `rotation_period`: whole.
+
+  - `surface_water`: real.
+
+  - `terrain`: variable character chain, 128 bytes maximum size.
+
+두 번째 테이블은 `ex08_people`로 이름붙여져야 하고, 다음과 같은 필드를 포함해야 합니다:
+
+  - `id`: serial, primary key.
+
+  - `name`: unique, variable character chain, 64 byte maximum size, non null.
+
+  - `birth_year`: variable character chain, 32 byte maximum size.
+
+  - `gender`: variable character chain, 32 byte maximum size.
+
+  - `eye_color`: variable character chain, 32 byte maximum size.
+
+  - `hair_color`: variable character chain, 32 byte maximum size.
+
+  - `height`: whole.
+
+  - `mass`: real.
+
+  - `homeworld`: variable character chain, 64 byte maximum size, foreign key, referencing the name column of the 08_planets table.
+
+_(역주: 필드는 원문을 첨부하였습니다.)_
+
+- `127.0.0.1:8000/ex08/populate`: `people.csv`, `planets.csv`로부터 값을 받아 두 테이블에 데이터를 각각 넣어주어야 합니다. 당연히 알맞은 이름의 테이블에 넣어야겠죠? `ex08_people`과 `ex08_planets` 말이에요.
+
+  삽입에 성공했을 때 'OK' 라는 메시지를 담은 페이지를 리턴해야 합니다. 생성에 실패하면, 문제점을 알려주는 에러 메시지를 리턴해야 합니다.
+
+- `127.0.0.1:8000/ex08/display`: 모든 캐릭터의 이름과 고향별 (homeworld), 해당 세계의 기후 (`바람` 혹은 적당한 `바람`)을 캐릭터의 이름 순으로 표시하여야 합니다.
+
+  존재하는 데이터가 없거나, 에러 발생 시에는 페이지에 `No data available` 이라는 문장만 보여야 합니다.
+
+- `127.0.0.1:8000/ex06/update`: 폼의 송신과 수신을 관리해야 합니다. 후자는 `ex06_movies`의 영화들을 드랍다운 메뉴로 구성하여 선택하고, 두 번째 필드에 텍스트를 적을 수 있어야 합니다. 폼의 유효성이 검사될 때, 뷰는 선택한 영화의 `opening_crawl` 필드를 `ex06_movies` 테이블의 폼에 작성한 텍스트로 대체하여야 합니다.
+
+  존재하는 데이터가 없거나, 에러 발생 시에는 페이지에 `No data available` 이라는 문장만 보여야 합니다.
+
+```
+💡
+psycopg2의 copy_from 메소드를 검색해보세요.
+```
+
+<br>
+
+# Chapter 12
+
+## Exercise 09
+​
+<br>
+
+| **Piscine**                       | Exercise 09                                                                      |
+| --------------------------------- | -------------------------------------------------------------------------------- |
+| Exercise 09 : ORM-외부 키 |
+| **제출할 폴더**                   | ex09/                                                                            |
+| **제출할 파일**                   |       |
+| **허용되는 함수**                 |                         |
+
+<br>
+
+`Django` 어플리케이션 `ex09`을 만들고, 두 개의 모델을 생성하세요. 첫 번째 모델의 이름은 `Planets`이고, 다음과 같은 필드를 포함해야 합니다:
+
+- `name`: unique, variable character chain, 64 byte maximum size, non null.
+
+- `climate`: variable character chain.
+
+- `diameter`: whole.
+
+- `orbital_period`: whole.
+
+- `population`: large whole.
+
+- `rotation_period`: whole.
+
+- `surface_water`: real.
+
+- `terrain`: character chains.
+
+- `created` 시간 & 날짜 타입 (datetime type). 생성되었을 때, 자동으로 현재 시간과 날짜로 세팅되어야 합니다.
+
+- `updated` 시간 & 날짜 타입 (datetime type). 생성되었을 때, 자동으로 현재 시간과 날짜로 세팅되고, 매번 자동으로 현재 시간과 날짜로 업데이트되어야 합니다.
+
+해당 모델은 `name` 어트리뷰트를 다시 전송할 수 있도록 `__str__()` 메소드를 재정의하여야 합니다.
+
+두 번째 모델은 `People`로 이름붙여져야 하고, 다음과 같은 필드를 포함해야 합니다:
+
+- `name`: character chain, 64 byte maximum size, non null.
+
+- `birth_year`: character chain, 32 byte maximum size.
+
+- `gender`: character chain, 32 byte maximum size.
+
+- `eye_color`: character chain, 32 byte maximum size
+
+- `hair_color`: character chain, 32 byte maximum size.
+
+- `height`: whole.
+
+- `mass`: real.
+
+- `homeworld`: character chain, 64 byte maximum size, foreign key referencing the `name` column of this app’s `Planets` table.
+
+- `created` 시간 & 날짜 타입 (datetime type). 생성되었을 때, 자동으로 현재 시간과 날짜로 세팅되어야 합니다.
+
+- `updated` 시간 & 날짜 타입 (datetime type). 생성되었을 때, 자동으로 현재 시간과 날짜로 세팅되고, 매번 자동으로 현재 시간과 날짜로 업데이트되어야 합니다.
+
+해당 모델 또한 `name` 어트리뷰트를 다시 전송할 수 있도록 `__str__()` 메소드를 재정의하여야 합니다.
+_(역주: 필드는 원문을 첨부하였습니다.)_
+
+이 어플리케이션에선, `127.0.0.1:8000/ex08/display`로 접근 가능한 뷰를 생성하셔야 합니다.
+
+해당 뷰에서는 모든 캐릭터의 이름과 고향별 (homeworld), 해당 세계의 기후 (`바람` 혹은 적당한 `바람`)을 캐릭터의 이름 순으로 `HTML` 표에 표시하여야 합니다.
+
+존재하는 데이터가 없을 때에는, `"No data available, please use the following command line before use:"` 메시지와 함께 명령문 (command line) 이 이어져야 합니다.
+
+이 명령문은 해당 레포지토리의 루트 경로에서 실행되어야 하며, `ex09_initial_data.json` 파일 (오늘의 resource에 제공된 그것입니다) 내의 모든 데이터들을 방금 만든 모델에 삽입하여야 합니다.
+
+해당 파일들을 레포지토리에 넣어 제출하세요.
+
+```
+ℹ️
+평가 시에는, migration이 테스트 전에 이루어질 것입니다.
+```
+
+<br>
+
+# Chapter 13
+
+## Exercise 10
+​
+<br>
+
+| **Piscine**                       | Exercise 10                                                                      |
+| --------------------------------- | -------------------------------------------------------------------------------- |
+| Exercise 10 : ORM-다수에서 다수로 |
+| **제출할 폴더**                   | ex10/                                                                            |
+| **제출할 파일**                   |       |
+| **허용되는 함수**                 |                         |
+
+<br>
+
+`ex10` 이라는 쟝고 앱을 만들고 3개의 모델을 생성하세요 :
+
+- `Planets`와 `People`: 두 모델은 `ex09`의 그것과 완벽히 똑같아야 합니다.
+
+- `Movies`: 이 모델은 필드 `characters` 를 추가해야 하는 것 빼고는 `ex01`의 그것과 같아야 합니다.
+
+이것은 `People` 모델의 `many to many` 타입이며, `People` 테이블 내의 모든 영화 주인공들을 리스트로 만들 수 있어야 합니다.
+
+모델을 채우는 데에 필요한 자료는 오늘의 resource에 제공된 `ex10_initial_data.json`에 포함되어 있습니다.
+
+이 앱에서는, `127.0.0.1:8000/ex10` URL에서 접근 가능한 뷰 또한 생성하여야 합니다. 뷰에서는 다음과 같은 필드를 필수적으로 포함한 폼을 보여주어야 합니다:
+
+- `Movies minimum release date` : date
+
+- `Movies maximum release date` : date
+
+- `Planet diameter greater than` : number
+
+- `Character gender`: `People` 모델의 서로 다른 `gender` 필드값을 드랍다운 리스트 형식으로 보여야 합니다. 같은 값은 두 번 등장하지 않습니다.
+
+뷰가 검증된 후에는, 값 검색 후 반환, 결과값 출력까지 완수해야 합니다.
+
+결과값은 `character gender` 필드의 값과 성별이 매치되는 캐릭터여야 하며, 해당 캐릭터의 등장 영화 개봉일은 `Movies minimum release date`와 `Movies maximum release date` 사이의 값이어야 하고, 그들의 고향별은 `Planet diameter greater than` 보다 지름이 커야 합니다.
+
+결과값이 없을 경우엔, `""Nothing corresponding to your research"` 메시지가 표시되어야 합니다. 모든 결과값은 다음 요소와 함께 출력되어야 합니다:
+
+- 캐릭터 이름
+
+- 성별
+
+- 영화 제목
+
+- 고향별 이름
+
+- 고향별 지름
+
+예를 들어: 영화 개봉일이 1900-01-01 부터 2000-01-01 사이이고, 고향별의 지름이 11000보다 큰 여성 캐릭터의 검색 결과값은 :
+
+- A New Hope - Leia Organa - female - Alderaan - 12500
+- The Phantom Menace - Padmé Amidala - female - Naboo - 12120
+- Return of the Jedi - Leia Organa - female - Alderaan - 12500
+- Return of the Jedi - Mon Mothma - female - Chandrila - 13500
+- The Empire Strikes Back -Leia Organa - female - Alderaan - 12500
+
+
+```
+💡
+몇몇 캐릭터가 같은 영화에 동시에 등장할 수도 있고, 한 캐릭터가 여러 영화에 등장할 수도 있습니다. 이것은 many to many relation이라고 불립니다. 이러한 경우에는, 해당 테이블 사이에 중간 테이블을 만들어야 합니다. 중간 테이블의 각 열은 (독창적인 (unique)) 상호 참조 관계이며: 첫 번째 참조는 영화의 테이블, 두 번째 참조는 캐릭터의 테이블 (또는 그 반대) 입니다. 여러분의 모델이 구성되고 migration이 성공하면, 이 테이블을 postgre 콘솔에서 확인할 수 있을 것입니다.
+```
