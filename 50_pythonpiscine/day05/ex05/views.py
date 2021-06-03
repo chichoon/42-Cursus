@@ -1,5 +1,6 @@
-from django.http.response import HttpResponse
+from re import template
 from django.shortcuts import render
+from django.http import HttpResponse, response
 from . import models
 
 
@@ -14,11 +15,11 @@ def populate(request):
         ['Return of the Jedi', 'Richard Marquand', 'Howard G. Kazanjian, George Lucas, Rick McCallum', '1983-05-25'],
         ['The Force Awakens', 'J. J. Abrams', 'Kathleen Kennedy, J. J. Abrams, Bryan Burk', '2015-12-11'],
     ]
-    string = ''
     i = 0
+    string = ''
     try:
         for elem in lst:
-            model = models.Ex03(
+            model = models.Ex05(
                 title=elem[0],
                 director=elem[1],
                 episode_nb=i,
@@ -35,7 +36,7 @@ def populate(request):
 
 def display(request):
     lst = []
-    model = models.Ex03.objects.all()
+    model = models.Ex05.objects.all()
     for elem in model:
         lst.append([
             elem.title,
@@ -51,4 +52,21 @@ def display(request):
         context = {
             'data': lst,
         }
-        return render(request, 'ex03/display.html', context)
+        return render(request, 'ex05/display.html', context)
+
+
+def remove(request):
+    try:
+        if request.method == 'POST':
+            form = request.POST
+            data = models.Ex05.objects.filter(title=form['movie_title'])
+            data.delete()
+        lst = []
+        model = models.Ex05.objects.all()
+        for elem in model:
+            lst.append(elem.title)
+        if len(lst) == 0:
+            raise Exception
+        return render(request, 'ex05/remove.html', {'movie_lst': lst, })
+    except Exception:
+        return HttpResponse("No data Available")

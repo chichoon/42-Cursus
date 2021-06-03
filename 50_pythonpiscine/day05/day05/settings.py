@@ -42,10 +42,10 @@ INSTALLED_APPS = [
     'ex02',
     'ex03',
     'ex04',
-#    'ex05',
-#    'ex06',
-#    'ex07',
-#    'ex08',
+    'ex05',
+    'ex06',
+    'ex07',
+    'ex08',
 #    'ex09',
 #    'ex10',
 ]
@@ -88,7 +88,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'djangotraining',
-        'USER': ' djangouser',
+        'USER': 'djangouser',
         'PASSWORD': 'secret',
         'HOST': 'localhost',
         'PORT': '',
@@ -120,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 

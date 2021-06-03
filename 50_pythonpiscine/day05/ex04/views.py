@@ -79,6 +79,8 @@ def display(request):
         data = []
         for row in response:
             data.append(row)
+        conn.commit()
+        cur.close()
         conn.close()
         context = {
             'data': data,
@@ -111,8 +113,9 @@ def remove(request):
         data = []
         for row in response:
             data.append(row[0])
-        print(data)
-        conn.close
+        conn.commit()
+        cur.close()
+        conn.close()
         if len(data) == 0:
             raise Exception
         return render(request, template_name, {'movie_lst': data, })

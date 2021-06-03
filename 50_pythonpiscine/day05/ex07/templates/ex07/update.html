@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<form action="/ex06/update/" method="POST">
+		{% csrf_token %}
+		<label for="movie_crawl">write something</label>
+		<select type="text" id="movie_title" name="movie_title">
+			{% for movie in movie_lst %}
+			<option>{{ movie }}</option>
+			{% endfor %}
+		</select>
+		<br>
+		<input type="text" id="movie_crawl" name="movie_crawl">
+		<br><br>
+		<input type="submit" value="Submit"/>
+	</form>
+</body>
+</html>

@@ -1,5 +1,6 @@
+from re import template
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, response
 import psycopg2
 
 
@@ -14,14 +15,29 @@ def init(request):
             )
         cur = conn.cursor()
         cur.execute("""
-        CREATE TABLE ex02_movies (
+        CREATE TABLE ex06_movies (
             title varchar(64) unique not null,
             episode_nb integer PRIMARY KEY,
             opening_crawl text,
             director varchar(32) not null,
             producer varchar(128) not null,
-            release_date date not null
-            )""")
+            release_date date not null,
+            created timestamp not null default now(),
+            updated timestamp not null default now())
+        """)
+        cur.execute("""
+        CREATE OR REPLACE FUNCTION update_changetimestamp_column()
+        RETURNS TRIGGER AS $$
+        BEGIN
+        NEW.updated = now();
+        NEW.created = OLD.created;
+        RETURN NEW;
+        END;
+        $$ language 'plpgsql';
+        CREATE TRIGGER update_films_changetimestamp BEFORE UPDATE
+        ON ex06_movies FOR EACH ROW EXECUTE PROCEDURE
+        update_changetimestamp_column();
+        """)
         conn.commit()
         cur.close()
         conn.close()
@@ -51,8 +67,9 @@ def populate(request):
         i = 1
         for elem in lst:
             cur.execute(f"""
-            INSERT INTO ex02_movies (episode_nb, title, director, producer, release_date)
+            INSERT INTO ex06_movies (episode_nb, title, director, producer, release_date)
             VALUES ('{i}', '{elem[0]}', '{elem[1]}', '{elem[2]}', '{elem[3]}')
+            ON CONFLICT (title) DO NOTHING
             """)
             i += 1
         conn.commit()
@@ -72,12 +89,11 @@ def display(request):
             password='secret'
             )
         cur = conn.cursor()
-        cur.execute(""" SELECT * FROM ex02_movies """)
+        cur.execute(""" SELECT * FROM ex06_movies """)
         response = cur.fetchall()
         data = []
         for row in response:
             data.append(row)
-        conn.commit()
         cur.close()
         conn.close()
         context = {
@@ -85,7 +101,38 @@ def display(request):
         }
         if len(data) == 0:
             raise Exception
-        return render(request, 'ex02/display.html', context)
+        return render(request, 'ex06/display.html', context)
+    except Exception:
+        return HttpResponse("No data Available")
+
+
+def update(request):
+    try:
+        conn = psycopg2.connect(
+            database='djangotraining',
+            host='localhost',
+            user='djangouser',
+            password='secret'
+            )
+        cur = conn.cursor()
+        if request.method == 'POST':
+            form = request.POST
+            cur.execute(f"""
+            UPDATE ex06_movies SET opening_crawl='{form['movie_crawl']}' WHERE title='{form['movie_title']}';
+            """)
+            print("cur")
+            conn.commit()
+        data = []
+        cur.execute(""" SELECT * FROM ex06_movies """)
+        response = cur.fetchall()
+        for row in response:
+            data.append(row[0])
+        conn.commit()
+        cur.close()
+        conn.close()
+        if len(data) == 0:
+            raise Exception
+        return render(request, 'ex06/update.html', {'movie_lst': data, })
     except Exception:
         return HttpResponse("No data Available")
 

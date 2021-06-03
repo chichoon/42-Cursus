@@ -130,7 +130,7 @@ def django(request):
 - 데이터베이스 생성 및 연결
 	1. brew install PostgreSQL
 	2. initdb `djangotraining`
-	3. brew services start psql
+	3. brew services start postgresql
 	4. psql postgres
 	5. create user `djangouser` with login password `'secret'`;
 	6. alter role `djangouser` createdb;
@@ -141,7 +141,7 @@ def django(request):
 	10. \connect `djangotraining`
 
 - 유저 생성하고 한번에 권한주기
-	- CREATE ROLE `djangouser` LOGIN CREATEDB PASSWORD `'secret'`
+	- CREATE ROLE `djangouser` LOGIN CREATEDB PASSWORD `'secret'`;
 
 - 데이터베이스 서버 중단
 	- pg_ctl stop -D `서버명`
@@ -166,3 +166,9 @@ def django(request):
 
 - 데이터베이스 삭제
 	- drop database db_name;
+
+- 유저 삭제
+	- DROP ROLE `유저명`;
+
+- 유저에 슈퍼유저권한
+	- ALTER USER djangouser WITH SUPERUSER;
