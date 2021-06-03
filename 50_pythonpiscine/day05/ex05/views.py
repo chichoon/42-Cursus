@@ -15,7 +15,7 @@ def populate(request):
         ['Return of the Jedi', 'Richard Marquand', 'Howard G. Kazanjian, George Lucas, Rick McCallum', '1983-05-25'],
         ['The Force Awakens', 'J. J. Abrams', 'Kathleen Kennedy, J. J. Abrams, Bryan Burk', '2015-12-11'],
     ]
-    i = 0
+    i = 1
     string = ''
     try:
         for elem in lst:

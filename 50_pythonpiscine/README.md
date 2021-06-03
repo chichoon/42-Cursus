@@ -167,8 +167,34 @@ def django(request):
 - 데이터베이스 삭제
 	- drop database db_name;
 
+- db테이블 삭제
+	- drop table `ex00`_movies
+
 - 유저 삭제
 	- DROP ROLE `유저명`;
 
 - 유저에 슈퍼유저권한
 	- ALTER USER djangouser WITH SUPERUSER;
+
+#### postgresql 박살나서 도커 사용할 때
+
+- 도커 실행
+	- docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=secret -e POSTGRES_USER=djangouser -e POSTGRES_DB=djangotraining -d postgres
+
+- 도커에서 postgres 실행
+	- docker exec -it postgres /bin/bash
+
+	- psql `djangotraining` -U `djangouser`
+
+	- 그다음부턴 원본 psql과 동일하게 사용
+
+
+- 도커 종료
+	- ctrl + q
+
+#### migration 삭제
+- `appname`/migrations 삭제
+
+- db 테이블 삭제
+
+- migrate --fake 옵션

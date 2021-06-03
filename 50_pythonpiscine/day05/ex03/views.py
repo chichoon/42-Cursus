@@ -15,7 +15,7 @@ def populate(request):
         ['The Force Awakens', 'J. J. Abrams', 'Kathleen Kennedy, J. J. Abrams, Bryan Burk', '2015-12-11'],
     ]
     string = ''
-    i = 0
+    i = 1
     try:
         for elem in lst:
             model = models.Ex03(
