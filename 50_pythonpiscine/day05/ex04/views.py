@@ -7,7 +7,12 @@ import psycopg2
 # Create your views here.
 def init(request):
     try:
-        conn = psycopg2.connect("dbname=djangotraining user=djangouser password=secret")
+        conn = psycopg2.connect(
+            database='djangotraining',
+            host='localhost',
+            user='djangouser',
+            password='secret'
+            )
         cur = conn.cursor()
         cur.execute("""
         CREATE TABLE ex04_movies (
@@ -37,7 +42,12 @@ def populate(request):
         ['The Force Awakens', 'J. J. Abrams', 'Kathleen Kennedy, J. J. Abrams, Bryan Burk', '2015-12-11'],
     ]
     try:
-        conn = psycopg2.connect("dbname=djangotraining user=djangouser password=secret")
+        conn = psycopg2.connect(
+            database='djangotraining',
+            host='localhost',
+            user='djangouser',
+            password='secret'
+            )
         cur = conn.cursor()
         i = 1
         for elem in lst:
@@ -57,7 +67,12 @@ def populate(request):
 
 def display(request):
     try:
-        conn = psycopg2.connect("dbname=djangotraining user=djangouser password=secret")
+        conn = psycopg2.connect(
+            database='djangotraining',
+            host='localhost',
+            user='djangouser',
+            password='secret'
+            )
         cur = conn.cursor()
         cur.execute(""" SELECT * FROM ex04_movies """)
         response = cur.fetchall()
@@ -78,7 +93,12 @@ def display(request):
 def remove(request):
     template_name = 'ex04/remove.html'
     try:
-        conn = psycopg2.connect("dbname=djangotraining user=djangouser password=secret")
+        conn = psycopg2.connect(
+            database='djangotraining',
+            host='localhost',
+            user='djangouser',
+            password='secret'
+            )
         cur = conn.cursor()
         if request.method == 'POST':
             form = request.POST
