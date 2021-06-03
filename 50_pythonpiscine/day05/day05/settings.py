@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hqk$vfxm+9tu*p5_4^+hemq(j9ofg82!$@8t$j1-jplhe-jc*b'
+SECRET_KEY = 'django-insecure-q&2x1mpp9n^tqo-t(bv$ll+!h*3b-&+l9#3b31f7=orazad%1b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,12 +42,12 @@ INSTALLED_APPS = [
     'ex02',
     'ex03',
     'ex04',
-    'ex05',
-    'ex06',
-    'ex07',
-    'ex08',
-    'ex09',
-    'ex10',
+#    'ex05',
+#    'ex06',
+#    'ex07',
+#    'ex08',
+#    'ex09',
+#    'ex10',
 ]
 
 MIDDLEWARE = [
@@ -87,9 +87,9 @@ WSGI_APPLICATION = 'day05.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd05_db',
-        'USER': 'jiychoi',
-        'PASSWORD': '1234',
+        'NAME': 'djangotraining',
+        'USER': ' djangouser',
+        'PASSWORD': 'secret',
         'HOST': 'localhost',
         'PORT': '',
     }

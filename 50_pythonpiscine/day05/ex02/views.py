@@ -6,7 +6,7 @@ import psycopg2
 # Create your views here.
 def init(request):
     try:
-        conn = psycopg2.connect("dbname=d05_db user=jiychoi")
+        conn = psycopg2.connect("dbname=djangotraining user=djangouser password=secret")
         cur = conn.cursor()
         cur.execute("""
         CREATE TABLE ex02_movies (
@@ -36,7 +36,7 @@ def populate(request):
         ['The Force Awakens', 'J. J. Abrams', 'Kathleen Kennedy, J. J. Abrams, Bryan Burk', '2015-12-11'],
     ]
     try:
-        conn = psycopg2.connect("dbname=d05_db user=jiychoi")
+        conn = psycopg2.connect("dbname=djangotraining user=djangouser password=secret")
         cur = conn.cursor()
         i = 1
         for elem in lst:
@@ -55,7 +55,7 @@ def populate(request):
 
 def display(request):
     try:
-        conn = psycopg2.connect("dbname=d05_db user=jiychoi")
+        conn = psycopg2.connect("dbname=djangotraining user=djangouser password=secret")
         cur = conn.cursor()
         cur.execute(""" SELECT * FROM ex02_movies """)
         response = cur.fetchall()

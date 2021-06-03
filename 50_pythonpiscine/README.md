@@ -122,3 +122,47 @@ def django(request):
 ```
 - 따로 경로를 잡아줘야 했던 이유는.. 앱등록을 안해서 그런거였다 앱등록 꼭 하기
 - template를 사용하는 html을 render하면 자동으로 템플릿 적용되어 보여짐
+
+
+## Day 05
+
+### ex00
+- 데이터베이스 생성 및 연결
+	1. brew install PostgreSQL
+	2. initdb `djangotraining`
+	3. brew services start psql
+	4. psql postgres
+	5. create user `djangouser` with login password `'secret'`;
+	6. alter role `djangouser` createdb;
+	7. CREATE DATABASE `djangotraining` OWNER `djangouser`;
+	8. \q
+	9. psql `djangotraining` -U `djangouser`
+		- psql --username=djangouser --dbname=djangotraining
+	10. \connect `djangotraining`
+
+- 유저 생성하고 한번에 권한주기
+	- CREATE ROLE `djangouser` LOGIN CREATEDB PASSWORD `'secret'`
+
+- 데이터베이스 서버 중단
+	- pg_ctl stop -D `서버명`
+
+- postgresql 명령어 시작 (관리자 계정)
+	- psql postgres
+
+- postgresql 명령어 나가기
+	- \q
+
+- postgresql 역할 목록
+	- \du
+
+- postgresql 데이터베이스 리스트 보기
+	- \list
+
+- postgresql 데이터베이스 relation 보기
+	- \dt
+
+- postgresql 중단
+	- brew services stop postgresql
+
+- 데이터베이스 삭제
+	- drop database db_name;

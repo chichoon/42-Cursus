@@ -6,7 +6,12 @@ import psycopg2
 # Create your views here.
 def init(request):
     try:
-        conn = psycopg2.connect("dbname=d05_db user=jiychoi")
+        conn = psycopg2.connect(
+            database='djangotraining',
+            host='localhost',
+            user='djangouser',
+            password='secret'
+            )
         cur = conn.cursor()
         cur.execute("""
         CREATE TABLE ex00_movies (
