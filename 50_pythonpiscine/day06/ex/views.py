@@ -33,6 +33,13 @@ def ex00(request):
 @csrf_exempt
 def regist(request):
     message = ''
+    login_id = ''
+    if request.session.get('username2') is not None:
+        messages.info(request, "Already logged in.")
+        return redirect("ex:ex00")
+    if request.session.get('username') is not None:
+        login_id = request.session.get('username')
+        request.session.set_expiry(42)
     if request.method == "POST":
         form = forms.RegistrationForm(request.POST)
         if form.is_valid():
@@ -44,13 +51,18 @@ def regist(request):
         message = "Registration unsuccessful."
         messages.error(request, message)
     form = forms.RegistrationForm
-    return render(request, "ex/regist.html", {"register_form": form, "message": message})
+    return render(request, "ex/regist.html", {
+        'login_message': f"HELLO, {login_id}! {login_id} will be eliminated in 42 seconds.",
+        "register_form": form,
+        "message": message,
+        })
 
 
 @csrf_exempt
 def log_in(request):
     message = ''
     username = ''
+    login_id = ''
     if request.session.get('username2') is not None:
         messages.info(request, "Already logged in.")
         return redirect("ex:ex00")
@@ -73,8 +85,14 @@ def log_in(request):
         else:
             message = "Invalid username or password."
             messages.error(request, message)
+    elif request.session.get('username') is not None:
+        login_id = request.session.get('username')
+        request.session.set_expiry(42)
     form = AuthenticationForm()
-    return render(request, "ex/login.html", {'login_form': form, 'message': message})
+    return render(request, "ex/login.html", {
+        'login_message': f"HELLO, {login_id}! {login_id} will be eliminated in 42 seconds.",
+        'login_form': form,
+        'message': message, })
 
 
 @csrf_exempt
