@@ -198,3 +198,18 @@ def django(request):
 - db 테이블 삭제
 
 - migrate --fake 옵션
+
+
+## Rush01
+
+#### form.cleaned_data
+
+- 데이터에 대한 검증 (validation) 이 완료되면, 검증된 데이터가 form.cleaned_data에 들어간다
+- 딕셔너리처럼 접근 가능함
+
+#### models.CASCADE
+
+모델 A와 B가 N:1 관계일때 (예시: A는 코멘트, B는 게시글 등) B를 삭제하면 A의 레코드들도 연차적으로 삭제됨
+
+#### models related_name
+모델 A와 B가 N:1 관계일때 (예시: A는 코멘트, B는 게시글 등) A 모델 인스턴스가 관계된 B 모델의 객체들을 불러오기 위해 사용되는 이름 (B의 이름을 넣어야 한다)
