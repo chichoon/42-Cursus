@@ -18,10 +18,5 @@ class Init(FormView):
         form = self.form_class(request.POST, request.FILES)
         images = ImageModel.objects.all()
         if form.is_valid():
-            title = form.cleaned_data['title']
-            content = form.cleaned_data['content']
-            ImageModel.objects.create(
-                title=title,
-                content=content
-            )
+            form.save()
         return render(request, self.template_name, {'images': images, 'form': form})

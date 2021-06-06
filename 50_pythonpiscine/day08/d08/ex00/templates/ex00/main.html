@@ -22,7 +22,7 @@
 			</div>
 			<br><br>
 			<div id="form">
-				<form method="POST" action="" class="form">
+				<form method="POST" action="" class="form" enctype="multipart/form-data">
 					{% csrf_token %}
 					{{ form }}
 					<button data-dismiss="model" type="submit" value="submit">heres my cat</button>
@@ -31,8 +31,19 @@
 		</div>
 	</div>
 	<hr>
-	<div id="show_image">
-
-	</div>
+	<table id="show_image">
+		<thead>
+			<tr>
+				<th>TITLE</th>
+				<th>CAT PHOTO</th>
+			</tr>
+		</thead>
+		{% for image in images %}
+		<tr>
+			<td>{{image.title}}</td>
+			<td><img src="media/{{ image.content }}"></td>
+		</tr>
+		{% endfor %}
+	</table>
 </body>
 </html>

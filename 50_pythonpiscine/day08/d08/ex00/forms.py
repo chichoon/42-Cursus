@@ -1,6 +1,8 @@
 from django import forms
+from .models import ImageModel
 
 
-class UserForm(forms.Form):
-    title = forms.CharField(max_length=128, required=True)
-    content = forms.ImageField(required=True)
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = ImageModel
+        fields = ['title', 'content']
