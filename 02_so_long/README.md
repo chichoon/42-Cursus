@@ -1,4 +1,5 @@
 # SO LONG
+
 and thanks for all the fish
 
 ## 사용가능 함수
@@ -28,3 +29,15 @@ and thanks for all the fish
 #### stdio.h
 
 - perror (에러 출력)
+
+## 맵 애셋 적용
+
+- 기본 맵 9종류: 벽 NE, N, NW, E, W, SE, S, SW, 바닥 1
+
+- 맵 중간의 벽: born2code / lee / null
+
+- 맵 중간의 벽 아래의 바닥 : 그림자 1
+
+- 캐릭터 : 상하좌우 2 (기본 + 애니메이션)
+
+- 아이템: Success 2, Fail 2 (기본 + 애니메이션)
