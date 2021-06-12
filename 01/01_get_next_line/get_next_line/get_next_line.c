@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 05:27:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/09 20:12:08 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/12 21:44:49 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ int			read_bufsize(int fd, char **line, char **str_buf)
 int			get_next_line(int fd, char **line)
 {
 	static char	*str_buf[256];
-	int			output;
 
-	output = 0;
 	if (BUFFER_SIZE < 1 || fd > 256 || fd < 0 || !line)
 		return (-1);
 	if (!str_buf[fd])
