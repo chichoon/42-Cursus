@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:38:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/13 17:00:33 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/13 20:54:28 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	sol_check_char(char **map, t_map_info *info)
 	while (++y < (int)info->map_height)
 	{
 		x = -1;
-		while(++x < (int)info->map_width)
+		while (++x < (int)info->map_width)
 		{
 			if (!ft_if_available(map[y][x], "01CEP"))
 				return (0);
@@ -82,17 +82,18 @@ static int	sol_count_collective(char **map, t_map_info *info)
 	return (1);
 }
 
-int		sol_validate_map(char **map, t_map_info *info)
+int			sol_validate_map(char **map, t_map_info *info)
 {
 	info->num_collections = 0;
 	if (info->map_height < 3 || info->map_width < 3)
 		return (sol_perror_return("Too small map", info));
+	if (info->map_height > 20 || info->map_width > 40)
+		return (sol_perror_return("Too big map", info));
 	if (!sol_check_wall(map, info))
 		return (sol_perror_return("Map is not closed", info));
 	if (!sol_check_char(map, info))
 		return (sol_perror_return("Invalid map charset", info));
 	if (!sol_count_collective(map, info))
 		return (sol_perror_return("Too small collectives", info));
-	printf("collective: %zu\n", info->num_collections);
 	return (1);
 }

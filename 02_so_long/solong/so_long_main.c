@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/13 16:59:18 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/13 17:05:13 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 int			main(int argc, char *argv[])
 {
+	char		**map;
+	char		*ptr;
+	t_map_info	*map_info;
 	if (argc == 2)
 	{
-		char		**map;
-		char		*ptr;
-		t_map_info	*map_info;
-
 		ptr = ft_strstr(argv[1], ".ber");
 		if (!ptr || *(ptr + 4) != 0)
 			return(sol_perror_return("Invalid file extension", 0));
@@ -29,8 +28,7 @@ int			main(int argc, char *argv[])
 		map = sol_parse_map(argv[1], map_info);
 		if (!sol_validate_map(map, map_info))
 			return ((int)ft_free_char2d(map));
-		system("leaks so_long");
-		//so_long(map);
+		so_long(map, map_info);
 	}
 	else
 	{

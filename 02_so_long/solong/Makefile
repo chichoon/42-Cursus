@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/08 14:50:22 by jiychoi           #+#    #+#              #
-#    Updated: 2021/06/13 16:38:08 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/06/13 20:53:42 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 MFLAGS		=	-g3 -fsanitize=address
 SRC			=	so_long_main.c so_long_utils.c so_long_parse_map.c \
-				so_long_validate_map.c \
+				so_long_validate_map.c so_long_draw_screen.c\
 				gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJ			=	$(SRC:.c=.o)
 LIBFT		=	-L ./libft -lft
@@ -30,8 +30,8 @@ all : $(TARGET)
 $(TARGET) : $(OBJ)
 	$(MAKE) -C ./mlx all
 	$(MAKE) -C ./libft all
-#	$(CC) $(SRC) $(CFLAGS) $(MFLAGS) $(MLX) $(LIBFT) -o $(TARGET)
-	$(CC) $(SRC) $(CFLAGS) $(MLX) $(LIBFT) -o $(TARGET)
+	$(CC) $(SRC) $(CFLAGS) $(MFLAGS) $(MLX) $(LIBFT) -o $(TARGET)
+#	$(CC) $(SRC) $(CFLAGS) $(MLX) $(LIBFT) -o $(TARGET)
 
 clean :
 	rm -rf $(OBJ)

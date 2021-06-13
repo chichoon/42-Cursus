@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:57 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/13 16:51:39 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/13 17:43:01 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef struct	s_map_info
 	size_t	map_width;
 	size_t	map_height;
 	size_t	num_collections;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
 }				t_map_info;
 
 /*
@@ -40,6 +43,11 @@ char			**sol_parse_map(char *filename, t_map_info *info);
 int				sol_perror_return(char *str, t_map_info *info);
 int				sol_check_map(char *filename, t_map_info *info);
 int				sol_validate_map(char **map, t_map_info *info);
+
+/*
+	so_long : Draw map
+*/
+void	so_long(char **map, t_map_info *info);
 
 /*
 	utils!
