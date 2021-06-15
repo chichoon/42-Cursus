@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/15 19:00:38 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/15 20:38:28 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	so_long(char **map, t_map_info *info)
 	info->img_ptr = mlx_xpm_file_to_image(info->mlx_ptr, "charset.xpm",
 		&temp, &temp);
 	printf("width: %zu, height: %zu\n", info->map_width, info->map_height);
-	sol_draw_corner(map, info);
-	sol_draw_ywall(map, info);
-	sol_draw_xwall(map, info);
+	sol_draw_corner(info);
+	sol_draw_ywall(info);
+	sol_draw_xwall(info);
 	sol_draw_map(map, info);
 	mlx_loop(info->mlx_ptr);
 }

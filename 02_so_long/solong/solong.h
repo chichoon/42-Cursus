@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:57 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/15 18:55:22 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/15 20:10:30 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <string.h> //strerror
 # include <stdio.h> //perror
 
-# include "mlx/mlx.h"
+# include "mlx_opengl/mlx.h"
 # include "libft/libft.h"
 # include "gnl/get_next_line.h"
 
@@ -47,9 +47,9 @@ int				sol_validate_map(char **map, t_map_info *info);
 /*
 	so_long : Draw map
 */
-void			sol_draw_corner(char **map, t_map_info *info);
-void			sol_draw_ywall(char **map, t_map_info *info);
-void			sol_draw_xwall(char **map, t_map_info *info);
+void			sol_draw_corner(t_map_info *info);
+void			sol_draw_ywall(t_map_info *info);
+void			sol_draw_xwall(t_map_info *info);
 void			sol_draw_pillar(int x, int y, t_map_info *info);
 void			sol_draw_map(char **map, t_map_info *info);
 
