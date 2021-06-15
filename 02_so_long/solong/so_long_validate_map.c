@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:38:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/13 20:54:28 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/15 18:47:24 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			sol_validate_map(char **map, t_map_info *info)
 	info->num_collections = 0;
 	if (info->map_height < 3 || info->map_width < 3)
 		return (sol_perror_return("Too small map", info));
-	if (info->map_height > 20 || info->map_width > 40)
+	if (info->map_height > 30 || info->map_width > 70)
 		return (sol_perror_return("Too big map", info));
 	if (!sol_check_wall(map, info))
 		return (sol_perror_return("Map is not closed", info));

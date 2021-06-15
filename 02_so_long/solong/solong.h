@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:57 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/13 17:43:01 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/15 18:55:22 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ int				sol_validate_map(char **map, t_map_info *info);
 /*
 	so_long : Draw map
 */
+void			sol_draw_corner(char **map, t_map_info *info);
+void			sol_draw_ywall(char **map, t_map_info *info);
+void			sol_draw_xwall(char **map, t_map_info *info);
+void			sol_draw_pillar(int x, int y, t_map_info *info);
+void			sol_draw_map(char **map, t_map_info *info);
+
 void	so_long(char **map, t_map_info *info);
 
 /*
