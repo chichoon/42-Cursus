@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 17:02:51 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 15:52:21 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/16 20:02:31 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	sol_draw_pillar(int x, int y, t_map_info *info, t_map_img *img)
 	}
 }
 
-void	sol_draw_map(char **map, t_map_info *info, t_map_img *img)
+void	sol_draw_map(t_map_info *info, t_map_img *img)
 {
 	int x;
 	int y;
@@ -82,9 +82,12 @@ void	sol_draw_map(char **map, t_map_info *info, t_map_img *img)
 		x = 0;
 		while (++x + 1 < (int)info->map_width)
 		{
-			if (map[y][x] == '1')
-			{
+			if (info->map[y][x] == '1')
 				sol_draw_pillar(x, y, info, img);
+			else if (info->map[y][x] == 'E')
+			{
+				mlx_put_image_to_window(info->mlx_ptr, info->win_ptr,
+					img->map_end, x * 32, y * 32);
 			}
 			else
 			{

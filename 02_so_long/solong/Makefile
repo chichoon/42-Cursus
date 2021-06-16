@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/08 14:50:22 by jiychoi           #+#    #+#              #
-#    Updated: 2021/06/16 15:56:48 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/06/16 19:23:54 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CFLAGS		=	-Wall -Wextra -Werror
 MFLAGS		=	-g3 -fsanitize=address
 SRC			=	so_long_main.c so_long_utils.c so_long_parse_map.c \
 				so_long_validate_map.c so_long_draw_screen.c\
-				so_long_init_struct.c\
+				so_long_init_struct.c so_long_draw_assets.c\
+				so_long_move_char.c so_long_handle_events.c\
 				gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJ			=	$(SRC:.c=.o)
 LIBFT		=	-L ./libft -lft
