@@ -6,41 +6,45 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/15 20:53:36 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/16 15:55:19 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
+int		so_long_key(int key, void *param)
+{
+	t_solong	*str_solong;
+
+	str_solong = (t_solong *)param;
+	if (key == 53)
+	{
+		sol_free_mapimg(str_solong->img_map, str_solong->info);
+		sol_free_charimg(str_solong->img_char, str_solong->info);
+		mlx_destroy_window(str_solong->info->mlx_ptr, str_solong->info->win_ptr);
+		exit(0);
+	}
+	return (key);
+}
+
 void	so_long(char **map, t_map_info *info)
 {
-	int		temp;
-	int		x;
-	int 	y;
-	void	*img_temp;
+	t_solong	*str_solong;
+	int			temp;
 
-	info->mlx_ptr = mlx_init();
-	info->win_ptr = mlx_new_window(info->mlx_ptr, info->map_width * 64,
-		info->map_height * 64, "so_long");
-	img_temp = mlx_xpm_file_to_image(info->mlx_ptr, "char123.xpm", &temp, &temp);
-	info->img_ptr = mlx_xpm_file_to_image(info->mlx_ptr, "charset.xpm",
-		&temp, &temp);
-	x = 0;
-	while (x < (int)info->map_width)
-	{
-		y = 0;
-		while (y < (int)info->map_height)
-		{
-			mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, img_temp,
-			x * 64, y * 64);
-			y++;
-		}
-		x++;
-	}
-	sol_draw_corner(info);
-	sol_draw_ywall(info);
-	sol_draw_xwall(info);
-	sol_draw_map(map, info);
+	temp = 0;
+	str_solong = (t_solong *)malloc(sizeof(t_solong));
+	sol_init_mlxptr(info);
+	str_solong->info = info;
+	str_solong->img_map = (t_map_img *)malloc(sizeof(t_map_img));
+	str_solong->img_char = (t_char_img *)malloc(sizeof(t_char_img));
+	sol_init_mapimg(str_solong->img_map, str_solong->info, temp);
+	sol_init_charimg(str_solong->img_char, str_solong->info, temp);
+	sol_draw_corner(str_solong->info, str_solong->img_map);
+	sol_draw_ywall(str_solong->info, str_solong->img_map);
+	sol_draw_xwall(str_solong->info, str_solong->img_map);
+	sol_draw_map(map, str_solong->info, str_solong->img_map);
+	mlx_key_hook(str_solong->info->win_ptr, so_long_key, str_solong);
 	mlx_loop(info->mlx_ptr);
 }
 
