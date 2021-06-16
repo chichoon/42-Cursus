@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_parse_map.c                                :+:      :+:    :+:   */
+/*   so_long_parse_map_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 21:31:51 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/16 21:57:21 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+#include "solong_bonus.h"
 
 char	**sol_parse_map(char *filename, t_map_info *info)
 {

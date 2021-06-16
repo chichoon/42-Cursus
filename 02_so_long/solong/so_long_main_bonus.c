@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_main.c                                     :+:      :+:    :+:   */
+/*   so_long_main_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 21:43:17 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/16 21:57:17 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+#include "solong_bonus.h"
 
 int		so_long_key(int key, void *param)
 {
@@ -45,11 +45,16 @@ int		so_long_main_loop(t_solong *str_solong)
 
 	info = str_solong->info;
 	img = str_solong->img_char;
-	info->loop_flag = 0;
+	if (info->loop_flag == 100)
+		info->loop_flag = 0;
+	else
+		info->loop_flag++;
 	so_long_draw_map(str_solong);
 	so_long_draw_char(str_solong);
 	sol_draw_collective(str_solong->info, str_solong->img_char);
+	sol_draw_enemy(info, img);
 	sol_char_pos_event(str_solong);
+	sol_draw_move_count(str_solong);
 	return (0);
 }
 
@@ -69,6 +74,7 @@ void	so_long(t_map_info *info)
 		"xpm/end.xpm", &temp, &temp);
 	sol_init_charimg(str_solong->img_char, str_solong->info, temp);
 	so_long_draw_map(str_solong);
+	sol_enemy_pos(str_solong);
 	mlx_hook(str_solong->info->win_ptr, 17, 0, sol_exit, str_solong);
 	mlx_key_hook(str_solong->info->win_ptr, so_long_key, str_solong);
 	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr,

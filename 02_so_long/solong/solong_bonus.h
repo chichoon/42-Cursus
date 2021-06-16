@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solong.h                                           :+:      :+:    :+:   */
+/*   solong_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:57 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 21:42:14 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/16 22:26:12 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void			sol_draw_character_w(t_solong *str_solong);
 void			sol_draw_character_s(t_solong *str_solong);
 void			sol_draw_character_e(t_solong *str_solong);
 void			sol_draw_collective(t_map_info *info, t_char_img *img);
+void			sol_draw_enemy(t_map_info *info, t_char_img *img);
 
 /*
 	**so_long : Move char
@@ -125,8 +126,10 @@ void			sol_move_right(t_solong *str_solong);
 /*
 	**so_long : Handle Events
 */
+void			sol_draw_move_count(t_solong *str_solong);
 int				sol_exit(t_solong *str_solong);
 void			sol_char_pos_event(t_solong *str_solong);
+void			sol_enemy_pos(t_solong *str_solong);
 /*
 	**so_long
 */
