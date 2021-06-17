@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 18:20:14 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 20:41:34 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/17 13:23:29 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	sol_move_up(t_solong *str_solong)
 	if (info->map[info->char_y][info->char_x] == '1')
 		info->char_y += 1;
 	info->move_count++;
+	ft_putnbr_fd(info->move_count, 1);
+	ft_putchar_fd('\n', 1);
 }
 
 void	sol_move_left(t_solong *str_solong)
@@ -34,6 +36,8 @@ void	sol_move_left(t_solong *str_solong)
 	if (info->map[info->char_y][info->char_x] == '1')
 		info->char_x += 1;
 	info->move_count++;
+	ft_putnbr_fd(info->move_count, 1);
+	ft_putchar_fd('\n', 1);
 }
 
 void	sol_move_down(t_solong *str_solong)
@@ -46,6 +50,8 @@ void	sol_move_down(t_solong *str_solong)
 	if (info->map[info->char_y][info->char_x] == '1')
 		info->char_y -= 1;
 	info->move_count++;
+	ft_putnbr_fd(info->move_count, 1);
+	ft_putchar_fd('\n', 1);
 }
 
 void	sol_move_right(t_solong *str_solong)
@@ -58,6 +64,8 @@ void	sol_move_right(t_solong *str_solong)
 	if (info->map[info->char_y][info->char_x] == '1')
 		info->char_x -= 1;
 	info->move_count++;
+	ft_putnbr_fd(info->move_count, 1);
+	ft_putchar_fd('\n', 1);
 }
 
 void	so_long_draw_char(t_solong *str_solong)

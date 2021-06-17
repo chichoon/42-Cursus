@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 21:31:51 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/17 13:22:05 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		sol_check_map(char *filename, t_map_info *info)
 
 	fd_map = open(filename, O_RDONLY);
 	if (fd_map < 3)
-		return (sol_perror_return("No such file", info));
+		return (sol_perror_return("Error\nNo such file", info));
 	gnl_result = get_next_line(fd_map, &str);
 	info->map_width = ft_strlen(str);
 	info->map_height = 0;
@@ -61,7 +61,7 @@ int		sol_check_map(char *filename, t_map_info *info)
 		{
 			close(fd_map);
 			free(str);
-			return (sol_perror_return("Invalid rectangle shape", info));
+			return (sol_perror_return("Error\nInvalid rectangle shape", info));
 		}
 		free(str);
 		info->map_height++;

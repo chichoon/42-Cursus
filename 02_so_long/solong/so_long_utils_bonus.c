@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 15:09:44 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 21:57:23 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/17 13:18:52 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_strstr(char *str, char *to_find)
 	return (tmp);
 }
 
-char	**ft_free_char2d(char **arr)
+int		ft_free_char2d(char **arr)
 {
 	int index;
 
@@ -49,7 +49,7 @@ char	**ft_free_char2d(char **arr)
 	while (arr[index])
 		free(arr[index++]);
 	free(arr);
-	return (0);
+	return (1);
 }
 
 int		ft_if_available(char s, char *arr)

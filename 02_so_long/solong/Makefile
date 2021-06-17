@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/08 14:50:22 by jiychoi           #+#    #+#              #
-#    Updated: 2021/06/16 22:32:22 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/06/17 13:51:18 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,19 +31,22 @@ MLX_OPENGL	=	-L ./mlx_opengl -lmlx
 MLX_FLAGS	=	-framework OpenGL -framework Appkit
 TARGET		=	so_long
 
+ifdef IF_BONUS
+	OBJECTS = $(OBJ_BONUS)
+else
+	OBJECTS = $(OBJ)
+endif
+
 all : $(TARGET)
 
-$(TARGET) : $(OBJ)
+$(TARGET) : $(OBJECTS)
 	@$(MAKE) -C ./mlx_opengl all
 	@mv ./mlx_opengl/libmlx.a ./libmlx.a
 	@$(MAKE) -C ./libft all
-	$(CC) $(OBJ) $(CFLAGS) $(MLX_OPENGL) $(MLX_FLAGS) $(LIBFT) -o $(TARGET)
+	$(CC) $(OBJECTS) $(CFLAGS) $(MLX_OPENGL) $(MLX_FLAGS) $(LIBFT) -o $(TARGET)
 
-bonus : $(OBJ_BONUS)
-	@$(MAKE) -C ./mlx_opengl all
-	@mv ./mlx_opengl/libmlx.a ./libmlx.a
-	@$(MAKE) -C ./libft all
-	$(CC) $(OBJ_BONUS) $(CFLAGS) $(MLX_OPENGL) $(MLX_FLAGS) $(LIBFT) -o $(TARGET)
+bonus :
+	@$(MAKE) IF_BONUS=1 all
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c -o $@ $< -I ./

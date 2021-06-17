@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:57 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 21:42:14 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/17 13:19:09 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ int				so_long_key(int key, void *param);
 	**utils!
 */
 char			*ft_strstr(char *str, char *to_find);
-char			**ft_free_char2d(char **arr);
+int				ft_free_char2d(char **arr);
 int				ft_if_available(char s, char *arr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:38:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 21:57:25 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/17 13:27:33 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,14 @@ int			sol_validate_map(char **map, t_map_info *info)
 {
 	info->num_collections = 0;
 	if (info->map_height < 3 || info->map_width < 3)
-		return (sol_perror_return("Too small map", info));
+		return (sol_perror_return("Error\nToo small map", info));
 	if (info->map_height > 30 || info->map_width > 70)
-		return (sol_perror_return("Too big map", info));
+		return (sol_perror_return("Error\nToo big map", info));
 	if (!sol_check_wall(map, info))
-		return (sol_perror_return("Map is not closed", info));
+		return (sol_perror_return("Error\nMap is not closed", info));
 	if (!sol_check_char(map, info))
-		return (sol_perror_return("Invalid map charset", info));
+		return (sol_perror_return("Error\nInvalid map charset", info));
 	if (!sol_count_collective(map, info))
-		return (sol_perror_return("Too small collectives", info));
+		return (sol_perror_return("Error\nToo small collectives", info));
 	return (1);
 }
