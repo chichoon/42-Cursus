@@ -6,8 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:40 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/17 15:27:40 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/17 15:56:22 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_client.h"
+
+int main(void)
+{
+
+}
