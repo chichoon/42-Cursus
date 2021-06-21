@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:27:32 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/18 14:43:22 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/21 22:58:16 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <signal.h>
 # include <unistd.h>
+# include "../libft/libft.h"
 
 
 #endif
