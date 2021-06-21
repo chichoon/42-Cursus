@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_client.h                                  :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/17 15:09:48 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/22 04:59:18 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/06/22 03:18:12 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/06/22 03:23:08 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_CLIENT_H
-# define MINITALK_CLIENT_H
+#include <stdio.h>
 
-# include <signal.h>
-# include <unistd.h>
-# include "../libft/libft.h"
+int main(void)
+{
+	int a;
+	int i;
 
-struct sigaction	sigact_cli_connect;
-struct sigaction	sigact_cli_length;
-struct sigaction	sigact_cli_string;
-
-#endif
+	a = 1;
+	i = 0;
+	while (i < 4)
+	{
+		printf("%d\n", a);
+		a <<= 1;
+		a |= 1;
+		i++;
+	}
+}
