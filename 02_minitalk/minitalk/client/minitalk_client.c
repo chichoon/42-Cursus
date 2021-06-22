@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:40 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/22 13:01:03 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 16:02:24 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ void		client_connect(int signo)
 	if (signo == SIGUSR1)
 	{
 		sigaction(SIGUSR1, &sigact_cli_length, 0);
-		sigaction(SIGUSR2, &sigact_cli_length, 0);
+		ft_putstr_fd("Connected with server pid ", 1);
+		ft_putnbr_fd(g_data_tosend.pid, 1);
+		ft_putchar_fd('\n', 1);
 		kill(g_data_tosend.pid, SIGUSR1);
-		printf("%d\n", g_data_tosend.length);
 	}
 	else if (signo == SIGUSR2)
 	{
-		usleep(500000);
+		ft_putstr_fd("Waiting for server to answer...\n", 1);
 		kill(g_data_tosend.pid, SIGUSR1);
+		usleep(500000);
 	}
 }
 
@@ -43,43 +45,37 @@ void		client_send_length(int signo)
 			kill(g_data_tosend.pid, SIGUSR2);
 		total_bits++;
 	}
-	if (total_bits == 32)
+	if (total_bits == 32 && signo == SIGUSR1)
 	{
 		total_bits = 0;
 		sigaction(SIGUSR1, &sigact_cli_string, 0);
-		sigaction(SIGUSR2, &sigact_cli_string, 0);
-		printf("all length bits sent\n");
 	}
 }
 
 void		client_send_string(int signo)
 {
-	static int	total_bits;
-	static int	total_bytes;
-	char		char_temp;
+	static int		total_bits;
+	static int		total_bytes;
+	unsigned char	char_temp;
 
-	printf("1\n");
 	if (total_bytes < g_data_tosend.length && signo == SIGUSR1)
 	{
-		if (total_bits < 8)
-		{
-			printf("sigsig\n");
-			char_temp = g_data_tosend.str[total_bytes];
-			if ((char_temp >> (7 - total_bits) & 1) == 0)
-				kill(g_data_tosend.pid, SIGUSR1);
-			else if ((char_temp >> (7 - total_bits) & 1) == 1)
-				kill(g_data_tosend.pid, SIGUSR2);
-			total_bits++;
-		}
 		if (total_bits == 8)
 		{
 			total_bits = 0;
 			total_bytes++;
 		}
+		char_temp = g_data_tosend.str[total_bytes];
+		if ((char_temp >> (7 - total_bits) & 1) == 0)
+			kill(g_data_tosend.pid, SIGUSR1);
+		else if ((char_temp >> (7 - total_bits) & 1) == 1)
+			kill(g_data_tosend.pid, SIGUSR2);
+		total_bits++;
 	}
-	if (total_bytes == g_data_tosend.length)
+	if (total_bytes == g_data_tosend.length && signo == SIGUSR1)
 	{
-		printf("all string sent!\n");
+		total_bytes = 0;
+		kill(g_data_tosend.pid, SIGUSR1);
 		exit(0);
 	}
 }
@@ -124,6 +120,7 @@ int			main(int argc, char *argv[])
 	client_validate(g_data_tosend.pid, argv[2]);
 	client_init_struct();
 	sigaction(SIGUSR1, &sigact_cli_connect, 0);
+	sigaction(SIGUSR2, &sigact_cli_connect, 0);
 	kill(g_data_tosend.pid, SIGUSR1);
 	while (1)
 		usleep(500000);

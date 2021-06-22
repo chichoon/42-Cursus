@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:27:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/22 13:00:03 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 16:16:24 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,51 +15,59 @@
 
 t_data_receive	g_data_receive;
 
-static char	server_get_string_if(int signo, char c, int len_bit)
+void		server_reset_status(void)
+{
+	g_data_receive.str[g_data_receive.length] = 0;
+	write(1, g_data_receive.str, g_data_receive.length);
+	free(g_data_receive.str);
+	g_data_receive.pid = 0;
+	g_data_receive.length = 0;
+	g_data_receive.str = 0;
+	g_data_receive.char_temp = 0;
+}
+
+static void	server_get_string_if(int signo, int len_bit)
 {
 	if (signo == SIGUSR1)
 	{
-		c |= 0;
+		g_data_receive.char_temp |= 0;
 		if (len_bit < 8)
-			c <<= 1;
-		kill(g_data_receive.pid, SIGUSR1);
+			g_data_receive.char_temp <<= 1;
 	}
 	else if (signo == SIGUSR2)
 	{
-		c |= 1;
+		g_data_receive.char_temp |= 1;
 		if (len_bit < 8)
-			c <<= 1;
-		kill(g_data_receive.pid, SIGUSR1);
+			g_data_receive.char_temp <<= 1;
 	}
-	return (c);
 }
 
-void		server_get_string(int signo)
+void		server_get_string(int signo, siginfo_t *info, void *ptr)
 {
-	static char	char_temp;
-	static int	len_bit;
-	static int	len_byte;
+	static int				len_bit;
+	static int				len_byte;
 
-	if (len_byte < g_data_receive.length)
+	ptr = (char *)ptr;
+	if (len_byte < g_data_receive.length && g_data_receive.pid == info->si_pid)
 	{
-		if (len_bit++ < 8)
-			char_temp = server_get_string_if(signo, char_temp, len_bit);
-		else if (len_bit == 8)
+		if (len_bit == 8)
 		{
 			len_bit = 0;
-			char_temp = 0;
-			g_data_receive.str[len_byte++] = char_temp;
+			g_data_receive.str[len_byte++] = g_data_receive.char_temp;
+			g_data_receive.char_temp = 0;
 		}
+		server_get_string_if(signo, len_bit);
+		kill(g_data_receive.pid, SIGUSR1);
 	}
-	if (len_byte == g_data_receive.length)
+	if (len_byte == g_data_receive.length && g_data_receive.pid == info->si_pid)
 	{
-		g_data_receive.str[len_byte] = 0;
-		write(1, g_data_receive.str, g_data_receive.length);
-		free(g_data_receive.str);
+		server_reset_status();
 		len_byte = 0;
-		sigaction(SIGUSR1, &sigact_srv_connect, 0);
-		sigaction(SIGUSR2, &sigact_srv_connect, 0);
+		sigaction(SIGUSR1, &sigact_srv_try_connect, 0);
+		sigaction(SIGUSR2, &sigact_srv_try_connect, 0);
 	}
+	if (g_data_receive.pid != info->si_pid)
+		kill(info->si_pid, SIGUSR2);
 }
 
 static void	server_get_length_if(int signo, int len_bit)
@@ -80,22 +88,27 @@ static void	server_get_length_if(int signo, int len_bit)
 	}
 }
 
-void		server_get_length(int signo)
+void		server_get_length(int signo, siginfo_t *info, void *ptr)
 {
-	static int len_bit;
+	static int	len_bit;
+	char		*str_ptr;
 
-	if (len_bit++ < 32)
+	ptr = (char *)ptr;
+	if (len_bit++ < 32 && g_data_receive.pid == info->si_pid)
 		server_get_length_if(signo, len_bit);
-	if (len_bit == 32)
+	if (len_bit == 32 && g_data_receive.pid == info->si_pid)
 	{
-		printf("\nlength: %d\n", g_data_receive.length);
 		len_bit = 0;
 		sigaction(SIGUSR1, &sigact_srv_string, 0);
 		sigaction(SIGUSR2, &sigact_srv_string, 0);
-		g_data_receive.str = (char *)malloc(sizeof(char) *
-			(g_data_receive.length + 1));
+		str_ptr = (char *)malloc(sizeof(char) * (g_data_receive.length + 1));
+		if (!str_ptr)
+			exit(1);
+		g_data_receive.str = str_ptr;
 		kill(g_data_receive.pid, SIGUSR1);
 	}
+	if (g_data_receive.pid != info->si_pid)
+		kill(info->si_pid, SIGUSR2);
 }
 
 void		server_connect(int signo, siginfo_t *info, void *ptr)
@@ -145,12 +158,14 @@ void	server_init_struct(void)
 	sigact_srv_connect.sa_sigaction = server_connect;
 	sigact_srv_length.sa_flags = 0;
 	sigemptyset(&sigact_srv_length.sa_mask);
-	sigact_srv_length.sa_handler = server_get_length;
+	sigact_srv_length.sa_sigaction = server_get_length;
 	sigact_srv_string.sa_flags = 0;
 	sigemptyset(&sigact_srv_string.sa_mask);
-	sigact_srv_string.sa_handler = server_get_string;
+	sigact_srv_string.sa_sigaction = server_get_string;
 	g_data_receive.pid = 0;
 	g_data_receive.length = 0;
+	g_data_receive.str = 0;
+	g_data_receive.char_temp = 0;
 }
 
 int		main(void)

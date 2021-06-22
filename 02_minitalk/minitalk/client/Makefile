@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 22:28:35 by jiychoi           #+#    #+#              #
-#    Updated: 2021/06/22 11:52:56 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/06/22 14:51:10 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME		=	minitalk_client
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(LIBFT) -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS) $(MFLAGS) $(LIBFT) -o $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c -o $@ $< -I ./

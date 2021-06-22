@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:27:32 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/22 12:56:52 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 14:33:18 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ struct sigaction	sigact_srv_string;
 
 typedef struct		s_data_receive
 {
-	pid_t	pid;
-	int		length;
-	char	*str;
+	pid_t			pid;
+	int				length;
+	unsigned char	char_temp;
+	char			*str;
 }					t_data_receive;
 
 extern t_data_receive g_data_receive;
