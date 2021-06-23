@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/03 15:47:50 by jiychoi           #+#    #+#              #
-#    Updated: 2021/05/03 20:42:41 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/06/23 15:26:52 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,19 +26,21 @@ NAME		=	libft.a
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	ar -rc $(NAME) $(OBJS)
+	@printf "$(LF)Compiling Libft...\n"
+	@ar -rc $(NAME) $(OBJS)
 
 %.o : %.c
-	$(CC) $(PARAM) -c -o $@ $< -I libft.h
+	@$(CC) $(PARAM) -c -o $@ $< -I libft.h
 
 clean :
-	rm -f $(OBJS) $(OBJS_BNS)
+	@printf "$(LF)Deleting Libft...\n"
+	@rm -f $(OBJS) $(OBJS_BNS)
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 bonus : $(OBJS) $(OBJS_BNS)
-	ar -rc $(NAME) $^
+	@ar -rc $(NAME) $^
 
 re : fclean all
 

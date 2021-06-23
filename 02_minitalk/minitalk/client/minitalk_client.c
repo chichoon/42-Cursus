@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:40 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/22 16:02:24 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/23 17:16:39 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include <stdio.h>
 
 t_data_tosend	g_data_tosend;
+
+void		kill_and_pause(pid_t pid, int signo)
+{
+	kill(pid, signo);
+	usleep(10);
+}
 
 void		client_connect(int signo)
 {
@@ -23,13 +29,7 @@ void		client_connect(int signo)
 		ft_putstr_fd("Connected with server pid ", 1);
 		ft_putnbr_fd(g_data_tosend.pid, 1);
 		ft_putchar_fd('\n', 1);
-		kill(g_data_tosend.pid, SIGUSR1);
-	}
-	else if (signo == SIGUSR2)
-	{
-		ft_putstr_fd("Waiting for server to answer...\n", 1);
-		kill(g_data_tosend.pid, SIGUSR1);
-		usleep(500000);
+		kill_and_pause(g_data_tosend.pid, SIGUSR1);
 	}
 }
 
@@ -40,13 +40,14 @@ void		client_send_length(int signo)
 	if (total_bits < 32 && signo == SIGUSR1)
 	{
 		if ((g_data_tosend.length >> (31 - total_bits) & 1) == 0)
-			kill(g_data_tosend.pid, SIGUSR1);
+			kill_and_pause(g_data_tosend.pid, SIGUSR1);
 		else if ((g_data_tosend.length >> (31 - total_bits) & 1) == 1)
-			kill(g_data_tosend.pid, SIGUSR2);
+			kill_and_pause(g_data_tosend.pid, SIGUSR2);
 		total_bits++;
 	}
 	if (total_bits == 32 && signo == SIGUSR1)
 	{
+		ft_putstr_fd("Sending length successful.", 1);
 		total_bits = 0;
 		sigaction(SIGUSR1, &sigact_cli_string, 0);
 	}
@@ -56,21 +57,21 @@ void		client_send_string(int signo)
 {
 	static int		total_bits;
 	static int		total_bytes;
-	unsigned char	char_temp;
+	int				bit_temp;
 
+	if (total_bits == 8)
+	{
+		total_bits = 0;
+		total_bytes++;
+	}
 	if (total_bytes < g_data_tosend.length && signo == SIGUSR1)
 	{
-		if (total_bits == 8)
-		{
-			total_bits = 0;
-			total_bytes++;
-		}
-		char_temp = g_data_tosend.str[total_bytes];
-		if ((char_temp >> (7 - total_bits) & 1) == 0)
-			kill(g_data_tosend.pid, SIGUSR1);
-		else if ((char_temp >> (7 - total_bits) & 1) == 1)
-			kill(g_data_tosend.pid, SIGUSR2);
+		bit_temp = g_data_tosend.str[total_bytes] >> (7 - total_bits) & 1;
 		total_bits++;
+		if (bit_temp == 0)
+			kill_and_pause(g_data_tosend.pid, SIGUSR1);
+		else if (bit_temp == 1)
+			kill_and_pause(g_data_tosend.pid, SIGUSR2);
 	}
 	if (total_bytes == g_data_tosend.length && signo == SIGUSR1)
 	{
@@ -120,8 +121,7 @@ int			main(int argc, char *argv[])
 	client_validate(g_data_tosend.pid, argv[2]);
 	client_init_struct();
 	sigaction(SIGUSR1, &sigact_cli_connect, 0);
-	sigaction(SIGUSR2, &sigact_cli_connect, 0);
-	kill(g_data_tosend.pid, SIGUSR1);
+	kill_and_pause(g_data_tosend.pid, SIGUSR1);
 	while (1)
 		usleep(500000);
 }

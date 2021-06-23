@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 22:28:37 by jiychoi           #+#    #+#              #
-#    Updated: 2021/06/22 15:53:18 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/06/23 15:27:55 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,19 +17,23 @@ SRCS		=	minitalk_server.c
 OBJS		=	$(SRCS:.c=.o)
 LIBFT		=	-L ../libft -lft
 NAME		=	minitalk_server
+LF			=	\e[1K\r
+CRLF		=	\n$(LF)
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(MFLAGS) $(LIBFT) -o $(NAME)
+	@printf "$(LF)Making Server...\n"
+	@$(CC) $(OBJS) $(CFLAGS) $(LIBFT) -o $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c -o $@ $< -I ./
+	@$(CC) $(CFLAGS) -c -o $@ $< -I ./
 
 clean :
-	rm -rf $(OBJS)
+	@printf "$(LF)Deleting Server...\n"
+	@rm -rf $(OBJS)
 
 fclean : clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re : fclean all

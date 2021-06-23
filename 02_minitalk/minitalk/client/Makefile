@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 22:28:35 by jiychoi           #+#    #+#              #
-#    Updated: 2021/06/22 14:51:10 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/06/23 15:27:56 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,19 +17,24 @@ SRCS		=	minitalk_client.c
 OBJS		=	$(SRCS:.c=.o)
 LIBFT		=	-L ../libft -lft
 NAME		=	minitalk_client
+LF			=	\e[1K\r$(NO_COLOR)
+CRLF		=	\n$(LF)
+NO_COLOR	=	\e[0m
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(MFLAGS) $(LIBFT) -o $(NAME)
+	@printf "$(LF)Making Client...\n"
+	@$(CC) $(OBJS) $(CFLAGS) $(LIBFT) -o $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c -o $@ $< -I ./
+	@$(CC) $(CFLAGS) -c -o $@ $< -I ./
 
 clean :
-	rm -rf $(OBJS)
+	@printf "$(LF)Deleting Client...\n"
+	@rm -rf $(OBJS)
 
 fclean : clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re : fclean all
