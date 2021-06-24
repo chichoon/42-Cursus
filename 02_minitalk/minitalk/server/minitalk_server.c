@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk_server.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:27:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/23 17:09:40 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/24 23:32:27 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void		server_reset_status(void)
 {
 	g_data_receive.str[g_data_receive.length] = 0;
 	write(1, g_data_receive.str, g_data_receive.length);
+	write(1, "\n", 1);
 	free(g_data_receive.str);
 	g_data_receive.pid = 0;
 	g_data_receive.length = 0;

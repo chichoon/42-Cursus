@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk_client.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:40 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/23 17:16:39 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/24 23:32:38 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		client_send_length(int signo)
 	}
 	if (total_bits == 32 && signo == SIGUSR1)
 	{
-		ft_putstr_fd("Sending length successful.", 1);
+		ft_putstr_fd("Sending length successful.\n", 1);
 		total_bits = 0;
 		sigaction(SIGUSR1, &sigact_cli_string, 0);
 	}
