@@ -18,7 +18,7 @@ t_data_tosend	g_data_tosend;
 void		kill_and_pause(pid_t pid, int signo)
 {
 	kill(pid, signo);
-	usleep(10);
+	usleep(80);
 }
 
 void		client_connect(int signo)
