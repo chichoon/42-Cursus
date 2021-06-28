@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 19:20:50 by jiychoi           #+#    #+#              #
-#    Updated: 2021/06/23 15:27:43 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/06/28 16:28:33 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,12 @@ clean :
 	@cd ./server && make clean
 
 fclean : clean
-	@cd ./client && rm -rf minitalk_client
-	@cd ./server && rm -rf minitalk_server
+	@cd ./client && rm -rf client
+	@cd ./server && rm -rf server
+
+bonus :
+	@$(MAKE) -C ./libft all
+	@$(MAKE) -C ./client bonus
+	@$(MAKE) -C ./server bonus
 
 re : fclean all

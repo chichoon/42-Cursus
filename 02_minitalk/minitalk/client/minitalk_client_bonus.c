@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_client.c                                  :+:      :+:    :+:   */
+/*   minitalk_client_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:40 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/28 14:04:20 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/28 16:16:51 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_client.h"
+#include "minitalk_client_bonus.h"
 
 t_data_tosend	g_data_tosend;
 
