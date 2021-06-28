@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:40 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/28 12:05:35 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/28 12:13:30 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_data_tosend	g_data_tosend;
 void		kill_and_pause(pid_t pid, int signo)
 {
 	kill(pid, signo);
-	usleep(80);
+	usleep(50);
 }
 
 void		client_connect(int signo)

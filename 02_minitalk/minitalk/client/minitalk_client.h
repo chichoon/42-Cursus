@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:48 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/28 12:07:07 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/28 12:09:41 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct		s_data_tosend
 	int		length;
 	char	*str;
 }					t_data_tosend;
+
+extern t_data_tosend g_data_tosend;
 
 /*
 	** Minitalk Client: function to send bits (length & string)

@@ -6,14 +6,14 @@
 #    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 22:28:37 by jiychoi           #+#    #+#              #
-#    Updated: 2021/06/23 15:27:55 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/06/28 12:09:56 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 MFLAGS		=	-g3 -fsanitize=address
-SRCS		=	minitalk_server.c
+SRCS		=	minitalk_server.c minitalk_server_getbyte.c
 OBJS		=	$(SRCS:.c=.o)
 LIBFT		=	-L ../libft -lft
 NAME		=	minitalk_server
