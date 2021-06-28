@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:27:32 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/22 14:33:18 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/28 12:06:16 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,19 @@ typedef struct		s_data_receive
 }					t_data_receive;
 
 extern t_data_receive g_data_receive;
+
+/*
+	** Minitalk Server: function to connect & initialize
+*/
+void				server_reset_status(void);
+void				server_connect(int signo, siginfo_t *info, void *ptr);
+void				server_try_connect(int signo, siginfo_t *info, void *ptr);
+void				server_init_struct(void);
+
+/*
+	** Minitalk Server: function to receive bits (length & string)
+*/
+void				server_get_string(int signo, siginfo_t *info, void *ptr);
+void				server_get_length(int signo, siginfo_t *info, void *ptr);
 
 #endif
