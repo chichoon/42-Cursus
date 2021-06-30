@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 13:59:11 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 20:07:49 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:50:52 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void			ft_putnbr_fd(int n, int fd);
 /*
 	** Part b : bonus functions & structure define
 */
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;

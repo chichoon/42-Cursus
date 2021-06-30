@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 20:33:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 20:40:03 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:51:25 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void *ptr;
+	void	*ptr;
 
 	ptr = malloc(count * size);
 	if (!ptr)

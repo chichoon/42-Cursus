@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:17:15 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 20:13:07 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:51:50 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memchr(const void *src, int c, size_t n)
 {
-	unsigned char *src_backup;
+	unsigned char	*src_backup;
 
 	src_backup = (unsigned char *)src;
 	while (n)

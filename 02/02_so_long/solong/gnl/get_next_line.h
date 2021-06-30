@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 05:27:31 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/13 14:52:23 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/05/09 12:35:14 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,5 @@ char	*ft_strndup(char *str, int length);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *src);
 char	*ft_strchr(const char *src, int c);
-
-# define BUFFER_SIZE 1000
 
 #endif

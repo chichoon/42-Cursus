@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 11:07:49 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/14 13:36:49 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:52:15 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_get_wc(char *str, char c)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (*str)
@@ -29,7 +29,7 @@ static int	ft_get_wc(char *str, char c)
 
 static int	ft_get_wl(char *str, char c)
 {
-	int length;
+	int	length;
 
 	length = 0;
 	while (*str && *str != c)
@@ -40,7 +40,7 @@ static int	ft_get_wl(char *str, char c)
 	return (length);
 }
 
-char		*ft_strndup(char *str, int length)
+char	*ft_strndup(char *str, int length)
 {
 	char	*ptr;
 	char	*ptr_backup;
@@ -57,7 +57,7 @@ char		*ft_strndup(char *str, int length)
 
 static char	**ft_free_char2d(char **arr)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (arr[index])
@@ -66,7 +66,7 @@ static char	**ft_free_char2d(char **arr)
 	return (0);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	int		wordlength;
 	int		wordcount;

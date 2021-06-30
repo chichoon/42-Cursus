@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_diux_0.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:19:42 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 02:06:46 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:00:22 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	config_asterisk(t_format *fmt_conv, va_list param)
 		fmt_conv->precision = va_arg(param, int);
 }
 
-int			ft_print_d(t_format *fmt_conv, va_list param)
+int	ft_print_d(t_format *fmt_conv, va_list param)
 {
 	int				num;
 	unsigned int	absol;
@@ -56,7 +56,7 @@ int			ft_print_d(t_format *fmt_conv, va_list param)
 	return (output);
 }
 
-int			ft_print_u(t_format *fmt_conv, va_list param)
+int	ft_print_u(t_format *fmt_conv, va_list param)
 {
 	unsigned int	absol;
 	char			*number_to_print;
@@ -74,7 +74,7 @@ int			ft_print_u(t_format *fmt_conv, va_list param)
 	return (output);
 }
 
-int			ft_print_x(t_format *fmt_conv, va_list param, int if_low)
+int	ft_print_x(t_format *fmt_conv, va_list param, int if_low)
 {
 	unsigned int	absol;
 	char			*number_to_print;

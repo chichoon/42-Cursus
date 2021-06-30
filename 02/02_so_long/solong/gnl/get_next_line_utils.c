@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 05:27:42 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/09 12:33:50 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:57:03 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void		*ft_memcpy(void *dst, const void *src, size_t n)
+static void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char *dst_backup;
-	unsigned char *src_backup;
+	unsigned char	*dst_backup;
+	unsigned char	*src_backup;
 
 	dst_backup = (unsigned char *)dst;
 	src_backup = (unsigned char *)src;
@@ -29,7 +29,7 @@ static void		*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-char			*ft_strndup(char *str, int length)
+char	*ft_strndup(char *str, int length)
 {
 	char	*ptr;
 	char	*ptr_backup;
@@ -44,7 +44,7 @@ char			*ft_strndup(char *str, int length)
 	return (ptr_backup);
 }
 
-char			*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ptr;
 	char	*ptr_backup;
@@ -71,7 +71,7 @@ char			*ft_strjoin(char const *s1, char const *s2)
 	return (ptr_backup);
 }
 
-char			*ft_strdup(const char *src)
+char	*ft_strdup(const char *src)
 {
 	char	*ptr;
 	int		length;
@@ -88,9 +88,9 @@ char			*ft_strdup(const char *src)
 	return (ptr - length);
 }
 
-char			*ft_strchr(const char *src, int c)
+char	*ft_strchr(const char *src, int c)
 {
-	char ch;
+	char	ch;
 
 	ch = (char)c;
 	while (*src)

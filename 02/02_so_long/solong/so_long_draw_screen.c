@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_draw_screen.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 17:02:51 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 20:02:31 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:06:52 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	sol_draw_corner(t_map_info *info, t_map_img *img)
 
 void	sol_draw_ywall(t_map_info *info, t_map_img *img)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (++y + 1 < (int)info->map_height)
@@ -40,7 +40,7 @@ void	sol_draw_ywall(t_map_info *info, t_map_img *img)
 
 void	sol_draw_xwall(t_map_info *info, t_map_img *img)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (++x + 1 < (int)info->map_width)
@@ -73,8 +73,8 @@ void	sol_draw_pillar(int x, int y, t_map_info *info, t_map_img *img)
 
 void	sol_draw_map(t_map_info *info, t_map_img *img)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (++y + 1 < (int)info->map_height)

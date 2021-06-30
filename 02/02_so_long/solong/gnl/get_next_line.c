@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 05:27:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/09 20:12:08 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:57:14 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	cut_next_line(int fd, char **line, char **str_buf)
 	return (1);
 }
 
-int			read_bufsize(int fd, char **line, char **str_buf)
+int	read_bufsize(int fd, char **line, char **str_buf)
 {
 	char		temp_buf[BUFFER_SIZE + 1];
 	int			len_read;
@@ -61,12 +61,10 @@ int			read_bufsize(int fd, char **line, char **str_buf)
 	return (0);
 }
 
-int			get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*str_buf[256];
-	int			output;
 
-	output = 0;
 	if (BUFFER_SIZE < 1 || fd > 256 || fd < 0 || !line)
 		return (-1);
 	if (!str_buf[fd])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 15:09:44 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/17 13:18:52 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:09:37 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ char	*ft_strstr(char *str, char *to_find)
 	return (tmp);
 }
 
-int		ft_free_char2d(char **arr)
+int	ft_free_char2d(char **arr)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (arr[index])
@@ -52,7 +52,7 @@ int		ft_free_char2d(char **arr)
 	return (1);
 }
 
-int		ft_if_available(char s, char *arr)
+int	ft_if_available(char s, char *arr)
 {
 	while (*arr)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printft.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:43:09 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 06:01:54 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:03:29 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 /*
 	** structure : for maintain flags, conventions
 */
-typedef struct	s_format
+typedef struct s_format
 {
 	char	type;
 	int		width;

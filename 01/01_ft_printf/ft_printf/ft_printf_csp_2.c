@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_csp_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:02:57 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/20 21:55:25 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:59:52 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printft.h"
 
-int			print_if_minus_c(char c, int wtp)
+int	print_if_minus_c(char c, int wtp)
 {
-	int output;
+	int	output;
 
 	output = 0;
 	write(1, &c, 1);
@@ -27,9 +27,9 @@ int			print_if_minus_c(char c, int wtp)
 	return (output);
 }
 
-int			print_if_zero_c(char c, int wtp)
+int	print_if_zero_c(char c, int wtp)
 {
-	int output;
+	int	output;
 
 	output = 0;
 	while (wtp--)
@@ -42,9 +42,9 @@ int			print_if_zero_c(char c, int wtp)
 	return (output);
 }
 
-int			print_no_flags_c(char c, int wtp)
+int	print_no_flags_c(char c, int wtp)
 {
-	int output;
+	int	output;
 
 	output = 0;
 	while (wtp--)
@@ -57,9 +57,9 @@ int			print_no_flags_c(char c, int wtp)
 	return (output);
 }
 
-int			print_if_minus_s(char *str, int wtp, int length)
+int	print_if_minus_s(char *str, int wtp, int length)
 {
-	int output;
+	int	output;
 
 	output = ft_putstr_until(str, str + length);
 	while (wtp--)
@@ -70,9 +70,9 @@ int			print_if_minus_s(char *str, int wtp, int length)
 	return (output);
 }
 
-int			print_no_flags_s(char *str, int wtp, int length)
+int	print_no_flags_s(char *str, int wtp, int length)
 {
-	int output;
+	int	output;
 
 	output = 0;
 	while (wtp--)

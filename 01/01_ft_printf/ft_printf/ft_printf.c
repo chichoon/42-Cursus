@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 10:37:33 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/22 01:33:00 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:03:18 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ctrl_twr(t_format *fmt_conv, va_list param)
 {
-	int output;
+	int	output;
 
 	output = 0;
 	if (fmt_conv->type == 'c' || fmt_conv->type == '%')
@@ -38,7 +38,7 @@ static int	ctrl_twr(t_format *fmt_conv, va_list param)
 static char	*get_convs_ptr(char *ptr_param)
 {
 	while (!if_available(*ptr_param, "cspdiuxX") && *ptr_param != '%'
-			&& *ptr_param)
+		&& *ptr_param)
 		ptr_param++;
 	if (!*ptr_param || *ptr_param == '%')
 		return (0);
@@ -74,7 +74,7 @@ static int	ft_printf_main(char *fmt, va_list param)
 	return (output);
 }
 
-int			ft_printf(const char *fmt, ...)
+int	ft_printf(const char *fmt, ...)
 {
 	va_list	param;
 	char	*fmt_start;
@@ -88,4 +88,3 @@ int			ft_printf(const char *fmt, ...)
 	va_end(param);
 	return (output);
 }
-

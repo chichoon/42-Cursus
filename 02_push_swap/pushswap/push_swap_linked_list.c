@@ -14,7 +14,7 @@
 
 t_dnode	*ps_lstadd_front(int key, t_dnode *dnode_next)
 {
-	t_dnode *node;
+	t_dnode	*node;
 
 	node = (t_dnode *)malloc(sizeof(t_dnode));
 	if (!node)
@@ -55,7 +55,7 @@ void	ps_lstmove_front(t_dnode *dnode_tomove, t_dnode *dnode_next)
 
 t_dnode	*ps_lstadd_back(int key, t_dnode *dnode_prev)
 {
-	t_dnode *node;
+	t_dnode	*node;
 
 	node = (t_dnode *)malloc(sizeof(t_dnode));
 	if (!node)
@@ -120,7 +120,7 @@ void	ps_lstdel(t_dnode *dnode_del)
 
 void	ps_lstdel_all(t_dnode *dnode_start)
 {
-	t_dnode *dnode_next;
+	t_dnode	*dnode_next;
 
 	if (dnode_start->next == 0)
 		free(dnode_start);

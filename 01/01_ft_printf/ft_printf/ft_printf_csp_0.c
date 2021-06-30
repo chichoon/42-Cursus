@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_csp_0.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 22:18:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 05:36:25 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:59:11 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	config_asterisk(t_format *fmt_conv, va_list param)
 		fmt_conv->precision = va_arg(param, int);
 }
 
-int			ft_print_p(t_format *fmt_conv, va_list param)
+int	ft_print_p(t_format *fmt_conv, va_list param)
 {
 	unsigned long	absol;
 	char			*pointer_to_print;
@@ -35,8 +35,8 @@ int			ft_print_p(t_format *fmt_conv, va_list param)
 
 	config_asterisk(fmt_conv, param);
 	absol = (unsigned long)va_arg(param, void *);
-	if (absol == 0 && fmt_conv->if_dot &&
-		(fmt_conv->precision > 0 || fmt_conv->precision == -2147483648))
+	if (absol == 0 && fmt_conv->if_dot
+		&& (fmt_conv->precision > 0 || fmt_conv->precision == -2147483648))
 		pointer_to_print = ft_strjoin_pf("", "");
 	else
 		pointer_to_print = ft_itoa_base(absol, "0123456789abcdef");
@@ -45,7 +45,7 @@ int			ft_print_p(t_format *fmt_conv, va_list param)
 	return (output);
 }
 
-int			ft_print_s(t_format *fmt_conv, va_list param)
+int	ft_print_s(t_format *fmt_conv, va_list param)
 {
 	char	*str_to_print;
 	int		if_null;
@@ -67,7 +67,7 @@ int			ft_print_s(t_format *fmt_conv, va_list param)
 	return (output);
 }
 
-int			ft_print_c(t_format *fmt_conv, va_list param)
+int	ft_print_c(t_format *fmt_conv, va_list param)
 {
 	char	char_to_print;
 	int		output;
@@ -81,9 +81,9 @@ int			ft_print_c(t_format *fmt_conv, va_list param)
 	return (output);
 }
 
-char		*check_if_percent(char *ptr_param)
+char	*check_if_percent(char *ptr_param)
 {
-	char *ptr_until;
+	char	*ptr_until;
 
 	ptr_until = ft_strchr_pf(ptr_param, '%');
 	if (!ptr_until)

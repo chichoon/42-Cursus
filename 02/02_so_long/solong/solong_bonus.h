@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solong_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:57 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/17 13:35:54 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:16:55 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 /*
 	** structure : for map
 */
-typedef struct	s_map_info
+typedef struct s_map_info
 {
 	size_t	map_width;
 	size_t	map_height;
@@ -39,40 +39,40 @@ typedef struct	s_map_info
 	int		loop_flag;
 }				t_map_info;
 
-typedef struct	s_map_img
+typedef struct s_map_img
 {
-	void *map_up_left;
-	void *map_up_mid;
-	void *map_up_right;
-	void *map_mid_left;
-	void *map_mid_mid;
-	void *map_mid_right;
-	void *map_down_left;
-	void *map_down_mid;
-	void *map_down_right;
-	void *map_pillar0;
-	void *map_pillar1;
-	void *map_pillar2;
-	void *map_end;
+	void	*map_up_left;
+	void	*map_up_mid;
+	void	*map_up_right;
+	void	*map_mid_left;
+	void	*map_mid_mid;
+	void	*map_mid_right;
+	void	*map_down_left;
+	void	*map_down_mid;
+	void	*map_down_right;
+	void	*map_pillar0;
+	void	*map_pillar1;
+	void	*map_pillar2;
+	void	*map_end;
 }				t_map_img;
 
-typedef struct	s_char_img
+typedef struct s_char_img
 {
-	void *char_e0;
-	void *char_e1;
-	void *char_w0;
-	void *char_w1;
-	void *char_n0;
-	void *char_n1;
-	void *char_s0;
-	void *char_s1;
-	void *item0;
-	void *item1;
-	void *enem0;
-	void *enem1;
+	void	*char_e0;
+	void	*char_e1;
+	void	*char_w0;
+	void	*char_w1;
+	void	*char_n0;
+	void	*char_n1;
+	void	*char_s0;
+	void	*char_s1;
+	void	*item0;
+	void	*item1;
+	void	*enem0;
+	void	*enem1;
 }				t_char_img;
 
-typedef struct	s_solong
+typedef struct s_solong
 {
 	t_map_info	*info;
 	t_map_img	*img_map;

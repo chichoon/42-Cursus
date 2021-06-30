@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_draw_assets_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 16:09:56 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 21:57:06 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:06:05 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	sol_draw_character_n(t_solong *str_solong)
 {
-	t_map_info *info;
-	t_char_img *img;
+	t_map_info	*info;
+	t_char_img	*img;
 
 	info = str_solong->info;
 	img = str_solong->img_char;
@@ -33,8 +33,8 @@ void	sol_draw_character_n(t_solong *str_solong)
 
 void	sol_draw_character_w(t_solong *str_solong)
 {
-	t_map_info *info;
-	t_char_img *img;
+	t_map_info	*info;
+	t_char_img	*img;
 
 	info = str_solong->info;
 	img = str_solong->img_char;
@@ -52,8 +52,8 @@ void	sol_draw_character_w(t_solong *str_solong)
 
 void	sol_draw_character_s(t_solong *str_solong)
 {
-	t_map_info *info;
-	t_char_img *img;
+	t_map_info	*info;
+	t_char_img	*img;
 
 	info = str_solong->info;
 	img = str_solong->img_char;
@@ -71,8 +71,8 @@ void	sol_draw_character_s(t_solong *str_solong)
 
 void	sol_draw_character_e(t_solong *str_solong)
 {
-	t_map_info *info;
-	t_char_img *img;
+	t_map_info	*info;
+	t_char_img	*img;
 
 	info = str_solong->info;
 	img = str_solong->img_char;
@@ -90,8 +90,8 @@ void	sol_draw_character_e(t_solong *str_solong)
 
 void	sol_draw_collective(t_map_info *info, t_char_img *img)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = -1;
 	while (++y < (int)info->map_height)

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_diux_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:02:03 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 02:06:48 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:02:02 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printft.h"
 
-int			print_if_minus(char *nb, int wtp, int ptp)
+int	print_if_minus(char *nb, int wtp, int ptp)
 {
-	int output;
+	int	output;
 
 	output = 0;
 	while (ptp-- > 0)
@@ -31,9 +31,9 @@ int			print_if_minus(char *nb, int wtp, int ptp)
 	return (output);
 }
 
-int			print_if_zero(char *nb, int wtp)
+int	print_if_zero(char *nb, int wtp)
 {
-	int output;
+	int	output;
 
 	output = 0;
 	while (wtp-- > 0)
@@ -45,9 +45,9 @@ int			print_if_zero(char *nb, int wtp)
 	return (output);
 }
 
-int			print_neg_if_minus(char *nb, int wtp, int ptp)
+int	print_neg_if_minus(char *nb, int wtp, int ptp)
 {
-	int output;
+	int	output;
 
 	output = 0;
 	write(1, "-", 1);
@@ -66,9 +66,9 @@ int			print_neg_if_minus(char *nb, int wtp, int ptp)
 	return (output);
 }
 
-int			print_neg_if_zero(char *nb, int wtp)
+int	print_neg_if_zero(char *nb, int wtp)
 {
-	int output;
+	int	output;
 
 	output = 1;
 	write(1, "-", 1);

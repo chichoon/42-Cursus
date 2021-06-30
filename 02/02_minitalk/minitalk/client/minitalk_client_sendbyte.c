@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk_client_sendbyte.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 04:36:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/28 12:05:38 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:26:23 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_client.h"
 
-void		client_send_length(int signo)
+void	client_send_length(int signo)
 {
-	static int total_bits;
+	static int	total_bits;
 
 	if (total_bits < 32 && signo == SIGUSR1)
 	{
@@ -28,11 +28,11 @@ void		client_send_length(int signo)
 	{
 		ft_putstr_fd("Sending length successful.\n", 1);
 		total_bits = 0;
-		sigaction(SIGUSR1, &sigact_cli_string, 0);
+		sigaction(SIGUSR1, &g_sigact_cli_string, 0);
 	}
 }
 
-void		client_send_string(int signo)
+void	client_send_string(int signo)
 {
 	static int		total_bits;
 	static int		total_bytes;

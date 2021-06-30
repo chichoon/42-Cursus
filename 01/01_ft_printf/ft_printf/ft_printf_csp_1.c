@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_csp_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:59:53 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/22 01:31:21 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:59:29 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	calc_width(t_format *fmt_conv, int length)
 
 static int	calc_length(t_format *fmt_conv, char *str)
 {
-	int length;
+	int	length;
 
 	length = ft_strlen_pf(str);
 	if (fmt_conv->precision == -2147483648 && fmt_conv->if_dot)
@@ -49,7 +49,7 @@ static int	calc_length(t_format *fmt_conv, char *str)
 	return (length);
 }
 
-int			print_ctrltwr_c(t_format *fmt_conv, char c)
+int	print_ctrltwr_c(t_format *fmt_conv, char c)
 {
 	int		wtp;
 
@@ -65,10 +65,10 @@ int			print_ctrltwr_c(t_format *fmt_conv, char c)
 		return (print_no_flags_c(c, wtp));
 }
 
-int			print_ctrltwr_s(t_format *fmt_conv, char *str)
+int	print_ctrltwr_s(t_format *fmt_conv, char *str)
 {
-	int wtp;
-	int length;
+	int	wtp;
+	int	length;
 
 	length = calc_length(fmt_conv, str);
 	wtp = calc_width(fmt_conv, length);
@@ -80,7 +80,7 @@ int			print_ctrltwr_s(t_format *fmt_conv, char *str)
 		return (print_no_flags_s(str, wtp, length));
 }
 
-int			print_ctrltwr_p(t_format *fmt_conv, char *str)
+int	print_ctrltwr_p(t_format *fmt_conv, char *str)
 {
 	int		wtp;
 	int		ptp;

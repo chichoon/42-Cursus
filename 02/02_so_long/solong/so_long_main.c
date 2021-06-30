@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/17 13:26:25 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:08:49 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-int		so_long_key(int key, void *param)
+int	so_long_key(int key, void *param)
 {
 	t_solong	*str_solong;
 
@@ -38,7 +38,7 @@ void	so_long_draw_map(t_solong *str_solong)
 	sol_draw_map(str_solong->info, str_solong->img_map);
 }
 
-int		so_long_main_loop(t_solong *str_solong)
+int	so_long_main_loop(t_solong *str_solong)
 {
 	t_map_info	*info;
 	t_char_img	*img;
@@ -66,7 +66,7 @@ void	so_long(t_map_info *info)
 	str_solong->img_char = (t_char_img *)malloc(sizeof(t_char_img));
 	sol_init_mapimg(str_solong->img_map, str_solong->info, temp);
 	str_solong->img_map->map_end = mlx_xpm_file_to_image(info->mlx_ptr,
-		"xpm/end.xpm", &temp, &temp);
+			"xpm/end.xpm", &temp, &temp);
 	sol_init_charimg(str_solong->img_char, str_solong->info, temp);
 	so_long_draw_map(str_solong);
 	mlx_hook(str_solong->info->win_ptr, 17, 0, sol_exit, str_solong);
@@ -77,7 +77,7 @@ void	so_long(t_map_info *info)
 	mlx_loop(info->mlx_ptr);
 }
 
-int		main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	char		**map;
 	char		*ptr;

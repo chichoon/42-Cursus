@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 12:05:30 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/03 17:12:08 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:51:56 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	unsigned char *dst_backup;
-	unsigned char *src_backup;
+	unsigned char	*dst_backup;
+	unsigned char	*src_backup;
 
 	if (!dst && !src && n)
 		return (dst);

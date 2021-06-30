@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_csp_3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 00:56:42 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 05:53:34 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:00:11 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printft.h"
 
-int			print_if_zero_s(char *str, int wtp, int length)
+int	print_if_zero_s(char *str, int wtp, int length)
 {
-	int output;
+	int	output;
 
 	output = 0;
 	while (wtp--)
@@ -26,9 +26,9 @@ int			print_if_zero_s(char *str, int wtp, int length)
 	return (output);
 }
 
-int			print_no_flags_p(char *nb, int wtp, int ptp)
+int	print_no_flags_p(char *nb, int wtp, int ptp)
 {
-	int output;
+	int	output;
 
 	output = 2;
 	while (wtp-- > 0)
@@ -46,9 +46,9 @@ int			print_no_flags_p(char *nb, int wtp, int ptp)
 	return (output);
 }
 
-int			print_if_zero_p(char *nb, int wtp, int ptp)
+int	print_if_zero_p(char *nb, int wtp, int ptp)
 {
-	int output;
+	int	output;
 
 	output = 2;
 	write(1, "0x", 2);
@@ -66,9 +66,9 @@ int			print_if_zero_p(char *nb, int wtp, int ptp)
 	return (output);
 }
 
-int			print_if_minus_p(char *nb, int wtp, int ptp)
+int	print_if_minus_p(char *nb, int wtp, int ptp)
 {
-	int output;
+	int	output;
 
 	output = 2;
 	write(1, "0x", 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 05:27:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/12 21:44:55 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:56:10 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	cut_next_line(int fd, char **line, char **str_buf)
 	return (1);
 }
 
-int			read_bufsize(int fd, char **line, char **str_buf)
+int	read_bufsize(int fd, char **line, char **str_buf)
 {
 	char		temp_buf[BUFFER_SIZE + 1];
 	int			len_read;
@@ -61,7 +61,7 @@ int			read_bufsize(int fd, char **line, char **str_buf)
 	return (0);
 }
 
-int			get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*str_buf[256];
 

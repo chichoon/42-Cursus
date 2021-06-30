@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk_server_getbyte_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 04:33:56 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/28 16:16:47 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:29:20 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	server_get_string_if(int signo, int len_bit)
 	}
 }
 
-void		server_get_string(int signo, siginfo_t *info, void *ptr)
+void	server_get_string(int signo, siginfo_t *info, void *ptr)
 {
 	static int				len_bit;
 	static int				len_byte;
@@ -49,8 +49,8 @@ void		server_get_string(int signo, siginfo_t *info, void *ptr)
 	{
 		server_reset_status();
 		len_byte = 0;
-		sigaction(SIGUSR1, &sigact_srv_try_connect, 0);
-		sigaction(SIGUSR2, &sigact_srv_try_connect, 0);
+		sigaction(SIGUSR1, &g_sigact_srv_try_connect, 0);
+		sigaction(SIGUSR2, &g_sigact_srv_try_connect, 0);
 	}
 }
 
@@ -72,7 +72,7 @@ static void	server_get_length_if(int signo, int len_bit)
 	}
 }
 
-void		server_get_length(int signo, siginfo_t *info, void *ptr)
+void	server_get_length(int signo, siginfo_t *info, void *ptr)
 {
 	static int	len_bit;
 	char		*str_ptr;
@@ -90,8 +90,8 @@ void		server_get_length(int signo, siginfo_t *info, void *ptr)
 			exit(1);
 		}
 		g_data_receive.str = str_ptr;
-		sigaction(SIGUSR1, &sigact_srv_string, 0);
-		sigaction(SIGUSR2, &sigact_srv_string, 0);
+		sigaction(SIGUSR1, &g_sigact_srv_string, 0);
+		sigaction(SIGUSR2, &g_sigact_srv_string, 0);
 		kill(g_data_receive.pid, SIGUSR1);
 	}
 }

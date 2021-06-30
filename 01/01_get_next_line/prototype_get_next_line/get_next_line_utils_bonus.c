@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 12:26:06 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/09 03:40:36 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:04:35 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t length;
+	size_t	length;
 
 	length = 0;
 	while (*s)
@@ -42,7 +42,7 @@ char	*ft_strdup(const char *src)
 
 char	*ft_strcpy(char *dest, char *src)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = dest;
 	while (*src)
@@ -70,7 +70,7 @@ char	*ft_strndup(char *str, int length)
 
 char	*ft_strchr(const char *src, int c)
 {
-	char ch;
+	char	ch;
 
 	ch = (char)c;
 	while (*src)

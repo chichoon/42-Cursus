@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk_client_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:40 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/28 16:16:51 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:25:59 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 t_data_tosend	g_data_tosend;
 
-void		kill_and_pause(pid_t pid, int signo)
+void	kill_and_pause(pid_t pid, int signo)
 {
 	kill(pid, signo);
 	usleep(50);
 }
 
-void		client_connect(int signo)
+void	client_connect(int signo)
 {
 	if (signo == SIGUSR1)
 	{
-		sigaction(SIGUSR1, &sigact_cli_length, 0);
+		sigaction(SIGUSR1, &g_sigact_cli_length, 0);
 		ft_putstr_fd("Connected with server pid ", 1);
 		ft_putnbr_fd(g_data_tosend.pid, 1);
 		ft_putchar_fd('\n', 1);
@@ -32,20 +32,20 @@ void		client_connect(int signo)
 	}
 }
 
-void		client_init_struct(void)
+void	client_init_struct(void)
 {
-	sigact_cli_connect.sa_flags = 0;
-	sigemptyset(&sigact_cli_connect.sa_mask);
-	sigact_cli_connect.sa_handler = client_connect;
-	sigact_cli_length.sa_flags = 0;
-	sigemptyset(&sigact_cli_length.sa_mask);
-	sigact_cli_length.sa_handler = client_send_length;
-	sigact_cli_string.sa_flags = 0;
-	sigemptyset(&sigact_cli_string.sa_mask);
-	sigact_cli_string.sa_handler = client_send_string;
+	g_sigact_cli_connect.sa_flags = 0;
+	sigemptyset(&g_sigact_cli_connect.sa_mask);
+	g_sigact_cli_connect.sa_handler = client_connect;
+	g_sigact_cli_length.sa_flags = 0;
+	sigemptyset(&g_sigact_cli_length.sa_mask);
+	g_sigact_cli_length.sa_handler = client_send_length;
+	g_sigact_cli_string.sa_flags = 0;
+	sigemptyset(&g_sigact_cli_string.sa_mask);
+	g_sigact_cli_string.sa_handler = client_send_string;
 }
 
-int			main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	if (argc != 3)
 	{
@@ -61,7 +61,7 @@ int			main(int argc, char *argv[])
 		exit(1);
 	}
 	client_init_struct();
-	sigaction(SIGUSR1, &sigact_cli_connect, 0);
+	sigaction(SIGUSR1, &g_sigact_cli_connect, 0);
 	kill_and_pause(g_data_tosend.pid, SIGUSR1);
 	while (1)
 		usleep(500000);

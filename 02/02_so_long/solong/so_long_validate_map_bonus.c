@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_validate_map_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 15:38:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/17 13:27:33 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:14:35 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	sol_check_wall(char **map, t_map_info *info)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = -1;
 	y = -1;
@@ -38,10 +38,10 @@ static int	sol_check_wall(char **map, t_map_info *info)
 
 static int	sol_check_char(char **map, t_map_info *info)
 {
-	int num_exit;
-	int num_start;
-	int x;
-	int y;
+	int	num_exit;
+	int	num_start;
+	int	x;
+	int	y;
 
 	num_exit = 0;
 	num_start = 0;
@@ -66,8 +66,8 @@ static int	sol_check_char(char **map, t_map_info *info)
 
 static int	sol_count_collective(char **map, t_map_info *info)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = -1;
 	while (++y < (int)info->map_height)
@@ -82,7 +82,7 @@ static int	sol_count_collective(char **map, t_map_info *info)
 	return (1);
 }
 
-int			sol_validate_map(char **map, t_map_info *info)
+int	sol_validate_map(char **map, t_map_info *info)
 {
 	info->num_collections = 0;
 	if (info->map_height < 3 || info->map_width < 3)

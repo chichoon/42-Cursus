@@ -14,7 +14,7 @@
 
 char	*ft_strchr(const char *src, int c)
 {
-	char ch;
+	char	ch;
 
 	ch = (char)c;
 	while (*src)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_handle_events.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 19:20:20 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 21:42:22 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:07:02 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	sol_char_pos_event(t_solong *str_solong)
 	}
 }
 
-int		sol_exit(t_solong *str_solong)
+int	sol_exit(t_solong *str_solong)
 {
 	sol_free_mapimg(str_solong->img_map, str_solong->info);
 	sol_free_charimg(str_solong->img_char, str_solong->info);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 22:15:05 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 02:06:49 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:02:55 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char *dst_backup;
-	unsigned char *src_backup;
+	unsigned char	*dst_backup;
+	unsigned char	*src_backup;
 
 	dst_backup = (unsigned char *)dst;
 	src_backup = (unsigned char *)src;
@@ -29,7 +29,7 @@ static void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-char		*ft_strjoin_pf(char const *s1, char const *s2)
+char	*ft_strjoin_pf(char const *s1, char const *s2)
 {
 	char	*ptr;
 	char	*ptr_backup;

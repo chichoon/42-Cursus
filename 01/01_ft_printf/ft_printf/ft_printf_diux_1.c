@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_diux_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:57:23 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 02:06:46 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:01:40 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	calc_width(t_format *fmt_conv, char *nb)
 {
-	int length;
-	int width_to_print;
+	int	length;
+	int	width_to_print;
 
 	if (fmt_conv->width == -2147483648)
 		return (0);
@@ -33,8 +33,8 @@ static int	calc_width(t_format *fmt_conv, char *nb)
 
 static int	calc_precis(t_format *fmt_conv, char *nb)
 {
-	int length;
-	int precis_to_print;
+	int	length;
+	int	precis_to_print;
 
 	if (fmt_conv->precision == -2147483648)
 		return (0);
@@ -45,7 +45,7 @@ static int	calc_precis(t_format *fmt_conv, char *nb)
 	return (precis_to_print);
 }
 
-int			print_ctrltwr_diux(t_format *fmt_conv, char *nb, int if_pos)
+int	print_ctrltwr_diux(t_format *fmt_conv, char *nb, int if_pos)
 {
 	int		wtp;
 	int		ptp;
@@ -56,9 +56,9 @@ int			print_ctrltwr_diux(t_format *fmt_conv, char *nb, int if_pos)
 	{
 		if (fmt_conv->if_minus)
 			return (print_if_minus(nb, wtp, ptp));
-		else if (fmt_conv->if_zero &&
-		((fmt_conv->if_dot && fmt_conv->precision != -2147483648
-		&& fmt_conv->precision < 0) || !fmt_conv->if_dot))
+		else if (fmt_conv->if_zero
+			&& ((fmt_conv->if_dot && fmt_conv->precision != -2147483648
+					&& fmt_conv->precision < 0) || !fmt_conv->if_dot))
 			return (print_if_zero(nb, wtp));
 		return (print_no_flags(nb, wtp, ptp));
 	}
@@ -66,17 +66,17 @@ int			print_ctrltwr_diux(t_format *fmt_conv, char *nb, int if_pos)
 	{
 		if (fmt_conv->if_minus)
 			return (print_neg_if_minus(nb, wtp, ptp));
-		else if (fmt_conv->if_zero &&
-		((fmt_conv->if_dot && fmt_conv->precision != -2147483648
-		&& fmt_conv->precision < 0) || !fmt_conv->if_dot))
+		else if (fmt_conv->if_zero
+			&& ((fmt_conv->if_dot && fmt_conv->precision != -2147483648
+					&& fmt_conv->precision < 0) || !fmt_conv->if_dot))
 			return (print_neg_if_zero(nb, wtp));
 		return (print_neg_no_flags(nb, wtp, ptp));
 	}
 }
 
-int			print_no_flags(char *nb, int wtp, int ptp)
+int	print_no_flags(char *nb, int wtp, int ptp)
 {
-	int output;
+	int	output;
 
 	output = 0;
 	while (wtp-- > 0)
@@ -93,9 +93,9 @@ int			print_no_flags(char *nb, int wtp, int ptp)
 	return (output);
 }
 
-int			print_neg_no_flags(char *nb, int wtp, int ptp)
+int	print_neg_no_flags(char *nb, int wtp, int ptp)
 {
-	int output;
+	int	output;
 
 	output = 0;
 	wtp--;

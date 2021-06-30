@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_move_char.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 18:20:14 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/17 13:23:29 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:09:10 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sol_move_up(t_solong *str_solong)
 {
-	t_map_info *info;
+	t_map_info	*info;
 
 	info = str_solong->info;
 	info->char_pos = 'n';
@@ -28,7 +28,7 @@ void	sol_move_up(t_solong *str_solong)
 
 void	sol_move_left(t_solong *str_solong)
 {
-	t_map_info *info;
+	t_map_info	*info;
 
 	info = str_solong->info;
 	info->char_pos = 'w';
@@ -42,7 +42,7 @@ void	sol_move_left(t_solong *str_solong)
 
 void	sol_move_down(t_solong *str_solong)
 {
-	t_map_info *info;
+	t_map_info	*info;
 
 	info = str_solong->info;
 	info->char_pos = 's';
@@ -56,7 +56,7 @@ void	sol_move_down(t_solong *str_solong)
 
 void	sol_move_right(t_solong *str_solong)
 {
-	t_map_info *info;
+	t_map_info	*info;
 
 	info = str_solong->info;
 	info->char_pos = 'e';

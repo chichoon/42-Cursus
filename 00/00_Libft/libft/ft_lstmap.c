@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 16:05:44 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/14 13:33:16 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 22:51:42 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_list	*ft_recur_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *))
 {
-	t_list *curr_lst;
-	t_list *new_lst;
+	t_list	*curr_lst;
+	t_list	*new_lst;
 
 	curr_lst = lst;
 	new_lst = (t_list *)malloc(sizeof(t_list));

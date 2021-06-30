@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_fmt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 22:34:31 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 12:31:26 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:02:17 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printft.h"
 
-static void		init_format(t_format *fmt)
+static void	init_format(t_format *fmt)
 {
 	fmt->type = 0;
 	fmt->width = -2147483648;
@@ -24,7 +24,7 @@ static void		init_format(t_format *fmt)
 	fmt->if_asterisk_width = 0;
 }
 
-static void		put_length(char *str, t_format *fmt_new)
+static void	put_length(char *str, t_format *fmt_new)
 {
 	if (!fmt_new->if_dot)
 		fmt_new->width = ft_atoi_pf(str);
@@ -32,7 +32,7 @@ static void		put_length(char *str, t_format *fmt_new)
 		fmt_new->precision = ft_atoi_pf(str);
 }
 
-static int		put_flags(char str, t_format *fmt_new)
+static int	put_flags(char str, t_format *fmt_new)
 {
 	if (if_available(str, "0-*."))
 	{
@@ -51,7 +51,7 @@ static int		put_flags(char str, t_format *fmt_new)
 	return (0);
 }
 
-static int		if_exceptions(char str, t_format *fmt_new)
+static int	if_exceptions(char str, t_format *fmt_new)
 {
 	if (!if_available(str, "%0-.*123456789cspdiuxX"))
 		return (1);
@@ -70,7 +70,7 @@ static int		if_exceptions(char str, t_format *fmt_new)
 	return (0);
 }
 
-t_format		*def_format(char *param_start, char *param_end)
+t_format	*def_format(char *param_start, char *param_end)
 {
 	t_format	*fmt_new;
 

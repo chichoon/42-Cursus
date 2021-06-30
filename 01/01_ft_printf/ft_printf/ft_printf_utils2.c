@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 20:57:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/05/21 02:07:43 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:02:49 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printft.h"
 
-int			ft_atoi_pf(const char *str)
+int	ft_atoi_pf(const char *str)
 {
 	unsigned long long	absol;
 	int					minus;
@@ -30,7 +30,7 @@ int			ft_atoi_pf(const char *str)
 
 static int	ft_intlen(unsigned long n, unsigned int base_num)
 {
-	int len;
+	int	len;
 
 	len = 1;
 	while (n >= base_num)
@@ -41,7 +41,7 @@ static int	ft_intlen(unsigned long n, unsigned int base_num)
 	return (len);
 }
 
-char		*ft_itoa_base(unsigned long absol, char *base)
+char	*ft_itoa_base(unsigned long absol, char *base)
 {
 	unsigned int	length;
 	unsigned int	base_num;
@@ -61,7 +61,7 @@ char		*ft_itoa_base(unsigned long absol, char *base)
 	return (ptr);
 }
 
-void		*free_and_return(void *ptr)
+void	*free_and_return(void *ptr)
 {
 	free(ptr);
 	return (0);

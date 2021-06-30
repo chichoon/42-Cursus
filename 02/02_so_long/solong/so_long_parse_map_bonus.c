@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_parse_map_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 14:48:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/17 13:22:04 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:09:16 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**sol_parse_map(char *filename, t_map_info *info)
 	return (map);
 }
 
-int		sol_perror_return(char *str, t_map_info *info)
+int	sol_perror_return(char *str, t_map_info *info)
 {
 	ft_putstr_fd(str, 0);
 	if (info)
@@ -43,7 +43,7 @@ int		sol_perror_return(char *str, t_map_info *info)
 	return (0);
 }
 
-int		sol_check_map(char *filename, t_map_info *info)
+int	sol_check_map(char *filename, t_map_info *info)
 {
 	int		fd_map;
 	char	*str;

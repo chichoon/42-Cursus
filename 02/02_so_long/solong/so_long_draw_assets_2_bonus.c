@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_draw_assets_2_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 21:06:58 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/16 21:57:03 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/06/30 23:05:39 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	sol_enemy_pos(t_solong *str_solong)
 
 void	sol_draw_enemy(t_map_info *info, t_char_img *img)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = -1;
 	while (++y < (int)info->map_height)
