@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_linked_list_1.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/01 00:19:39 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/01 13:58:32 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,36 +60,40 @@ t_dnode	*ps_lstadd_back(int key, t_dnode *dnode_prev)
 	return (node);
 }
 
-void	ps_lstmove_front(t_dnode *dnode_tomove, t_dnode *dnode_next)
+void	ps_lstdel(t_dnode *dnode_del)
 {
-	if (dnode_next->prev == 0)
+	if (dnode_del->prev == 0 && dnode_del->next == 0)
+		free(dnode_del);
+	else if (dnode_del->prev == 0 && dnode_del->next != 0)
 	{
-		dnode_tomove->prev = 0;
-		dnode_next->prev = dnode_tomove;
-		dnode_tomove->next = dnode_next;
+		dnode_del->prev->next = dnode_del->next;
+		dnode_del->next->prev = 0;
+		free(dnode_del);
+	}
+	else if (dnode_del->prev != 0 && dnode_del->next == 0)
+	{
+		dnode_del->prev->next = 0;
+		dnode_del->next->prev = dnode_del->prev;
+		free(dnode_del);
 	}
 	else
 	{
-		dnode_next->prev->next = dnode_tomove;
-		dnode_tomove->prev = dnode_next->prev;
-		dnode_next->prev = dnode_tomove;
-		dnode_tomove->next = dnode_next;
+		dnode_del->prev->next = dnode_del->next;
+		dnode_del->next->prev = dnode_del->prev;
+		free(dnode_del);
 	}
 }
 
-void	ps_lstmove_back(t_dnode *dnode_tomove, t_dnode *dnode_prev)
+void	ps_lstdel_all(t_dnode *dnode_start)
 {
-	if (dnode_prev->next == 0)
-	{
-		dnode_tomove->prev = dnode_prev;
-		dnode_tomove->next = 0;
-		dnode_prev->next = dnode_tomove;
-	}
+	t_dnode	*dnode_next;
+
+	if (dnode_start->next == 0)
+		free(dnode_start);
 	else
 	{
-		dnode_prev->next->prev = dnode_tomove;
-		dnode_tomove->prev = dnode_prev;
-		dnode_tomove->next = dnode_prev->next;
-		dnode_prev->next = dnode_tomove;
+		dnode_next = dnode_start->next;
+		free(dnode_start);
+		ps_lstdell_all(dnode_next);
 	}
 }
