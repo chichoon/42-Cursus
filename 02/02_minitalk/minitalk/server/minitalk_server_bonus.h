@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:27:32 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/30 23:29:10 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/02 16:25:56 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 
-struct sigaction		g_sigact_srv_try_connect;
-struct sigaction		g_sigact_srv_connect;
-struct sigaction		g_sigact_srv_length;
-struct sigaction		g_sigact_srv_string;
-extern t_data_receive	g_data_receive;
-
 typedef struct s_data_receive
 {
 	pid_t			pid;
@@ -30,6 +24,12 @@ typedef struct s_data_receive
 	unsigned char	char_temp;
 	char			*str;
 }					t_data_receive;
+
+struct sigaction		g_sigact_srv_try_connect;
+struct sigaction		g_sigact_srv_connect;
+struct sigaction		g_sigact_srv_length;
+struct sigaction		g_sigact_srv_string;
+extern t_data_receive	g_data_receive;
 
 /*
 	** Minitalk Server: function to connect & initialize
