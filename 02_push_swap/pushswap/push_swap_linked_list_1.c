@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_linked_list.c                            :+:      :+:    :+:   */
+/*   push_swap_linked_list_1.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/01 20:58:10 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/03 14:24:20 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,16 @@ void	ps_lstdel(t_dnode *dnode_del)
 	}
 }
 
-void	ps_lstdel_all(t_dnode *dnode_start)
+void	ps_lstdel_all(t_dnode *dnode_head)
 {
 	t_dnode	*dnode_next;
 
-	if (dnode_start->next == 0)
-		free(dnode_start);
+	if (dnode_head->next == 0)
+		free(dnode_head);
 	else
 	{
-		dnode_next = dnode_start->next;
-		free(dnode_start);
-		ps_lstdell_all(dnode_next);
+		dnode_next = dnode_head->next;
+		free(dnode_head);
+		ps_lstdel_all(dnode_next);
 	}
 }
