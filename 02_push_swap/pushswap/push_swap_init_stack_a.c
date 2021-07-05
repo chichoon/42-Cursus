@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_init_list.c                              :+:      :+:    :+:   */
+/*   push_swap_init_stack_a.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:14:25 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/03 14:25:21 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/05 18:21:50 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ps_if_number(char *str)
+static int	ps_if_number(char *str, char *str_to_compare)
 {
-	char	i;
+	int	i;
 
 	while (*str)
 	{
-		i = '0';
-		while (i <= '9')
+		i = 0;
+		while (str_to_compare[i])
 		{
-			if (*str == i)
+			if (*str == str_to_compare[i])
 				break ;
 			i++;
 		}
-		if (i == '9' + 1)
+		if (!str_to_compare[i])
 			return (0);
 		str++;
 	}
 	return (1);
 }
 
-void	ps_make_list(int argc, char *argv[], t_dnode *a_head)
+void	ps_make_stack_a(int argc, char *argv[], t_dnode *a_head)
 {
 	int		index_argc;
 	int		index_split;
@@ -48,7 +48,7 @@ void	ps_make_list(int argc, char *argv[], t_dnode *a_head)
 		while (str_temp[++index_split])
 		{
 			if (ft_strlen(str_temp[index_split]) > 0
-				&& ps_if_number(str_temp[index_split]))
+				&& ps_if_number(str_temp[index_split], "0123456789-+"))
 			{
 				ps_lstadd_back(ft_atoi(str_temp[index_split]), dnode_now);
 				dnode_now = dnode_now->next;
@@ -58,9 +58,23 @@ void	ps_make_list(int argc, char *argv[], t_dnode *a_head)
 	}
 }
 
-void	ps_validate_list(t_dnode *a_head, t_dnode *a_tail)
+void	ps_init_stack_a(int argc, char *argv[], t_dnode *head)
 {
-	if (!ps_lstcheck_dup(a_head, a_tail))
-		ps_error_and_exit(a_head);
-	ps_lstcheck_print(a_head, a_tail);
+	head->key = 0;
+	head->prev = head;
+	head->next = head;
+	ps_make_stack_a(argc, argv, head);
+}
+
+void	ps_validate_stack_a(t_dnode *a_head, t_dnode *b_head, int flag)
+{
+	if (flag == IF_DUP)
+		if (!ps_lstcheck_dup(a_head))
+			ps_print_and_exit(a_head, b_head, "Error");
+	if (flag == IF_ORDERED)
+	{
+		if (!ps_lstcheck_order(a_head, a_head))
+			ps_print_and_exit(a_head, b_head, "KO");
+		ps_print_and_exit(a_head, b_head, "OK");
+	}
 }

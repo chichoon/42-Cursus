@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_cmd_s.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 23:34:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/03 13:57:00 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/05 17:48:04 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_sa(t_dnode *a_head, t_dnode *a_tail)
+void	ps_sa(t_dnode *a_head)
 {
 	t_dnode	*a_first;
 	t_dnode	*a_second;
 
-	if (a_head->next != a_tail && a_head->next->next != a_tail)
+	if (a_head->next != a_head && a_head->next->next != a_head)
 	{
 		a_first = a_head->next;
 		a_second = a_first->next;
@@ -30,12 +30,12 @@ void	ps_sa(t_dnode *a_head, t_dnode *a_tail)
 	}
 }
 
-void	ps_sb(t_dnode *b_head, t_dnode *b_tail)
+void	ps_sb(t_dnode *b_head)
 {
 	t_dnode	*b_first;
 	t_dnode	*b_second;
 
-	if (b_head->next != b_tail && b_head->next->next != b_tail)
+	if (b_head->next != b_head && b_head->next->next != b_head)
 	{
 		b_first = b_head->next;
 		b_second = b_first->next;
@@ -48,9 +48,8 @@ void	ps_sb(t_dnode *b_head, t_dnode *b_tail)
 	}
 }
 
-void	ps_ss(t_dnode *a_head, t_dnode *a_tail,
-		t_dnode *b_head, t_dnode *b_tail)
+void	ps_ss(t_dnode *a_head, t_dnode *b_head)
 {
-	ps_sa(a_head, a_tail);
-	ps_sb(b_head, b_tail);
+	ps_sa(a_head);
+	ps_sb(b_head);
 }
