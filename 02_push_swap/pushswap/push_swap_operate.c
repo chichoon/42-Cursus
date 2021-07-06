@@ -3,50 +3,108 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_operate.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:30:36 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/06 14:24:55 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/07 01:56:57 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_quick_sort(t_dnode *head, t_dnode *tail, t_dnode *head_other)
+void	ps_operate_two(t_dnode *head, t_dnode *head_other, t_dnode *inst_head)
 {
-	int		pivot_key;
-	int		len;
+	ps_s(head);
+	if (!head->key)
+		ps_add_operation(head, head_other, inst_head, 1);
+	else
+		ps_add_operation(head, head_other, inst_head, 2);
+}
+
+void	ps_operate_three(t_dnode *head, t_dnode *head_other, t_dnode *inst_head)
+{
+	if (head->next->key > head->next->next->key)
+	{
+		ps_s(head);
+		if (!head->key)
+			ps_add_operation(head, head_other, inst_head, 1);
+		else
+			ps_add_operation(head, head_other, inst_head, 2);
+	}
+	if (head->next->next->key > head->next->next->next->key)
+	{
+		ps_rr(head);
+		if (!head->key)
+			ps_add_operation(head, head_other, inst_head, 7);
+		else
+			ps_add_operation(head, head_other, inst_head, 8);
+	}
+	if (head->next->key > head->next->next->key)
+	{
+		ps_s(head);
+		if (!head->key)
+			ps_add_operation(head, head_other, inst_head, 1);
+		else
+			ps_add_operation(head, head_other, inst_head, 2);
+	}
+}
+
+void	ps_operate(t_dnode *head, t_dnode *head_other,
+			t_dnode *inst_head, int length)
+{
 	t_dnode	*pivot;
 	t_dnode	*dnode_temp;
 
-	pivot_key = ps_find_sorted_mid(head, tail);
-	pivot = ps_lstfind_key(head, pivot_key);
+	pivot = ps_lstfind_key(head, ps_find_sorted_mid(head, length));
 	dnode_temp = head->next;
-	len = ps_lstlen(head, tail);
-	printf("pivot : %d\n", pivot_key);
-	while (len > 0)
+	while (--length > -1)
 	{
-		printf("dnode : %d\n", dnode_temp->key);
-		if (dnode_temp->key > pivot_key)
+		dnode_temp = dnode_temp->next;
+		if (dnode_temp->prev->key > pivot->key)
 		{
-			dnode_temp = dnode_temp->next;
 			ps_p(head_other, head);
-			if (head_other->key)
-				printf("pb\n");
+			if (!head->key)
+				ps_add_operation(head, head_other, inst_head, 3);
 			else
-				printf("pa\n");
+				ps_add_operation(head, head_other, inst_head, 4);
 		}
 		else
 		{
-			dnode_temp = dnode_temp->next;
 			ps_r(head);
 			if (head->key)
-				printf("ra\n");
+				ps_add_operation(head, head_other, inst_head, 5);
 			else
-				printf("rb\n");
+				ps_add_operation(head, head_other, inst_head, 6);
 		}
-		len--;
 	}
-	ps_lstcheck_print(head);
-	ps_lstcheck_print(head_other);
+}
+
+void	ps_operate_a(t_dnode *a_head, t_dnode *a_tail,
+			t_dnode *b_head, t_dnode *inst_head)
+{
+	int	length;
+
+	length = ps_lstlen(a_head, a_tail);
+	if (length == 2)
+		ps_operate_two(a_head, b_head, inst_head);
+	else
+	{
+		ps_operate(a_head, b_head, inst_head, length);
+		//
+	}
+}
+
+void	ps_operate_b(t_dnode *b_head, t_dnode *b_tail,
+			t_dnode *a_head, t_dnode *inst_head)
+{
+	int	length;
+
+	length = ps_lstlen(b_head, b_tail);
+	if (length == 2)
+		ps_operate_two(b_head, a_head, inst_head);
+	else
+	{
+		ps_operate(b_head, a_head, inst_head, length);
+		//
+	}
 }

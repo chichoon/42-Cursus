@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:12 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/06 14:42:07 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/07 01:56:38 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 /*
 	** Push_Swap: Structures
 	** int key is for integer key to sort
-	** int key for instructions
+	** int key for instruction command code
 	**		1 : sa, 2 : sb
 	**		3 : pa, 4 : pb
 	**		5 : ra, 6 : rb
@@ -43,8 +43,13 @@ typedef struct s_dnode
 	** Push_Swap (find pivot & quick sort);
 */
 void	push_swap(t_dnode *a_head);
-int		ps_find_sorted_mid(t_dnode *dnode_head, t_dnode *dnode_tail);
-void	ps_quick_sort(t_dnode *head, t_dnode *tail, t_dnode *head_other);
+int		ps_find_sorted_mid(t_dnode *dnode_head, int length);
+void	ps_sort(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head);
+void	ps_operate_two(t_dnode *head, t_dnode *head_other, t_dnode *inst_head);
+void	ps_operate_three(t_dnode *head, t_dnode *head_other,
+			t_dnode *inst_head);
+void	ps_operate(t_dnode *head, t_dnode *head_other,
+			t_dnode *inst_head, int length);
 
 /*
 	** Push_Swap: Initialize & validate stack A
@@ -78,7 +83,10 @@ t_dnode	*ps_lstfind_key(t_dnode *dnode_head, int key);
 /*
 	** Push_Swap: Utilities
 */
-void	ps_print_and_exit(t_dnode *a_head, t_dnode *b_head, char *str);
+void	ps_print_and_exit(t_dnode *a_head, t_dnode *b_head,
+			t_dnode *inst_head, char *str);
 void	ps_free_char2d(char **arr);
+void	ps_add_operation(t_dnode *a_head, t_dnode *b_head,
+			t_dnode *inst_head, int inst_code);
 
 #endif

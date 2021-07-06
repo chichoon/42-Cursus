@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_find_pivot.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 16:58:11 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/06 13:53:44 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/07 01:45:44 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int ps_find_mid(int *num_arr, int length)
+static int	ps_find_mid(int *num_arr, int length)
 {
 	int	index_i;
 	int	index_j;
@@ -62,21 +62,20 @@ int	ps_find_sorted_mid(t_dnode *dnode_head)
 }
 */
 
-int	ps_find_sorted_mid(t_dnode *dnode_head, t_dnode *dnode_tail)
+int	ps_find_sorted_mid(t_dnode *dnode_head, int length)
 {
-	int		length;
 	int		*num_arr;
 	int		index;
 	t_dnode	*dnode_temp;
 
-	length = ps_lstlen(dnode_head, dnode_tail);
 	num_arr = (int *)malloc(sizeof(int) * length);
 	index = 0;
 	dnode_temp = dnode_head->next;
-	while (dnode_temp != dnode_tail)
+	while (length > 0)
 	{
 		num_arr[index++] = dnode_temp->key;
 		dnode_temp = dnode_temp->next;
+		length--;
 	}
 	return (ps_find_mid(num_arr, length));
 }
