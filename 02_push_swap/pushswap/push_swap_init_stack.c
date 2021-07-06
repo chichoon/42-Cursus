@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_init_stack_a.c                           :+:      :+:    :+:   */
+/*   push_swap_init_stack.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:14:25 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/05 18:21:50 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/06 14:46:08 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,16 @@ static int	ps_if_number(char *str, char *str_to_compare)
 	return (1);
 }
 
-void	ps_make_stack_a(int argc, char *argv[], t_dnode *a_head)
+void	ps_init_stack_a(int argc, char *argv[], t_dnode *a_head)
 {
 	int		index_argc;
 	int		index_split;
 	t_dnode	*dnode_now;
 	char	**str_temp;
 
+	a_head->key = 0;
+	a_head->prev = a_head;
+	a_head->next = a_head;
 	index_argc = 0;
 	dnode_now = a_head;
 	while (++index_argc < argc)
@@ -58,14 +61,6 @@ void	ps_make_stack_a(int argc, char *argv[], t_dnode *a_head)
 	}
 }
 
-void	ps_init_stack_a(int argc, char *argv[], t_dnode *head)
-{
-	head->key = 0;
-	head->prev = head;
-	head->next = head;
-	ps_make_stack_a(argc, argv, head);
-}
-
 void	ps_validate_stack_a(t_dnode *a_head, t_dnode *b_head, int flag)
 {
 	if (flag == IF_DUP)
@@ -77,4 +72,26 @@ void	ps_validate_stack_a(t_dnode *a_head, t_dnode *b_head, int flag)
 			ps_print_and_exit(a_head, b_head, "KO");
 		ps_print_and_exit(a_head, b_head, "OK");
 	}
+}
+
+int	ps_init_stack_b(t_dnode *b_head)
+{
+	b_head = (t_dnode *)malloc(sizeof(t_dnode));
+	if (!b_head)
+		return (0);
+	b_head->key = 1;
+	b_head->prev = b_head;
+	b_head->next = b_head;
+	return (1);
+}
+
+int	ps_init_stack_oper(t_dnode *inst_head)
+{
+	inst_head = (t_dnode *)malloc(sizeof(t_dnode));
+	if (!inst_head)
+		return (0);
+	inst_head->key = 0;
+	inst_head->prev = inst_head;
+	inst_head->next = inst_head;
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/05 18:11:16 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/06 13:33:14 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ void	ps_lstdel_all(t_dnode *dnode_head)
 		free(dnode_head);
 }
 
-int	ps_lstlen(t_dnode *dnode_head)
+int	ps_lstlen(t_dnode *dnode_head, t_dnode *dnode_tail)
 {
 	int		length;
 	t_dnode	*dnode_temp;
 
 	length = 0;
 	dnode_temp = dnode_head->next;
-	while (dnode_temp != dnode_head)
+	while (dnode_temp != dnode_tail)
 	{
 		length++;
 		dnode_temp = dnode_temp->next;

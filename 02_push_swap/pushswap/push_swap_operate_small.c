@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   push_swap_operate_small.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/09 05:27:31 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/06 20:15:07 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/07/06 14:29:45 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/07/06 14:34:00 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "push_swap.h"
 
-# include <stdlib.h>
-# include <unistd.h>
+void	ps_operate_two(t_dnode *head, t_dnode_inst *inst_head)
+{
+	ps_s(head);
 
-#define BUFFER_SIZE 100
+}
 
-int		get_next_line(int fd, char **line);
+void	ps_operate_three(t_dnode *head)
+{
 
-char	*ft_strndup(char *str, int length);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strdup(const char *src);
-char	*ft_strchr(const char *src, int c);
-
-#endif
+}
