@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_init_stack.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:14:25 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/06 14:46:08 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/09 09:17:09 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,37 +61,30 @@ void	ps_init_stack_a(int argc, char *argv[], t_dnode *a_head)
 	}
 }
 
-void	ps_validate_stack_a(t_dnode *a_head, t_dnode *b_head, int flag)
+void	ps_validate_stack_a(t_dnode *a_head, t_dnode *b_head,
+		t_dnode *inst_head, int flag)
 {
 	if (flag == IF_DUP)
 		if (!ps_lstcheck_dup(a_head))
-			ps_print_and_exit(a_head, b_head, "Error");
+			ps_print_and_exit(a_head, b_head, inst_head, "Error");
 	if (flag == IF_ORDERED)
 	{
 		if (!ps_lstcheck_order(a_head, a_head))
-			ps_print_and_exit(a_head, b_head, "KO");
-		ps_print_and_exit(a_head, b_head, "OK");
+			ps_print_and_exit(a_head, b_head, inst_head, "KO");
+		ps_print_and_exit(a_head, b_head, inst_head, "OK");
 	}
 }
 
-int	ps_init_stack_b(t_dnode *b_head)
+void	ps_init_stack_b(t_dnode *b_head)
 {
-	b_head = (t_dnode *)malloc(sizeof(t_dnode));
-	if (!b_head)
-		return (0);
 	b_head->key = 1;
 	b_head->prev = b_head;
 	b_head->next = b_head;
-	return (1);
 }
 
-int	ps_init_stack_oper(t_dnode *inst_head)
+void	ps_init_stack_oper(t_dnode *inst_head)
 {
-	inst_head = (t_dnode *)malloc(sizeof(t_dnode));
-	if (!inst_head)
-		return (0);
 	inst_head->key = 0;
 	inst_head->prev = inst_head;
 	inst_head->next = inst_head;
-	return (1);
 }

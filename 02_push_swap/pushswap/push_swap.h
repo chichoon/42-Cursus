@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:12 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/07 01:56:38 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/09 09:17:02 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,20 @@ void	ps_sort(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head);
 void	ps_operate_two(t_dnode *head, t_dnode *head_other, t_dnode *inst_head);
 void	ps_operate_three(t_dnode *head, t_dnode *head_other,
 			t_dnode *inst_head);
-void	ps_operate(t_dnode *head, t_dnode *head_other,
-			t_dnode *inst_head, int length);
+void	ps_operate_a(t_dnode *a_head, t_dnode *a_tail,
+			t_dnode *b_head, t_dnode *inst_head);
+void	ps_operate_b(t_dnode *b_head, t_dnode *b_tail,
+			t_dnode *a_head, t_dnode *inst_head);
 
 /*
 	** Push_Swap: Initialize & validate stack A
 */
 void	ps_init_stack_a(int argc, char *argv[], t_dnode *head);
 void	ps_make_stack_a(int argc, char *argv[], t_dnode *a_head);
-void	ps_validate_stack_a(t_dnode *a_head, t_dnode *b_head, int flag);
+void	ps_validate_stack_a(t_dnode *a_head, t_dnode *b_head,
+			t_dnode *inst_head, int flag);
+void	ps_init_stack_b(t_dnode *b_head);
+void	ps_init_stack_oper(t_dnode *inst_head);
 
 /*
 	** Push_Swap: Command functions (sa, sb, ra, rb, pa, pb, rra, rrb)

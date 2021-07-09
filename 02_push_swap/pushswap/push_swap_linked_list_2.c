@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_linked_list_2.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 13:14:01 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/05 18:18:46 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/09 14:45:58 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_dnode	*ps_lstfind_nth(t_dnode *dnode_head, int n)
 		index++;
 		dnode_temp = dnode_temp->next;
 	}
-	return ((t_dnode *)0);
+	return (dnode_head);
 }
 
 t_dnode	*ps_lstfind_key(t_dnode *dnode_head, int key)

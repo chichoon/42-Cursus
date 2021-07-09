@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 16:58:11 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/07 01:45:44 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/09 14:25:05 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,49 +33,27 @@ static int	ps_find_mid(int *num_arr, int length)
 			}
 		}
 	}
-	if (length % 2 == 0)
-		num_to_return = num_arr[length / 2];
-	else
-		num_to_return = num_arr[length / 2 + 1];
+	num_to_return = num_arr[length / 2 - !(length % 2)];
 	free(num_arr);
 	return (num_to_return);
 }
-
-/*
-int	ps_find_sorted_mid(t_dnode *dnode_head)
-{
-	int	length;
-	int	*num_arr;
-	int	index;
-	t_dnode	*dnode_temp;
-
-	length = ps_lstlen(dnode_head, dnode_head);
-	num_arr = (int *)malloc(sizeof(int) * length);
-	index = 0;
-	dnode_temp = dnode_head->next;
-	while (dnode_temp != dnode_head)
-	{
-		num_arr[index++] = dnode_temp->key;
-		dnode_temp = dnode_temp->next;
-	}
-	return (ps_find_mid(num_arr, length));
-}
-*/
 
 int	ps_find_sorted_mid(t_dnode *dnode_head, int length)
 {
 	int		*num_arr;
 	int		index;
 	t_dnode	*dnode_temp;
+	int		length_temp;
 
 	num_arr = (int *)malloc(sizeof(int) * length);
 	index = 0;
 	dnode_temp = dnode_head->next;
-	while (length > 0)
+	length_temp = length;
+	while (length_temp > 0)
 	{
 		num_arr[index++] = dnode_temp->key;
 		dnode_temp = dnode_temp->next;
-		length--;
+		length_temp--;
 	}
 	return (ps_find_mid(num_arr, length));
 }

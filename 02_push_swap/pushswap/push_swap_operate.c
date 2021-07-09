@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:30:36 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/07 01:56:57 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/09 14:52:03 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ps_operate_three(t_dnode *head, t_dnode *head_other, t_dnode *inst_head)
 	}
 }
 
-void	ps_operate(t_dnode *head, t_dnode *head_other,
+static void	ps_operate(t_dnode *head, t_dnode *head_other,
 			t_dnode *inst_head, int length)
 {
 	t_dnode	*pivot;
@@ -85,12 +85,19 @@ void	ps_operate_a(t_dnode *a_head, t_dnode *a_tail,
 	int	length;
 
 	length = ps_lstlen(a_head, a_tail);
+	printf("---now operate a: %p %p, length: %d\n", a_head, a_tail, length);
+	ps_lstcheck_print(a_head);
+	ps_lstcheck_print(b_head);
+	if (length < 2 || ps_lstcheck_order(a_head, a_tail))
+		return ;
 	if (length == 2)
 		ps_operate_two(a_head, b_head, inst_head);
 	else
 	{
 		ps_operate(a_head, b_head, inst_head, length);
-		//
+		ps_operate_b(b_head, ps_lstfind_nth(b_head, length / 2 + 1),
+			a_head, inst_head);
+		printf("Command : %d\n", ps_lstlen(inst_head, inst_head));
 	}
 }
 
@@ -100,11 +107,18 @@ void	ps_operate_b(t_dnode *b_head, t_dnode *b_tail,
 	int	length;
 
 	length = ps_lstlen(b_head, b_tail);
+	printf("---now operate b: %p %p, length: %d\n", b_head, b_tail, length);
+	ps_lstcheck_print(a_head);
+	ps_lstcheck_print(b_head);
+	if (length < 2 || ps_lstcheck_order(b_head, b_tail))
+		return ;
 	if (length == 2)
 		ps_operate_two(b_head, a_head, inst_head);
 	else
 	{
 		ps_operate(b_head, a_head, inst_head, length);
-		//
+		ps_operate_a(a_head, ps_lstfind_nth(a_head, length / 2 + 1),
+			b_head, inst_head);
+		printf("Command : %d\n", ps_lstlen(inst_head, inst_head));
 	}
 }
