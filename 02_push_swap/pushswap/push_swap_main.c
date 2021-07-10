@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 20:59:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/09 15:36:02 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/10 13:41:44 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ps_sort(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head)
 		ps_operate_three(a_head, b_head, inst_head);
 	else
 		ps_operate_a(a_head, a_head, b_head, inst_head);
+	ps_lstcheck_print(a_head);
+	ps_lstcheck_print(b_head);
 }
 
 void	push_swap(t_dnode *a_head)
