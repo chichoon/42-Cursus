@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:30:36 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/10 13:46:45 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/11 22:41:15 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,9 @@ void	ps_operate_a(t_dnode *a_head, t_dnode *a_tail,
 	else
 	{
 		ps_operate(a_head, b_head, inst_head, length);
-		ps_operate_b(b_head, ps_lstfind_nth(b_head, length / 2 + 1),
-			a_head, inst_head);
+		ps_operate_a(a_head, ps_lstfind_nth(a_head, length / 2 + 1),
+			b_head, inst_head);
+		ps_operate_b(b_head, b_head, a_head, inst_head);
 		printf("Command : %d\n", ps_lstlen(inst_head, inst_head));
 	}
 }
@@ -117,8 +118,9 @@ void	ps_operate_b(t_dnode *b_head, t_dnode *b_tail,
 	else
 	{
 		ps_operate(b_head, a_head, inst_head, length);
-		ps_operate_a(a_head, ps_lstfind_nth(a_head, length / 2 + 1),
-			b_head, inst_head);
+		ps_operate_b(b_head, ps_lstfind_nth(b_head, length / 2 + 1),
+			a_head, inst_head);
+		ps_operate_a(a_head, a_head, b_head, inst_head);
 		printf("Command : %d\n", ps_lstlen(inst_head, inst_head));
 	}
 }
