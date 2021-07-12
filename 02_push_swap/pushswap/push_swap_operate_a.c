@@ -1,53 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_operate.c                                :+:      :+:    :+:   */
+/*   push_swap_operate_a.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 13:30:36 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/11 22:41:15 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/07/12 13:24:35 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/07/12 13:24:53 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ps_operate_two(t_dnode *head, t_dnode *head_other, t_dnode *inst_head)
-{
-	ps_s(head);
-	if (!head->key)
-		ps_add_operation(head, head_other, inst_head, 1);
-	else
-		ps_add_operation(head, head_other, inst_head, 2);
-}
-
-void	ps_operate_three(t_dnode *head, t_dnode *head_other, t_dnode *inst_head)
-{
-	if (head->next->key > head->next->next->key)
-	{
-		ps_s(head);
-		if (!head->key)
-			ps_add_operation(head, head_other, inst_head, 1);
-		else
-			ps_add_operation(head, head_other, inst_head, 2);
-	}
-	if (head->next->next->key > head->next->next->next->key)
-	{
-		ps_rr(head);
-		if (!head->key)
-			ps_add_operation(head, head_other, inst_head, 7);
-		else
-			ps_add_operation(head, head_other, inst_head, 8);
-	}
-	if (head->next->key > head->next->next->key)
-	{
-		ps_s(head);
-		if (!head->key)
-			ps_add_operation(head, head_other, inst_head, 1);
-		else
-			ps_add_operation(head, head_other, inst_head, 2);
-	}
-}
 
 static void	ps_operate(t_dnode *head, t_dnode *head_other,
 			t_dnode *inst_head, int length)
@@ -98,29 +61,6 @@ void	ps_operate_a(t_dnode *a_head, t_dnode *a_tail,
 		ps_operate_a(a_head, ps_lstfind_nth(a_head, length / 2 + 1),
 			b_head, inst_head);
 		ps_operate_b(b_head, b_head, a_head, inst_head);
-		printf("Command : %d\n", ps_lstlen(inst_head, inst_head));
-	}
-}
-
-void	ps_operate_b(t_dnode *b_head, t_dnode *b_tail,
-			t_dnode *a_head, t_dnode *inst_head)
-{
-	int	length;
-
-	length = ps_lstlen(b_head, b_tail);
-	printf("---now operate b: %p %p, length: %d\n", b_head, b_tail, length);
-	ps_lstcheck_print(a_head);
-	ps_lstcheck_print(b_head);
-	if (length < 2 || ps_lstcheck_order(b_head, b_tail))
-		return ;
-	if (length == 2)
-		ps_operate_two(b_head, a_head, inst_head);
-	else
-	{
-		ps_operate(b_head, a_head, inst_head, length);
-		ps_operate_b(b_head, ps_lstfind_nth(b_head, length / 2 + 1),
-			a_head, inst_head);
-		ps_operate_a(a_head, a_head, b_head, inst_head);
 		printf("Command : %d\n", ps_lstlen(inst_head, inst_head));
 	}
 }
