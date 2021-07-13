@@ -6,13 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 16:58:11 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/09 14:25:05 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/13 17:30:27 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ps_find_mid(int *num_arr, int length)
+static int	ps_find_sorted_mid(int *num_arr, int length)
 {
 	int	index_i;
 	int	index_j;
@@ -38,7 +38,7 @@ static int	ps_find_mid(int *num_arr, int length)
 	return (num_to_return);
 }
 
-int	ps_find_sorted_mid(t_dnode *dnode_head, int length)
+int	ps_find_mid(t_dnode *dnode_head, int length)
 {
 	int		*num_arr;
 	int		index;
@@ -55,5 +55,5 @@ int	ps_find_sorted_mid(t_dnode *dnode_head, int length)
 		dnode_temp = dnode_temp->next;
 		length_temp--;
 	}
-	return (ps_find_mid(num_arr, length));
+	return (ps_find_sorted_mid(num_arr, length));
 }

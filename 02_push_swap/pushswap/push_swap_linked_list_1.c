@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_linked_list_1.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/06 13:33:14 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/13 17:38:20 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,18 @@ t_dnode	*ps_lstadd_back(int key, t_dnode *dnode_prev)
 		dnode_prev->next = node;
 	}
 	return (node);
+}
+
+void	ps_lstdel(t_dnode *dnode_del)
+{
+	t_dnode	*dnode_prev;
+	t_dnode	*dnode_next;
+
+	dnode_prev = dnode_del->prev;
+	dnode_next = dnode_del->next;
+	dnode_prev->next = dnode_next;
+	dnode_next->prev = dnode_prev;
+	free(dnode_del);
 }
 
 void	ps_lstdel_all(t_dnode *dnode_head)

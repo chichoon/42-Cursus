@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:14:25 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/09 09:17:09 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/13 15:31:00 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ps_init_stack_a(int argc, char *argv[], t_dnode *a_head)
 	t_dnode	*dnode_now;
 	char	**str_temp;
 
-	a_head->key = 0;
+	a_head->key = KEY_A;
 	a_head->prev = a_head;
 	a_head->next = a_head;
 	index_argc = 0;
@@ -77,7 +77,7 @@ void	ps_validate_stack_a(t_dnode *a_head, t_dnode *b_head,
 
 void	ps_init_stack_b(t_dnode *b_head)
 {
-	b_head->key = 1;
+	b_head->key = KEY_B;
 	b_head->prev = b_head;
 	b_head->next = b_head;
 }
