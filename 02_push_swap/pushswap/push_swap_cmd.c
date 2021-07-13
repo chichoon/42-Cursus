@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:01:56 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/13 16:50:29 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/13 21:13:58 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int	ps_p(t_dnode *head_dst, t_dnode *head_src, t_dnode *inst_head)
 		head_dst->next->prev = tomove;
 		head_dst->next = tomove;
 		tomove->prev = head_dst;
+		if (head_dst->key == KEY_A)
+			ps_add_operation(head_dst, head_src, inst_head, CMD_PA);
+		else if (head_dst->key == KEY_B)
+			ps_add_operation(head_dst, head_src, inst_head, CMD_PB);
+		return (1);
 	}
-	if (head_dst->key == KEY_A)
-		ps_add_operation(head_dst, head_src, inst_head, CMD_PA);
-	else if (head_dst->key == KEY_B)
-		ps_add_operation(head_dst, head_src, inst_head, CMD_PB);
-	return (1);
+	return (0);
 }
 
 int	ps_s(t_dnode *head, t_dnode *head_other, t_dnode *inst_head)
@@ -48,12 +49,13 @@ int	ps_s(t_dnode *head, t_dnode *head_other, t_dnode *inst_head)
 		first->next = second->next;
 		second->prev = head;
 		second->next = first;
+		if (head->key == KEY_A)
+			ps_add_operation(head, head_other, inst_head, CMD_SA);
+		else if (head->key == KEY_B)
+			ps_add_operation(head, head_other, inst_head, CMD_SB);
+		return (1);
 	}
-	if (head->key == KEY_A)
-		ps_add_operation(head, head_other, inst_head, CMD_SA);
-	else if (head->key == KEY_B)
-		ps_add_operation(head, head_other, inst_head, CMD_SB);
-	return (1);
+	return (0);
 }
 
 int	ps_r(t_dnode *head, t_dnode *head_other, t_dnode *inst_head)
@@ -69,12 +71,13 @@ int	ps_r(t_dnode *head, t_dnode *head_other, t_dnode *inst_head)
 		tomove->next = head;
 		tomove->prev->next = tomove;
 		head->prev = tomove;
+		if (head->key == KEY_A)
+			ps_add_operation(head, head_other, inst_head, CMD_RA);
+		else if (head->key == KEY_B)
+			ps_add_operation(head, head_other, inst_head, CMD_RB);
+		return (1);
 	}
-	if (head->key == KEY_A)
-		ps_add_operation(head, head_other, inst_head, CMD_RA);
-	else if (head->key == KEY_B)
-		ps_add_operation(head, head_other, inst_head, CMD_RB);
-	return (1);
+	return (0);
 }
 
 int	ps_rr(t_dnode *head, t_dnode *head_other, t_dnode *inst_head)
@@ -90,10 +93,11 @@ int	ps_rr(t_dnode *head, t_dnode *head_other, t_dnode *inst_head)
 		tomove->prev = head;
 		tomove->next->prev = tomove;
 		head->next = tomove;
+		if (head->key == KEY_A)
+			ps_add_operation(head, head_other, inst_head, CMD_RRA);
+		else if (head->key == KEY_B)
+			ps_add_operation(head, head_other, inst_head, CMD_RRB);
+		return (1);
 	}
-	if (head->key == KEY_A)
-		ps_add_operation(head, head_other, inst_head, CMD_RRA);
-	else if (head->key == KEY_B)
-		ps_add_operation(head, head_other, inst_head, CMD_RRB);
-	return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/30 23:46:55 by jiychoi           #+#    #+#              #
-#    Updated: 2021/07/13 16:55:23 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/07/13 19:53:13 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(TARGET) : $(OBJECTS)
 bonus : @(MAKE) IF_BONUS=1 all
 
 %.o : %.c
-	@$(CC) $(CFLAGS) -c -o $@ $< -I ./
+	@$(CC) $(CFLAGS) $(MFLAGS) -c -o $@ $< -I ./
 
 clean :
 	rm -rf $(OBJS)

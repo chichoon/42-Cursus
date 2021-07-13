@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:12 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/13 17:29:30 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/13 17:55:03 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	ps_operate_a(t_dnode *a_head, t_dnode *b_head,
 			t_dnode *inst_head, int lstlen);
 void	ps_operate_b(t_dnode *b_head, t_dnode *a_head,
 			t_dnode *inst_head, int lstlen);
+void	ps_optimize_inst(t_dnode *inst_head);
 
 /*
 	** Push_Swap: Initialize & validate stack A
@@ -98,7 +99,7 @@ t_dnode	*ps_lstadd_front(int key, t_dnode *dnode_next);
 t_dnode	*ps_lstadd_back(int key, t_dnode *dnode_prev);
 void	ps_lstdel(t_dnode *dnode_del);
 void	ps_lstdel_all(t_dnode *dnode_head);
-int		ps_lstlen(t_dnode *dnode_head, t_dnode *dnode_tail);
+int		ps_lstlen(t_dnode *dnode_head);
 int		ps_lstcheck_dup(t_dnode *dnode_head);
 int		ps_lstcheck_order(t_dnode *dnode_head, t_dnode *dnode_tail);
 void	ps_lstcheck_print(t_dnode *dnode_head);
