@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:12 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/13 17:55:03 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/14 16:17:29 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ typedef struct s_dnode
 void	push_swap(t_dnode *a_head);
 int		ps_find_mid(t_dnode *dnode_head, int length);
 void	ps_sort(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head);
-void	ps_operate_two(t_dnode *head, t_dnode *head_other, t_dnode *inst_head);
+void	ps_operate_two_a(t_dnode *head, t_dnode *head_other,
+			t_dnode *inst_head, int lstlen);
+void	ps_operate_two_b(t_dnode *head, t_dnode *head_other,
+			t_dnode *inst_head, int lstlen);
 void	ps_operate_three(t_dnode *head, t_dnode *head_other,
 			t_dnode *inst_head);
 void	ps_operate_a(t_dnode *a_head, t_dnode *b_head,

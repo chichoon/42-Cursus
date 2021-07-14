@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 20:59:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/13 18:03:04 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/14 16:32:44 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 static void	ps_putinst(t_dnode *dnode)
 {
 	if (dnode->key == CMD_SA)
-		ft_putstr_fd("SA", 1);
+		ft_putstr_fd("sa", 1);
 	else if (dnode->key == CMD_SB)
-		ft_putstr_fd("SB", 1);
+		ft_putstr_fd("sb", 1);
 	else if (dnode->key == CMD_SS)
-		ft_putstr_fd("SS", 1);
+		ft_putstr_fd("ss", 1);
 	else if (dnode->key == CMD_PA)
-		ft_putstr_fd("PA", 1);
+		ft_putstr_fd("pa", 1);
 	else if (dnode->key == CMD_PB)
-		ft_putstr_fd("PB", 1);
+		ft_putstr_fd("pb", 1);
 	else if (dnode->key == CMD_RA)
-		ft_putstr_fd("RA", 1);
+		ft_putstr_fd("ra", 1);
 	else if (dnode->key == CMD_RB)
-		ft_putstr_fd("RB", 1);
+		ft_putstr_fd("rb", 1);
 	else if (dnode->key == CMD_RR)
-		ft_putstr_fd("RR", 1);
+		ft_putstr_fd("rr", 1);
 	else if (dnode->key == CMD_RRA)
-		ft_putstr_fd("RRA", 1);
+		ft_putstr_fd("rra", 1);
 	else if (dnode->key == CMD_RRB)
-		ft_putstr_fd("RRB", 1);
+		ft_putstr_fd("rrb", 1);
 	else if (dnode->key == CMD_RRR)
-		ft_putstr_fd("RRR", 1);
+		ft_putstr_fd("rrr", 1);
 }
 
 void	ps_print_inst(t_dnode *inst_head)
@@ -57,15 +57,13 @@ void	ps_sort(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head)
 
 	lstlen = ps_lstlen(a_head);
 	if (lstlen == 2)
-		ps_operate_two(a_head, b_head, inst_head);
+		ps_operate_two_a(a_head, b_head, inst_head, lstlen);
 	else if (lstlen == 3)
 		ps_operate_three(a_head, b_head, inst_head);
 	else
 		ps_operate_a(a_head, b_head, inst_head, lstlen);
 	ps_optimize_inst(inst_head);
 	ps_print_inst(inst_head);
-	ps_lstcheck_print(a_head);
-	ps_lstcheck_print(b_head);
 }
 
 void	push_swap(t_dnode *a_head)
