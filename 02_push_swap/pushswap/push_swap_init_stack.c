@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:14:25 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/15 22:17:21 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/16 01:53:34 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,6 @@ void	ps_init_stack_a(int argc, char *argv[], t_dnode *a_head)
 			}
 		}
 		ps_free_char2d(str_temp);
-	}
-}
-
-void	ps_validate_stack_a(t_dnode *a_head, t_dnode *b_head,
-		t_dnode *inst_head, int flag)
-{
-	if (flag == IF_DUP)
-		if (!ps_lstcheck_dup(a_head))
-			ps_print_and_exit(a_head, b_head, inst_head, "Error");
-	if (flag == IF_ORDERED)
-	{
-		if (!ps_lstcheck_order(a_head, ps_lstlen(a_head)))
-			ps_print_and_exit(a_head, b_head, inst_head, "KO");
-		ps_print_and_exit(a_head, b_head, inst_head, "OK");
 	}
 }
 

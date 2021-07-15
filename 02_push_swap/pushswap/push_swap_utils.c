@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 13:42:43 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/16 00:09:11 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/16 01:54:30 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ void	ps_print_and_exit(t_dnode *a_head, t_dnode *b_head,
 		ps_lstdel_all(b_head);
 	if (inst_head)
 		ps_lstdel_all(inst_head);
-	ft_putstr_fd(str, 1);
-	ft_putchar_fd('\n', 1);
+	if (str)
+	{
+		ft_putstr_fd(str, 1);
+		ft_putchar_fd('\n', 1);
+	}
 	exit(0);
 }
 

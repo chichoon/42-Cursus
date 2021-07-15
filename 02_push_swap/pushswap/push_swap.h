@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:12 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/15 23:47:09 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/16 01:53:41 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ typedef struct s_dnode
 	struct s_dnode	*next;
 }				t_dnode;
 
-# define IF_DUP 0
-# define IF_ORDERED 1
 # define KEY_A 0
 # define KEY_B 1
 # define CMD_SA 1
@@ -97,8 +95,6 @@ void	ps_optimize_inst(t_dnode *inst_head);
 */
 void	ps_init_stack_a(int argc, char *argv[], t_dnode *head);
 void	ps_make_stack_a(int argc, char *argv[], t_dnode *a_head);
-void	ps_validate_stack_a(t_dnode *a_head, t_dnode *b_head,
-			t_dnode *inst_head, int flag);
 void	ps_init_stack_b(t_dnode *b_head);
 void	ps_init_stack_oper(t_dnode *inst_head);
 

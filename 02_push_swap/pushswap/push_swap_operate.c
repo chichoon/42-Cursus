@@ -6,11 +6,37 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:24:35 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/16 01:21:26 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/16 01:43:56 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	ps_lstcheck_rev_order(t_dnode *dnode_head, int length)
+{
+	t_dnode	*dnode_prev;
+	t_dnode	*dnode_next;
+	int		i;
+	int		j;
+
+	if (dnode_head->next == dnode_head)
+		return (1);
+	i = 0;
+	dnode_prev = dnode_head->next;
+	while (++i < length)
+	{
+		dnode_next = dnode_prev->next;
+		j = i;
+		while (j++ < length)
+		{
+			if (dnode_prev->key < dnode_next->key)
+				return (0);
+			dnode_next = dnode_next->next;
+		}
+		dnode_prev = dnode_prev->next;
+	}
+	return (1);
+}
 
 static void	ps_operation_a(t_dnode *a_head, t_dnode *b_head,
 			t_dnode *inst_head, int lstlen)
@@ -80,7 +106,9 @@ static void	ps_operation_b(t_dnode *b_head, t_dnode *a_head,
 void	ps_operate_b(t_dnode *b_head, t_dnode *a_head,
 			t_dnode *inst_head, int lstlen)
 {
-	if (lstlen <= 2)
+	if (ps_lstcheck_rev_order(b_head, lstlen))
+		return (ps_iterate_p(a_head, b_head, inst_head, lstlen));
+	else if (lstlen <= 2)
 		return (ps_operate_two_b(b_head, a_head, inst_head, lstlen));
 	else if (lstlen == 3)
 		return (ps_operate_three_b(b_head, a_head, inst_head));

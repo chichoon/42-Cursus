@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 20:59:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/16 01:18:56 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/16 01:54:06 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	push_swap(t_dnode *a_head)
 	t_dnode	*inst_head;
 
 	if (ps_lstcheck_order(a_head, ps_lstlen(a_head)))
-		ps_print_and_exit(a_head, 0, 0, "OK");
+		ps_print_and_exit(a_head, 0, 0, 0);
 	b_head = (t_dnode *)malloc(sizeof(t_dnode));
 	if (!b_head)
 		ps_print_and_exit(a_head, 0, 0, "Error");
@@ -96,7 +96,8 @@ int	main(int argc, char *argv[])
 	if (argc > 1)
 	{
 		ps_init_stack_a(argc, argv, a_head);
-		ps_validate_stack_a(a_head, 0, 0, IF_DUP);
+		if (!ps_lstcheck_dup(a_head))
+			ps_print_and_exit(a_head, 0, 0, "Error");
 		push_swap(a_head);
 	}
 	return (0);
