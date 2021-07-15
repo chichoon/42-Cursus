@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/30 23:46:55 by jiychoi           #+#    #+#              #
-#    Updated: 2021/07/13 19:53:13 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/07/15 10:29:31 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ MFLAGS		=	-g3 -fsanitize=address
 SRCS		=	push_swap_linked_list_1.c push_swap_linked_list_2.c\
 				push_swap_init_stack.c push_swap_main.c push_swap_utils.c\
 				push_swap_find_pivot.c push_swap_cmd.c\
-				push_swap_operate.c push_swap_operate_small.c
+				push_swap_operate.c push_swap_operate_small_1.c push_swap_operate_small_2.c
 #SRCS_BONUS	=
 OBJS		=	$(SRCS:.c=.o)
 OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)

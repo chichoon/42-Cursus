@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:24:35 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/14 16:19:03 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/14 20:51:17 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,21 @@ void	ps_optimize_inst(t_dnode *inst_head)
 	while (dnode_prev != inst_head->prev)
 	{
 		dnode_next = dnode_prev->next;
-		if (dnode_prev->key == CMD_SA && dnode_next->key == CMD_SB)
+		if ((dnode_prev->key == CMD_SA && dnode_next->key == CMD_SB)
+			|| (dnode_prev->key == CMD_SB && dnode_next->key == CMD_SA))
 			ps_replace_inst(&dnode_prev, &dnode_next, CMD_SS);
-		if (dnode_prev->key == CMD_RA && dnode_next->key == CMD_RB)
+		if ((dnode_prev->key == CMD_RA && dnode_next->key == CMD_RB)
+			|| (dnode_prev->key == CMD_RB && dnode_next->key == CMD_RA))
 			ps_replace_inst(&dnode_prev, &dnode_next, CMD_RR);
-		if (dnode_prev->key == CMD_RRA && dnode_next->key == CMD_RRB)
+		if ((dnode_prev->key == CMD_RRA && dnode_next->key == CMD_RRB)
+			|| (dnode_prev->key == CMD_RRB && dnode_next->key == CMD_RRA))
 			ps_replace_inst(&dnode_prev, &dnode_next, CMD_RRR);
-		if (dnode_prev->key == CMD_PA && dnode_next->key == CMD_PB)
+		if ((dnode_prev->key == CMD_PA && dnode_next->key == CMD_PB)
+			|| (dnode_prev->key == CMD_PB && dnode_next->key == CMD_PA)
+			|| (dnode_prev->key == CMD_RA && dnode_next->key == CMD_RRA)
+			|| (dnode_prev->key == CMD_RB && dnode_next->key == CMD_RRB)
+			|| (dnode_prev->key == CMD_RRA && dnode_next->key == CMD_RA)
+			|| (dnode_prev->key == CMD_RRB && dnode_next->key == CMD_RB))
 			ps_replace_inst(&dnode_prev, &dnode_next, 0);
 		dnode_prev = dnode_prev->next;
 	}
