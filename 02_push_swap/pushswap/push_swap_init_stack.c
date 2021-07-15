@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:14:25 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/13 15:31:00 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/15 22:17:21 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ps_validate_stack_a(t_dnode *a_head, t_dnode *b_head,
 			ps_print_and_exit(a_head, b_head, inst_head, "Error");
 	if (flag == IF_ORDERED)
 	{
-		if (!ps_lstcheck_order(a_head, a_head))
+		if (!ps_lstcheck_order(a_head, ps_lstlen(a_head)))
 			ps_print_and_exit(a_head, b_head, inst_head, "KO");
 		ps_print_and_exit(a_head, b_head, inst_head, "OK");
 	}

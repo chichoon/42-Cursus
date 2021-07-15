@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 20:59:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/14 20:56:47 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/16 01:18:56 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ void	ps_sort(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head)
 	if (lstlen == 2)
 		ps_operate_two_a(a_head, b_head, inst_head, lstlen);
 	else if (lstlen == 3)
-		ps_operate_three(a_head, b_head, inst_head);
+		ps_operate_three_a(a_head, b_head, inst_head);
+	else if (lstlen == 5)
+		ps_operate_five_a(a_head, b_head, inst_head);
 	else
 		ps_operate_a(a_head, b_head, inst_head, lstlen);
 	ps_optimize_inst(inst_head);
@@ -71,7 +73,7 @@ void	push_swap(t_dnode *a_head)
 	t_dnode	*b_head;
 	t_dnode	*inst_head;
 
-	if (ps_lstcheck_order(a_head, a_head))
+	if (ps_lstcheck_order(a_head, ps_lstlen(a_head)))
 		ps_print_and_exit(a_head, 0, 0, "OK");
 	b_head = (t_dnode *)malloc(sizeof(t_dnode));
 	if (!b_head)

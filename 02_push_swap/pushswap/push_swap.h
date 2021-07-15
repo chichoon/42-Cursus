@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:12 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/15 14:40:27 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/15 23:47:09 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,17 @@ void	ps_operate_two_a(t_dnode *a_head, t_dnode *b_head,
 			t_dnode *inst_head, int lstlen);
 void	ps_operate_two_b(t_dnode *b_head, t_dnode *a_head,
 			t_dnode *inst_head, int lstlen);
-void	ps_operate_three(t_dnode *head, t_dnode *head_other,
+void	ps_operate_three_a(t_dnode *a_head, t_dnode *b_head,
 			t_dnode *inst_head);
 void	ps_operate_three_b(t_dnode *b_head, t_dnode *a_head,
+			t_dnode *inst_head);
+void	ps_operate_four_a(t_dnode *a_head, t_dnode *b_head,
+			t_dnode *inst_head);
+void	ps_operate_four_b(t_dnode *b_head, t_dnode *a_head,
+			t_dnode *inst_head);
+void	ps_operate_five_a(t_dnode *a_head, t_dnode *b_head,
+			t_dnode *inst_head);
+void	ps_operate_five_b(t_dnode *b_head, t_dnode *a_head,
 			t_dnode *inst_head);
 void	ps_optimize_inst(t_dnode *inst_head);
 
@@ -111,7 +119,7 @@ void	ps_lstdel(t_dnode *dnode_del);
 void	ps_lstdel_all(t_dnode *dnode_head);
 int		ps_lstlen(t_dnode *dnode_head);
 int		ps_lstcheck_dup(t_dnode *dnode_head);
-int		ps_lstcheck_order(t_dnode *dnode_head, t_dnode *dnode_tail);
+int		ps_lstcheck_order(t_dnode *dnode_head, int length);
 void	ps_lstcheck_print(t_dnode *dnode_head);
 t_dnode	*ps_lstfind_nth(t_dnode *dnode_head, int n);
 t_dnode	*ps_lstfind_key(t_dnode *dnode_head, int key);
@@ -124,5 +132,9 @@ void	ps_print_and_exit(t_dnode *a_head, t_dnode *b_head,
 void	ps_free_char2d(char **arr);
 void	ps_add_operation(t_dnode *a_head, t_dnode *b_head,
 			t_dnode *inst_head, int inst_code);
+void	ps_iterate_rr(t_dnode *head, t_dnode *head_other,
+			t_dnode *inst_head, int iter);
+void	ps_iterate_p(t_dnode *head_dst, t_dnode *head_src,
+			t_dnode *inst_head, int iter);
 
 #endif

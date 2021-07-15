@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 13:42:43 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/07 01:02:07 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/16 00:09:11 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,24 @@ void	ps_add_operation(t_dnode *a_head, t_dnode *b_head,
 	if (!inst_next)
 		ps_print_and_exit(a_head, b_head, 0, "Error");
 	ps_lstadd_front(inst_code, inst_head);
+}
+
+void	ps_iterate_rr(t_dnode *head, t_dnode *head_other,
+			t_dnode *inst_head, int iter)
+{
+	int	index;
+
+	index = -1;
+	while (++index < iter)
+		ps_rr(head, head_other, inst_head);
+}
+
+void	ps_iterate_p(t_dnode *head_dst, t_dnode *head_src,
+			t_dnode *inst_head, int iter)
+{
+	int	index;
+
+	index = -1;
+	while (++index < iter)
+		ps_p(head_dst, head_src, inst_head);
 }

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 13:14:01 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/09 14:45:58 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/15 22:20:24 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,22 @@ int	ps_lstcheck_dup(t_dnode *dnode_head)
 	return (1);
 }
 
-int	ps_lstcheck_order(t_dnode *dnode_head, t_dnode *dnode_tail)
+int	ps_lstcheck_order(t_dnode *dnode_head, int length)
 {
 	t_dnode	*dnode_prev;
 	t_dnode	*dnode_next;
+	int		i;
+	int		j;
 
-	if (dnode_head->next == dnode_tail)
-		return (0);
+	if (dnode_head->next == dnode_head)
+		return (1);
+	i = 0;
 	dnode_prev = dnode_head->next;
-	while (dnode_prev != dnode_tail->prev)
+	while (++i < length)
 	{
 		dnode_next = dnode_prev->next;
-		while (dnode_next != dnode_tail)
+		j = i;
+		while (j++ < length)
 		{
 			if (dnode_prev->key > dnode_next->key)
 				return (0);

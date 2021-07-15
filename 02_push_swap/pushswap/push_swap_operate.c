@@ -6,13 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:24:35 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/14 20:51:17 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/16 01:21:26 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_operate_a(t_dnode *a_head, t_dnode *b_head,
+static void	ps_operation_a(t_dnode *a_head, t_dnode *b_head,
 			t_dnode *inst_head, int lstlen)
 {
 	t_dnode	*dnode_arr[2];
@@ -21,8 +21,6 @@ void	ps_operate_a(t_dnode *a_head, t_dnode *b_head,
 	num_oper_arr[OPERATION_R] = 0;
 	num_oper_arr[OPERATION_P] = 0;
 	num_oper_arr[OPERATION_INDEX] = -1;
-	if (lstlen <= 2 || ps_lstcheck_order(a_head, a_head))
-		return (ps_operate_two_a(a_head, b_head, inst_head, lstlen));
 	dnode_arr[NODE_PIVOT] = ps_lstfind_key(a_head, ps_find_mid(a_head, lstlen));
 	dnode_arr[NODE_TEMP] = a_head->next;
 	while (++num_oper_arr[OPERATION_INDEX] < lstlen)
@@ -33,14 +31,28 @@ void	ps_operate_a(t_dnode *a_head, t_dnode *b_head,
 		else
 			num_oper_arr[OPERATION_P] += ps_p(b_head, a_head, inst_head);
 	}
-	num_oper_arr[OPERATION_INDEX] = -1;
-	while (++num_oper_arr[OPERATION_INDEX] < num_oper_arr[OPERATION_R])
-		ps_rr(a_head, b_head, inst_head);
+	if (num_oper_arr[OPERATION_R] != ps_lstlen(a_head))
+		ps_iterate_rr(a_head, b_head, inst_head, num_oper_arr[OPERATION_R]);
 	ps_operate_a(a_head, b_head, inst_head, num_oper_arr[OPERATION_R]);
 	ps_operate_b(b_head, a_head, inst_head, num_oper_arr[OPERATION_P]);
 }
 
-void	ps_operate_b(t_dnode *b_head, t_dnode *a_head,
+void	ps_operate_a(t_dnode *a_head, t_dnode *b_head,
+			t_dnode *inst_head, int lstlen)
+{
+	if (lstlen <= 2 || ps_lstcheck_order(a_head, ps_lstlen(a_head)))
+		return (ps_operate_two_a(a_head, b_head, inst_head, lstlen));
+	else if (lstlen == 3)
+		return (ps_operate_three_a(a_head, b_head, inst_head));
+	else if (lstlen == 4)
+		return (ps_operate_four_a(a_head, b_head, inst_head));
+	else if (lstlen == 5)
+		return (ps_operate_five_a(a_head, b_head, inst_head));
+	else
+		return (ps_operation_a(a_head, b_head, inst_head, lstlen));
+}
+
+static void	ps_operation_b(t_dnode *b_head, t_dnode *a_head,
 			t_dnode *inst_head, int lstlen)
 {
 	t_dnode	*dnode_arr[2];
@@ -49,8 +61,6 @@ void	ps_operate_b(t_dnode *b_head, t_dnode *a_head,
 	num_oper_arr[OPERATION_P] = 0;
 	num_oper_arr[OPERATION_R] = 0;
 	num_oper_arr[OPERATION_INDEX] = -1;
-	if (lstlen <= 2)
-		return ((void) ps_operate_two_b(b_head, a_head, inst_head, lstlen));
 	dnode_arr[NODE_PIVOT] = ps_lstfind_key(b_head, ps_find_mid(b_head, lstlen));
 	dnode_arr[NODE_TEMP] = b_head->next;
 	while (++num_oper_arr[OPERATION_INDEX] < lstlen)
@@ -61,62 +71,23 @@ void	ps_operate_b(t_dnode *b_head, t_dnode *a_head,
 		else
 			num_oper_arr[OPERATION_P] += ps_p(a_head, b_head, inst_head);
 	}
-	num_oper_arr[OPERATION_INDEX] = -1;
-	while (++num_oper_arr[OPERATION_INDEX] < num_oper_arr[OPERATION_R])
-		ps_rr(b_head, a_head, inst_head);
+	if (num_oper_arr[OPERATION_R] != ps_lstlen(b_head))
+		ps_iterate_rr(b_head, a_head, inst_head, num_oper_arr[OPERATION_R]);
 	ps_operate_a(a_head, b_head, inst_head, num_oper_arr[OPERATION_P]);
 	ps_operate_b(b_head, a_head, inst_head, num_oper_arr[OPERATION_R]);
 }
 
-static void	ps_replace_inst(t_dnode **dnode_prev, t_dnode **dnode_next,
-			int inst_num)
+void	ps_operate_b(t_dnode *b_head, t_dnode *a_head,
+			t_dnode *inst_head, int lstlen)
 {
-	t_dnode	*dnode_temp;
-
-	if (inst_num)
-	{
-		ps_lstadd_front(inst_num, *dnode_prev);
-		dnode_temp = (*dnode_prev)->prev;
-		ps_lstdel(*dnode_prev);
-		ps_lstdel(*dnode_next);
-		*dnode_prev = dnode_temp;
-		*dnode_next = dnode_temp->next;
-	}
+	if (lstlen <= 2)
+		return (ps_operate_two_b(b_head, a_head, inst_head, lstlen));
+	else if (lstlen == 3)
+		return (ps_operate_three_b(b_head, a_head, inst_head));
+	else if (lstlen == 4)
+		return (ps_operate_four_b(b_head, a_head, inst_head));
+	else if (lstlen == 5)
+		return (ps_operate_five_b(b_head, a_head, inst_head));
 	else
-	{
-		dnode_temp = (*dnode_next)->next;
-		ps_lstdel(*dnode_prev);
-		ps_lstdel(*dnode_next);
-		*dnode_prev = dnode_temp;
-		*dnode_next = dnode_temp->next;
-	}
-}
-
-void	ps_optimize_inst(t_dnode *inst_head)
-{
-	t_dnode	*dnode_prev;
-	t_dnode	*dnode_next;
-
-	dnode_prev = inst_head->next;
-	while (dnode_prev != inst_head->prev)
-	{
-		dnode_next = dnode_prev->next;
-		if ((dnode_prev->key == CMD_SA && dnode_next->key == CMD_SB)
-			|| (dnode_prev->key == CMD_SB && dnode_next->key == CMD_SA))
-			ps_replace_inst(&dnode_prev, &dnode_next, CMD_SS);
-		if ((dnode_prev->key == CMD_RA && dnode_next->key == CMD_RB)
-			|| (dnode_prev->key == CMD_RB && dnode_next->key == CMD_RA))
-			ps_replace_inst(&dnode_prev, &dnode_next, CMD_RR);
-		if ((dnode_prev->key == CMD_RRA && dnode_next->key == CMD_RRB)
-			|| (dnode_prev->key == CMD_RRB && dnode_next->key == CMD_RRA))
-			ps_replace_inst(&dnode_prev, &dnode_next, CMD_RRR);
-		if ((dnode_prev->key == CMD_PA && dnode_next->key == CMD_PB)
-			|| (dnode_prev->key == CMD_PB && dnode_next->key == CMD_PA)
-			|| (dnode_prev->key == CMD_RA && dnode_next->key == CMD_RRA)
-			|| (dnode_prev->key == CMD_RB && dnode_next->key == CMD_RRB)
-			|| (dnode_prev->key == CMD_RRA && dnode_next->key == CMD_RA)
-			|| (dnode_prev->key == CMD_RRB && dnode_next->key == CMD_RB))
-			ps_replace_inst(&dnode_prev, &dnode_next, 0);
-		dnode_prev = dnode_prev->next;
-	}
+		return (ps_operation_b(b_head, a_head, inst_head, lstlen));
 }
