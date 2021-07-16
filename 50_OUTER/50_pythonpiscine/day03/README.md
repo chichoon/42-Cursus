@@ -1,8 +1,10 @@
 # **D03 - Piscine Python-Django**
 
-파이썬-쟝고 연습 (파이썬 - 라이브러리들)
+## 파이썬-쟝고 연습 (파이썬 - 라이브러리들)
 
 _요약: 오늘은 파이썬에서 유용하게 사용할 만한 라이브러리를 다루는 법을 알아보죠._
+
+##### _번역 오류 및 오역 제보는 42seoul_club_translate 채널 또는 @jiychoi 로 연락주세요._
 
 <br>
 
@@ -29,12 +31,11 @@ _요약: 오늘은 파이썬에서 유용하게 사용할 만한 라이브러리
 <br>
 
 지오해싱 - 위키피디아, 지식의 백과사전
+지오해싱이란 xkcd 웹코믹에 영향을 받은 야외 오락 활동입니다. 참가자들은 (컴퓨터 알고리즘에 의해 계산된) 랜덤한 좌표로 찾아가 범지구 위치결정 시스템 (GPS) 수신기 또는 다른 기기의 사진을 찍어 인증한 후, 해당 좌표로 찾아가기까지의 여정을 온라인상에 이야기해야 합니다. 전자기기가 아니더라도, 위치를 알아볼 수 있는 사진 인증 또한 허용됩니다.
 
-```
-(대충 지오해싱은 xkcd 커뮤니티 유저들의 문화이고, 지오해싱을 거쳐서 나온 위도와 경도에 해당하는 위치에 방문하여 인증샷을 남기는 게임이라는 내용)
-```
+[지오캐싱](https://www.geocaching.com/) 등과 같은 여타 야외 활동들이 명확한 목표를 제시하는 반면, 지오해싱은 무의미함에 재미를 느낀 플레이어들에 의해 주로 추진됩니다. 그 결과로 탄생한 지오해싱 커뮤니티와 문화는 대개 장난기가 많고, 지오해싱 과정 중에 발생하는 재미있는 상황들을 지지하며 전통적인 야외 활동들을 패러디하는 경향이 있습니다. 랜덤 좌표를 탐험한다는 것이 무조건 무의미한 것 또한 아닙니다. 몇몇 지오해싱 참가자들은 OpenStreetMap 프로젝트에 자신이 방문한 지역의 문서를 추가하기도 합니다.
 
-[심심하면 읽어보세요](https://en.wikipedia.org/wiki/Geohashing)
+[출처](https://en.wikipedia.org/wiki/Geohashing)
 
 <br>
 
@@ -101,12 +102,12 @@ if __name__ == '__main__':
 
 <br>
 
-| **Piscine**                      | Exercise 00        |
-| -------------------------------- | ------------------ |
-| Exercise 00 : 중력을 거스르는 자 |
-| **제출할 폴더**                  | ex00/              |
-| **제출할 파일**                  | `geohashing.py`    |
-| **허용되는 함수**                | `sys, antigravity` |
+| **Piscine**                 | Exercise 00        |
+| --------------------------- | ------------------ |
+| Exercise 00 : 중력 거스르기 |
+| **제출할 폴더**             | ex00/              |
+| **제출할 파일**             | `geohashing.py`    |
+| **허용되는 함수**           | `sys, antigravity` |
 
 <br>
 
@@ -135,7 +136,7 @@ if __name__ == '__main__':
 
 <br>
 
-`path.py`는 Path 객체를 불러오도록 도우며, 이는 `os.path`를 조금 더 직관적으로 사용할 수 있게 돕습니다.
+`path.py`는 Path 객체를 사용가능케 하며, 이 객체는 `os.path`를 조금 더 직관적으로 사용할 수 있게 돕습니다.
 
 이번 과제에서는, 이 라이브러리를 설치하는 `bash` 스크립트를 만들고, 라이브러리를 사용하는 `Python` 프로그램을 작성해보도록 하겠습니다.
 
@@ -154,9 +155,12 @@ if __name__ == '__main__':
 파이썬 프로그램은 다음과 같은 절차만 제대로 지킨다면 자유롭게 구성하셔도 됩니다:
 
 - 당연히 확장자는 `.py`여야 합니다. `파이썬`이니까요..
+
 - 반드시 `path.py` 라이브러리를 방금 전에 쉘 스크립트로 설치한 경로로부터 불러와야 합니다.
+
 - 프로그램은 반드시 폴더와 폴더 내부에 파일을 하나 만들어야 하고, 해당 파일에 아무 값을 쓴 다음 그것을 읽어들여 출력하는 과정이 필요합니다.
-- 오늘의 규칙 ([**Today's specific rules**](#Chapter-3)) 을 따라야 합니다.
+
+- 오늘의 규칙 (**[Today’s specific rules](#Chapter-3)**) 을 따라야 합니다.
 
 <br>
 
@@ -174,7 +178,6 @@ if __name__ == '__main__':
 | **허용되는 함수**              | `requests, json, dewiki, sys`          |
 
 <br>
-
 위키피디아는 여러분이 잘 알고 있는 놀라운 지식 공유의 장입니다. 또한 여러분이 가장 좋아하는 브라우저에서도 실행할 수 있고, 핸드폰으로도 실행 가능하죠. 이제 여러분에게 이 필수요소적인 웹사이트를 터미널에서 접근할 수 있는 도구를 만들 권리를 드리겠습니다.
 
 그렇게 하기 위해선, `string` 형식의 패러미터를 받아 [위키피디아 API](https://www.mediawiki.org/wiki/API:Main_page)를 이용하여 검색하고, 그 결과값을 파일에 저장하는 `request_wikipedia.py` 프로그램을 만들어야 합니다. 프랑스 API나 영어 API 중 하나를 사용하시면 됩니다.
@@ -189,33 +192,31 @@ if __name__ == '__main__':
 
 - 여러분의 레포지토리에 `requirement.txt`를 포함하세요. 이는 여러분의 시스템이나 가상환경에 필요한 라이브러리를 설치하는 데에 사용됩니다.
 
-```
-ℹ️
-dewiki 라이브러리는 완벽하지 않습니다. 저희는 완벽한 결과물을 요구하는 게 아니에요. 그건 과제의 목표가 아니니까요.
-```
+> ℹ️ <br>
+> dewiki 라이브러리는 완벽하지 않습니다. 저희는 완벽한 결과물을 요구하는 게 아니에요. 그건 과제의 목표가 아니니까요.
 
-```
-💡
-API 문서를 잘 읽어보세요. API를 사용했을 때 여러분이 받는 결과물의 구조를 잘 살펴보세요.
-```
+> 💡 <br>
+> API 문서를 잘 읽어보세요. API를 사용했을 때 여러분이 받는 결과물의 구조를 잘 살펴보세요.
 
 다음은 결과물의 예시입니다 :
 
-```sh
+```bash
 $>python3 request_wikipedia.py "chocolatine"
 $>cat chocolatine.wiki
-Une chocolatine designe :
-* une viennoiserie au chocolat, aussi appelee pain au chocolat ou couque au chocolat ;
-* une viennoiserie a la creme patissiere et au chocolat, aussi appelee suisse ;
-* une sorte de bonbon au chocolat ;
-* un ouvrage d'Anna Rozen
-Malgre son usage ancien, le mot n'est entre dans le dictionnaire Petit Robert qu'en 2007 et dans le
-Petit Larousse qu'en 2011.
-L'utilisation du terme "Chocolatine" se retrouve egalement au Quebec, dont la langue a evolue a partir
-du vieux francais differemment du francais employe en Europe, mais cet usage ne prouve ni n'
-infirme aucune anteriorite, dependant du hasard de l'usage du premier commercant l'ayant introduit
-au Quebec.
+
+	Une chocolatine designe :
+
+	* une viennoiserie au chocolat, aussi appelee pain au chocolat ou couque au chocolat ;
+	* une viennoiserie a la creme patissiere et au chocolat, aussi appelee suisse ;
+	* une sorte de bonbon au chocolat ;
+	* un ouvrage d'Anna Rozen
+
+Malgre son usage ancien, le mot n'est entre dans le dictionnaire Petit Robert qu'en 2007 et dans lePetit Larousse qu'en 2011.
+
+L'utilisation du terme "Chocolatine" se retrouve egalement au Quebec, dont la langue a evolue a partirdu vieux francais differemment du francais employe en Europe, mais cet usage ne prouve ni n'infirme aucune anteriorite, dependant du hasard de l'usage du premier commercant l'ayant introduitau Quebec.
+
 References
+
 Categorie:Patisserie
 Categorie:Chocolat
 ```
@@ -269,10 +270,8 @@ Categorie:Chocolat
 - 이 조건에 해당하면, 요구하는 출력문을 표준 출력으로 출력한 후, 프로그램이 정상적으로 종료되어야 합니다.
   ​
 
-```
-ℹ️
-프로그램 실행 시에는 연결 오류, 서버 오류, 패러미터 오류, 리퀘스트 오류 등 어떠한 오류 상황에서도, 각 상황별로 설정된 에러 메시지를 제대로 출력하고 정상적으로 종료되어야 합니다.
-```
+> ℹ️ <br>
+> 프로그램 실행 시에는 연결 오류, 서버 오류, 패러미터 오류, 리퀘스트 오류 등 어떠한 오류 상황에서도, 각 상황별로 설정된 에러 메시지를 제대로 출력하고 정상적으로 종료되어야 합니다.
 
 직전 과제처럼, 이 프로그램을 구동시키기 위한 라이브러리를 설치하는 `requirement.txt`를 제공하세요.
 
@@ -302,10 +301,8 @@ It's a dead end !
 $>
 ```
 
-```
-ℹ️
-위키피디아 커뮤니티는 문서를 자주 업데이트합니다. 이 pdf가 만들어진 시점과 여러분이 과제를 수행하는 시점 사이에 문서가 변경되었을 가능성이 높으며, philosophy로 향하는 길 또한 달리 출력될 가능성이 높고 accuvio 예시 또한 dead end가 아닐 수 있습니다.
-```
+> ℹ️ <br>
+> 위키피디아 커뮤니티는 문서를 자주 업데이트합니다. 이 pdf가 만들어진 시점과 여러분이 과제를 수행하는 시점 사이에 문서가 변경되었을 가능성이 높으며, philosophy로 향하는 길 또한 달리 출력될 가능성이 높고 accuvio 예시 또한 dead end가 아닐 수 있습니다.
 
 <br>
 
@@ -330,10 +327,15 @@ $>
 이것을 위해, 여러분은 두 개의 파일을 만들어야 합니다:
 
 - `Django` 와 `psycopg2`의 최신 안정 버전을 설치하는 `requirement.txt`
+
 - 다음을 수행하는 쉘 스크립트:
+
   - `.sh` 확장자를 가져야 합니다.
+
   - `django_env` 라는 이름의 `python3 virtualenv (가상환경)` 을 생성해야 합니다.
+
   - `requirement.txt` 에 포함된 모든 파일을 `가상환경` 에 설치해야 합니다.
+
   - `가상환경`은 해당 스크립트가 종료될 시점에 **활성화 (activated)** 되어 있어야 합니다.
 
 <br>
