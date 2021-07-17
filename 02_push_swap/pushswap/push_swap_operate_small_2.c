@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 10:28:58 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/16 00:13:25 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/18 00:15:04 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,18 @@ void	ps_operate_five_a(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head)
 	ps_operate_three_b(b_head, a_head, inst_head);
 }
 
+static void	ps_oper_five_b(t_dnode *a_head, t_dnode *b_head,
+			t_dnode *inst_head, int lstlen)
+{
+	if (lstlen == 1 || ps_lstlen(b_head) == 1)
+		ps_p(a_head, b_head, inst_head);
+	else
+		if (b_head->next->key < b_head->next->next->key)
+			ps_s(b_head, a_head, inst_head);
+	ps_operate_three_a(a_head, b_head, inst_head);
+	ps_iterate_p(a_head, b_head, inst_head, 2);
+}
+
 void	ps_operate_five_b(t_dnode *b_head, t_dnode *a_head, t_dnode *inst_head)
 {
 	t_dnode	*pivot;
@@ -100,6 +112,5 @@ void	ps_operate_five_b(t_dnode *b_head, t_dnode *a_head, t_dnode *inst_head)
 	}
 	if (ps_lstlen(b_head) != 2)
 		ps_iterate_rr(b_head, a_head, inst_head, 2);
-	ps_operate_three_a(a_head, b_head, inst_head);
-	ps_operate_two_b(b_head, a_head, inst_head, 2);
+	ps_oper_five_b(a_head, b_head, inst_head, 2);
 }

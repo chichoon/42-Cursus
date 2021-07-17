@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:12 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/16 01:53:41 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/18 01:09:15 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ void	ps_operate_five_a(t_dnode *a_head, t_dnode *b_head,
 			t_dnode *inst_head);
 void	ps_operate_five_b(t_dnode *b_head, t_dnode *a_head,
 			t_dnode *inst_head);
+void	ps_operate_six_a(t_dnode *a_head, t_dnode *b_head,
+			t_dnode *inst_head);
+void	ps_operate_six_b(t_dnode *b_head, t_dnode *a_head,
+			t_dnode *inst_head);
 void	ps_optimize_inst(t_dnode *inst_head);
 
 /*
@@ -105,6 +109,9 @@ int		ps_p(t_dnode *head_dst, t_dnode *head_src, t_dnode *inst_head);
 int		ps_s(t_dnode *head, t_dnode *head_other, t_dnode *inst_head);
 int		ps_r(t_dnode *head, t_dnode *head_other, t_dnode *inst_head);
 int		ps_rr(t_dnode *head, t_dnode *head_other, t_dnode *inst_head);
+int		ps_ss(t_dnode *head, t_dnode *head_other, t_dnode *inst_head);
+int		ps_rarb(t_dnode *head, t_dnode *head_other, t_dnode *inst_head);
+int		ps_rrr(t_dnode *head, t_dnode *head_other, t_dnode *inst_head);
 
 /*
 	** Push_Swap: function for double linked list (del, add, checker, find)

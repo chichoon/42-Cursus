@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:24:35 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/16 01:43:56 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/18 01:52:35 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	ps_operate_a(t_dnode *a_head, t_dnode *b_head,
 		return (ps_operate_four_a(a_head, b_head, inst_head));
 	else if (lstlen == 5)
 		return (ps_operate_five_a(a_head, b_head, inst_head));
+	else if (lstlen == 6)
+		return (ps_operate_six_a(a_head, b_head, inst_head));
 	else
 		return (ps_operation_a(a_head, b_head, inst_head, lstlen));
 }
@@ -116,6 +118,8 @@ void	ps_operate_b(t_dnode *b_head, t_dnode *a_head,
 		return (ps_operate_four_b(b_head, a_head, inst_head));
 	else if (lstlen == 5)
 		return (ps_operate_five_b(b_head, a_head, inst_head));
+	else if (lstlen == 6)
+		return (ps_operate_six_b(b_head, a_head, inst_head));
 	else
 		return (ps_operation_b(b_head, a_head, inst_head, lstlen));
 }

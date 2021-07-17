@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 22:54:51 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/16 01:37:31 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/18 00:31:15 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 static t_dnode	*ps_replace_inst(t_dnode *dnode_prev, t_dnode *dnode_next,
 			int inst_num)
 {
-	t_dnode	*dnode_temp;
+	t_dnode	*dnode_temp_next;
+	t_dnode	*dnode_temp_prev;
 
 	if (inst_num)
 		ps_lstadd_back(inst_num, dnode_next);
-	dnode_temp = dnode_next->next;
+	dnode_temp_prev = dnode_prev->prev;
+	dnode_temp_next = dnode_next->next;
 	ps_lstdel(dnode_prev);
 	ps_lstdel(dnode_next);
-	return (dnode_temp->prev);
+	return (dnode_temp_prev->prev);
 }
 
 void	ps_optimize_inst(t_dnode *inst_head)
