@@ -1,5 +1,5 @@
-CNT=100
-LIMIT=700
+CNT=500
+LIMIT=5500
 INDEX=0
 ITER=100
 SUM=0
@@ -10,7 +10,7 @@ NUM=`./push_swap $ARG | wc -l`
 
 while [ $INDEX -lt $ITER ]
 do
-echo "$INDEX	:	$NUM `./push_swap $ARG | ./checker_Mac $ARG`"
+echo "$INDEX	:	$NUM `./push_swap $ARG | ./checker $ARG`"
 if [ $NUM -ge $LIMIT ]; then
 NUM_OVER=`expr $NUM_OVER + 1`
 fi

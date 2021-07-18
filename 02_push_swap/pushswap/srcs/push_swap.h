@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:12 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/18 18:01:53 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/18 19:25:36 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft/libft.h"
-# include <stdio.h> ////////erase this!!!!!!!!!
+# include "../libft/libft.h"
 
 /*
 	**	Push_Swap: Structures

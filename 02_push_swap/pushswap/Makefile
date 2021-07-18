@@ -6,36 +6,39 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/30 23:46:55 by jiychoi           #+#    #+#              #
-#    Updated: 2021/07/18 18:02:47 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/07/19 00:04:42 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 MFLAGS		=	-g3 -fsanitize=address
-SRCS		=	push_swap_linked_list_1.c push_swap_linked_list_2.c\
-				push_swap_init_stack.c push_swap_main.c push_swap_utils.c\
-				push_swap_find_pivot.c push_swap_cmd.c\
-				push_swap_operate.c push_swap_optimize.c\
-				push_swap_operate_small_1.c push_swap_operate_small_2.c\
-				push_swap_operate_small_3.c\
-#SRCS_BONUS	=
+SRCS		=	srcs/push_swap_linked_list_1.c srcs/push_swap_linked_list_2.c\
+				srcs/push_swap_init_stack.c srcs/push_swap_init_stack_2.c\
+				srcs/push_swap_main.c srcs/push_swap_utils.c\
+				srcs/push_swap_find_pivot.c srcs/push_swap_cmd.c\
+				srcs/push_swap_operate.c srcs/push_swap_optimize.c\
+				srcs/push_swap_operate_small_1.c srcs/push_swap_operate_small_2.c\
+				srcs/push_swap_operate_small_3.c
+SRCS_BONUS	=	gnl/get_next_line.c gnl/get_next_line_utils.c\
+				bns/push_swap_main_bonus.c bns/push_swap_utils_bonus.c\
+				bns/push_swap_linked_list_1_bonus.c bns/push_swap_linked_list_2_bonus.c\
+				bns/push_swap_init_stack_bonus.c\
+				bns/push_swap_cmd_bonus.c bns/push_swap_cmd_2_bonus.c
 OBJS		=	$(SRCS:.c=.o)
 OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
 LIBFT		=	-L ./libft -lft
-NAME		=	push_swap
-NAME_BONUS	=	checker
 LF			=	\e[1K\r$(NO_COLOR)
 CRLF		=	\n$(LF)
 
 ifdef IF_BONUS
-	OBJECTS = $(OBJS_BONUS)
-	TARGET = $(NAME_BONUS)
-	COMMENT = @printf "$(LF)🔄Push_Swap Checker\n"
+	TARGET		= checker
+	OBJECTS		= $(OBJS_BONUS)
+	COMMENT 	= @printf "$(LF)🔄Push_Swap Checker\n"
 else
-	OBJECTS = $(OBJS)
-	TARGET = $(NAME)
-	COMMENT = @printf "$(LF)🔄Push_Swap\n"
+	TARGET		= push_swap
+	OBJECTS		= $(OBJS)
+	COMMENT 	= @printf "$(LF)🔄Push_Swap\n"
 endif
 
 all : $(TARGET)
@@ -43,22 +46,28 @@ all : $(TARGET)
 $(TARGET) : $(OBJECTS)
 	$(COMMENT)
 	@$(MAKE) -C ./libft all
-	@printf "$(LF)Compiling Target...\n"
+	@printf "$(LF)Compiling Main source...\n"
 	@$(CC) $(OBJECTS) $(CFLAGS) $(MFLAGS) $(LIBFT) -o $(TARGET)
 
-bonus : @(MAKE) IF_BONUS=1 all
+bonus :
+	@$(MAKE) IF_BONUS=1 all
 
 %.o : %.c
-	@$(CC) $(CFLAGS) $(MFLAGS) -c -o $@ $< -I ./
+	@$(CC) $(CFLAGS) -c -o $@ $< -I ./
 
 clean :
-	rm -rf $(OBJS)
-	rm -rf $(OBJS_BONUS)
-	cd ./libft && make fclean
+	@printf "$(LF)Deleting Object files...\n"
+	@cd ./libft && make fclean
+	@rm -rf $(OBJS)
+	@rm -rf $(OBJS_BONUS)
+
 
 fclean : clean
-	rm -rf $(NAME)
-	rm -rf $(NAME_BONUS)
-	rm -rf $(NAME).dSYM $(NAME_BONUS).dSYM
+	@printf "$(LF)Deleting Compiled file...\n"
+	@cd ./libft && rm -rf libft.a
+	@rm -rf push_swap
+	@rm -rf checker
+	@rm -rf push_swap.dSYM
+	@rm -rf checker.dSYM
 
 re : fclean all
