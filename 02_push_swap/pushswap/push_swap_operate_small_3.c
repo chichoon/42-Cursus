@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 00:33:59 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/18 01:48:50 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/18 12:40:40 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ static void	ps_rs(t_dnode *head, t_dnode *head_other,
 {
 	if (flag)
 	{
-		ps_rarb(head, head_other, inst_head);
-		ps_ss(head, head_other, inst_head);
+		ps_r(head, head_other, inst_head);
+		ps_r(head_other, head, inst_head);
+		ps_s(head, head_other, inst_head);
+		ps_s(head_other, head, inst_head);
 	}
 	else
 	{
@@ -39,7 +41,8 @@ static void	ps_oper_three_mid(t_dnode *a_head, t_dnode *b_head,
 			ps_rs(a_head, b_head, inst_head, 0);
 		else if (ps_lstlen(b_head) != 3)
 			ps_rs(b_head, a_head, inst_head, 0);
-		ps_rrr(a_head, b_head, inst_head);
+		ps_rr(a_head, b_head, inst_head);
+		ps_rr(b_head, a_head, inst_head);
 	}
 	else if (a_head->next->next->key > a_head->next->next->next->key)
 	{
