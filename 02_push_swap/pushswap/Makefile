@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/30 23:46:55 by jiychoi           #+#    #+#              #
-#    Updated: 2021/07/19 17:26:48 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/07/19 20:19:40 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(TARGET) : $(OBJECTS)
 	$(COMMENT)
 	@$(MAKE) -C ./libft all
 	@printf "$(LF)Compiling Main source...\n"
-	@$(CC) $(OBJECTS) $(CFLAGS) $(MFLAGS) $(LIBFT) -o $(TARGET)
+	@$(CC) $(OBJECTS) $(CFLAGS) $(LIBFT) -o $(TARGET)
 
 bonus :
 	@$(MAKE) IF_BONUS=1 all

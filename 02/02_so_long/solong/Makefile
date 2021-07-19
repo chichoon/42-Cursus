@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
+#    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/08 14:50:22 by jiychoi           #+#    #+#              #
-#    Updated: 2021/06/17 13:50:36 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/07/19 19:46:22 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,6 @@ all : $(TARGET)
 
 $(TARGET) : $(OBJECTS)
 	@$(MAKE) -C ./mlx_opengl all
-	@mv ./mlx_opengl/libmlx.a ./libmlx.a
 	@$(MAKE) -C ./libft all
 	$(CC) $(OBJECTS) $(CFLAGS) $(MLX_OPENGL) $(MLX_FLAGS) $(LIBFT) -o $(TARGET)
 
