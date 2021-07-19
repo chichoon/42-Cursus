@@ -6,13 +6,14 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:14:25 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/18 22:23:47 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/19 17:06:27 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ps_if_number(char *str, char *str_to_compare)
+static void	ps_if_number(t_dnode *a_head, char *str,
+		char *str_to_compare, char **str_to_free)
 {
 	int	i;
 
@@ -26,10 +27,12 @@ static int	ps_if_number(char *str, char *str_to_compare)
 			i++;
 		}
 		if (!str_to_compare[i])
-			return (0);
+		{
+			ps_free_char2d(str_to_free);
+			return (ps_print_and_exit(a_head, 0, 0, "Error"));
+		}
 		str++;
 	}
-	return (1);
 }
 
 static int	is_space(char str)
@@ -83,9 +86,10 @@ void	ps_init_stack_a(int argc, char *argv[], t_dnode *a_head)
 		str_temp = ft_split(argv[index_argc], ' ');
 		while (str_temp[++index_split])
 		{
-			if (ft_strlen(str_temp[index_split]) > 0
-				&& ps_if_number(str_temp[index_split], "0123456789-+"))
+			if (ft_strlen(str_temp[index_split]) > 0)
 			{
+				ps_if_number(a_head, str_temp[index_split],
+					"0123456789-+", str_temp);
 				ps_check_overflow(a_head, str_temp[index_split], str_temp);
 				ps_lstadd_back(ft_atoi(str_temp[index_split]), dnode_now);
 				dnode_now = dnode_now->next;

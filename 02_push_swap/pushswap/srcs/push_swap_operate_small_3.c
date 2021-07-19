@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 00:33:59 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/18 12:40:40 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/19 14:15:05 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,13 @@ static void	ps_oper_three_ab(t_dnode *a_head, t_dnode *b_head,
 void	ps_operate_six_a(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head)
 {
 	t_dnode	*pivot;
-	t_dnode	*dnode_temp;
 	int		index;
 
 	pivot = ps_lstfind_key(a_head, ps_find_mid(a_head, 6));
-	dnode_temp = a_head->next;
 	index = -1;
 	while (++index < 6)
 	{
-		dnode_temp = dnode_temp->next;
-		if (dnode_temp->prev->key > pivot->key)
+		if (a_head->next->key > pivot->key)
 			ps_r(a_head, b_head, inst_head);
 		else
 			ps_p(b_head, a_head, inst_head);
@@ -98,16 +95,13 @@ void	ps_operate_six_a(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head)
 void	ps_operate_six_b(t_dnode *b_head, t_dnode *a_head, t_dnode *inst_head)
 {
 	t_dnode	*pivot;
-	t_dnode	*dnode_temp;
 	int		index;
 
 	pivot = ps_lstfind_key(b_head, ps_find_mid(b_head, 6));
-	dnode_temp = b_head->next;
 	index = -1;
 	while (++index < 6)
 	{
-		dnode_temp = dnode_temp->next;
-		if (dnode_temp->prev->key <= pivot->key)
+		if (b_head->next->key <= pivot->key)
 			ps_r(b_head, a_head, inst_head);
 		else
 			ps_p(a_head, b_head, inst_head);

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 20:59:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/18 14:05:02 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/19 16:54:48 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ps_print_inst(t_dnode *inst_head)
 	}
 }
 
-void	ps_sort(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head)
+int	ps_sort(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head)
 {
 	int	lstlen;
 
@@ -62,14 +62,17 @@ void	ps_sort(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head)
 		ps_operate_three_a(a_head, b_head, inst_head);
 	else if (lstlen == 5)
 		ps_operate_five_a(a_head, b_head, inst_head);
+	else if (lstlen == 6)
+		ps_operate_six_a(a_head, b_head, inst_head);
 	else
 		ps_operate_a(a_head, b_head, inst_head, lstlen);
 	ps_optimize_inst(inst_head);
 	ps_print_inst(inst_head);
 	ps_print_and_exit(a_head, b_head, inst_head, 0);
+	return (1);
 }
 
-void	push_swap(t_dnode *a_head)
+int	push_swap(t_dnode *a_head)
 {
 	t_dnode	*b_head;
 	t_dnode	*inst_head;
@@ -84,7 +87,7 @@ void	push_swap(t_dnode *a_head)
 		ps_print_and_exit(a_head, b_head, 0, "Error");
 	ps_init_stack_b(b_head);
 	ps_init_stack_oper(inst_head);
-	ps_sort(a_head, b_head, inst_head);
+	return (ps_sort(a_head, b_head, inst_head));
 }
 
 int	main(int argc, char *argv[])

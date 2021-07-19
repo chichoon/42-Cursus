@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 22:54:51 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/18 00:31:15 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/19 17:20:41 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,20 @@ void	ps_optimize_inst(t_dnode *inst_head)
 			dnode_prev = ps_replace_inst(dnode_prev, dnode_next, 0);
 		dnode_prev = dnode_prev->next;
 	}
+}
+
+int	ps_compare_str(char *str1, char *str2)
+{
+	int	index;
+
+	index = 0;
+	if (ft_strlen(str1) != ft_strlen(str2))
+		return (0);
+	while (str1[index])
+	{
+		if (str1[index] != str2[index])
+			return (0);
+		index++;
+	}
+	return (1);
 }

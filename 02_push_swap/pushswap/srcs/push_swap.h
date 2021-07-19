@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:03:12 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/18 19:25:36 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/19 17:20:52 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
+# include <stdio.h>//////ERASE THIS!!!!//////
 
 /*
 	**	Push_Swap: Structures
@@ -37,6 +38,13 @@ typedef struct s_dnode
 	struct s_dnode	*next;
 }				t_dnode;
 
+typedef struct s_pivot
+{
+	int		num_oper_arr[4];
+	t_dnode	*pivot_small;
+	t_dnode	*pivot_big;
+}				t_pivot;
+
 # define KEY_A 0
 # define KEY_B 1
 # define CMD_SA 1
@@ -50,18 +58,19 @@ typedef struct s_dnode
 # define CMD_SS 11
 # define CMD_RR 12
 # define CMD_RRR 13
-# define OPERATION_P 0
-# define OPERATION_R 1
-# define OPERATION_INDEX 2
+# define OPER_P 0
+# define OPER_R 1
+# define OPER_R2 3
+# define OPER_INDEX 2
 # define NODE_PIVOT 0
-# define NODE_TEMP 1
+# define NODE_PIVOT2 1
 
 /*
 	** Push_Swap (find pivot & quick sort);
 */
-void	push_swap(t_dnode *a_head);
+int		push_swap(t_dnode *a_head);
 int		ps_find_mid(t_dnode *dnode_head, int length);
-void	ps_sort(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head);
+int		ps_sort(t_dnode *a_head, t_dnode *b_head, t_dnode *inst_head);
 void	ps_operate_a(t_dnode *a_head, t_dnode *b_head,
 			t_dnode *inst_head, int lstlen);
 void	ps_operate_b(t_dnode *b_head, t_dnode *a_head,
@@ -92,6 +101,17 @@ void	ps_operate_six_a(t_dnode *a_head, t_dnode *b_head,
 void	ps_operate_six_b(t_dnode *b_head, t_dnode *a_head,
 			t_dnode *inst_head);
 void	ps_optimize_inst(t_dnode *inst_head);
+
+/*
+	** Push_Swap: Operation when It's over validation threshold
+*/
+void	ps_over_700(t_dnode *a_head);
+void	ps_operate_700_a(t_dnode *a_head, t_dnode *b_head,
+			t_dnode *inst_head, int lstlen);
+void	ps_operate_700_b(t_dnode *b_head, t_dnode *a_head,
+			t_dnode *inst_head, int lstlen);
+void	ps_find_two_mid(t_dnode *dnode_head,
+			int pivot[2], int length);
 
 /*
 	** Push_Swap: Initialize & validate stack A
@@ -135,5 +155,6 @@ void	ps_iterate_rr(t_dnode *head, t_dnode *head_other,
 			t_dnode *inst_head, int iter);
 void	ps_iterate_p(t_dnode *head_dst, t_dnode *head_src,
 			t_dnode *inst_head, int iter);
+int		ps_compare_str(char *str1, char *str2);
 
 #endif
