@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 20:59:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/19 00:59:52 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/23 19:26:32 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	ps_sort(t_dnode *a_head, t_dnode *b_head)
 		}
 		free(cmd);
 	}
-	if (ps_lstcheck_order(a_head, ps_lstlen(a_head)))
+	if (ps_lstcheck_order(a_head, ps_lstlen(a_head)) && ps_lstlen(b_head) == 0)
 		ps_print_and_exit(a_head, b_head, "OK");
 	else
 		ps_print_and_exit(a_head, b_head, "KO");
