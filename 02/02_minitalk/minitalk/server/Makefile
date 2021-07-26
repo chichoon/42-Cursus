@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiychoi <jiychoi@student.42.fr>            +#+  +:+       +#+         #
+#    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 22:28:37 by jiychoi           #+#    #+#              #
-#    Updated: 2021/06/28 16:27:59 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/07/26 18:07:07 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 MFLAGS		=	-g3 -fsanitize=address
-SRCS		=	minitalk_server.c minitalk_server_getbyte.c
+SRCS		=	minitalk_server.c
 SRCS_BONUS	=	minitalk_server_bonus.c minitalk_server_getbyte_bonus.c
 OBJS		=	$(SRCS:.c=.o)
 OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)

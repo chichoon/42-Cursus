@@ -6,63 +6,59 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:40 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/30 23:26:33 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/26 21:38:59 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_client.h"
 
-t_data_tosend	g_data_tosend;
-
 void	kill_and_pause(pid_t pid, int signo)
 {
 	kill(pid, signo);
-	usleep(50);
+	usleep(20);
 }
 
-void	client_connect(int signo)
+void	client_send_bytes(int pid, char *string)
 {
-	if (signo == SIGUSR1)
+	int	length;
+	int	byte_index;
+	int	bit_index;
+	int	bit_temp;
+
+	length = ft_strlen(string);
+	byte_index = 0;
+	while (byte_index < length)
 	{
-		sigaction(SIGUSR1, &g_sigact_cli_length, 0);
-		ft_putstr_fd("Connected with server pid ", 1);
-		ft_putnbr_fd(g_data_tosend.pid, 1);
-		ft_putchar_fd('\n', 1);
-		kill_and_pause(g_data_tosend.pid, SIGUSR1);
+		bit_index = 0;
+		while (bit_index < 8)
+		{
+			bit_temp = string[byte_index] >> (7 - bit_index) & 1;
+			if (bit_temp == 0)
+				kill_and_pause(pid, SIGUSR1);
+			else if (bit_temp == 1)
+				kill_and_pause(pid, SIGUSR2);
+			bit_index++;
+		}
+		usleep(300);
+		byte_index++;
 	}
-}
-
-void	client_init_struct(void)
-{
-	g_sigact_cli_connect.sa_flags = 0;
-	sigemptyset(&g_sigact_cli_connect.sa_mask);
-	g_sigact_cli_connect.sa_handler = client_connect;
-	g_sigact_cli_length.sa_flags = 0;
-	sigemptyset(&g_sigact_cli_length.sa_mask);
-	g_sigact_cli_length.sa_handler = client_send_length;
-	g_sigact_cli_string.sa_flags = 0;
-	sigemptyset(&g_sigact_cli_string.sa_mask);
-	g_sigact_cli_string.sa_handler = client_send_string;
+	exit(0);
 }
 
 int	main(int argc, char *argv[])
 {
+	pid_t	pid;
+
 	if (argc != 3)
 	{
 		ft_putstr_fd("Invalid argument number!\n", 1);
 		exit(1);
 	}
-	g_data_tosend.pid = ft_atoi(argv[1]);
-	g_data_tosend.length = ft_strlen(argv[2]);
-	g_data_tosend.str = argv[2];
-	if (g_data_tosend.pid < 101 || g_data_tosend.pid > 99999)
+	pid = ft_atoi(argv[1]);
+	if (pid < 101 || pid > 99999)
 	{
 		ft_putstr_fd("Invalid PID!\n", 1);
 		exit(1);
 	}
-	client_init_struct();
-	sigaction(SIGUSR1, &g_sigact_cli_connect, 0);
-	kill_and_pause(g_data_tosend.pid, SIGUSR1);
-	while (1)
-		usleep(500000);
+	client_send_bytes(pid, argv[2]);
 }

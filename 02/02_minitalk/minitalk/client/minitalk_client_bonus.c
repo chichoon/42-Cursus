@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:40 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/06/30 23:25:59 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/26 17:36:07 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	client_connect(int signo)
 {
 	if (signo == SIGUSR1)
 	{
-		sigaction(SIGUSR1, &g_sigact_cli_length, 0);
+		sigaction(SIGUSR1, &(g_data_tosend.g_sigact_cli_length), 0);
 		ft_putstr_fd("Connected with server pid ", 1);
 		ft_putnbr_fd(g_data_tosend.pid, 1);
 		ft_putchar_fd('\n', 1);
@@ -34,15 +34,15 @@ void	client_connect(int signo)
 
 void	client_init_struct(void)
 {
-	g_sigact_cli_connect.sa_flags = 0;
-	sigemptyset(&g_sigact_cli_connect.sa_mask);
-	g_sigact_cli_connect.sa_handler = client_connect;
-	g_sigact_cli_length.sa_flags = 0;
-	sigemptyset(&g_sigact_cli_length.sa_mask);
-	g_sigact_cli_length.sa_handler = client_send_length;
-	g_sigact_cli_string.sa_flags = 0;
-	sigemptyset(&g_sigact_cli_string.sa_mask);
-	g_sigact_cli_string.sa_handler = client_send_string;
+	g_data_tosend.g_sigact_cli_connect.sa_flags = 0;
+	sigemptyset(&g_data_tosend.g_sigact_cli_connect.sa_mask);
+	g_data_tosend.g_sigact_cli_connect.sa_handler = client_connect;
+	g_data_tosend.g_sigact_cli_length.sa_flags = 0;
+	sigemptyset(&g_data_tosend.g_sigact_cli_length.sa_mask);
+	g_data_tosend.g_sigact_cli_length.sa_handler = client_send_length;
+	g_data_tosend.g_sigact_cli_string.sa_flags = 0;
+	sigemptyset(&g_data_tosend.g_sigact_cli_string.sa_mask);
+	g_data_tosend.g_sigact_cli_string.sa_handler = client_send_string;
 }
 
 int	main(int argc, char *argv[])
@@ -61,7 +61,7 @@ int	main(int argc, char *argv[])
 		exit(1);
 	}
 	client_init_struct();
-	sigaction(SIGUSR1, &g_sigact_cli_connect, 0);
+	sigaction(SIGUSR1, &(g_data_tosend.g_sigact_cli_connect), 0);
 	kill_and_pause(g_data_tosend.pid, SIGUSR1);
 	while (1)
 		usleep(500000);
