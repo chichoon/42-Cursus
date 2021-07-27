@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 04:36:24 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/26 17:35:23 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/27 11:18:14 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	client_send_length(int signo)
 	{
 		ft_putstr_fd("Sending length successful.\n", 1);
 		total_bits = 0;
-		sigaction(SIGUSR1, &(g_data_tosend.g_sigact_cli_string), 0);
+		sigaction(SIGUSR1, &(g_data_tosend.sigact_cli_string), 0);
 	}
 }
 

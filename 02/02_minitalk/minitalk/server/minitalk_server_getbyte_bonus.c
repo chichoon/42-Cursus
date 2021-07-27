@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 04:33:56 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/26 17:32:51 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/27 11:17:58 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	server_get_string(int signo, siginfo_t *info, void *ptr)
 	{
 		server_reset_status();
 		len_byte = 0;
-		sigaction(SIGUSR1, &(g_data_receive.g_sigact_srv_try_connect), 0);
-		sigaction(SIGUSR2, &(g_data_receive.g_sigact_srv_try_connect), 0);
+		sigaction(SIGUSR1, &(g_data_receive.sigact_srv_try_connect), 0);
+		sigaction(SIGUSR2, &(g_data_receive.sigact_srv_try_connect), 0);
 	}
 }
 
@@ -90,8 +90,8 @@ void	server_get_length(int signo, siginfo_t *info, void *ptr)
 			exit(1);
 		}
 		g_data_receive.str = str_ptr;
-		sigaction(SIGUSR1, &(g_data_receive.g_sigact_srv_string), 0);
-		sigaction(SIGUSR2, &(g_data_receive.g_sigact_srv_string), 0);
+		sigaction(SIGUSR1, &(g_data_receive.sigact_srv_string), 0);
+		sigaction(SIGUSR2, &(g_data_receive.sigact_srv_string), 0);
 		kill(g_data_receive.pid, SIGUSR1);
 	}
 }

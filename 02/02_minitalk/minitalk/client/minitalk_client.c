@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:40 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/26 21:38:59 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/27 11:18:27 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	kill_and_pause(pid_t pid, int signo)
 {
 	kill(pid, signo);
-	usleep(20);
+	usleep(30);
 }
 
 void	client_send_bytes(int pid, char *string)

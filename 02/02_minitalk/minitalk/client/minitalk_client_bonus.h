@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:09:48 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/26 17:35:07 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/27 11:17:03 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 typedef struct s_data_tosend
 {
-	struct sigaction		g_sigact_cli_connect;
-	struct sigaction		g_sigact_cli_length;
-	struct sigaction		g_sigact_cli_string;
+	struct sigaction		sigact_cli_connect;
+	struct sigaction		sigact_cli_length;
+	struct sigaction		sigact_cli_string;
 	pid_t					pid;
 	int						length;
 	char					*str;

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:27:32 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/07/26 17:27:51 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/07/27 11:17:12 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 typedef struct s_data_receive
 {
-	struct sigaction		g_sigact_srv_try_connect;
-	struct sigaction		g_sigact_srv_connect;
-	struct sigaction		g_sigact_srv_length;
-	struct sigaction		g_sigact_srv_string;
+	struct sigaction		sigact_srv_try_connect;
+	struct sigaction		sigact_srv_connect;
+	struct sigaction		sigact_srv_length;
+	struct sigaction		sigact_srv_string;
 	pid_t					pid;
 	int						length;
 	unsigned char			char_temp;
