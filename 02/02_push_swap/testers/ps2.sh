@@ -1,4 +1,4 @@
-CNT=100
+CNT=1000
 LIMIT=700
 INDEX=0
 ITER=100
@@ -23,7 +23,7 @@ NUM=`./push_swap $ARG | wc -l`
 INDEX=`expr $INDEX + 1`
 done
 echo "$NUM_OVER overred operations for $ITER times (Average: `expr $SUM / $ITER`)"
-if [ $NUM_OVER -gt 0 ]; then
-echo "Biggest operation number : $MAX"
-echo "fix it!!!!!!!!!!"
+# if [ $NUM_OVER -gt 0 ]; then
+# echo "Biggest operation number : $MAX"
+# echo "fix it!!!!!!!!!!"
 fi
