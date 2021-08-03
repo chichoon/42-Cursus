@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/01 11:48:15 by jiychoi           #+#    #+#              #
-#    Updated: 2021/08/01 12:33:19 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/08/01 12:36:01 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ endif
 all : $(TARGET)
 
 $(TARGET) : $(OBJECTS)
-	@printf "$(LF)"🧙🏻‍♂️ Philosophers $(PRINT)\n"
+	@printf "$(LF)🧙 Philosophers $(PRINT)\n"
 	@$(CC) $(OBJECTS) $(CFLAGS) -o $(TARGET)
 
 bonus :

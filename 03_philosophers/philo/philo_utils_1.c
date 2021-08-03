@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 12:02:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/01 12:12:29 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/01 17:03:35 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,10 @@ int	ft_atoi(const char *str)
 	else if (absol >= 9223372036854775807 && minus == -1)
 		return (0);
 	return (minus * absol);
+}
+
+int	philo_print_and_return(char *str)
+{
+	printf("%s\n", str);
+	return (0);
 }
