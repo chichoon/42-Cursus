@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   test_create_join_detach.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:02:52 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/03 15:22:11 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/03 16:52:43 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include	<unistd.h>
 #include	<stdio.h>
 #include	<stdlib.h>
-#include	<string.h>
-#include	<sys/time.h>
 
 typedef struct s_thread_struct
 {
@@ -33,8 +31,8 @@ void	*thread_function(void *param)
 	data = (t_thread_struct *)param;
 	while (index < 10)
 	{
-		printf("Thread id %llu\t:\tindex %d\n",
-			(unsigned long long)data->thread_id, index++);
+		printf("%dth Thread %llu\t:\tindex %d\n",
+			data->index, (unsigned long long)data->thread_id, index++);
 		sleep(1);
 	}
 	return (0);
@@ -46,22 +44,24 @@ int	main(void)
 	int				index;
 	int				thread_err;
 
-	index = 0;
-	while (index < 10)
+	index = -1;
+	while (++index < 10)
 	{
 		threads[index].index = index;
 		thread_err = pthread_create(&threads[index].thread_id, NULL,
 				thread_function, (void *)&threads[index]);
+		printf("Thread index %d created\n", index);
 		if (thread_err < 0)
 			exit(0);
-		index++;
 	}
-	index = 0;
-	while (index < 10)
+	index = -1;
+	while (++index < 10)
 	{
 		pthread_join(threads[index].thread_id,
 			(void **)&(threads[index].value));
-		index++;
+		printf("Thread index %d joined\n", index);
+		//pthread_detach(threads[index].thread_id);
+		//printf("Thread index %d detached\n", index);
 	}
 	printf("All the threads call finished\n");
 	exit(0);
