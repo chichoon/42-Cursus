@@ -6,14 +6,14 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/01 11:48:15 by jiychoi           #+#    #+#              #
-#    Updated: 2021/08/01 12:36:01 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/08/03 12:56:00 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 MFLAGS		=	-g3 -fsanitize=address
-SRCS		=	philo_main.c\
+SRCS		=	philo_main.c philo_init_struct.c\
 				philo_utils_1.c
 #SRCS_BONUS	=
 OBJS		=	$(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 15:23:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/03 10:26:35 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/03 12:56:13 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct s_fork
 {
+	int				index;
 	pthread_mutex_t	*mutex_id;
 }			t_fork;
 
@@ -29,8 +30,6 @@ typedef struct s_philosopher
 {
 	int			index;
 	int			num_ate;
-	t_fork		*fork_left;
-	t_fork		*fork_right;
 	suseconds_t	time_eat_last;
 	suseconds_t	time_think_start;
 	suseconds_t	time_sleep_start;
@@ -47,19 +46,20 @@ typedef struct s_philo_setting
 
 typedef struct s_philo_struct
 {
-	t_philosopher	*philosopher;
-	t_philo_setting	philo_setting;
+	t_philo_setting	*philo_setting;
+	t_philosopher	*philosophers;
+	t_fork			*forks;
 }				t_philo_struct;
 
 /*
 	** Philosophers: Main function
 */
-int		philo_init(t_philo_set philo_set, int argc, char *argv[]);
+t_philo_struct	*philo_init_struct(int argc, char *argv);
 
 /*
 	** Philosophers: Utilities
 */
-int		ft_atoi(const char *str);
-int		philo_print_and_return(char *str);
+int				ft_atoi(const char *str);
+int				philo_print_and_return(char *str);
 
 #endif

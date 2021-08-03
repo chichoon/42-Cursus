@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 10:33:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/03 11:13:49 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/03 12:54:28 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,68 @@ static t_philo_setting	*philo_set_setting(int argc, char *argv)
 	return (philo_setting);
 }
 
-static t_philosopher	*philo_set_philo(t_philo_setting *philo_setting)
+static t_philosopher	*philo_set_philos(t_philo_setting *philo_setting)
 {
-	t_philosopher	*philosopher;
+	t_philosopher	*philosophers;
 	int				index;
 
 	index = 0;
-	philosopher = (t_philosopher *)malloc(
+	philosophers = (t_philosopher *)malloc(
 			sizeof(t_philosopher) * philo_setting->num_of_philo);
-	if (!philosopher)
+	if (!philosophers)
 		return (0);
 	while (index < philo_setting->num_of_philo)
 	{
-		philosopher[index].index = index + 1;
-		philosopher[index].num_ate = 0;
-		philosopher[index].time_eat_last = 0;
-		philosopher[index].time_think_start = 0;
-		philosopher[index].time_sleep_start = 0;
+		philosophers[index].index = index + 1;
+		philosophers[index].num_ate = 0;
+		philosophers[index].time_eat_last = 0;
+		philosophers[index].time_think_start = 0;
+		philosophers[index].time_sleep_start = 0;
+		index++;
 	}
-	return (philosopher);
+	return (philosophers);
+}
+
+static t_fork	*philo_set_forks(t_philo_setting *philo_setting)
+{
+	t_fork			*forks;
+	int				index;
+	pthread_mutex_t	*temp_mutex;
+
+	index = 0;
+	forks = (t_fork *)malloc(
+			sizeof(t_fork) * philo_setting->num_of_philo);
+	while (index < philo_setting->num_of_philo)
+	{
+		if (!pthread_mutex_init(temp_mutex, NULL))
+		{
+			forks[index].index = index;
+			forks[index].mutex_id = temp_mutex;
+			index++;
+		}
+	}
+	return (forks);
+}
+
+t_philo_struct	*philo_init_struct(int argc, char *argv)
+{
+	t_philo_struct	*philo_struct;
+	t_philo_setting	*philo_setting;
+	t_philosopher	*philosophers;
+	t_fork			*forks;
+
+	philo_setting = philo_set_setting(argc, argv);
+	if (!philo_setting)
+		return (0);
+	philosophers = philo_set_philos(philo_setting);
+	if (!philosophers)
+		return (0);
+	forks = philo_set_forks(philo_setting);
+	if (!forks)
+		return (0);
+	philo_struct = (t_philo_struct *)malloc(sizeof(t_philo_struct));
+	philo_struct->philo_setting = philo_setting;
+	philo_struct->philosophers = philosophers;
+	philo_struct->forks = forks;
+	return (philo_struct);
 }
