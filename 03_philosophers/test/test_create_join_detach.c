@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:02:52 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/03 16:52:43 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/05 17:05:48 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ int	main(void)
 	index = -1;
 	while (++index < 10)
 	{
-		pthread_join(threads[index].thread_id,
-			(void **)&(threads[index].value));
-		printf("Thread index %d joined\n", index);
-		//pthread_detach(threads[index].thread_id);
-		//printf("Thread index %d detached\n", index);
+		//pthread_join(threads[index].thread_id,
+		// 	(void **)&(threads[index].value));
+		// printf("Thread index %d joined\n", index);
+		pthread_detach(threads[index].thread_id);
+		printf("Thread index %d detached\n", index);
 	}
 	printf("All the threads call finished\n");
 	exit(0);

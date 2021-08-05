@@ -1,7 +1,7 @@
-CNT=1000
+CNT=100
 LIMIT=700
 INDEX=0
-ITER=100
+ITER=10000
 SUM=0
 NUM_OVER=0
 MAX=$LIMIT
@@ -10,7 +10,7 @@ NUM=`./push_swap $ARG | wc -l`
 
 while [ $INDEX -lt $ITER ]
 do
-echo "$INDEX	:	$NUM `./push_swap $ARG | ./checker $ARG`"
+echo "$INDEX	:	$NUM"
 if [ $NUM -ge $LIMIT ]; then
 NUM_OVER=`expr $NUM_OVER + 1`
 fi
@@ -26,4 +26,4 @@ echo "$NUM_OVER overred operations for $ITER times (Average: `expr $SUM / $ITER`
 # if [ $NUM_OVER -gt 0 ]; then
 # echo "Biggest operation number : $MAX"
 # echo "fix it!!!!!!!!!!"
-fi
+# fi

@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 15:23:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/03 12:56:13 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/05 17:13:22 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ typedef struct s_philosopher
 {
 	int			index;
 	int			num_ate;
-	suseconds_t	time_eat_last;
-	suseconds_t	time_think_start;
-	suseconds_t	time_sleep_start;
+	t_fork		*fork_left;
+	t_fork		*fork_right;
+	time_t		time_eat_last_s;
+	suseconds_t	time_eat_last_us;
+	time_t		time_sleep_start_s;
+	suseconds_t	time_sleep_start_us;
 }			t_philosopher;
 
 typedef struct s_philo_setting
