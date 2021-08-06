@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 12:02:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/06 13:36:36 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/06 15:08:55 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,6 @@ int	ft_atoi(const char *str)
 	else if (absol >= 9223372036854775807 && minus == -1)
 		return (0);
 	return (minus * absol);
-}
-
-int	philo_death_print(t_philosopher *philosopher)
-{
-	int	timestamp;
-
-	timestamp = philo_timestamp(philosopher);
-	printf("%dms\t%d died\n", timestamp, philosopher->index);
-	philosopher->philo_setting->if_dead = 1;
-	return (0);
 }
 
 int	philo_free_struct(t_philo_struct *philo_struct)
