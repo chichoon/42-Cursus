@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 12:02:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/01 17:03:35 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/06 13:36:36 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,33 @@ int	ft_atoi(const char *str)
 	return (minus * absol);
 }
 
-int	philo_print_and_return(char *str)
+int	philo_death_print(t_philosopher *philosopher)
 {
-	printf("%s\n", str);
+	int	timestamp;
+
+	timestamp = philo_timestamp(philosopher);
+	printf("%dms\t%d died\n", timestamp, philosopher->index);
+	philosopher->philo_setting->if_dead = 1;
 	return (0);
+}
+
+int	philo_free_struct(t_philo_struct *philo_struct)
+{
+	free(philo_struct->philosophers[0].philo_setting);
+	free(philo_struct->philosophers);
+	free(philo_struct->forks);
+	return (0);
+}
+
+int	philo_timestamp(t_philosopher *philosopher)
+{
+	struct timeval	tp;
+	int				timestamp;
+
+	if (!gettimeofday(&tp, NULL))
+		return (0);
+	timestamp
+		= (tp.tv_sec - philosopher->philo_setting->time_start_s) * 1000
+		+ (tp.tv_usec - philosopher->philo_setting->time_start_us) / 1000;
+	return (timestamp);
 }

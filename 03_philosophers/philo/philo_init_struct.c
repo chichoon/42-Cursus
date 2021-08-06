@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 10:33:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/05 17:22:08 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/06 13:33:34 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static t_philo_setting	*philo_set_setting(int argc, char *argv)
 	philo_setting->time_to_die = ft_atoi(argv[2]);
 	philo_setting->time_to_eat = ft_atoi(argv[3]);
 	philo_setting->time_to_sleep = ft_atoi(argv[4]);
+	philo_setting->if_dead = 0;
 	if (argc == 6)
 		philo_setting->num_of_eat = ft_atoi(argv[5]);
 	else
@@ -42,12 +43,11 @@ static t_philosopher	*philo_set_philos(t_philo_setting *philo_setting)
 		return (0);
 	while (index < philo_setting->num_of_philo)
 	{
+		philosophers[index].philo_setting = philo_setting;
 		philosophers[index].index = index;
 		philosophers[index].num_ate = 0;
-		philosophers[index].time_eat_last_s = 0;
-		philosophers[index].time_eat_last_us = 0;
-		philosophers[index].time_sleep_start_s = 0;
-		philosophers[index].time_sleep_start_us = 0;
+		philosophers[index].time_eat_last_ms = 0;
+		philosophers[index].time_sleep_start_ms = 0;
 		index++;
 	}
 	return (philosophers);
@@ -74,7 +74,7 @@ static t_fork	*philo_set_forks(t_philo_setting *philo_setting)
 	return (forks);
 }
 
-static void		philo_put_forks(t_philo_struct *philo_struct)
+static void	philo_put_forks(t_philo_struct *philo_struct)
 {
 	t_philosopher	*philosophers;
 	t_fork			*forks;
@@ -84,26 +84,19 @@ static void		philo_put_forks(t_philo_struct *philo_struct)
 
 	philosophers = philo_struct->philosophers;
 	forks = philo_struct->forks;
-	philo_setting = philo_struct->philo_setting;
+	philo_setting = philosophers[0].philo_setting;
 	index = -1;
 	max_index = philo_setting->num_of_philo;
 	while (++index < philo_setting->num_of_philo)
 	{
 		if (index == 0)
-		{
 			philosophers[index].fork_left = &forks[max_index - 1];
-			philosophers[index].fork_right = &forks[index + 1];
-		}
-		else if (index == max_index - 1)
-		{
-			philosophers[index].fork_left = &forks[index - 1];
-			philosophers[index].fork_right = &forks[0];
-		}
 		else
-		{
 			philosophers[index].fork_left = &forks[index - 1];
+		if (index == max_index - 1)
+			philosophers[index].fork_right = &forks[0];
+		else
 			philosophers[index].fork_right = &forks[index + 1];
-		}
 	}
 }
 
@@ -124,7 +117,6 @@ t_philo_struct	*philo_init_struct(int argc, char *argv)
 	if (!forks)
 		return (0);
 	philo_struct = (t_philo_struct *)malloc(sizeof(t_philo_struct));
-	philo_struct->philo_setting = philo_setting;
 	philo_struct->philosophers = philosophers;
 	philo_struct->forks = forks;
 	return (philo_struct);
