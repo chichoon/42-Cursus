@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 10:33:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/06 13:33:34 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/07 20:34:14 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,7 @@ static void	philo_put_forks(t_philo_struct *philo_struct)
 	max_index = philo_setting->num_of_philo;
 	while (++index < philo_setting->num_of_philo)
 	{
-		if (index == 0)
-			philosophers[index].fork_left = &forks[max_index - 1];
-		else
-			philosophers[index].fork_left = &forks[index - 1];
+		philosophers[index].fork_left = &forks[index];
 		if (index == max_index - 1)
 			philosophers[index].fork_right = &forks[0];
 		else
