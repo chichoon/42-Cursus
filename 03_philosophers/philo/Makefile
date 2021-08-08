@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/01 11:48:15 by jiychoi           #+#    #+#              #
-#    Updated: 2021/08/03 12:56:00 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/08/08 22:00:32 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 MFLAGS		=	-g3 -fsanitize=address
 SRCS		=	philo_main.c philo_init_struct.c\
-				philo_utils_1.c
+				philo_thread_func.c\
+				philo_utils_1.c philo_utils_2.c
 #SRCS_BONUS	=
 OBJS		=	$(SRCS:.c=.o)
 OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
