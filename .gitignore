@@ -1,6 +1,7 @@
 *.DS_Store
 *.swp
 *.o
+42s_cluster_map.pdf
 00_libft/libft/libftest
 00_libft/libft/warmachine
 00_libft/unittest
