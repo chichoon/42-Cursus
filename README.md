@@ -1,5 +1,7 @@
 # 42-Cursus
 
+[![jaeskim's 42 stats](https://badge42.herokuapp.com/api/stats/jiychoi?privacyEmail=true)](https://github.com/JaeSeoKim/badge42)
+
 42 Cursus repo (not private anymore)
 
 | Circle | Subject                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Score                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
