@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 12:02:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/04 10:55:50 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/06 15:08:55 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,4 @@ int	philo_timestamp(t_philosopher *philosopher)
 		= (tp.tv_sec - philosopher->philo_setting->time_start_s) * 1000
 		+ (tp.tv_usec - philosopher->philo_setting->time_start_us) / 1000;
 	return (timestamp);
-}
-
-int	philo_print_exit(void *ptr, int if_philo_struct)
-{
-	if (if_philo_struct)
-		philo_free_struct(ptr);
-	else
-		free(ptr);
-	printf("Structure Initialization Failed. Exit...\n");
-	return (0);
 }

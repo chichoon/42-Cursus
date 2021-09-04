@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 10:33:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/04 14:21:53 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/08/07 20:34:14 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ static t_philo_setting	*philo_set_setting(int argc, char *argv)
 	philo_setting->time_to_die = ft_atoi(argv[2]);
 	philo_setting->time_to_eat = ft_atoi(argv[3]);
 	philo_setting->time_to_sleep = ft_atoi(argv[4]);
-	philo_setting->num_of_philo_ate = 0;
-	philo_setting->if_dead = NO_ONE_DEAD;
+	philo_setting->if_dead = 0;
 	if (argc == 6)
-		philo_setting->num_to_eat = ft_atoi(argv[5]);
+		philo_setting->num_of_eat = ft_atoi(argv[5]);
 	else
-		philo_setting->num_to_eat = -1;
+		philo_setting->num_of_eat = -1;
 	return (philo_setting);
 }
 
@@ -63,19 +62,14 @@ static t_fork	*philo_set_forks(t_philo_setting *philo_setting)
 	index = 0;
 	forks = (t_fork *)malloc(
 			sizeof(t_fork) * philo_setting->num_of_philo);
-	if (!forks)
-		return (0);
 	while (index < philo_setting->num_of_philo)
 	{
 		if (!pthread_mutex_init(temp_mutex, NULL))
 		{
 			forks[index].index = index;
-			forks[index].fork = FORK_0;
 			forks[index].mutex_id = temp_mutex;
 			index++;
 		}
-		else
-			return (philo_destroy_fork(forks, index));
 	}
 	return (forks);
 }
