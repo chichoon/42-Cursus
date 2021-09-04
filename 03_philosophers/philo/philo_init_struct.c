@@ -6,28 +6,29 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 10:33:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/07 20:34:14 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/04 17:28:19 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static t_philo_setting	*philo_set_setting(int argc, char *argv)
+static t_philo_setting	*philo_set_setting(int argc, char *argv[])
 {
 	t_philo_setting	*philo_setting;
 
-	philo_setting = (t_philo_setting *)malloc(sizeof(philo_setting));
+	philo_setting = (t_philo_setting *)malloc(sizeof(t_philo_setting));
 	if (!philo_setting)
 		return (0);
 	philo_setting->num_of_philo = ft_atoi(argv[1]);
 	philo_setting->time_to_die = ft_atoi(argv[2]);
 	philo_setting->time_to_eat = ft_atoi(argv[3]);
 	philo_setting->time_to_sleep = ft_atoi(argv[4]);
-	philo_setting->if_dead = 0;
+	philo_setting->num_of_philo_ate = 0;
+	philo_setting->if_dead = NO_ONE_DEAD;
 	if (argc == 6)
-		philo_setting->num_of_eat = ft_atoi(argv[5]);
+		philo_setting->num_to_eat = ft_atoi(argv[5]);
 	else
-		philo_setting->num_of_eat = -1;
+		philo_setting->num_to_eat = -1;
 	return (philo_setting);
 }
 
@@ -47,7 +48,6 @@ static t_philosopher	*philo_set_philos(t_philo_setting *philo_setting)
 		philosophers[index].index = index;
 		philosophers[index].num_ate = 0;
 		philosophers[index].time_eat_last_ms = 0;
-		philosophers[index].time_sleep_start_ms = 0;
 		index++;
 	}
 	return (philosophers);
@@ -57,19 +57,24 @@ static t_fork	*philo_set_forks(t_philo_setting *philo_setting)
 {
 	t_fork			*forks;
 	int				index;
-	pthread_mutex_t	*temp_mutex;
+	pthread_mutex_t	temp_mutex;
 
 	index = 0;
 	forks = (t_fork *)malloc(
 			sizeof(t_fork) * philo_setting->num_of_philo);
+	if (!forks)
+		return (0);
 	while (index < philo_setting->num_of_philo)
 	{
-		if (!pthread_mutex_init(temp_mutex, NULL))
+		if (!pthread_mutex_init(&temp_mutex, NULL))
 		{
 			forks[index].index = index;
+			forks[index].fork = FORK_0;
 			forks[index].mutex_id = temp_mutex;
 			index++;
 		}
+		else
+			return (philo_destroy_fork(forks, index));
 	}
 	return (forks);
 }
@@ -97,7 +102,7 @@ static void	philo_put_forks(t_philo_struct *philo_struct)
 	}
 }
 
-t_philo_struct	*philo_init_struct(int argc, char *argv)
+t_philo_struct	*philo_init_struct(int argc, char *argv[])
 {
 	t_philo_struct	*philo_struct;
 	t_philo_setting	*philo_setting;
@@ -106,15 +111,19 @@ t_philo_struct	*philo_init_struct(int argc, char *argv)
 
 	philo_setting = philo_set_setting(argc, argv);
 	if (!philo_setting)
-		return (0);
+		return (philo_free_struct(0, 0, 0, 0));
 	philosophers = philo_set_philos(philo_setting);
 	if (!philosophers)
-		return (0);
+		return (philo_free_struct(philo_setting, 0, 0, 0));
 	forks = philo_set_forks(philo_setting);
 	if (!forks)
-		return (0);
+		return (philo_free_struct(philo_setting, philosophers, 0, 0));
 	philo_struct = (t_philo_struct *)malloc(sizeof(t_philo_struct));
+	if (!philo_struct)
+		return (philo_free_struct(philo_setting, philosophers, forks, 0));
+	philo_struct->philo_setting = philo_setting;
 	philo_struct->philosophers = philosophers;
 	philo_struct->forks = forks;
+	philo_put_forks(philo_struct);
 	return (philo_struct);
 }

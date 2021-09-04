@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/01 11:48:15 by jiychoi           #+#    #+#              #
-#    Updated: 2021/08/09 23:04:14 by jiychoi          ###   ########.fr        #
+#    Updated: 2021/09/04 17:42:27 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,17 +37,27 @@ else
 	PRINT	=	Mandatory
 endif
 
+ifdef IF_DEBUG
+	DFLAGS	=	-g3 -fsanitize=address
+endif
+
 all : $(TARGET)
 
 $(TARGET) : $(OBJECTS)
 	@printf "$(LF)🧙 Philosophers $(PRINT)\n"
-	@$(CC) $(OBJECTS) $(CFLAGS) -o $(TARGET)
+	@$(CC) $(OBJECTS) $(CFLAGS) $(DFLAGS) -o $(TARGET)
 
 bonus :
 	@$(MAKE) IF_BONUS=1 all
 
+debug :
+	@$(MAKE) IF_DEBUG=1 all
+
+debug-bonus :
+	@$(MAKE) IF_BONUS=1 IF_DEBUG=1 all
+
 %.o : %.c
-	@$(CC) $(CFLAGS) -c -o $@ $< -I ./
+	@$(CC) $(CFLAGS) $(DFLAGS) -c -o $@ $< -I ./
 
 clean :
 	@printf "$(LF)Deleting philo...\n"
@@ -56,3 +66,5 @@ clean :
 
 fclean : clean
 	@rm -rf philo philo_bonus
+
+re : fclean all

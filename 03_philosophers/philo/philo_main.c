@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 15:37:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/08/06 13:30:32 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/04 17:48:32 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,26 @@ void	philosophers(t_philo_struct *philo_struct)
 {
 	struct timeval	tp;
 	int				index;
+	pthread_t		thread_tmp;
 
 	index = 0;
-	while (index < 10)
+	if (gettimeofday(&tp, NULL) < 0)
+		return ;
+	philo_struct->philo_setting->time_start_s = tp.tv_sec;
+	philo_struct->philo_setting->time_start_us = tp.tv_usec;
+	while (index < philo_struct->philo_setting->num_of_philo)
 	{
-		gettimeofday(&tp, NULL);
-		printf("Current time: %d\n", tp.tv_usec);
+		if (index % 2)
+			usleep(50);
+		if (pthread_create(&thread_tmp, NULL, philo_thread_func,
+				&philo_struct->philosophers[index]) != 0)
+			return ;
+		philo_struct->philosophers[index].thread_id = thread_tmp;
 		index++;
+		pthread_detach(thread_tmp);
 	}
+	while (philo_struct->philo_setting->if_dead == NO_ONE_DEAD)
+		;
 }
 
 int	main(int argc, char *argv[])
@@ -42,5 +54,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	philosophers(philo_struct);
+	philo_free_struct(philo_struct->philo_setting, philo_struct->philosophers,
+		philo_struct->forks, philo_struct);
 	return (0);
 }
