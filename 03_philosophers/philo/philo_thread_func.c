@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 16:46:05 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:47:28 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	*philo_thread_func(void *data)
 	while (philo->philo_setting->if_dead == NO_ONE_DEAD)
 	{
 		if (!philo_hold_fork(philo) || !philo_eat(philo) || !philo_sleep(philo))
+			break ;
+		if (philo->philo_setting->if_dead != NO_ONE_DEAD)
 			break ;
 		printf("%dms\t%d is thinking\n", philo_timestamp(philo),
 			philo->index + 1);
