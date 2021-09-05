@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 16:55:36 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:57:59 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,14 @@ static int	philo_hold_fork(t_philo *philo)
 
 static int	philo_eat(t_philo *philo)
 {
-	int	start_eat_ms;
-
-	start_eat_ms = philo_timestamp(philo);
 	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
 		return (0);
 	else
-		printf("%dms\t%d is eating\n", start_eat_ms, philo->index + 1);
+		printf("%dms\t%d is eating\n",
+			philo_timestamp(philo), philo->index + 1);
 	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
 		return (0);
-	if (!philo_pause(philo, start_eat_ms,
+	if (!philo_pause(philo, philo_timestamp(philo),
 			philo->philo_setting->time_to_eat))
 		return (0);
 	philo->time_eat_last_ms = philo_timestamp(philo);
@@ -63,16 +61,14 @@ static int	philo_eat(t_philo *philo)
 
 static int	philo_sleep(t_philo *philo)
 {
-	int	start_sleep_ms;
-
-	start_sleep_ms = philo_timestamp(philo);
 	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
 		return (0);
 	else
-		printf("%dms\t%d is sleeping\n", start_sleep_ms, philo->index + 1);
+		printf("%dms\t%d is sleeping\n",
+			philo_timestamp(philo), philo->index + 1);
 	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
 		return (0);
-	return (philo_pause(philo, start_sleep_ms,
+	return (philo_pause(philo, philo_timestamp(philo),
 			philo->philo_setting->time_to_sleep));
 }
 
