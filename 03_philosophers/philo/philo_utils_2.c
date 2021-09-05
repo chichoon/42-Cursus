@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:08:46 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 10:31:03 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 15:09:56 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	*philo_death_print(t_philosopher *philosopher, int if_dead)
 		philosopher->philo_setting->if_dead = ANYONE_DEAD;
 		printf("%dms\t%d died\n", timestamp, philosopher->index + 1);
 	}
+	pthread_mutex_unlock(&philosopher->philo_setting->death_mutex);
 	return (0);
 }
 
@@ -66,7 +67,6 @@ t_philo_struct	*philo_free_struct(
 		philo_destroy_fork(forks, philo_setting->num_of_philo);
 	if (philo_setting)
 	{
-		pthread_mutex_unlock(&philo_setting->death_mutex);
 		pthread_mutex_destroy(&philo_setting->death_mutex);
 		free(philo_setting);
 	}

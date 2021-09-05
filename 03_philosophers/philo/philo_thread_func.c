@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 10:33:13 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 15:02:42 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	philo_hold_fork(t_philosopher *philosopher)
 	if (philosopher->fork_left == philosopher->fork_right)
 		return (0);
 	pthread_mutex_lock(&philosopher->fork_right->mutex_id);
+	philosopher->fork_right->fork = FORK_1;
 	timestamp = philo_timestamp(philosopher);
 	if (timestamp - philosopher->time_eat_last_ms
 		> philosopher->philo_setting->time_to_die)
