@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 15:37:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 16:27:42 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:44:44 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	philosophers(t_philo_struct *philo_struct)
 	struct timeval	tp;
 	int				index;
 	pthread_t		thread_tmp;
-	int				return_tmp;
 
 	index = 0;
 	if (gettimeofday(&tp, NULL) < 0)
@@ -33,8 +32,10 @@ void	philosophers(t_philo_struct *philo_struct)
 			return ;
 		philo_struct->philos[index].thread_id = thread_tmp;
 		index++;
-		pthread_join(thread_tmp, (void **)&return_tmp);
+		pthread_detach(thread_tmp);
 	}
+	while (philo_struct->philo_setting->if_dead == NO_ONE_DEAD)
+		;
 }
 
 int	main(int argc, char *argv[])
