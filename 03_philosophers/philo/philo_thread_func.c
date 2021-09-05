@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 16:40:17 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:41:25 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ static int	philo_sleep(t_philo *philo)
 void	*philo_thread_func(void *data)
 {
 	t_philo	*philo;
-	int		condition;
 
 	philo = (t_philo *)data;
 	while (philo->philo_setting->if_dead == NO_ONE_DEAD)

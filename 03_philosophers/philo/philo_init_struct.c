@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 10:33:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 16:21:04 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:41:18 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static t_fork	*philo_set_forks(t_philo_setting *philo_setting)
 		if (!pthread_mutex_init(&temp_mutex, NULL))
 		{
 			forks[index].index = index;
-			forks[index].fork = FORK_0;
+			forks[index].fork = FORK_UNHELD;
 			forks[index].mutex_id = temp_mutex;
 			index++;
 		}
