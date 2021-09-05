@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 16:57:59 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 17:04:10 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	*philo_thread_func(void *data)
 	if (philo->philo_setting->if_dead == NO_ONE_DEAD)
 	{
 		if (philo->philo_setting->num_of_philo_ate
-			== philo->philo_setting->num_to_eat)
+			== philo->philo_setting->num_of_philo)
 			return (philo_death_print(philo, EVERYONE_ATE));
 		else
 			return (philo_death_print(philo, ANYONE_DEAD));
