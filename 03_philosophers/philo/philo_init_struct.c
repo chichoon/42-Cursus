@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 10:33:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/04 17:28:19 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 09:39:17 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,16 @@ static t_philo_setting	*philo_set_setting(int argc, char *argv[])
 	philo_setting->time_to_sleep = ft_atoi(argv[4]);
 	philo_setting->num_of_philo_ate = 0;
 	philo_setting->if_dead = NO_ONE_DEAD;
+	if (philo_setting->num_of_philo < 1 || philo_setting->time_to_die < 0
+		|| philo_setting->time_to_eat < 0 || philo_setting->time_to_sleep < 0
+		|| pthread_mutex_init(&philo_setting->death_mutex, NULL) < 0)
+		return (0);
 	if (argc == 6)
+	{
 		philo_setting->num_to_eat = ft_atoi(argv[5]);
+		if (philo_setting->num_to_eat < 0)
+			return (0);
+	}
 	else
 		philo_setting->num_to_eat = -1;
 	return (philo_setting);

@@ -6,29 +6,29 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:08:46 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/04 17:47:14 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 09:51:04 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*philo_death_print(t_philosopher *philosopher)
+void	*philo_death_print(t_philosopher *philosopher, int if_dead)
 {
 	int				timestamp;
-	pthread_mutex_t	mutex;
 
-	if (pthread_mutex_init(&mutex, NULL) < 0)
-	{
-		printf("Death mutex initialization failed. Exit...\n");
-		philosopher->philo_setting->if_dead = ANYONE_DEAD;
-		return (0);
-	}
-	pthread_mutex_lock(&mutex);
+	pthread_mutex_lock(&philosopher->philo_setting->death_mutex);
 	timestamp = philo_timestamp(philosopher);
-	pthread_mutex_unlock(&mutex);
-	printf("%dms\t%d died\n", timestamp, philosopher->index);
-	philosopher->philo_setting->if_dead = ANYONE_DEAD;
-	pthread_mutex_destroy(&mutex);
+	if (if_dead == EVERYONE_ATE)
+	{
+		philosopher->philo_setting->if_dead = EVERYONE_ATE;
+		printf("%dms\tEveryone ate %d time\n", timestamp,
+			philosopher->philo_setting->num_to_eat);
+	}
+	else if (philosopher->philo_setting->if_dead == NO_ONE_DEAD)
+	{
+		philosopher->philo_setting->if_dead = ANYONE_DEAD;
+		printf("%dms\t%d died\n", timestamp, philosopher->index + 1);
+	}
 	return (0);
 }
 
@@ -61,7 +61,8 @@ t_fork	*philo_destroy_fork(t_fork *fork, int end_index)
 	return (0);
 }
 
-t_philo_struct	*philo_free_struct(t_philo_setting *philo_setting,
+t_philo_struct	*philo_free_struct(
+	t_philo_setting *philo_setting,
 	t_philosopher *philosophers,
 	t_fork *forks,
 	t_philo_struct *philo_struct)
@@ -71,7 +72,11 @@ t_philo_struct	*philo_free_struct(t_philo_setting *philo_setting,
 	if (forks)
 		philo_destroy_fork(forks, philo_setting->num_of_philo);
 	if (philo_setting)
+	{
+		pthread_mutex_unlock(&philo_setting->death_mutex);
+		pthread_mutex_destroy(&philo_setting->death_mutex);
 		free(philo_setting);
+	}
 	if (philo_struct)
 		free(philo_struct);
 	return (0);

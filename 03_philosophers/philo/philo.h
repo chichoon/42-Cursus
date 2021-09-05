@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 15:23:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/04 17:13:26 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 09:40:04 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define FORK_0	0
 # define NO_ONE_DEAD 0
 # define ANYONE_DEAD 1
+# define EVERYONE_ATE 2
 
 typedef struct s_philo_setting
 {
@@ -36,6 +37,7 @@ typedef struct s_philo_setting
 	int				if_dead;
 	time_t			time_start_s;
 	suseconds_t		time_start_us;
+	pthread_mutex_t	death_mutex;
 }				t_philo_setting;
 
 typedef struct s_fork
@@ -73,7 +75,7 @@ void			*philo_thread_func(void *data);
 	** Philosophers: Utilities
 */
 int				ft_atoi(const char *str);
-void			*philo_death_print(t_philosopher *philosopher);
+void			*philo_death_print(t_philosopher *philosopher, int if_dead);
 int				philo_timestamp(t_philosopher *philosopher);
 t_fork			*philo_destroy_fork(t_fork *fork, int end_index);
 int				philo_pause(

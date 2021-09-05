@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 15:37:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/04 17:48:32 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 10:00:24 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	philosophers(t_philo_struct *philo_struct)
 	while (index < philo_struct->philo_setting->num_of_philo)
 	{
 		if (index % 2)
-			usleep(50);
+			usleep(100);
 		if (pthread_create(&thread_tmp, NULL, philo_thread_func,
 				&philo_struct->philosophers[index]) != 0)
 			return ;
