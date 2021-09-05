@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 09:58:26 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 10:33:13 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ static int	philo_eat(t_philosopher *philosopher)
 	philosopher->fork_left->fork = FORK_0;
 	pthread_mutex_unlock(&philosopher->fork_right->mutex_id);
 	philosopher->fork_right->fork = FORK_0;
+	if (philosopher->philo_setting->num_to_eat > 0)
+	{
+		philosopher->num_ate++;
+		if (philosopher->num_ate == philosopher->philo_setting->num_to_eat)
+			philosopher->philo_setting->num_of_philo_ate++;
+	}
 	return (1);
 }
 
@@ -80,20 +86,14 @@ void	*philo_thread_func(void *data)
 	philo_setting = philosopher->philo_setting;
 	while (philo_setting->if_dead == NO_ONE_DEAD)
 	{
-		if (!philo_hold_fork(philosopher))
+		if (!philo_hold_fork(philosopher) || !philo_eat(philosopher))
 			return (philo_death_print(philosopher, ANYONE_DEAD));
-		if (!philo_eat(philosopher))
-			return (philo_death_print(philosopher, ANYONE_DEAD));
-		if (philo_setting->num_to_eat > 0)
-		{
-			philosopher->num_ate++;
-			if (philosopher->num_ate == philo_setting->num_to_eat)
-				philo_setting->num_of_philo_ate++;
-			if (philo_setting->num_of_philo_ate == philo_setting->num_of_philo)
-				return (philo_death_print(philosopher, EVERYONE_ATE));
-		}
+		if (philo_setting->num_of_philo_ate == philo_setting->num_of_philo)
+			return (philo_death_print(philosopher, EVERYONE_ATE));
 		if (!philo_sleep(philosopher))
 			return (philo_death_print(philosopher, ANYONE_DEAD));
+		printf("%dms\t%d is thinking\n", philo_timestamp(philosopher),
+			philosopher->index + 1);
 	}
 	return (0);
 }

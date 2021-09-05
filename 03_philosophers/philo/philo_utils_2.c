@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:08:46 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 09:51:04 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 10:31:03 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,10 @@ void	*philo_death_print(t_philosopher *philosopher, int if_dead)
 
 int	philo_pause(t_philosopher *philosopher, int time_start, int time_threshold)
 {
-	int	timestamp;
-
-	timestamp = philo_timestamp(philosopher);
-	if (timestamp < 0)
-		return (-1);
-	while (timestamp - time_start < time_threshold)
+	while (philo_timestamp(philosopher) - time_start < time_threshold)
 	{
-		timestamp = philo_timestamp(philosopher);
-		if (timestamp < 0
-			|| (timestamp - philosopher->time_eat_last_ms
-				> philosopher->philo_setting->time_to_die))
+		if (philo_timestamp(philosopher) - philosopher->time_eat_last_ms
+			> philosopher->philo_setting->time_to_die)
 			return (0);
 	}
 	return (1);
