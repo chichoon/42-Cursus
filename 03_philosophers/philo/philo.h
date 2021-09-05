@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 15:23:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 16:20:15 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:35:55 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <string.h>
 # include <sys/time.h>
 
-# define FORK_1	1
-# define FORK_0	0
+# define FORK_HELD	1
+# define FORK_UNHELD	0
 # define NO_ONE_DEAD 0
 # define ANYONE_DEAD 1
 # define EVERYONE_ATE 2
@@ -77,11 +77,12 @@ void			*philo_thread_func(void *data);
 int				ft_atoi(const char *str);
 void			*philo_death_print(t_philo *philo, int if_dead);
 int				philo_timestamp(t_philo *philo);
-t_fork			*philo_destroy_fork(t_fork *fork, int end_index);
+int				philo_set_num_eat(t_philo *philo);
 int				philo_pause(
 					t_philo *philo,
 					int time_start,
 					int time_threshold);
+t_fork			*philo_destroy_fork(t_fork *fork, int end_index);
 t_philo_struct	*philo_free_struct(
 					t_philo_setting *philo_setting,
 					t_philo *philo,

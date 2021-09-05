@@ -6,13 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 15:37:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 16:20:46 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:27:42 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philos(t_philo_struct *philo_struct)
+void	philosophers(t_philo_struct *philo_struct)
 {
 	struct timeval	tp;
 	int				index;
@@ -52,7 +52,7 @@ int	main(int argc, char *argv[])
 		printf("Initialization Failed. Stop.\n");
 		return (0);
 	}
-	philos(philo_struct);
+	philosophers(philo_struct);
 	philo_free_struct(philo_struct->philo_setting, philo_struct->philos,
 		philo_struct->forks, philo_struct);
 	return (0);
