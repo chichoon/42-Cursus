@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 12:02:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 10:15:37 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:21:24 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ int	ft_atoi(const char *str)
 	return (minus * absol);
 }
 
-int	philo_timestamp(t_philosopher *philosopher)
+int	philo_timestamp(t_philo *philo)
 {
 	struct timeval	tp;
 
 	gettimeofday(&tp, NULL);
-	return ((tp.tv_sec - philosopher->philo_setting->time_start_s) * 1000
-		+ (tp.tv_usec - philosopher->philo_setting->time_start_us) / 1000);
+	return ((tp.tv_sec - philo->philo_setting->time_start_s) * 1000
+		+ (tp.tv_usec - philo->philo_setting->time_start_us) / 1000);
 }

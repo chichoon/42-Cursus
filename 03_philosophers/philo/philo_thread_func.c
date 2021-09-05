@@ -6,95 +6,49 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 15:02:42 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:21:15 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	philo_hold_fork(t_philosopher *philosopher)
+static int	philo_eat(t_philo *philo)
 {
-	int	timestamp;
 
-	pthread_mutex_lock(&philosopher->fork_left->mutex_id);
-	philosopher->fork_left->fork = FORK_1;
-	timestamp = philo_timestamp(philosopher);
-	if (timestamp - philosopher->time_eat_last_ms
-		> philosopher->philo_setting->time_to_die)
-		return (0);
-	if (philosopher->philo_setting->if_dead == NO_ONE_DEAD)
-		printf("%dms\t%d has taken a fork\n", timestamp, philosopher->index + 1);
-	if (philosopher->fork_left == philosopher->fork_right)
-		return (0);
-	pthread_mutex_lock(&philosopher->fork_right->mutex_id);
-	philosopher->fork_right->fork = FORK_1;
-	timestamp = philo_timestamp(philosopher);
-	if (timestamp - philosopher->time_eat_last_ms
-		> philosopher->philo_setting->time_to_die)
-		return (0);
-	if (philosopher->philo_setting->if_dead == NO_ONE_DEAD)
-		printf("%dms\t%d has taken a fork\n", timestamp, philosopher->index + 1);
-	return (1);
 }
 
-static int	philo_eat(t_philosopher *philosopher)
+static int	philo_sleep(t_philo *philo)
 {
-	int	time_start_eat_ms;
+	int	start_sleep_ms;
 
-	time_start_eat_ms = philo_timestamp(philosopher);
-	if (time_start_eat_ms < -1)
+	start_sleep_ms = philo_timestamp(philo);
+	if (philo->philo_setting->if_dead == ANYONE_DEAD)
 		return (0);
-	if (philosopher->philo_setting->if_dead == NO_ONE_DEAD)
-		printf("%dms\t%d is eating\n", time_start_eat_ms, philosopher->index + 1);
-	if (!philo_pause(philosopher, time_start_eat_ms,
-			philosopher->philo_setting->time_to_eat))
+	printf("%dms\t%d is sleeping\n", start_sleep_ms, philo->index + 1);
+	if (philo->philo_setting->if_dead == ANYONE_DEAD)
 		return (0);
-	philosopher->time_eat_last_ms = philo_timestamp(philosopher);
-	pthread_mutex_unlock(&philosopher->fork_left->mutex_id);
-	philosopher->fork_left->fork = FORK_0;
-	pthread_mutex_unlock(&philosopher->fork_right->mutex_id);
-	philosopher->fork_right->fork = FORK_0;
-	if (philosopher->philo_setting->num_to_eat > 0)
-	{
-		philosopher->num_ate++;
-		if (philosopher->num_ate == philosopher->philo_setting->num_to_eat)
-			philosopher->philo_setting->num_of_philo_ate++;
-	}
-	return (1);
-}
-
-static int	philo_sleep(t_philosopher *philosopher)
-{
-	int	time_start_sleep_ms;
-
-	time_start_sleep_ms = philo_timestamp(philosopher);
-	if (time_start_sleep_ms < 0)
-		return (0);
-	if (philosopher->philo_setting->if_dead == NO_ONE_DEAD)
-		printf("%dms\t%d is sleeping\n", time_start_sleep_ms,
-			philosopher->index + 1);
-	return (philo_pause(philosopher, time_start_sleep_ms,
-			philosopher->philo_setting->time_to_sleep));
-	return (1);
+	return (philo_pause(philo, start_sleep_ms,
+			philo->philo_setting->time_to_sleep));
 }
 
 void	*philo_thread_func(void *data)
 {
-	t_philosopher	*philosopher;
-	t_philo_setting	*philo_setting;
+	t_philo	*philo;
+	int				condition;
 
-	philosopher = (t_philosopher *)data;
-	philo_setting = philosopher->philo_setting;
-	while (philo_setting->if_dead == NO_ONE_DEAD)
+	philo = (t_philo *)data;
+	while (philo->philo_setting->if_dead == NO_ONE_DEAD)
 	{
-		if (!philo_hold_fork(philosopher) || !philo_eat(philosopher))
-			return (philo_death_print(philosopher, ANYONE_DEAD));
-		if (philo_setting->num_of_philo_ate == philo_setting->num_of_philo)
-			return (philo_death_print(philosopher, EVERYONE_ATE));
-		if (!philo_sleep(philosopher))
-			return (philo_death_print(philosopher, ANYONE_DEAD));
-		printf("%dms\t%d is thinking\n", philo_timestamp(philosopher),
-			philosopher->index + 1);
+		if (!philo_hold_fork(philo) || !philo_eat(philo) || !philo_sleep(philo))
+			break ;
+	}
+	if (philo->philo_setting->if_dead == NO_ONE_DEAD)
+	{
+		if (philo->philo_setting->num_of_philo_ate
+			== philo->philo_setting->num_to_eat)
+			return (philo_death_print(philo, EVERYONE_ATE));
+		else
+			return (philo_death_print(philo, ANYONE_DEAD));
 	}
 	return (0);
 }

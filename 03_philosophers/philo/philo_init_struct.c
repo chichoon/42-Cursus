@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 10:33:04 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 09:39:17 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:21:04 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,25 @@ static t_philo_setting	*philo_set_setting(int argc, char *argv[])
 	return (philo_setting);
 }
 
-static t_philosopher	*philo_set_philos(t_philo_setting *philo_setting)
+static t_philo	*philo_set_philos(t_philo_setting *philo_setting)
 {
-	t_philosopher	*philosophers;
-	int				index;
+	t_philo	*philos;
+	int		index;
 
 	index = 0;
-	philosophers = (t_philosopher *)malloc(
-			sizeof(t_philosopher) * philo_setting->num_of_philo);
-	if (!philosophers)
+	philos = (t_philo *)malloc(
+			sizeof(t_philo) * philo_setting->num_of_philo);
+	if (!philos)
 		return (0);
 	while (index < philo_setting->num_of_philo)
 	{
-		philosophers[index].philo_setting = philo_setting;
-		philosophers[index].index = index;
-		philosophers[index].num_ate = 0;
-		philosophers[index].time_eat_last_ms = 0;
+		philos[index].philo_setting = philo_setting;
+		philos[index].index = index;
+		philos[index].num_ate = 0;
+		philos[index].time_eat_last_ms = 0;
 		index++;
 	}
-	return (philosophers);
+	return (philos);
 }
 
 static t_fork	*philo_set_forks(t_philo_setting *philo_setting)
@@ -89,24 +89,24 @@ static t_fork	*philo_set_forks(t_philo_setting *philo_setting)
 
 static void	philo_put_forks(t_philo_struct *philo_struct)
 {
-	t_philosopher	*philosophers;
+	t_philo			*philos;
 	t_fork			*forks;
 	t_philo_setting	*philo_setting;
 	int				index;
 	int				max_index;
 
-	philosophers = philo_struct->philosophers;
+	philos = philo_struct->philos;
 	forks = philo_struct->forks;
-	philo_setting = philosophers[0].philo_setting;
+	philo_setting = philos[0].philo_setting;
 	index = -1;
 	max_index = philo_setting->num_of_philo;
 	while (++index < philo_setting->num_of_philo)
 	{
-		philosophers[index].fork_left = &forks[index];
+		philos[index].fork_left = &forks[index];
 		if (index == max_index - 1)
-			philosophers[index].fork_right = &forks[0];
+			philos[index].fork_right = &forks[0];
 		else
-			philosophers[index].fork_right = &forks[index + 1];
+			philos[index].fork_right = &forks[index + 1];
 	}
 }
 
@@ -114,23 +114,23 @@ t_philo_struct	*philo_init_struct(int argc, char *argv[])
 {
 	t_philo_struct	*philo_struct;
 	t_philo_setting	*philo_setting;
-	t_philosopher	*philosophers;
+	t_philo			*philos;
 	t_fork			*forks;
 
 	philo_setting = philo_set_setting(argc, argv);
 	if (!philo_setting)
 		return (philo_free_struct(0, 0, 0, 0));
-	philosophers = philo_set_philos(philo_setting);
-	if (!philosophers)
+	philos = philo_set_philos(philo_setting);
+	if (!philos)
 		return (philo_free_struct(philo_setting, 0, 0, 0));
 	forks = philo_set_forks(philo_setting);
 	if (!forks)
-		return (philo_free_struct(philo_setting, philosophers, 0, 0));
+		return (philo_free_struct(philo_setting, philos, 0, 0));
 	philo_struct = (t_philo_struct *)malloc(sizeof(t_philo_struct));
 	if (!philo_struct)
-		return (philo_free_struct(philo_setting, philosophers, forks, 0));
+		return (philo_free_struct(philo_setting, philos, forks, 0));
 	philo_struct->philo_setting = philo_setting;
-	philo_struct->philosophers = philosophers;
+	philo_struct->philos = philos;
 	philo_struct->forks = forks;
 	philo_put_forks(philo_struct);
 	return (philo_struct);

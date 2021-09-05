@@ -6,17 +6,18 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 15:37:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 10:19:03 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/05 16:20:46 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philosophers(t_philo_struct *philo_struct)
+void	philos(t_philo_struct *philo_struct)
 {
 	struct timeval	tp;
 	int				index;
 	pthread_t		thread_tmp;
+	int				return_tmp;
 
 	index = 0;
 	if (gettimeofday(&tp, NULL) < 0)
@@ -28,14 +29,12 @@ void	philosophers(t_philo_struct *philo_struct)
 		if (index % 2)
 			usleep(50);
 		if (pthread_create(&thread_tmp, NULL, philo_thread_func,
-				&philo_struct->philosophers[index]) != 0)
+				&philo_struct->philos[index]) != 0)
 			return ;
-		philo_struct->philosophers[index].thread_id = thread_tmp;
+		philo_struct->philos[index].thread_id = thread_tmp;
 		index++;
-		pthread_detach(thread_tmp);
+		pthread_join(thread_tmp, (void **)&return_tmp);
 	}
-	while (philo_struct->philo_setting->if_dead == NO_ONE_DEAD)
-		;
 }
 
 int	main(int argc, char *argv[])
@@ -53,8 +52,8 @@ int	main(int argc, char *argv[])
 		printf("Initialization Failed. Stop.\n");
 		return (0);
 	}
-	philosophers(philo_struct);
-	philo_free_struct(philo_struct->philo_setting, philo_struct->philosophers,
+	philos(philo_struct);
+	philo_free_struct(philo_struct->philo_setting, philo_struct->philos,
 		philo_struct->forks, philo_struct);
 	return (0);
 }
