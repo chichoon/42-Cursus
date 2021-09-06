@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 15:37:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 16:44:44 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/06 18:19:16 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 5 && argc != 6)
 	{
-		printf("Too few arguments to call. Stop.\n");
+		printf("Argument number error. Stop.\n");
 		return (0);
 	}
 	philo_struct = philo_init_struct(argc, argv);

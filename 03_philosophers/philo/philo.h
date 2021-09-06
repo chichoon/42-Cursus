@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 15:23:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 16:35:55 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/06 16:50:18 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,26 @@
 # include <string.h>
 # include <sys/time.h>
 
+/*
+	** Philosophers: Fork Condition
+*/
 # define FORK_HELD	1
 # define FORK_UNHELD	0
+
+/*
+	** Philosophers: Threads condition
+*/
 # define NO_ONE_DEAD 0
 # define ANYONE_DEAD 1
 # define EVERYONE_ATE 2
+
+/*
+	** Philosophers: Condition to use mutex-ed printf
+*/
+# define SLEEP 0
+# define EAT 1
+# define THINK 2
+# define FORK 3
 
 typedef struct s_philo_setting
 {
