@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 15:23:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/08 15:03:58 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/08 15:27:34 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void			*philo_thread_func(void *data);
 int				ft_atoi(const char *str);
 void			*philo_death_print(t_philo *philo, int if_dead);
 int				philo_timestamp(t_philo *philo);
-int				philo_set_num_eat(t_philo *philo);
 int				philo_pause(
 					t_philo *philo,
 					int time_start,

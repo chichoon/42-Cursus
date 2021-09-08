@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:08:46 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/08 15:15:44 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/08 15:27:30 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,4 @@ t_philo_struct	*philo_free_struct(
 	if (philo_struct)
 		free(philo_struct);
 	return (0);
-}
-
-int	philo_set_num_eat(t_philo *philo)
-{
-	if (philo->philo_setting->num_to_eat > 0)
-	{
-		philo->num_ate++;
-		if (philo->num_ate == philo->philo_setting->num_to_eat)
-			philo->philo_setting->num_of_philo_ate++;
-		if (philo->philo_setting->num_of_philo_ate
-			== philo->philo_setting->num_of_philo)
-			return (0);
-	}
-	return (1);
 }
