@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 15:23:02 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/08 11:17:09 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/08 15:03:58 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ t_philo_struct	*philo_free_struct(
 					t_philo *philo,
 					t_fork *forks,
 					t_philo_struct *philo_struct);
+int				philo_printf(t_philo *philo, int status);
 
 #endif
