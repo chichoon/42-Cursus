@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 12:02:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/06 18:18:34 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/08 11:19:25 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,3 @@ int	philo_timestamp(t_philo *philo)
 	return ((tp.tv_sec - philo->philo_setting->time_start_s) * 1000
 		+ (tp.tv_usec - philo->philo_setting->time_start_us) / 1000);
 }
-
-// int	philo_printf(t_philo *philo, int condition)
-// {
-// 	//
-// }

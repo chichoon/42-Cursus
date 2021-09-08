@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/05 17:04:10 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/08 11:27:32 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,39 @@
 
 static int	philo_hold_fork(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->philo_setting->death_mutex);
+	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
+		return (0);
+	philo->philo_setting->if_dead = NO_ONE_DEAD;
 	pthread_mutex_lock(&philo->fork_left->mutex_id);
 	philo->fork_left->fork = FORK_HELD;
-	if ((philo_timestamp(philo) - philo->time_eat_last_ms
-			> philo->philo_setting->time_to_die)
-		|| philo->philo_setting->if_dead != NO_ONE_DEAD)
+	if (philo_timestamp(philo) - philo->time_eat_last_ms
+		> philo->philo_setting->time_to_die)
 		return (0);
 	else
 		printf("%dms\t%d has taken a fork\n",
 			philo_timestamp(philo), philo->index + 1);
-	if (philo->fork_left == philo->fork_right)
-		return (0);
-	pthread_mutex_lock(&philo->fork_right->mutex_id);
+	if (philo->fork_left != philo->fork_right)
+		pthread_mutex_lock(&philo->fork_right->mutex_id);
 	philo->fork_right->fork = FORK_HELD;
-	if ((philo_timestamp(philo) - philo->time_eat_last_ms
-			> philo->philo_setting->time_to_die)
-		|| philo->philo_setting->if_dead != NO_ONE_DEAD)
+	if (philo_timestamp(philo) - philo->time_eat_last_ms
+		> philo->philo_setting->time_to_die)
 		return (0);
 	else
 		printf("%dms\t%d has taken a fork\n",
 			philo_timestamp(philo), philo->index + 1);
+	pthread_mutex_unlock(&philo->philo_setting->death_mutex);
 	return (1);
 }
 
 static int	philo_eat(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->philo_setting->death_mutex);
 	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
 		return (0);
 	else
 		printf("%dms\t%d is eating\n",
 			philo_timestamp(philo), philo->index + 1);
-	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
-		return (0);
 	if (!philo_pause(philo, philo_timestamp(philo),
 			philo->philo_setting->time_to_eat))
 		return (0);
@@ -54,22 +55,31 @@ static int	philo_eat(t_philo *philo)
 	philo->fork_left->fork = FORK_UNHELD;
 	pthread_mutex_unlock(&philo->fork_right->mutex_id);
 	philo->fork_right->fork = FORK_UNHELD;
-	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
-		return (0);
-	return (philo_set_num_eat(philo));
+	if (philo->philo_setting->num_to_eat > 0)
+	{
+		philo->num_ate++;
+		if (philo->num_ate == philo->philo_setting->num_to_eat)
+			philo->philo_setting->num_of_philo_ate++;
+		if (philo->philo_setting->num_of_philo_ate
+			== philo->philo_setting->num_of_philo)
+			return (0);
+	}
+	pthread_mutex_unlock(&philo->philo_setting->death_mutex);
+	return (1);
 }
 
 static int	philo_sleep(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->philo_setting->death_mutex);
 	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
 		return (0);
-	else
-		printf("%dms\t%d is sleeping\n",
-			philo_timestamp(philo), philo->index + 1);
-	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
+	printf("%dms\t%d is sleeping\n",
+		philo_timestamp(philo), philo->index + 1);
+	if (philo_pause(philo, philo_timestamp(philo),
+			philo->philo_setting->time_to_sleep))
 		return (0);
-	return (philo_pause(philo, philo_timestamp(philo),
-			philo->philo_setting->time_to_sleep));
+	pthread_mutex_unlock(&philo->philo_setting->death_mutex);
+	return (1);
 }
 
 void	*philo_thread_func(void *data)
