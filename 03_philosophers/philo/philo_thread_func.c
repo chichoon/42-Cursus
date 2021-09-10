@@ -6,11 +6,18 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/08 15:16:44 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/11 08:10:53 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	philo_one_fork(t_philo *philo)
+{
+	philo_pause(philo, philo_timestamp(philo),
+		philo->philo_setting->time_to_die);
+	return (0);
+}
 
 static int	philo_hold_fork(t_philo *philo)
 {
@@ -25,8 +32,9 @@ static int	philo_hold_fork(t_philo *philo)
 	else
 		if (!philo_printf(philo, FORK))
 			return (0);
-	if (philo->fork_left != philo->fork_right)
-		pthread_mutex_lock(&philo->fork_right->mutex_id);
+	if (philo->fork_left == philo->fork_right)
+		return (philo_one_fork(philo));
+	pthread_mutex_lock(&philo->fork_right->mutex_id);
 	philo->fork_right->fork = FORK_HELD;
 	if (philo_timestamp(philo) - philo->time_eat_last_ms
 		> philo->philo_setting->time_to_die)
