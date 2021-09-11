@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:08:46 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/11 10:55:27 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/11 11:02:52 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	*philo_death_print(t_philo *philo, int if_dead)
 {
 	int				timestamp;
 
-	pthread_mutex_lock(&philo->philo_setting->death_mutex);
 	timestamp = philo_timestamp(philo);
 	if (if_dead == EVERYONE_ATE)
 		philo->philo_setting->if_dead = EVERYONE_ATE;
@@ -61,6 +60,7 @@ t_philo_struct	*philo_free_struct(
 	pthread_mutex_t	death_mutex_tmp;
 	int				if_philo_death;
 
+	if_philo_death = 0;
 	if (philo_struct)
 	{
 		death_mutex_tmp = philo_setting->death_mutex;
