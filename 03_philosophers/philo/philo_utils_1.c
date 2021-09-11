@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 12:02:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/11 09:01:52 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/11 11:55:32 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ int	philo_printf(t_philo *philo, int status)
 {
 	pthread_mutex_lock(&philo->philo_setting->death_mutex);
 	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
+	{
+		pthread_mutex_unlock(&philo->philo_setting->death_mutex);
 		return (0);
+	}
 	philo->philo_setting->if_dead = NO_ONE_DEAD;
 	if (status == SLEEP)
 		printf("%d\t%d is sleeping\n",
