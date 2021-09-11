@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 15:37:13 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/11 11:49:39 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/11 11:52:12 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	philosophers(t_philo_struct *philo_struct)
 	pthread_t		thread_tmp;
 	int				int_tmp;
 
+	index = -1;
 	if (gettimeofday(&tp, NULL) < 0)
 		return ;
 	philo_struct->philo_setting->time_start_s = tp.tv_sec;
