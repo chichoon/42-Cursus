@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 12:02:18 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/08 15:04:49 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/11 09:01:52 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,16 @@ int	philo_printf(t_philo *philo, int status)
 		return (0);
 	philo->philo_setting->if_dead = NO_ONE_DEAD;
 	if (status == SLEEP)
-		printf("%dms\t%d is sleeping\n",
+		printf("%d\t%d is sleeping\n",
 			philo_timestamp(philo), philo->index + 1);
 	else if (status == EAT)
-		printf("%dms\t%d is eating\n",
+		printf("%d\t%d is eating\n",
 			philo_timestamp(philo), philo->index + 1);
 	else if (status == THINK)
-		printf("%dms\t%d is thinking\n", philo_timestamp(philo),
+		printf("%d\t%d is thinking\n", philo_timestamp(philo),
 			philo->index + 1);
 	else if (status == FORK)
-		printf("%dms\t%d has taken a fork\n",
+		printf("%d\t%d has taken a fork\n",
 			philo_timestamp(philo), philo->index + 1);
 	pthread_mutex_unlock(&philo->philo_setting->death_mutex);
 	return (1);

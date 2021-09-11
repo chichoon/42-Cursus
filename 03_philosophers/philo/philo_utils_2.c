@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:08:46 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/08 15:27:30 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/11 09:07:41 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,11 @@ void	*philo_death_print(t_philo *philo, int if_dead)
 
 	timestamp = philo_timestamp(philo);
 	if (if_dead == EVERYONE_ATE)
-	{
 		philo->philo_setting->if_dead = EVERYONE_ATE;
-		printf("%dms\tEveryone ate %d time\n", timestamp,
-			philo->philo_setting->num_to_eat);
-	}
 	else if (philo->philo_setting->if_dead == NO_ONE_DEAD)
 	{
 		philo->philo_setting->if_dead = ANYONE_DEAD;
-		printf("%dms\t%d died\n", timestamp, philo->index + 1);
+		printf("%d\t%d died\n", timestamp, philo->index + 1);
 	}
 	pthread_mutex_unlock(&philo->philo_setting->death_mutex);
 	return (0);
