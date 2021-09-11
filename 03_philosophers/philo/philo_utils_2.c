@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:08:46 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/11 09:07:41 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/11 10:55:27 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	*philo_death_print(t_philo *philo, int if_dead)
 {
 	int				timestamp;
 
+	pthread_mutex_lock(&philo->philo_setting->death_mutex);
 	timestamp = philo_timestamp(philo);
 	if (if_dead == EVERYONE_ATE)
 		philo->philo_setting->if_dead = EVERYONE_ATE;
@@ -57,16 +58,27 @@ t_philo_struct	*philo_free_struct(
 	t_fork *forks,
 	t_philo_struct *philo_struct)
 {
+	pthread_mutex_t	death_mutex_tmp;
+	int				if_philo_death;
+
+	if (philo_struct)
+	{
+		death_mutex_tmp = philo_setting->death_mutex;
+		pthread_mutex_lock(&death_mutex_tmp);
+		if_philo_death = 1;
+	}
 	if (philo)
 		free(philo);
 	if (forks)
 		philo_destroy_fork(forks, philo_setting->num_of_philo);
 	if (philo_setting)
-	{
-		pthread_mutex_destroy(&philo_setting->death_mutex);
 		free(philo_setting);
-	}
 	if (philo_struct)
 		free(philo_struct);
+	if (if_philo_death)
+	{
+		pthread_mutex_unlock(&death_mutex_tmp);
+		pthread_mutex_destroy(&death_mutex_tmp);
+	}
 	return (0);
 }
