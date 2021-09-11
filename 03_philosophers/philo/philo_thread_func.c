@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/11 11:39:04 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/11 11:59:25 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,5 @@ void	*philo_thread_func(void *data)
 		else
 			return (philo_death_print(philo, ANYONE_DEAD));
 	}
-	pthread_mutex_unlock(&philo->philo_setting->death_mutex);
 	return (0);
 }
