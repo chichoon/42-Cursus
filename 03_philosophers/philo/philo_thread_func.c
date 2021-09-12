@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/11 11:59:25 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/12 10:45:42 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,29 @@ static int	philo_one_fork(t_philo *philo)
 
 static int	philo_hold_fork(t_philo *philo)
 {
-	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
-		return (0);
-	philo->philo_setting->if_dead = NO_ONE_DEAD;
 	pthread_mutex_lock(&philo->fork_left->mutex_id);
 	philo->fork_left->fork = FORK_HELD;
 	if (philo_timestamp(philo) - philo->time_eat_last_ms
 		> philo->philo_setting->time_to_die)
+	{
+		pthread_mutex_unlock(&philo->fork_left->mutex_id);
 		return (0);
-	else
-		if (!philo_printf(philo, FORK))
-			return (0);
+	}
+	if (!philo_printf(philo, FORK))
+		return (0);
 	if (philo->fork_left == philo->fork_right)
 		return (philo_one_fork(philo));
 	pthread_mutex_lock(&philo->fork_right->mutex_id);
 	philo->fork_right->fork = FORK_HELD;
 	if (philo_timestamp(philo) - philo->time_eat_last_ms
 		> philo->philo_setting->time_to_die)
+	{
+		pthread_mutex_unlock(&philo->fork_left->mutex_id);
+		pthread_mutex_unlock(&philo->fork_right->mutex_id);
 		return (0);
-	else
-		if (!philo_printf(philo, FORK))
-			return (0);
+	}
+	if (!philo_printf(philo, FORK))
+		return (0);
 	return (1);
 }
 
