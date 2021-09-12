@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:08:46 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/11 11:38:00 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/12 14:21:31 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*philo_death_print(t_philo *philo, int if_dead)
 	int				timestamp;
 
 	pthread_mutex_lock(&philo->philo_setting->death_mutex);
+	pthread_mutex_unlock(&philo->fork_left->mutex_id);
+	pthread_mutex_unlock(&philo->fork_right->mutex_id);
 	timestamp = philo_timestamp(philo);
 	if (if_dead == EVERYONE_ATE)
 		philo->philo_setting->if_dead = EVERYONE_ATE;
