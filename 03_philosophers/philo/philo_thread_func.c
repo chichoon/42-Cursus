@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/05 17:06:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/09/12 10:45:42 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/09/12 14:00:22 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ static int	philo_hold_fork(t_philo *philo)
 	philo->fork_left->fork = FORK_HELD;
 	if (philo_timestamp(philo) - philo->time_eat_last_ms
 		> philo->philo_setting->time_to_die)
-	{
-		pthread_mutex_unlock(&philo->fork_left->mutex_id);
 		return (0);
-	}
 	if (!philo_printf(philo, FORK))
 		return (0);
 	if (philo->fork_left == philo->fork_right)
@@ -37,11 +34,7 @@ static int	philo_hold_fork(t_philo *philo)
 	philo->fork_right->fork = FORK_HELD;
 	if (philo_timestamp(philo) - philo->time_eat_last_ms
 		> philo->philo_setting->time_to_die)
-	{
-		pthread_mutex_unlock(&philo->fork_left->mutex_id);
-		pthread_mutex_unlock(&philo->fork_right->mutex_id);
 		return (0);
-	}
 	if (!philo_printf(philo, FORK))
 		return (0);
 	return (1);
@@ -49,12 +42,8 @@ static int	philo_hold_fork(t_philo *philo)
 
 static int	philo_eat(t_philo *philo)
 {
-	if (philo->philo_setting->if_dead != NO_ONE_DEAD)
-		return (0);
-	else
-		if (!philo_printf(philo, EAT))
-			return (0);
-	if (!philo_pause(philo, philo_timestamp(philo),
+	if (!philo_printf(philo, EAT)
+		|| !philo_pause(philo, philo_timestamp(philo),
 			philo->philo_setting->time_to_eat))
 		return (0);
 	philo->time_eat_last_ms = philo_timestamp(philo);
@@ -109,5 +98,8 @@ void	*philo_thread_func(void *data)
 		else
 			return (philo_death_print(philo, ANYONE_DEAD));
 	}
+	pthread_mutex_unlock(&philo->fork_left->mutex_id);
+	pthread_mutex_unlock(&philo->fork_right->mutex_id);
+	pthread_mutex_unlock(&philo->philo_setting->death_mutex);
 	return (0);
 }
