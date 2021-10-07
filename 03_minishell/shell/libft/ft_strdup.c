@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_pipe.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 18:45:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/10/07 19:31:52 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 21:29:02 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 21:31:01 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+char	*ft_strdup(const char *src)
 {
-	int	i;
+	char	*ptr;
+	int		length;
 
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
+	length = ft_strlen(src);
+	ptr = (char *)malloc(sizeof(char) * (length + 1));
+	if (!ptr)
+		return (0);
+	while (*src)
+		*ptr++ = *src++;
+	*ptr = 0;
+	return (ptr - length);
 }

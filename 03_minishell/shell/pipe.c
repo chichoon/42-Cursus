@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_pipe.c                                        :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 18:45:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/10/07 19:31:52 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/10/07 19:16:18 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/10/07 19:21:01 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "pipe.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	pipe(char *files[], char *cmd[])
 {
-	int	i;
 
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
 }

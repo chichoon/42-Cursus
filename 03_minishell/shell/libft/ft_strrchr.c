@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_pipe.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 18:45:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/10/07 19:31:52 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 17:40:59 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 21:27:10 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+char	*ft_strrchr(const char *src, int c)
 {
-	int	i;
+	size_t	length;
+	char	ch;
 
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
+	ch = (char)c;
+	length = ft_strlen(src);
+	src += length;
+	while (length)
+	{
+		if (*src == ch)
+			break ;
+		src--;
+		length--;
+	}
+	if (ch == 0 || *src == ch)
+		return ((char *)src);
+	else
+		return (0);
 }

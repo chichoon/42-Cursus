@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_pipe.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 18:45:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/10/07 19:31:52 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 18:14:12 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/06/30 22:52:31 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	unsigned char	*us1;
+	unsigned char	*us2;
 
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
+	us1 = (unsigned char *)s1;
+	us2 = (unsigned char *)s2;
+	while (n)
+	{
+		if (*us1 != *us2)
+			return (*us1 - *us2);
+		else if (!*us1)
+			break ;
+		us1++;
+		us2++;
+		n--;
+	}
+	return (0);
 }

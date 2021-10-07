@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_pipe.c                                        :+:      :+:    :+:   */
+/*   memcmp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 18:45:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/10/07 19:31:52 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 15:39:25 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 15:44:04 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
+	unsigned char	*s1_backup;
+	unsigned char	*s2_backup;
 
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
+	s1_backup = (unsigned char *)s1;
+	s2_backup = (unsigned char *)s2;
+	while (n)
+	{
+		if (*s1_backup != *s2_backup)
+			return (*s1_backup - *s2_backup);
+		s1_backup++;
+		s2_backup++;
+		n--;
+	}
+	return (0);
 }

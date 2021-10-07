@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_pipe.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 18:45:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/10/07 19:31:52 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 15:54:08 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 21:12:39 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+size_t	ft_strlcpy(char *dst, const char *src, size_t n)
 {
-	int	i;
+	size_t	i;
 
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
+	i = 0;
+	if (!dst || !src)
+		return (0);
+	while (i + 1 < n)
+	{
+		if (!*src)
+			break ;
+		else
+		{
+			*dst++ = *src++;
+			i++;
+		}
+	}
+	while (*src)
+	{
+		i++;
+		src++;
+	}
+	if (n != 0)
+		*dst = '\0';
+	return (i);
 }

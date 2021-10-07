@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_pipe.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 18:45:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/10/07 19:31:52 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 11:14:56 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 19:46:58 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	ft_bzero(void *ptr, size_t n)
 {
-	int	i;
+	unsigned char	*ptr_backup;
 
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
+	ptr_backup = (unsigned char *)ptr;
+	while (n > 0)
+	{
+		*ptr_backup++ = 0;
+		n--;
+	}
 }

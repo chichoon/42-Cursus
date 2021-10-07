@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_pipe.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 18:45:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/10/07 19:31:52 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 10:41:19 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/03 14:35:40 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	*ft_memset(void *ptr, int value, size_t n)
 {
-	int	i;
+	unsigned char		*ptr_backup;
 
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
+	ptr_backup = ptr;
+	while (n > 0)
+	{
+		*ptr_backup++ = (unsigned char)value;
+		n--;
+	}
+	return (ptr);
 }

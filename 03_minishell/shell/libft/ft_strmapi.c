@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_pipe.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 18:45:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/10/07 19:31:52 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/04 12:50:35 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/05/04 13:00:38 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
+	char			*ptr;
+	unsigned int	index;
+	unsigned int	length;
 
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
+	if (!s)
+		return (0);
+	length = ft_strlen(s);
+	ptr = (char *)malloc(sizeof(char) * (length + 1));
+	if (!ptr)
+		return (0);
+	index = 0;
+	while (index < length)
+	{
+		ptr[index] = f(index, s[index]);
+		index++;
+	}
+	ptr[index] = 0;
+	return (ptr);
 }

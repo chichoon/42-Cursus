@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_pipe.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/02 18:45:39 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/10/07 19:31:52 by jiychoi          ###   ########.fr       */
+/*   Created: 2021/05/03 11:53:40 by jiychoi           #+#    #+#             */
+/*   Updated: 2021/06/30 22:51:11 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int	i;
+	unsigned char	*dst_backup;
+	unsigned char	*src_backup;
 
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
+	dst_backup = (unsigned char *)dst;
+	src_backup = (unsigned char *)src;
+	if (!dst && !src && n)
+		return (dst);
+	while (n)
+	{
+		*dst_backup++ = *src_backup++;
+		n--;
+	}
+	return (dst);
 }
