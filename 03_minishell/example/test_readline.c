@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:54:21 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/12/02 18:58:54 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/12/05 16:12:17 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ int	main(void)
 	char	*input;
 	int		i;
 
-	input = readline(">> :");
-	i = -1;
-	while (input[++i])
+	while (1)
 	{
-		printf("%d: %c (%d)\n", i, input[i], input[i]);
+		input = readline("> ");
+		if (!*input)
+			return (0);
+		printf("%s\n", input);
+		free(input);
 	}
-	free(input);
 	return (0);
 }
