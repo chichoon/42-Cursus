@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:54:21 by jiychoi           #+#    #+#             */
-/*   Updated: 2021/12/05 16:12:17 by jiychoi          ###   ########.fr       */
+/*   Updated: 2021/12/14 14:34:13 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(void)
 	while (1)
 	{
 		input = readline("> ");
-		if (!*input)
+		if (!input)
 			return (0);
 		printf("%s\n", input);
 		free(input);
