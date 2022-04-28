@@ -6,12 +6,12 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/28 15:14:47 by jiychoi           #+#    #+#              #
-#    Updated: 2022/04/28 15:21:45 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/04/28 15:33:18 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	g++
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -std=c++98
 SRCS	=	megaphone.cpp
 OBJS	=	$(SRCS:.cpp=.o)
 TARGET	=	megaphone
