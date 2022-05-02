@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:29:48 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/04/28 17:55:10 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/05/02 16:27:43 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 class Contact {
 	private:
-		string	darkestSecret;
+		std::string	_darkestSecret;
+		std::string	_firstName;
+		std::string	_lastName;
+		std::string	_nickName;
+		std::string	_phoneNumber;
 	public:
-		string	firstName;
-		string	lastName;
-		string	nickName;
-		string	phoneNumber;
-		void	SetDarkestSecret(string _darkestSecret);
-		string	GetDarkestSecret();
-}
+		void	SetFirstName(std::string fn);
+		std::string	GetFirstName();
+		void	SetLastName(std::string ln);
+		std::string	GetLastName();
+		void	SetNickName(std::string nn);
+		std::string	GetNickName();
+		void	SetPhoneNumber(std::string pn);
+		std::string	GetPhoneNumber();
+		void	SetDarkestSecret(std::string ds);
+		std::string	GetDarkestSecret();
+};
