@@ -6,13 +6,13 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/28 15:14:47 by jiychoi           #+#    #+#              #
-#    Updated: 2022/04/28 16:19:16 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/05/02 16:15:37 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	g++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
-SRCS	=	phonebook.cpp
+SRCS	=	PhoneBook.cpp Contact.cpp awesome_phonebook.cpp
 OBJS	=	$(SRCS:.cpp=.o)
 TARGET	=	phonebook
 SUBJECT	=	00
