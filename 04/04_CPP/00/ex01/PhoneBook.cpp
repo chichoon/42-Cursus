@@ -6,11 +6,16 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:22:07 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/02 16:27:43 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/05/02 16:32:09 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+
+PhoneBook::PhoneBook(void)
+{
+	curIndex = 0;
+}
 
 void PhoneBook::AddNewContact()
 {
