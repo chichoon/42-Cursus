@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:22:07 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/06 15:24:09 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/05/06 15:31:08 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ PhoneBook::PhoneBook(void) {
 void PhoneBook::AddNewContact() {
 	std::string firstName, lastName, nickName, phoneNumber, darkestSecret;
 
+	std::cout << "Current Index: " << curIndex << "\n";
 	std::cout << "Enter Firstname: ";
 	std::getline(std::cin, firstName);
 	std::cout << "Enter Lastname: ";
@@ -69,7 +70,6 @@ static void printSearchedContact(Contact contact) {
 	std::cout << "Nickname: " << contact.GetNickName() << "\n";
 	std::cout << "Phone number: " << contact.GetPhoneNumber() << "\n";
 	std::cout << "Darkest Secret: " << contact.GetDarkestSecret() << "\n";
-
 }
 
 void PhoneBook::SearchContact() {
