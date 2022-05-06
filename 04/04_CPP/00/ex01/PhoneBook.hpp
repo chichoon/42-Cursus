@@ -6,12 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:21:48 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/06 15:20:20 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/05/06 15:48:11 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 #include <iostream>
+#include <cstdlib>
 
 class PhoneBook {
 	private:

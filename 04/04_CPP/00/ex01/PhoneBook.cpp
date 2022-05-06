@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:22:07 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/06 15:31:08 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/05/06 16:01:14 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ PhoneBook::PhoneBook(void) {
 void PhoneBook::AddNewContact() {
 	std::string firstName, lastName, nickName, phoneNumber, darkestSecret;
 
-	std::cout << "Current Index: " << curIndex << "\n";
+	std::cout << "Current Index: " << curIndex + 1 << "\n";
 	std::cout << "Enter Firstname: ";
 	std::getline(std::cin, firstName);
 	std::cout << "Enter Lastname: ";
@@ -54,7 +54,7 @@ static void wordWrap(std::string str) {
 
 static void printContact(Contact contact, int i) {
 	std::cout << "|         ";
-	std::cout << i;
+	std::cout << i + 1;
 	std::cout << "|";
 	wordWrap(contact.GetFirstName());
 	std::cout << "|";
@@ -65,14 +65,17 @@ static void printContact(Contact contact, int i) {
 }
 
 static void printSearchedContact(Contact contact) {
+	std::cout << "\n----------SEARCH RESULT----------\n";
 	std::cout << "Firstname: " << contact.GetFirstName() << "\n";
 	std::cout << "Lastname: " << contact.GetLastName() << "\n";
 	std::cout << "Nickname: " << contact.GetNickName() << "\n";
 	std::cout << "Phone number: " << contact.GetPhoneNumber() << "\n";
 	std::cout << "Darkest Secret: " << contact.GetDarkestSecret() << "\n";
+	std::cout << "---------------------------------\n\n";
 }
 
 void PhoneBook::SearchContact() {
+	std::string idxTemp;
 	int searchIdx;
 
 	std::cout << "|     INDEX| FIRSTNAME|  LASTNAME|  NICKNAME|\n";
@@ -80,9 +83,13 @@ void PhoneBook::SearchContact() {
 		if (!isFilled[i]) break;
 		printContact(contactArr[i], i);
 	}
-	std::cout << "Enter Index:";
-	std::cin >> searchIdx;
-	if (searchIdx < 0 || searchIdx > 7 || !isFilled[searchIdx])
-		std::cout << "No Contact Found in index No." << searchIdx << "!!!\n";
-	else printSearchedContact(contactArr[searchIdx]);
+	std::cout << "Enter Index: ";
+	std::getline(std::cin, idxTemp);
+	if (idxTemp.length() > 2 || idxTemp[0] < '1' || idxTemp[0] > '8') std::cout << "Invalid Input " << idxTemp << " !!\n";
+	else {
+		searchIdx = std::atoi(idxTemp.c_str()) - 1;
+		if (searchIdx < 0 || searchIdx > 7 || !isFilled[searchIdx])
+			std::cout << "No Contact Found in index No." << searchIdx << "!!!\n";
+		else printSearchedContact(contactArr[searchIdx]);
+	}
 }
