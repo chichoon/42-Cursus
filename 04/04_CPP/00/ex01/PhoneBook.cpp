@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:22:07 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/06 12:06:26 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/05/06 12:16:45 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ static void printContact(Contact contact, int i)
 	std::cout << "|";
 	wordWrap(contact.GetNickName());
 	std::cout << "|\n";
+}
+
+static void printSearchedContact(Contact contact)
+{
+	std::cout << "Firstname: " << contact.GetFirstName() << "\n";
+	std::cout << "Lastname: " << contact.GetLastName() << "\n";
+	std::cout << "Nickname: " << contact.GetNickName() << "\n";
+	std::cout << "Phone number: " << contact.GetPhoneNumber() << "\n";
+	std::cout << "Darkest Secret: " << contact.GetDarkestSecret() << "\n";
 
 }
 
@@ -78,7 +87,6 @@ void PhoneBook::SearchContact()
 	std::cout << "Enter Index:";
 	std::cin >> searchIdx;
 	if (searchIdx < 0 || searchIdx > 7 || !contactArr[searchIdx].GetFirstName().length())
-		std::cout << "No Contact Found in No." << searchIdx << "!!!\n";
-	else printContact(contactArr[searchIdx], searchIdx);
-	std::cout << searchIdx;
+		std::cout << "No Contact Found in index No." << searchIdx << "!!!\n";
+	else printSearchedContact(contactArr[searchIdx]);
 }
