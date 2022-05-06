@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:22:07 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/02 16:32:09 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/05/06 12:06:26 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,32 @@ void PhoneBook::AddNewContact()
 	if (curIndex == 8) curIndex = 0;
 }
 
+static void wordWrap(std::string str)
+{
+	int length = str.length();
+
+	if (length >= 10)
+		std::cout << str.substr(0, 9) << '.';
+	else {
+		std::string whitespace(10 - length, ' ');
+		std::cout << whitespace << str;
+	}
+}
+
+static void printContact(Contact contact, int i)
+{
+	std::cout << "|         ";
+	std::cout << i;
+	std::cout << "|";
+	wordWrap(contact.GetFirstName());
+	std::cout << "|";
+	wordWrap(contact.GetLastName());
+	std::cout << "|";
+	wordWrap(contact.GetNickName());
+	std::cout << "|\n";
+
+}
+
 void PhoneBook::SearchContact()
 {
 	int searchIdx;
@@ -47,9 +73,12 @@ void PhoneBook::SearchContact()
 	std::cout << "|     INDEX| FIRSTNAME|  LASTNAME|  NICKNAME|\n";
 	for (int i = 0; i < 8; i++) {
 		if (!contactArr[i].GetFirstName().length()) break;
-		std::cout << "|";
-		std::cout << contactArr[i].GetFirstName();
+		printContact(contactArr[i], i);
 	}
+	std::cout << "Enter Index:";
 	std::cin >> searchIdx;
+	if (searchIdx < 0 || searchIdx > 7 || !contactArr[searchIdx].GetFirstName().length())
+		std::cout << "No Contact Found in No." << searchIdx << "!!!\n";
+	else printContact(contactArr[searchIdx], searchIdx);
 	std::cout << searchIdx;
 }
