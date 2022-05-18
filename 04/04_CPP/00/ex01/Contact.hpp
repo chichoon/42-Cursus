@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:29:48 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/06 12:11:26 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/05/18 13:21:58 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class Contact {
 		std::string	_phoneNumber;
 	public:
 		Contact(void);
+		~Contact(void);
 		void	SetFirstName(std::string fn);
 		std::string	GetFirstName();
 		void	SetLastName(std::string ln);

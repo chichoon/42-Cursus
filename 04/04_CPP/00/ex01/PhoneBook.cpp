@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:22:07 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/06 16:01:14 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/05/18 13:17:38 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 PhoneBook::PhoneBook(void) {
 	curIndex = 0;
 	for (int i = 0; i < 8; i++) isFilled[i] = 0;
+}
+
+PhoneBook::~PhoneBook(void) {
+	std::cout << "Phonebook Losts forever. byebye...\n";
 }
 
 void PhoneBook::AddNewContact() {

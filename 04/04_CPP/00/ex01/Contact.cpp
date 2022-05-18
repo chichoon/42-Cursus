@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:22:52 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/06 15:22:07 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/05/18 13:26:17 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ Contact::Contact(void) {
 	_phoneNumber = "";
 	_darkestSecret = "";
 }
+
+Contact::~Contact(void) {}
 
 void	Contact::SetFirstName(std::string fn) {
 	_firstName = fn;
