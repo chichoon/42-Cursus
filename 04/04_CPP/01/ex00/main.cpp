@@ -6,17 +6,17 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 19:32:59 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/17 19:50:37 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/17 20:41:40 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.h"
 
 int main(void) {
-	Zombie* zombie1 = newZombie("jiychoi");
-	Zombie* zombie2 = newZombie("junmkang");
-	Zombie* zombie3 = newZombie("seongele");
-	Zombie* zombie4 = newZombie("soju");
+	Zombie*	zombie1 = newZombie("jiychoi");
+	Zombie*	zombie2 = newZombie("junmkang");
+	Zombie*	zombie3 = newZombie("seongele");
+	Zombie*	zombie4 = newZombie("soju");
 
 	std::cout << "======Random Chumps Crying...\n";
 	randomChump("taeng");

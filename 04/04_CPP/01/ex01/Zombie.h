@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 19:29:45 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/17 19:53:37 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/17 20:55:06 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 #include "Zombie.hpp"
 
-Zombie	*zombieHorde(int N, std::string name);
+Zombie*	zombieHorde(int N, std::string name);
 
 #endif
