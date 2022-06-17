@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:22:07 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/18 13:17:38 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/17 17:50:53 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ PhoneBook::PhoneBook(void) {
 }
 
 PhoneBook::~PhoneBook(void) {
-	std::cout << "Phonebook Losts forever. byebye...\n";
+	std::cout << "\033[1;31mPhonebook Losts forever. byebye...\e[0m\n";
 }
 
 void PhoneBook::AddNewContact() {
 	std::string firstName, lastName, nickName, phoneNumber, darkestSecret;
 
-	std::cout << "Current Index: " << curIndex + 1 << "\n";
-	std::cout << "Enter Firstname: ";
+	std::cout << "\nCurrent Index: " << curIndex + 1 << "\n";
+	std::cout << "\033[1;32mEnter Firstname\e[0m: ";
 	std::getline(std::cin, firstName);
-	std::cout << "Enter Lastname: ";
+	std::cout << "\033[1;32mEnter Lastname\e[0m: ";
 	std::getline(std::cin, lastName);
-	std::cout << "Enter Nickname: ";
+	std::cout << "\033[1;32mEnter Nickname\e[0m: ";
 	std::getline(std::cin, nickName);
-	std::cout << "Enter Phone Number: ";
+	std::cout << "\033[1;32mEnter Phone Number\e[0m: ";
 	std::getline(std::cin, phoneNumber);
-	std::cout << "Enter Darkest Secret: ";
+	std::cout << "\033[1;32mEnter Darkest Secret\e[0m: ";
 	std::getline(std::cin, darkestSecret);
 	contactArr[curIndex].SetFirstName(firstName);
 	contactArr[curIndex].SetLastName(lastName);
@@ -43,16 +43,15 @@ void PhoneBook::AddNewContact() {
 	isFilled[curIndex] = 1;
 	curIndex++;
 	if (curIndex == 8) curIndex = 0;
+	std::cout << "\n";
 }
 
 static void wordWrap(std::string str) {
-	int length = str.length();
-
-	if (length >= 10)
+	if (str.length() >= 10)
 		std::cout << str.substr(0, 9) << '.';
 	else {
-		std::string whitespace(10 - length, ' ');
-		std::cout << whitespace << str;
+		std::cout << std::setw(10);
+		std::cout << str;
 	}
 }
 
@@ -70,11 +69,11 @@ static void printContact(Contact contact, int i) {
 
 static void printSearchedContact(Contact contact) {
 	std::cout << "\n----------SEARCH RESULT----------\n";
-	std::cout << "Firstname: " << contact.GetFirstName() << "\n";
-	std::cout << "Lastname: " << contact.GetLastName() << "\n";
-	std::cout << "Nickname: " << contact.GetNickName() << "\n";
-	std::cout << "Phone number: " << contact.GetPhoneNumber() << "\n";
-	std::cout << "Darkest Secret: " << contact.GetDarkestSecret() << "\n";
+	std::cout << "\033[1;32mFirstname\e[0m: " << contact.GetFirstName() << "\n";
+	std::cout << "\033[1;32mLastname\e[0m: " << contact.GetLastName() << "\n";
+	std::cout << "\033[1;32mNickname\e[0m: " << contact.GetNickName() << "\n";
+	std::cout << "\033[1;32mPhone number\e[0m: " << contact.GetPhoneNumber() << "\n";
+	std::cout << "\033[1;32mDarkest Secret\e[0m: " << contact.GetDarkestSecret() << "\n";
 	std::cout << "---------------------------------\n\n";
 }
 
@@ -82,18 +81,18 @@ void PhoneBook::SearchContact() {
 	std::string idxTemp;
 	int searchIdx;
 
-	std::cout << "|     INDEX| FIRSTNAME|  LASTNAME|  NICKNAME|\n";
+	std::cout << "\n|     \033[1;32mINDEX\e[0m| \033[1;32mFIRSTNAME\e[0m| \033[1;32m LASTNAME\e[0m|  \033[1;32mNICKNAME\e[0m|\n";
 	for (int i = 0; i < 8; i++) {
 		if (!isFilled[i]) break;
 		printContact(contactArr[i], i);
 	}
-	std::cout << "Enter Index: ";
+	std::cout << "\nEnter Index: ";
 	std::getline(std::cin, idxTemp);
 	if (idxTemp.length() > 2 || idxTemp[0] < '1' || idxTemp[0] > '8') std::cout << "Invalid Input " << idxTemp << " !!\n";
 	else {
 		searchIdx = std::atoi(idxTemp.c_str()) - 1;
 		if (searchIdx < 0 || searchIdx > 7 || !isFilled[searchIdx])
-			std::cout << "No Contact Found in index No." << searchIdx << "!!!\n";
+			std::cout << "\n\033[1;31mNo Contact Found in index No." << searchIdx + 1 << "!!!\e[0m\n\n";
 		else printSearchedContact(contactArr[searchIdx]);
 	}
 }
