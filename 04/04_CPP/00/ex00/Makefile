@@ -6,16 +6,16 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/28 15:14:47 by jiychoi           #+#    #+#              #
-#    Updated: 2022/04/28 15:33:18 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/05/18 17:09:49 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		=	g++
-CFLAGS	=	-Wall -Wextra -Werror -std=c++98
-SRCS	=	megaphone.cpp
-OBJS	=	$(SRCS:.cpp=.o)
-TARGET	=	megaphone
-SUBJECT	=	00
+CXX			=	c++
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
+SRCS		=	megaphone.cpp
+OBJS		=	$(SRCS:.cpp=.o)
+TARGET		=	megaphone
+SUBJECT		=	00
 
 LF			=	\e[1K\r$(NO_COLOR)
 CRLF		=	\n$(LF)
@@ -24,10 +24,10 @@ all : $(TARGET)
 
 $(TARGET) : $(OBJS)
 	@printf "$(LF)CPP MODULE $(SUBJECT): $(TARGET)\n"
-	@$(CC) $(OBJS) $(CFLAGS) -o $(TARGET)
+	@$(CXX) $(OBJS) $(CXXFLAGS) -o $(TARGET)
 
 %.o : %.cpp
-	@$(CC) $(CFLAGS) -c -o $@ $< -I ./
+	@$(CXX) $(CXXFLAGS) -c -o $@ $< -I ./
 
 clean :
 	@printf "$(LF)Deleting $(TARGET)...\n"
