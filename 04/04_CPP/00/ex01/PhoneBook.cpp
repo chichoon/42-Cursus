@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:22:07 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/17 17:50:53 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/17 20:41:04 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ static void printSearchedContact(Contact contact) {
 }
 
 void PhoneBook::SearchContact() {
-	std::string idxTemp;
-	int searchIdx;
+	std::string	idxTemp;
+	int			searchIdx;
 
 	std::cout << "\n|     \033[1;32mINDEX\e[0m| \033[1;32mFIRSTNAME\e[0m| \033[1;32m LASTNAME\e[0m|  \033[1;32mNICKNAME\e[0m|\n";
 	for (int i = 0; i < 8; i++) {

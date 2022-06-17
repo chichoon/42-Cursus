@@ -6,15 +6,15 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:21:26 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/17 17:49:26 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/17 20:41:17 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-int main(void) {
-	std::string input;
-	PhoneBook pb;
+int	main(void) {
+	std::string	input;
+	PhoneBook	pb;
 
 	while (1) {
 		std::cout << "Available commands: ADD, SEARCH, EXIT\n\033[0;32mInput command\e[0m: ";
