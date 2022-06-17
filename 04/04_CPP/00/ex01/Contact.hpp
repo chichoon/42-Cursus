@@ -6,9 +6,12 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:29:48 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/18 13:21:58 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/17 19:35:19 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CONTACT_H
+# define CONTACT_H
 
 #include <string>
 
@@ -33,3 +36,5 @@ class Contact {
 		void	SetDarkestSecret(std::string ds);
 		std::string	GetDarkestSecret();
 };
+
+#endif
