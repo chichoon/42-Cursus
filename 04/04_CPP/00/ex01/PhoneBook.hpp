@@ -6,12 +6,12 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:21:48 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/17 19:34:55 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/17 19:37:51 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
 #include "Contact.hpp"
 #include <iostream>

@@ -6,12 +6,12 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:29:48 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/17 19:35:19 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/17 19:37:47 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_H
-# define CONTACT_H
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
 #include <string>
 
