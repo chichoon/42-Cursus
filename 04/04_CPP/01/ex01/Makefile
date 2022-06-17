@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/17 19:30:54 by jiychoi           #+#    #+#              #
-#    Updated: 2022/06/17 19:52:55 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/06/17 20:30:16 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CRLF		=	\n$(LF)
 all : $(TARGET)
 
 $(TARGET) : $(OBJS)
-	@printf "$(LF)CPP MODULE $(SUBJECT): $(TARGET)\n"
+	@printf "$(LF)CPP MODULE $(SUBJECT): Moar brainz!\n"
 	@$(CXX) $(OBJS) $(CXXFLAGS) -o $(TARGET)
 
 %.o : %.cpp
