@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:21:26 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/05/18 13:16:44 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/17 17:49:26 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(void) {
 	PhoneBook pb;
 
 	while (1) {
-		std::cout << "Available commands: ADD, SEARCH, EXIT\nInput command: ";
+		std::cout << "Available commands: ADD, SEARCH, EXIT\n\033[0;32mInput command\e[0m: ";
 		std::getline(std::cin, input);
 		if (input == "EXIT" || std::cin.eof()) break;
 		else if (input == "ADD") pb.AddNewContact();
