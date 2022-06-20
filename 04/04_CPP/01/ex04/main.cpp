@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 18:19:01 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/20 18:30:26 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/20 19:17:55 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,7 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 
-	std::ifstream	inputFile;
-	std::ofstream	outputFile;
-	std::string		line;
-
-	inputFile.open(argv[1]);
-	outputFile.open(argv[1] + ".replace");
-	std::getline(inputFile, line);
-	while (line) {
-		std::cout << line << "\n";
-		outputFile << line << "\n";
-	}
-
+	ReferFile reference = ReferFile(argv[1], argv[2], argv[3]);
+	reference.replaceWord();
+	return 0;
 }
