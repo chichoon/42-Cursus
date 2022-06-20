@@ -6,17 +6,13 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 01:30:14 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/18 01:39:37 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/20 17:31:09 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 
-#include <iostream>
-
-HumanA::HumanA(void) {}
-
-HumanA::HumanA(std::string name, Weapon weapon) {
+HumanA::HumanA(std::string name, Weapon& weapon): _weapon(weapon) {
 	_name = name;
 	_weapon = weapon;
 }
