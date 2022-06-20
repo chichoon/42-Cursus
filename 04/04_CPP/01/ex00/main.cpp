@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 19:32:59 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/18 01:16:00 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/20 18:47:05 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,6 @@ int main(void) {
 	delete zombie2;
 	delete zombie3;
 	delete zombie4;
+
+	return 0;
 }

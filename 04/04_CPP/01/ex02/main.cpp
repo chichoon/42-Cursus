@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:24:46 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/17 20:36:45 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/20 18:48:46 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,6 @@ int main(void) {
 	std::cout << "Values of string:\t" << brain << "\n";
 	std::cout << "Values of stringPTR:\t" << *stringPTR << "\n";
 	std::cout << "Values of stringREF:\t" << stringREF << "\n";
+
+	return 0;
 }
