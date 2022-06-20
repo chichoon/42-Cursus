@@ -6,7 +6,7 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:21:26 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/17 20:41:17 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/20 18:47:10 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ int	main(void) {
 		else std::cout << "[" << input << "] is invalid command!!\n";
 	}
 	std::cout << "Existing Phonebook...\n";
+	return 0;
 }
