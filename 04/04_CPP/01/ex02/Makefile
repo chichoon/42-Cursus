@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/28 15:14:47 by jiychoi           #+#    #+#              #
-#    Updated: 2022/06/17 20:29:58 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/06/20 17:59:18 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 SRCS		=	main.cpp
 OBJS		=	$(SRCS:.cpp=.o)
-TARGET		=	brain
+TARGET		=	ex02
+TITLE		=	HI THIS IS BRAIN
 SUBJECT		=	01
 
 NO_COLOR	=	\e[0m
@@ -24,7 +25,7 @@ CRLF		=	\n$(LF)
 all : $(TARGET)
 
 $(TARGET) : $(OBJS)
-	@printf "$(LF)CPP MODULE $(SUBJECT): HI THIS IS BRAIN\n"
+	@printf "$(LF)CPP MODULE $(SUBJECT): $(TITLE)\n"
 	@$(CXX) $(OBJS) $(CXXFLAGS) -o $(TARGET)
 
 %.o : %.cpp

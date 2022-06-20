@@ -6,7 +6,7 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/17 19:30:54 by jiychoi           #+#    #+#              #
-#    Updated: 2022/06/17 20:30:16 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/06/20 17:58:16 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 SRCS		=	main.cpp Zombie.cpp zombieHorde.cpp
 OBJS		=	$(SRCS:.cpp=.o)
-TARGET		=	zombie
+TARGET		=	ex01
+TITLE		=	Moar brainz!
 SUBJECT		=	01
 
 NO_COLOR	=	\e[0m
@@ -24,7 +25,7 @@ CRLF		=	\n$(LF)
 all : $(TARGET)
 
 $(TARGET) : $(OBJS)
-	@printf "$(LF)CPP MODULE $(SUBJECT): Moar brainz!\n"
+	@printf "$(LF)CPP MODULE $(SUBJECT): $(TITLE)\n"
 	@$(CXX) $(OBJS) $(CXXFLAGS) -o $(TARGET)
 
 %.o : %.cpp
