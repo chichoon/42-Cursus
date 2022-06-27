@@ -6,9 +6,12 @@
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 18:06:15 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/20 19:02:39 by jiychoi          ###   ########.fr       */
+/*   Updated: 2022/06/27 13:58:16 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef REFERFILE_HPP
+# define REFERFILE_HPP
 
 #include <iostream>
 #include <string>
@@ -24,3 +27,5 @@ class ReferFile {
 		~ReferFile(void);
 		void	replaceWord(void);
 };
+
+#endif
