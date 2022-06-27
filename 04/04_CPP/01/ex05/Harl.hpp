@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/18 01:25:35 by jiychoi           #+#    #+#             */
-/*   Updated: 2022/06/27 13:59:47 by jiychoi          ###   ########.fr       */
+/*   Created: 2022/06/27 14:46:58 by jiychoi           #+#    #+#             */
+/*   Updated: 2022/06/27 14:48:29 by jiychoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#ifndef HARL_HPP
+# define HARL_HPP
 
-#include "Weapon.hpp"
 #include <iostream>
 
-class HumanB {
+class Harl {
 	private:
-		std::string	_name;
-		Weapon*		_weapon;
+		void	debug(void);
+		void	info(void);
+		void	warning(void);
+		void	error(void);
 	public:
-		HumanB(std::string name);
-		~HumanB(void);
-		void	setWeapon(Weapon& weapon);
-		void	attack(void);
+		Harl(void);
+		~Harl(void);
+		void	complain(std::string level);
 };
 
 #endif

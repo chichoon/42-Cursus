@@ -6,13 +6,13 @@
 #    By: jiychoi <jiychoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/28 15:14:47 by jiychoi           #+#    #+#              #
-#    Updated: 2022/06/20 19:24:31 by jiychoi          ###   ########.fr        #
+#    Updated: 2022/06/27 14:46:36 by jiychoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
-SRCS		=	main.cpp Harl.hpp Harl.cpp
+SRCS		=	main.cpp Harl.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 TARGET		=	ex05
 TITLE		=	Harl 2.0
